@@ -71,7 +71,6 @@ class FooterOne extends Component {
                     <ul>
                       <li>shipping & return</li>
                       <li>secure shopping</li>
-                      <li>gallary</li>
                       <li>affiliates</li>
                       <li>contacts</li>
                     </ul>
@@ -93,7 +92,7 @@ class FooterOne extends Component {
                       </li>
                       <li>
                         <i className="fa fa-envelope-o"></i>Email Us:{" "}
-                        <a href="#">ecommerceStore@eCommerce.com</a>
+                        ecommerce@email.com
                       </li>
                       <li>
                         <i className="fa fa-fax"></i>Fax: 123456

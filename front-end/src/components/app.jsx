@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { withTranslate } from "react-redux-multilingual";
 
-// Custom Components
+// Header Components
 import HeaderOne from "./common/headers/header-one";
-import HeaderTwo from "./common/headers/header-two";
-import HeaderThree from "./common/headers/header-three";
 
+// Footer Components
 import FooterOne from "./common/footers/footer-one";
 
 // ThemeSettings

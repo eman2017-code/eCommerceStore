@@ -16,7 +16,7 @@ import BlogSection from "../common/blogsection";
 import Trending from "./trending";
 import TrandingCollection from "../common/collection";
 import Special from "../common/special";
-import HeaderFive from "../../common/headers/header-five";
+import HeaderOne from "../../common/headers/header-one";
 import FooterOne from "../../common/footers/footer-one";
 import ThemeSettings from "../../common/theme-settings";
 
@@ -33,7 +33,7 @@ class Lander extends Component {
         <Helmet>
           <title>E-Commerce | Store</title>
         </Helmet>
-        <HeaderFive logoName={"layout4/logo.png"} />
+        <HeaderOne logoName={"layout4/logo.png"} />
         <section className="p-0 small-slider">
           <Slider className="slide-1 home-slider">
             <div>
