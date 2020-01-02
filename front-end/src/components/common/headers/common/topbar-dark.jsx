@@ -23,10 +23,13 @@ class TopBarDark extends Component {
                 <li className="onhover-dropdown mobile-account">
                   <i className="fa fa-user" aria-hidden="true"></i> My Account
                   <ul className="onhover-show-div">
-                    <li>
+                    {/* <li>
                       <a href="#" data-lng="en">
                         Login
                       </a>
+                    </li> */}
+                    <li>
+                      <Link to="/pages/login">Login</Link>
                     </li>
                     <li>
                       <a href="#" data-lng="es">
