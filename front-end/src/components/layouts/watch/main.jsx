@@ -32,7 +32,7 @@ class Lander extends Component {
     return (
       <div>
         <Helmet>
-          <title>MultiKart | Watch Store</title>
+          <title>E-Commerce | Store</title>
         </Helmet>
         <HeaderFive logoName={"layout4/logo.png"} />
         <section className="p-0 small-slider">
@@ -44,8 +44,8 @@ class Lander extends Component {
                     <div className="col">
                       <div className="slider-contain">
                         <div>
-                          <h4>every time</h4>
-                          <h1>mittnalier</h1>
+                          <h4>Great Products</h4>
+                          <h1>Check them out</h1>
                           <a href="#" className="btn btn-outline btn-classic">
                             shop now
                           </a>
@@ -63,8 +63,8 @@ class Lander extends Component {
                     <div className="col">
                       <div className="slider-contain">
                         <div>
-                          <h4>welcome to fashion</h4>
-                          <h1>men's shoes</h1>
+                          <h4>We have great deals</h4>
+                          <h1>Electronics</h1>
                           <a href="#" className="btn btn-outline btn-classic">
                             shop now
                           </a>
@@ -82,8 +82,8 @@ class Lander extends Component {
                     <div className="col">
                       <div className="slider-contain">
                         <div>
-                          <h4>welcome to fashion</h4>
-                          <h1>men's shoes</h1>
+                          <h4>Great for the family</h4>
+                          <h1>Family and Friends</h1>
                           <a href="#" className="btn btn-outline btn-classic">
                             shop now
                           </a>
@@ -100,29 +100,6 @@ class Lander extends Component {
         {/*Logo Blocks section*/}
         <LogoBlocks />
         {/*Logo Blocks section end*/}
-
-        {/*Timer Banner*/}
-        <section className="pt-0">
-          <div className="container">
-            <div className="row banner-timer">
-              <div className="col-md-6">
-                <div className="banner-text">
-                  <h2>
-                    Save <span>30% off</span> Digital Watch
-                  </h2>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="timer-box">
-                  <div className="timer">
-                    <p id="demo"></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/*Timer Banner End*/}
 
         {/*category wrapper*/}
         <section className="section-b-space ratio_portrait">
@@ -141,20 +118,8 @@ class Lander extends Component {
                           />
                         </div>
                         <h4>watch models</h4>
-                        <ul className="category-link">
-                          <li>
-                            <a href="#">d1 milano</a>
-                          </li>
-                          <li>
-                            <a href="#">damaskeening</a>
-                          </li>
-                          <li>
-                            <a href="#">diving watch</a>
-                          </li>
-                          <li>
-                            <a href="#">dollar watch</a>
-                          </li>
-                        </ul>
+
+                        {/* this will link to the specific item that is being listed */}
                         <a href="#" className="btn btn-outline">
                           view more
                         </a>
@@ -172,20 +137,6 @@ class Lander extends Component {
                           />
                         </div>
                         <h4>calculator watch</h4>
-                        <ul className="category-link">
-                          <li>
-                            <a href="#">Shock-resistant watch</a>
-                          </li>
-                          <li>
-                            <a href="#">Skeleton watch</a>
-                          </li>
-                          <li>
-                            <a href="#">Slow watch</a>
-                          </li>
-                          <li>
-                            <a href="#">Solar-powered watch</a>
-                          </li>
-                        </ul>
                         <a href="#" className="btn btn-outline">
                           view more
                         </a>
@@ -203,20 +154,6 @@ class Lander extends Component {
                           />
                         </div>
                         <h4>Antimagnetic watch</h4>
-                        <ul className="category-link">
-                          <li>
-                            <a href="#">Watchmaking conglomerates</a>
-                          </li>
-                          <li>
-                            <a href="#">Breitling SA</a>
-                          </li>
-                          <li>
-                            <a href="#">Casio watches</a>
-                          </li>
-                          <li>
-                            <a href="#">Citizen Watch</a>
-                          </li>
-                        </ul>
                         <a href="#" className="btn btn-outline">
                           view more
                         </a>
@@ -234,20 +171,6 @@ class Lander extends Component {
                           />
                         </div>
                         <h4>History of watches</h4>
-                        <ul className="category-link">
-                          <li>
-                            <a href="#">Manufacture d'horlogerie</a>
-                          </li>
-                          <li>
-                            <a href="#">Mechanical watch</a>
-                          </li>
-                          <li>
-                            <a href="#">Microbrand watches</a>
-                          </li>
-                          <li>
-                            <a href="#">MIL-W-46374</a>
-                          </li>
-                        </ul>
                         <a href="#" className="btn btn-outline">
                           view more
                         </a>
@@ -265,20 +188,6 @@ class Lander extends Component {
                           />
                         </div>
                         <h4>watch models</h4>
-                        <ul className="category-link">
-                          <li>
-                            <a href="#">d1 milano</a>
-                          </li>
-                          <li>
-                            <a href="#">damaskeening</a>
-                          </li>
-                          <li>
-                            <a href="#">diving watch</a>
-                          </li>
-                          <li>
-                            <a href="#">dollar watch</a>
-                          </li>
-                        </ul>
                         <a href="#" className="btn btn-outline">
                           view more
                         </a>
