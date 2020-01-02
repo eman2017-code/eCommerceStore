@@ -32,9 +32,7 @@ class TopBarDark extends Component {
                       <Link to="/pages/login">Login</Link>
                     </li>
                     <li>
-                      <a href="#" data-lng="es">
-                        Register
-                      </a>
+                      <Link to="/pages/register">Register</Link>
                     </li>
                   </ul>
                 </li>
