@@ -17,7 +17,7 @@ import Trending from "./trending";
 import TrandingCollection from "../common/collection";
 import Special from "../common/special";
 import HeaderFive from "../../common/headers/header-five";
-import FooterFour from "../../common/footers/footer-four";
+import FooterOne from "../../common/footers/footer-one";
 import ThemeSettings from "../../common/theme-settings";
 
 class Lander extends Component {
@@ -332,7 +332,7 @@ class Lander extends Component {
 
         <ThemeSettings />
 
-        <FooterFour logoName={"layout4/footerlogo.png"} />
+        <FooterOne logoName={"layout4/footerlogo.png"} />
       </div>
     );
   }
