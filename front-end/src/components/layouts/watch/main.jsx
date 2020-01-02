@@ -16,7 +16,6 @@ import BlogSection from "../common/blogsection";
 import Trending from "./trending";
 import TrandingCollection from "../common/collection";
 import Special from "../common/special";
-import Instagram from "../common/instagram";
 import HeaderFive from "../../common/headers/header-five";
 import FooterFour from "../../common/footers/footer-four";
 import ThemeSettings from "../../common/theme-settings";
@@ -331,7 +330,6 @@ class Lander extends Component {
         </div>
         {/*Service Layout End*/}
 
-        <Instagram type="watch" />
         <ThemeSettings />
 
         <FooterFour logoName={"layout4/footerlogo.png"} />
