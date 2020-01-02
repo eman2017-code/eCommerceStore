@@ -13,7 +13,7 @@ import { getAllProducts } from "./actions";
 import Landing from "./components/landing";
 
 // Layouts
-import Watch from "./components/layouts/watch/main";
+import Lander from "./components/layouts/watch/main";
 
 // //Collection Pages
 import CollectionFullWidth from "./components/collection/collection-full-width";
@@ -53,7 +53,7 @@ class Root extends React.Component {
                 <Route
                   exact
                   path={`${process.env.PUBLIC_URL}/`}
-                  component={Watch}
+                  component={Lander}
                 />
                 <Layout>
                   <Route
