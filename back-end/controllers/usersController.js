@@ -51,10 +51,7 @@ router.post("/login/", async (req, res, next) => {
     const foundUser = await User.findOne({ email: clientData.email });
 
     // logs in the user if the email and password match
-    if (
-      foundUser &&
-      User.doPasswordsMatch(clientData.password, foundUser.password)
-    ) {
+    if (foundUser && User.doPasswordsMatch(clientData.password, foundUser.password)) {
       foundUser.login(req);
       return res.json({
         data: foundUser,
