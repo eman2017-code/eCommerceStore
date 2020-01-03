@@ -10,6 +10,7 @@ const session = require("express-session");
 // import controllers here
 const usersController = require("./controllers/usersController.js");
 
+// import middleware here
 const loginRequired = require("./middleware/users.js");
 
 // imports the database connection module
@@ -28,7 +29,10 @@ app.use(
   })
 );
 
-app.use(bodyParser.json());
+app.use(bodyParser({
+	uploadDir: '/images',
+    keepExtensions: true
+});
 app.use(cors({ origin: "localhost:3000" }));
 
 // setup controllers here
