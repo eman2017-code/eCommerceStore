@@ -10,8 +10,6 @@ const session = require("express-session");
 // import controllers here
 const usersController = require("./controllers/usersController.js");
 
-// import middleware here
-const loginRequired = require("./middleware/users.js");
 
 // imports the database connection module
 require("./db/db.js");
@@ -21,18 +19,17 @@ const API_PATH = "/api/v1/";
 const app = express();
 
 // setup middleware here
-app.use(
-  session({
-    secret: process.env.SECRET_KEY,
+app.use(session({
+	secret: process.env.SECRET_KEY,
     saveUninitialized: false,
     resave: false
   })
 );
 
-app.use(bodyParser({
-	uploadDir: '/images',
-    keepExtensions: true
-});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
 app.use(cors({ origin: "localhost:3000" }));
 
 // setup controllers here
