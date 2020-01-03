@@ -270,25 +270,6 @@ class Lander extends Component {
 
         <Special type={"watch"} />
 
-        {/* Blog Section Section*/}
-        <section className="blog blog-bg section-b-space ratio2_3">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="title4">
-                  <h4>our collection</h4>
-                  <h2 className="title-inner4">special products</h2>
-                  <div className="line">
-                    <span></span>
-                  </div>
-                </div>
-                <BlogSection />
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* Blog Section End*/}
-
         {/*Service Layout*/}
         <div className="container">
           <section className="service section-b-space border-section border-top-0">
