@@ -31,7 +31,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }))
-app.use(cors({ origin: "localhost:3000" }));
+app.use(cors({ 
+	origin: "localhost:3000",
+	credentials: true 
+}));
 
 // setup controllers here
 app.use(API_PATH + "users", usersController)
