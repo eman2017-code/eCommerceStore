@@ -8,7 +8,8 @@ const cors = require("cors");
 const session = require("express-session");
 
 // import controllers here
-const usersController = require("./controllers/usersController.js");
+const usersController = require("./controllers/usersController.js")
+const productsController = require("./controllers/productsController.js")
 
 
 // imports the database connection module
@@ -33,7 +34,9 @@ app.use(bodyParser.urlencoded({
 app.use(cors({ origin: "localhost:3000" }));
 
 // setup controllers here
-app.use(API_PATH + "users", usersController);
+app.use(API_PATH + "users", usersController)
+app.use(API_PATH + "products", productsController);
+
 
 // runs the server
 app.listen(PORT, () => {

@@ -8,16 +8,29 @@ const productSchema = new mongoose.Schema({
 	},
 
 	// main product images
-	coverImage: String,
+	coverImage: {
+		type: String,
+		required: true
+	},
 
 	// secondary product images
 	images: [{
 		type: String,
 		required: false
-	}]
-	name: String,
-	description: String,
-	price: Number,
+	}],
+
+	name: {
+		type: String,
+		required: true
+	},
+	description: {
+		type: String,
+		required: true
+	},
+	price: {
+		type: Number,
+		required: true
+	},
 
 	// TODO - add array of Review ObjectIds when the review schema exists
 
