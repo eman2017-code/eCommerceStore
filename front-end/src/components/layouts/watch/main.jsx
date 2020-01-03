@@ -277,34 +277,22 @@ class Lander extends Component {
               <div className="col-lg-3 col-md-6 service-block1">
                 <div dangerouslySetInnerHTML={{ __html: svgFreeShipping }} />
                 <h4>free shipping</h4>
-                <p>
-                  Contrary to popular belief, Lorem Ipsum is not simply random
-                  text.
-                </p>
+                <p>Because who really wants to pay for shipping?</p>
               </div>
               <div className="col-lg-3 col-md-6 service-block1">
                 <div dangerouslySetInnerHTML={{ __html: svgservice }} />
                 <h4>24 X 7 service</h4>
-                <p>
-                  Contrary to popular belief, Lorem Ipsum is not simply random
-                  text.
-                </p>
+                <p>Whenever you need something, we will be ready</p>
               </div>
               <div className="col-lg-3 col-md-6 service-block1">
                 <div dangerouslySetInnerHTML={{ __html: svgoffer }} />
-                <h4>festival offer</h4>
-                <p>
-                  Contrary to popular belief, Lorem Ipsum is not simply random
-                  text.
-                </p>
+                <h4>suprise discounts</h4>
+                <p>Discounts make us happy, because they make you happy</p>
               </div>
               <div className="col-lg-3 col-md-6 service-block1">
                 <div dangerouslySetInnerHTML={{ __html: svgpayment }} />
                 <h4>online payment</h4>
-                <p>
-                  Contrary to popular belief, Lorem Ipsum is not simply random
-                  text.
-                </p>
+                <p>Having things convient to you is our goal!</p>
               </div>
             </div>
           </section>
