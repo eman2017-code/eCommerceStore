@@ -15,14 +15,19 @@ const cartSchema = new mongoose.Schema({
 		default: false
 	},
 	lastUpdated: {
-    type: Date,
-    default: Date.now
+    	type: Date,
+    	default: Date.now
 	},
-  timestamp: {
-    type: Date,
-    default: Date.now
-  }
+  	timestamp: {
+    	type: Date,
+    	default: Date.now
+  	}
 })
+
+// adds a cart item to the cart
+cartSchema.methods.addToCart = function(cartItemId) {
+	this.cartItems.push(cartItemId)
+}
 
 const Cart = mongoose.model('Cart', cartSchema)
 

@@ -1,5 +1,6 @@
 const express = require('express')
 const CartItem = require('../models/cartItem.js')
+const Cart = require('../models/cart.js')
 const loginRequired = require('../middleware/users/loginRequired')
 
 const router = express.Router()
@@ -11,10 +12,14 @@ router.post('/', async (req, res, next) => {
 	const productId = req.body.productId
 
 	try {
+		const foundCart = await Cart.findOne({'user': req.session.userId})
+
 		const newCartItem = await CartItem.create({
 			'product': productId 
 		})
 
+		// adds the new cart item to the users cart 
+		
 		res.json({
 			data: newCartItem,
 			status: {
@@ -22,6 +27,7 @@ router.post('/', async (req, res, next) => {
 				message: 'Product added to cart'
 			}
 		})
+		
 	} catch (error) {
 		next(error);
 	}
