@@ -11,20 +11,17 @@ const router = express.Router()
 // this route is where the admin can create a new product
 router.post('/', adminRequired, async (req, res, next) => {
 	const clientData = req.body
+	const imageFile = req.files.coverImage
 
 	// uploads the products image
-	const imageFile = req.files.coverImage
-	imageFile.mv(`${__dirname}/../public/images/products/${imageFile.name}`, function(error) {
-		if (error) {
-      return res.status(500).send(error)
-    }
-	})
+	Product.uploadProductImage(imageFile)
 
 	try {
 		// now that the file is uploaded, the new product gets created
 		const newProduct = await Product.create({
 			postedBy: req.session.userId,
 			name: clientData.name,
+			brand: clientData.brand,
 			description: clientData.description,
 			price: parseFloat(clientData.price),
 			coverImage: '/public/images/products/' + imageFile.name
@@ -63,6 +60,22 @@ router.get('/:productId/', async (req, res, next) => {
 		next(error);
 	}
 })
+
+
+// router.put('/:productId', adminRequired, async (req, res, next) => {
+// 	const clientData = req.body
+// 	const newImageFile = req.files.coverImage
+
+
+	
+// 		imageFile.mv(`${__dirname}/../public/images/products/${imageFile.name}`, function(error) {
+// 			if (error) {
+// 	      		return res.status(500).send(error)
+// 	    	}
+// 		})
+	
+
+// })
 
 
 

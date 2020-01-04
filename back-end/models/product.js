@@ -41,6 +41,15 @@ const productSchema = new mongoose.Schema({
   }
 })
 
+// uploads a product image 
+productSchema.statics.uploadProductImage = function(imageFile) {
+	imageFile.mv(`${__dirname}/../public/images/products/${imageFile.name}`, function(error) {
+		if (error) {
+      return res.status(500).send(error)
+    }
+	})
+}
+
 const Product = mongoose.model('Product', productSchema)
 
 module.exports = Product
