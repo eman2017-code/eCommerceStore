@@ -12,6 +12,8 @@ const fileUpload = require('express-fileupload')
 const usersController = require("./controllers/usersController.js")
 const productsController = require("./controllers/productsController.js")
 const cartsController = require('./controllers/cartsController.js')
+const cartItemsController = require('./controllers/cartItemsController.js')
+
 
 // imports the database connection module
 require('./db/db.js')
@@ -49,6 +51,8 @@ app.use('/public', express.static(__dirname + '/public'))
 app.use(API_PATH + 'users', usersController)
 app.use(API_PATH + 'products', productsController)
 app.use(API_PATH + 'carts', cartsController)
+app.use(API_PATH + 'cart-items', cartItemsController)
+
 
 
 // runs the server
