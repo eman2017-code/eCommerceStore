@@ -5,10 +5,11 @@ const cartSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
 	},
-
-	// TODO 
-	// add array for CartItems when CartItem schema is created
-
+	// this fields is an array that contains all of the items in the cart
+	cartItems: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'CartItem'
+	}],
 	hasPaid: {
 		type: Boolean,
 		default: false
