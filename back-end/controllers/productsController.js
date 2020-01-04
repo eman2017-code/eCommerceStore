@@ -1,13 +1,13 @@
 const express = require("express")
 const Product = require('../models/product.js')
 const User = require("../models/user.js")
-const loginRequired = require("../middleware/users/loginRequired.js")
+const adminRequired = require("../middleware/users/adminRequired.js")
 
 const router = express.Router()
 
 
 // this route is where the admin can create a new product
-router.post('/', loginRequired, async (req, res, next) => {
+router.post('/', adminRequired, async (req, res, next) => {
 	const clientData = req.body
 
 	// uploads the products image
@@ -34,13 +34,11 @@ router.post('/', loginRequired, async (req, res, next) => {
 				code: 201,
 				message: 'Successfully added a new product'		
 			}
-
 		})
 
 	} catch (error) {
 		next(error);
 	}	
-
 })
 
 

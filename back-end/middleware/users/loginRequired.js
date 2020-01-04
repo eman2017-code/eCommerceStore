@@ -8,10 +8,10 @@ const loginRequired = (req, res, next) => {
         code: 403,
         message: "You are not logged in"
       }
-    });
+    })
   } else {
-    next();
+    next()
   }
-};
+}
 
-module.exports = loginRequired;
+module.exports = loginRequired
