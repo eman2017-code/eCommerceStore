@@ -23,7 +23,8 @@ const app = express()
 app.use(session({
 	secret: process.env.SECRET_KEY,
     saveUninitialized: false,
-    resave: false
+    resave: false,
+    cookie: { secure: false }
   })
 );
 

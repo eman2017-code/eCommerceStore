@@ -6,12 +6,7 @@ const productSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
 	},
-
-	// main product images
-	coverImage: {
-		type: String,
-		required: true
-	},
+	coverImage: String, // stores the path to the image
 	name: {
 		type: String,
 		required: true
