@@ -44,28 +44,6 @@ router.post('/', loginRequired, async (req, res, next) => {
 	}
 })
 
-// Add Cart Item Route
-// this route is where a cart item in added to a cart
-router.put('/add/', loginRequired, async (req, res, next) => {
-	const cartItemId = req.body.cartItemId
-
-	try {
-		const foundCart = await Cart.findOne({'user': req.session.userId})
-
-		// adds the product id to the carts items
-		foundCart.cartItems.push(cartItemId)
-
-		res.json({
-			data: foundCart.populate('cartItems'),
-			status: {
-				code: 200,
-				message: 'Product successfully added to the cart'
-			}
-		})
-	} catch (error) {
-		next(error)
-	}	
-})
 
 
 module.exports = router
