@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import HeaderOne from "../common/headers/header-one";
 import { Helmet } from "react-helmet";
 
 import Breadcrumb from "../common/breadcrumb";
@@ -12,11 +11,9 @@ class Register extends Component {
   render() {
     return (
       <div>
-        {/* <Breadcrumb title={"create account"} /> */}
         <Helmet>
           <title>E-Commerce | Store</title>
         </Helmet>
-        <HeaderOne logoName={"layout4/logo.png"} />
 
         {/*Regsiter section*/}
         <section className="register-page section-b-space">

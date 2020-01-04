@@ -301,7 +301,7 @@ class Lander extends Component {
 
         <ThemeSettings />
 
-        <FooterOne logoName={"layout4/footerlogo.png"} />
+        <FooterOne logoName={"layout4/logo.png"} />
       </div>
     );
   }

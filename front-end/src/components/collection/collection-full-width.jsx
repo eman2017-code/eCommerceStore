@@ -7,8 +7,6 @@ import { getTotal, getCartProducts } from "../../reducers/index";
 import { addToCart, addToWishlist, addToCompare } from "../../actions/index";
 import { getVisibleproducts } from "../../services/index";
 import ProductListItem from "./common/product-list-item";
-// import Breadcrumb from "../common/breadcrumb";
-import HeaderOne from "../common/headers/header-one";
 import { Helmet } from "react-helmet";
 
 class CollectionFullWidth extends Component {
@@ -49,11 +47,9 @@ class CollectionFullWidth extends Component {
 
     return (
       <div>
-        {/* <Breadcrumb title={"Collection"} /> */}
         <Helmet>
           <title>E-Commerce | Store</title>
         </Helmet>
-        <HeaderOne logoName={"layout4/logo.png"} />
 
         <div className="container-fluid">
           <div className="row">
