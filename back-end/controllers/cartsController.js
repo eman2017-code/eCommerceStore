@@ -19,7 +19,7 @@ router.get('/:cartId/', loginRequired, async (req, res, next) => {
 			}
 		}) 	
 	} catch (error) {
-		next(error);
+		next(error)
 	}	
 })
 
@@ -40,9 +40,11 @@ router.post('/', loginRequired, async (req, res, next) => {
 			}
 		})
 	} catch (error) {
-		next(error);
+		next(error)
 	}
 })
 
 
+
 module.exports = router
+
