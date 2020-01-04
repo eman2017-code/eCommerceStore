@@ -12,13 +12,6 @@ const productSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-
-	// secondary product images
-	images: [{
-		type: String,
-		required: false
-	}],
-
 	name: {
 		type: String,
 		required: true
@@ -34,7 +27,7 @@ const productSchema = new mongoose.Schema({
 	isOnSale: {
 		type: Boolean,
 		default: false
-	}
+	},
 
 	// TODO - add array of Review ObjectIds when the review schema exists
 
