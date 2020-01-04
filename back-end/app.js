@@ -12,12 +12,11 @@ const fileUpload = require('express-fileupload')
 const usersController = require("./controllers/usersController.js")
 const productsController = require("./controllers/productsController.js")
 
-
 // imports the database connection module
-require("./db/db.js")
+require('./db/db.js')
 
 const PORT = process.env.PORT
-const API_PATH = "/api/v1/"
+const API_PATH = '/api/v1/'
 const app = express()
 
 // setup middleware here
@@ -44,12 +43,9 @@ app.use(fileUpload())
 // configures path for static files
 app.use('/public', express.static(__dirname + '/public'))
 
-
-
-
 // setup controllers here
-app.use(API_PATH + "users", usersController)
-app.use(API_PATH + "products", productsController)
+app.use(API_PATH + 'users', usersController)
+app.use(API_PATH + 'products', productsController)
 
 
 // runs the server
