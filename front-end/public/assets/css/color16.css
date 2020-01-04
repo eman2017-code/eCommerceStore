@@ -1295,7 +1295,7 @@ r
   background-position: center;
   height: 75vh;
 }
-.home-slider .home.home1, .center-slider .home.home1 {
+/* .home-slider .home.home1, .center-slider .home.home1 {
   background-image: url("/assets/images/home-banner/1.jpg");
 }
 .home-slider .home.home2, .center-slider .home.home2 {
@@ -1462,7 +1462,7 @@ r
 }
 .home-slider .home.home56, .center-slider .home.home56 {
   background-image: url("/assets/images/home-banner/56.jpg");
-}
+} */
 .home-slider .slider-contain, .center-slider .slider-contain {
   width: 100%;
   height: 75vh;
