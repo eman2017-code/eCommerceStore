@@ -7,7 +7,7 @@ import { getTotal, getCartProducts } from "../../reducers/index";
 import { addToCart, addToWishlist, addToCompare } from "../../actions/index";
 import { getVisibleproducts } from "../../services/index";
 import ProductListItem from "./common/product-list-item";
-import Breadcrumb from "../common/breadcrumb";
+import { Helmet } from "react-helmet";
 
 class CollectionFullWidth extends Component {
   constructor(props) {
@@ -47,7 +47,9 @@ class CollectionFullWidth extends Component {
 
     return (
       <div>
-        <Breadcrumb title={"Collection"} />
+        <Helmet>
+          <title>E-Commerce | Store</title>
+        </Helmet>
 
         <div className="container-fluid">
           <div className="row">

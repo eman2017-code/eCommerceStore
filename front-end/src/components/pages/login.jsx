@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+// import HeaderOne from "../common/headers/header-one";
+import { Helmet } from "react-helmet";
 
 import Breadcrumb from "../common/breadcrumb";
 
@@ -11,7 +13,11 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <Breadcrumb title={"Login"} />
+        {/* <Breadcrumb title={"Login"} /> */}
+        <Helmet>
+          <title>E-Commerce | Store</title>
+        </Helmet>
+        {/* <HeaderOne logoName={"layout4/logo.png"} /> */}
 
         {/*Login section*/}
         <section className="login-page section-b-space">
