@@ -31,6 +31,10 @@ const productSchema = new mongoose.Schema({
 		type: Number,
 		required: true
 	},
+	isOnSale: {
+		type: Boolean,
+		default: false
+	}
 
 	// TODO - add array of Review ObjectIds when the review schema exists
 
@@ -43,7 +47,6 @@ const productSchema = new mongoose.Schema({
     default: Date.now
   }
 })
-
 
 const Product = mongoose.model('Product', productSchema)
 
