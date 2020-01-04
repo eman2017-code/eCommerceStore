@@ -119,7 +119,7 @@ class Lander extends Component {
                         <h4>watch models</h4>
 
                         {/* this will link to the specific item that is being listed */}
-                        <a href="#" className="btn btn-outline">
+                        <a href="/all-products" className="btn btn-outline">
                           view more
                         </a>
                       </div>
@@ -136,7 +136,7 @@ class Lander extends Component {
                           />
                         </div>
                         <h4>addidas hat</h4>
-                        <a href="#" className="btn btn-outline">
+                        <a href="/all-products" className="btn btn-outline">
                           view more
                         </a>
                       </div>
@@ -153,7 +153,7 @@ class Lander extends Component {
                           />
                         </div>
                         <h4>supreme backpack</h4>
-                        <a href="#" className="btn btn-outline">
+                        <a href="/all-products" className="btn btn-outline">
                           view more
                         </a>
                       </div>
@@ -170,7 +170,7 @@ class Lander extends Component {
                           />
                         </div>
                         <h4>headphones</h4>
-                        <a href="#" className="btn btn-outline">
+                        <a href="/all-products" className="btn btn-outline">
                           view more
                         </a>
                       </div>
@@ -187,7 +187,7 @@ class Lander extends Component {
                           />
                         </div>
                         <h4>rolex watch</h4>
-                        <a href="#" className="btn btn-outline">
+                        <a href="/all-products" className="btn btn-outline">
                           view more
                         </a>
                       </div>
