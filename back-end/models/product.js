@@ -7,7 +7,10 @@ const productSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
 	},
-	coverImage: String, // stores the path to the image
+	coverImage: { // stores the path to the image
+		type: String, 
+		default: null
+	},	
 	name: {
 		type: String,
 		required: true

@@ -24,7 +24,7 @@ router.post('/', adminRequired, async (req, res, next) => {
 			brand: clientData.brand,
 			description: clientData.description,
 			price: parseFloat(clientData.price),
-			coverImage: '/public/images/products/' + imageFile.name
+			coverImage: imageFile.name
 		})
 
 		res.send({
@@ -60,26 +60,6 @@ router.get('/:productId/', async (req, res, next) => {
 		next(error);
 	}
 })
-
-
-// router.put('/:productId', adminRequired, async (req, res, next) => {
-// 	const clientData = req.body
-// 	const newImageFile = req.files.coverImage
-
-
-	
-// 		imageFile.mv(`${__dirname}/../public/images/products/${imageFile.name}`, function(error) {
-// 			if (error) {
-// 	      		return res.status(500).send(error)
-// 	    	}
-// 		})
-	
-
-// })
-
-
-
-
 
 module.exports = router
 
