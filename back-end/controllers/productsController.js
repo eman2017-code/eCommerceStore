@@ -6,6 +6,8 @@ const adminRequired = require("../middleware/users/adminRequired.js")
 const router = express.Router()
 
 
+
+// Create Route
 // this route is where the admin can create a new product
 router.post('/', adminRequired, async (req, res, next) => {
 	const clientData = req.body
@@ -39,6 +41,27 @@ router.post('/', adminRequired, async (req, res, next) => {
 	} catch (error) {
 		next(error);
 	}	
+})
+
+
+// Show Route
+// this route returns data for a single product
+router.get('/:productId/', async (req, res, next) => {
+	const clientData = req.body
+
+	try {
+		const foundProduct = await Product.findOne({'_id': req.params.productId})
+
+		res.json({
+			data: foundProduct,
+			status: {
+				code: 200,
+				message: 'Successfully found product'			
+			}
+		})
+	} catch (error) {
+		next(error);
+	}
 })
 
 

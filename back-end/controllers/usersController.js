@@ -2,12 +2,12 @@ const express = require("express");
 const User = require("../models/user.js");
 const loginRequired = require("../middleware/users/loginRequired.js");
 
-const router = express.Router();
+const router = express.Router()
 
 
 // this route is where new users signup
 router.post("/signup/", async (req, res, next) => {
-  const clientData = req.body;
+  const clientData = req.body
 
   try {
     const doesEmailExist = await User.findOne({ email: clientData.email })
