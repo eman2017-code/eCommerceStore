@@ -13,7 +13,7 @@ import { getAllProducts } from "./actions";
 import Landing from "./components/landing";
 
 // Layouts
-import Lander from "./components/layouts/watch/main";
+import Lander from "./components/layouts/lander/main";
 
 // //Collection Pages
 import CollectionFullWidth from "./components/collection/collection-full-width";

@@ -119,7 +119,7 @@ class Lander extends Component {
                         <h4>watch models</h4>
 
                         {/* this will link to the specific item that is being listed */}
-                        <a href="#" className="btn btn-outline">
+                        <a href="/all-products" className="btn btn-outline">
                           view more
                         </a>
                       </div>
@@ -135,8 +135,8 @@ class Lander extends Component {
                             alt=""
                           />
                         </div>
-                        <h4>calculator watch</h4>
-                        <a href="#" className="btn btn-outline">
+                        <h4>addidas hat</h4>
+                        <a href="/all-products" className="btn btn-outline">
                           view more
                         </a>
                       </div>
@@ -152,8 +152,8 @@ class Lander extends Component {
                             alt=""
                           />
                         </div>
-                        <h4>Antimagnetic watch</h4>
-                        <a href="#" className="btn btn-outline">
+                        <h4>supreme backpack</h4>
+                        <a href="/all-products" className="btn btn-outline">
                           view more
                         </a>
                       </div>
@@ -164,13 +164,13 @@ class Lander extends Component {
                       <div>
                         <div>
                           <img
-                            src={`${process.env.PUBLIC_URL}/assets/images/watch/cat2.png`}
+                            src={`${process.env.PUBLIC_URL}/assets/images/watch/cat5.png`}
                             className="img-fluid blur-up lazyload bg-img"
                             alt=""
                           />
                         </div>
-                        <h4>History of watches</h4>
-                        <a href="#" className="btn btn-outline">
+                        <h4>headphones</h4>
+                        <a href="/all-products" className="btn btn-outline">
                           view more
                         </a>
                       </div>
@@ -186,8 +186,8 @@ class Lander extends Component {
                             alt=""
                           />
                         </div>
-                        <h4>watch models</h4>
-                        <a href="#" className="btn btn-outline">
+                        <h4>rolex watch</h4>
+                        <a href="/all-products" className="btn btn-outline">
                           view more
                         </a>
                       </div>
