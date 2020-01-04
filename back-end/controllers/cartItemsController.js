@@ -19,6 +19,7 @@ router.post('/', async (req, res, next) => {
 		})
 
 		// adds the new cart item to the users cart 
+		foundCart.addToCart(newCartItem._id)
 		
 		res.json({
 			data: newCartItem,
