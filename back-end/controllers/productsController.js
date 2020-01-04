@@ -23,7 +23,7 @@ router.post('/', adminRequired, async (req, res, next) => {
 	try {
 		// now that the file is uploaded, the new product gets created
 		const newProduct = await Product.create({
-			user: req.session.userId,
+			postedBy: req.session.userId,
 			name: clientData.name,
 			description: clientData.description,
 			price: parseFloat(clientData.price),
@@ -50,7 +50,7 @@ router.get('/:productId/', async (req, res, next) => {
 	const clientData = req.body
 
 	try {
-		const foundProduct = await Product.findOne({'_id': req.params.productId})
+		const foundProduct = await Product.findOne({'_id': req.params.productId}).populate('postedBy')
 
 		res.json({
 			data: foundProduct,
@@ -63,6 +63,9 @@ router.get('/:productId/', async (req, res, next) => {
 		next(error);
 	}
 })
+
+
+
 
 
 module.exports = router
