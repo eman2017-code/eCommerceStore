@@ -41,12 +41,6 @@ cartSchema.methods.getExistingCartItem = function(productId) {
 	return foundCartItems.filter(cartItem => cartItem.product == productId)[0]
 }
 
-// removes a cart item from the cart
-cartSchema.methods.removeFromCart = async function(cartItemId) {
-	this.cartItems.remove(cartItemId)
-	await this.save()
-}
-
 // creates a new cart
 cartSchema.statics.createNewCart = async function(userId) {
 	const newCart = await Cart.create({ user: userId })

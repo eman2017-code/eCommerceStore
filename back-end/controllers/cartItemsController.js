@@ -58,11 +58,9 @@ router.post('/', loginRequired, async (req, res, next) => {
 
 // Delete Route
 // this route is where cart items are removed from their cart
-router.delete('/:cartItemId', loginRequired, async (req, res, next) => {
+router.delete('/:cartItemId/', loginRequired, async (req, res, next) => {
 	try {
-		const foundCart = await Cart.findOne({ 'user': req.session.userId })
-
-		foundCart.removeFromCart(req.params.cartItemId)
+		const deleteCartItem = await CartItem.findByIdAndDelete(req.params.cartItemId)
 
 		res.json({
 			data: {},
