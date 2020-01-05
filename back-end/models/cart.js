@@ -30,6 +30,12 @@ cartSchema.methods.addToCart = async function(cartItemId) {
 	await this.save()
 }
 
+// removes a cart item from the cart
+cartSchema.methods.removeFromCart = async function(cartItemId) {
+	this.cartItems.remove(cartItemId)
+	await this.save()
+}
+
 // creates a new cart
 cartSchema.statics.createNewCart = async function(userId) {
 	const newCart = await Cart.create({ user: userId })

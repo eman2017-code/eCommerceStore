@@ -40,4 +40,32 @@ router.post('/', loginRequired, async (req, res, next) => {
 })
 
 
+// Delete Route
+// this route is where cart items are removed from their cart
+router.delete('/:cartItemId', loginRequired, async (req, res, next) => {
+	try {
+		const foundCart = await Cart.findOne({ 'user': req.session.userId })
+
+		foundCart.removeFromCart(req.params.cartItemId)
+
+		res.json({
+			data: {},
+			status: {
+				code: 204,
+				mesage: 'Product removed form cart'
+			}
+		})
+
+	} catch (error) {
+		next(error);
+	}	
+})
+
+
+
 module.exports = router
+
+
+
+
+
