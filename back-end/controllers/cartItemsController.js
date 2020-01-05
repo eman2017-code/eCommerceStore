@@ -13,12 +13,10 @@ router.post('/', loginRequired, async (req, res, next) => {
 
 	try {
 		let foundCart = await Cart.findOne({'user': req.session.userId})
-		console.log('found cart before:', foundCart)
 
 		// if the user does not have a cart created then a new cart is created
 		if (foundCart === null) {
-			foundCart = Cart.createNewCart(req.session.userId)
-			console.log('found cart after:', foundCart)
+			foundCart = await Cart.createNewCart(req.session.userId)
 		}
 
 		const newCartItem = await CartItem.create({
