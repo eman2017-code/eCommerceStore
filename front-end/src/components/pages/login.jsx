@@ -73,7 +73,6 @@ class Login extends Component {
         <Redirect
           to={{
             pathname: "/all-products",
-            // passing props
             state: { loggedInUser: this.state.loggedInUser }
           }}
         />
@@ -101,6 +100,7 @@ class Login extends Component {
                         className="form-control"
                         id="email"
                         placeholder="Email"
+                        required={true}
                         value={this.state.email}
                         onChange={this.handleChange}
                       />
@@ -113,6 +113,7 @@ class Login extends Component {
                         className="form-control"
                         id="review"
                         placeholder="Enter your password"
+                        required={true}
                         value={this.state.password}
                         onChange={this.handleChange}
                       />
