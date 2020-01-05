@@ -12,18 +12,10 @@ class Login extends Component {
     this.state = {
       email: "",
       passowrd: "",
-      loggedIn: "",
+      loggedIn: false,
       loggedInUser: null
     };
   }
-
-  // method to actually login user
-  loginUser = () => {
-    this.login({
-      email: this.state.email,
-      password: this.state.password
-    });
-  };
 
   // login route
   login = async loginInfo => {
@@ -54,6 +46,14 @@ class Login extends Component {
     }
   };
 
+  // method to actually login user
+  loginUser = () => {
+    this.login({
+      email: this.state.email,
+      password: this.state.password
+    });
+  };
+
   // handle change of user input
   handleChange = e => {
     this.setState({
@@ -81,25 +81,30 @@ class Login extends Component {
               <div className="col-lg-6">
                 <h3>Login</h3>
                 <div className="theme-card">
-                  <form className="theme-form">
+                  <form className="theme-form" onSubmit={this.handleSubmit}>
                     <div className="form-group">
                       <label htmlFor="email">Email</label>
                       <input
                         type="text"
+                        name="email"
+                        value={this.state.email}
                         className="form-control"
                         id="email"
                         placeholder="Email"
                         required=""
+                        onChange={this.handleChange}
                       />
                     </div>
                     <div className="form-group">
                       <label htmlFor="review">Password</label>
                       <input
                         type="password"
+                        name="password"
                         className="form-control"
                         id="review"
                         placeholder="Enter your password"
                         required=""
+                        onChange={this.handleChange}
                       />
                     </div>
                     <a href="#" className="btn btn-solid">
