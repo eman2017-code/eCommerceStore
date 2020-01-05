@@ -35,11 +35,10 @@ cartSchema.methods.doesProductExist = function(productIdToCheck) {
 	return productIds.includes(productIdToCheck)
 }
 
-
+// searches for a cart item in the cart by a product id and returns the cat item
 cartSchema.methods.getExistingCartItem = function(productId) {
 	const foundCartItems = this.cartItems
-
-	return foundCartItems.filter(cartItem => cartItem.product == productId)
+	return foundCartItems.filter(cartItem => cartItem.product == productId)[0]
 }
 
 // removes a cart item from the cart

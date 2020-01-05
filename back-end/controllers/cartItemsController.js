@@ -19,36 +19,37 @@ router.post('/', loginRequired, async (req, res, next) => {
 			foundCart = await Cart.createNewCart(req.session.userId)
 		}
 
-		let newCartItem
-
 		// if the product already exists as a cart item in the users cart
 		if (foundCart.doesProductExist(productId)) {
 			const existingCartItemId = foundCart.getExistingCartItem(productId)._id
-			console.log('existingCartItemId:', existingCartItemId)
 
-			const existingCartItem = await CartItem.findById(existingCartItemId)
+			// gets the cart item and increases the quantity by one
+			const foundCartItem = await CartItem.findById(existingCartItemId)
+			foundCartItem.quantity++
+			await foundCartItem.save()
 
-			existingCartItem.quantity++
-			await existingCartItem.save()
-
-		} else {
-			newCartItem = await CartItem.create({
-				'product': productId 
+			res.json({
+				data: foundCartItem,
+				status: {
+					code: 200,
+					message: 'Product added to cart'
+				}  
 			})
 
+		// otherwise, a new cart item is created and added to the cart
+		} else {
+			const newCartItem = await CartItem.create({ 'product': productId })
 			foundCart.cartItems.push(newCartItem)
 			await foundCart.save()
-		}
-	
 
-		res.json({
-			data: newCartItem,
-			status: {
-				code: 201,
-				message: 'Product added to cart'
-			}
-		})
-		
+			res.json({
+				data: newCartItem,
+				status: {
+					code: 201,
+					message: 'Product added to cart'
+				}
+			})
+		}
 	} catch (error) {
 		next(error);
 	}
