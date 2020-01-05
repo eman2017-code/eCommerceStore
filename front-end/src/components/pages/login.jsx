@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import Breadcrumb from "../common/breadcrumb";
@@ -14,6 +14,8 @@ class Login extends Component {
       loggedIn: false,
       loggedInUser: null
     };
+    console.log("this.state in Login Component");
+    console.log(this.state);
   }
 
   // login route
@@ -63,10 +65,21 @@ class Login extends Component {
   // handle submit
   handleSubmit = e => {
     e.preventDefault();
-    this.login();
+    this.loginUser();
   };
 
   render() {
+    // determine where to bring the user
+    if (this.state.loggedIn === true) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/all-products",
+            state: { loggedInUser: this.state.loggedInUser }
+          }}
+        />
+      );
+    }
     return (
       <div>
         <Helmet>
@@ -86,11 +99,11 @@ class Login extends Component {
                       <input
                         type="text"
                         name="email"
-                        value={this.state.email}
                         className="form-control"
                         id="email"
                         placeholder="Email"
-                        required=""
+                        required="true"
+                        value={this.state.email}
                         onChange={this.handleChange}
                       />
                     </div>
@@ -102,18 +115,12 @@ class Login extends Component {
                         className="form-control"
                         id="review"
                         placeholder="Enter your password"
-                        required=""
+                        required="true"
+                        value={this.state.password}
                         onChange={this.handleChange}
                       />
                     </div>
-                    <Link
-                      to={{
-                        pathname: "/all-products",
-                        state: { loggedInUser: this.state.loggedInUser }
-                      }}
-                    >
-                      <li className="btn btn-solid">Login</li>
-                    </Link>
+                    <button className="btn btn-solid">Login</button>
                   </form>
                 </div>
               </div>

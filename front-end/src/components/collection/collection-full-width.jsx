@@ -11,12 +11,17 @@ import { Helmet } from "react-helmet";
 
 class CollectionFullWidth extends Component {
   constructor(props) {
+    console.log("props in CollectionFullWidthComponent");
+    console.log(props);
     super(props);
 
     this.state = {
       limit: 5,
-      hasMoreItems: true
+      hasMoreItems: true,
+      loggedInUser: this.props.location.loggedInUser
     };
+    console.log("this.state in CollectionFullWidthComponent");
+    console.log(this.state);
   }
 
   componentWillMount() {
