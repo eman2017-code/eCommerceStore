@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-import Breadcrumb from "../common/breadcrumb";
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -20,9 +18,12 @@ class Login extends Component {
 
   // login route
   login = async loginInfo => {
+    console.log("loginInfo");
+    console.log(loginInfo);
     // fetch call to the api
     const response = await fetch(
       process.env.REACT_APP_API_URL + "/api/v1/users/login",
+
       {
         method: "POST",
         credentials: "include",
@@ -47,14 +48,6 @@ class Login extends Component {
     }
   };
 
-  // method to actually login user
-  loginUser = () => {
-    this.login({
-      email: this.state.email,
-      password: this.state.password
-    });
-  };
-
   // handle change of user input
   handleChange = e => {
     this.setState({
@@ -65,16 +58,26 @@ class Login extends Component {
   // handle submit
   handleSubmit = e => {
     e.preventDefault();
+    console.log("they are trying to login");
     this.loginUser();
   };
 
+  // method to actually login user
+  loginUser = () => {
+    this.login({
+      email: this.state.email,
+      password: this.state.password
+    });
+  };
+
   render() {
-    // determine where to bring the user
+    // if the user is logged in
     if (this.state.loggedIn === true) {
       return (
         <Redirect
           to={{
             pathname: "/all-products",
+            // passing props
             state: { loggedInUser: this.state.loggedInUser }
           }}
         />
@@ -93,34 +96,34 @@ class Login extends Component {
               <div className="col-lg-6">
                 <h3>Login</h3>
                 <div className="theme-card">
-                  <form className="theme-form" onSubmit={this.handleSubmit}>
+                  <form onSubmit={this.handleSubmit} className="theme-form">
                     <div className="form-group">
-                      <label htmlFor="email">Email</label>
+                      <label>Email</label>
                       <input
                         type="text"
                         name="email"
                         className="form-control"
                         id="email"
                         placeholder="Email"
-                        required="true"
                         value={this.state.email}
                         onChange={this.handleChange}
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="review">Password</label>
+                      <label>Password</label>
                       <input
                         type="password"
                         name="password"
                         className="form-control"
                         id="review"
                         placeholder="Enter your password"
-                        required="true"
                         value={this.state.password}
                         onChange={this.handleChange}
                       />
                     </div>
-                    <button className="btn btn-solid">Login</button>
+                    <button type="Submit" className="btn btn-solid">
+                      Login
+                    </button>
                   </form>
                 </div>
               </div>
