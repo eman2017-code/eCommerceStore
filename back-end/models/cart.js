@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const CartItem = require('./cartItem.js')
 
 const cartSchema = new mongoose.Schema({
 	user: {
@@ -24,10 +25,21 @@ const cartSchema = new mongoose.Schema({
   	}
 })
 
-// adds a cart item to the cart
-cartSchema.methods.addToCart = async function(cartItemId) {
-	this.cartItems.push(cartItemId)
-	await this.save()
+// checks if a cart item already exists in a cart
+cartSchema.methods.doesProductExist = function(productIdToCheck) {
+	const foundCartItems = this.cartItems
+	
+	// creates an array of product ids in each cart items 
+	const productIds = foundCartItems.map(cartItem => cartItem.product)
+
+	return productIds.includes(productIdToCheck)
+}
+
+
+cartSchema.methods.getExistingCartItem = function(productId) {
+	const foundCartItems = this.cartItems
+
+	return foundCartItems.filter(cartItem => cartItem.product == productId)
 }
 
 // removes a cart item from the cart
