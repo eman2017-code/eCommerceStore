@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import HeaderOne from "../common/headers/header-one";
 import { Helmet } from "react-helmet";
 
 import Breadcrumb from "../common/breadcrumb";
@@ -107,9 +106,14 @@ class Login extends Component {
                         onChange={this.handleChange}
                       />
                     </div>
-                    <a href="#" className="btn btn-solid">
-                      Login
-                    </a>
+                    <Link
+                      to={{
+                        pathname: "/all-products",
+                        state: { loggedInUser: this.state.loggedInUser }
+                      }}
+                    >
+                      <li className="btn btn-solid">Login</li>
+                    </Link>
                   </form>
                 </div>
               </div>
