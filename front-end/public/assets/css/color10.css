@@ -1942,7 +1942,7 @@ r
     8.Banner Timer CSS start
 ==========================*/
 .banner-timer {
-  background-image: url("/assets/images/offer-banner.jpg");
+  /* background-image: url("/assets/images/offer-banner.jpg"); */
   background-size: cover;
   margin-left: 20px;
   margin-right: 20px;

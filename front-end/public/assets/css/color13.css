@@ -4388,7 +4388,7 @@ r
   padding: 0 80px;
 }
 .layout-8 .layout-8-bg {
-  background-image: url("/assets/images/electronics/bg.jpg");
+  /* background-image: url("/assets/images/electronics/bg.jpg"); */
   background-size: cover;
   background-attachment: fixed;
   height: 100%;
