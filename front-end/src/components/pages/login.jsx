@@ -17,8 +17,13 @@ class Login extends Component {
     };
   }
 
-  // method to actually log the user in
-  login = () => {};
+  // method to actually login user
+  loginUser = () => {
+    this.login({
+      email: this.state.email,
+      password: this.state.password
+    });
+  };
 
   // login route
   login = async loginInfo => {
@@ -35,26 +40,39 @@ class Login extends Component {
       }
     );
     // parse response to send back json
-    const parsedResponse = await response.json();
+    const parsedLoginResponse = await response.json();
     // if respoinse is 201
     if (response.ok) {
       this.setState({
         // log the user in
         loggedIn: true,
         // get the data for the logged in user
-        loggedInUser: parsedResponse.data
+        loggedInUser: parsedLoginResponse.data
       });
+    } else {
+      console.log(parsedLoginResponse);
     }
+  };
+
+  // handle change of user input
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  // handle submit
+  handleSubmit = e => {
+    e.preventDefault();
+    this.login();
   };
 
   render() {
     return (
       <div>
-        {/* <Breadcrumb title={"Login"} /> */}
         <Helmet>
           <title>E-Commerce | Store</title>
         </Helmet>
-        {/* <HeaderOne logoName={"layout4/logo.png"} /> */}
 
         {/*Login section*/}
         <section className="login-page section-b-space">
