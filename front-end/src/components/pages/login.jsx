@@ -8,7 +8,44 @@ import Breadcrumb from "../common/breadcrumb";
 class Login extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      email: "",
+      passowrd: "",
+      loggedIn: "",
+      loggedInUser: null
+    };
   }
+
+  // method to actually log the user in
+  login = () => {};
+
+  // login route
+  login = async loginInfo => {
+    // fetch call to the api
+    const response = await fetch(
+      process.env.REACT_APP_API_URL + "/api/v1/users/login",
+      {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(loginInfo),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+    // parse response to send back json
+    const parsedResponse = await response.json();
+    // if respoinse is 201
+    if (response.ok) {
+      this.setState({
+        // log the user in
+        loggedIn: true,
+        // get the data for the logged in user
+        loggedInUser: parsedResponse.data
+      });
+    }
+  };
 
   render() {
     return (
