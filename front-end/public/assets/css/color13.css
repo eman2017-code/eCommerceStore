@@ -3394,7 +3394,7 @@ r
   padding-bottom: 190px;
   background-position: center;
 }
-.full-banner.parallax-banner1 {
+/* .full-banner.parallax-banner1 {
   background-image: url("/assets/images/parallax/1.jpg");
 }
 .full-banner.parallax-banner2 {
@@ -3477,7 +3477,7 @@ r
 }
 .full-banner.parallax-banner28 {
   background-image: url("/assets/images/parallax/28.jpg");
-}
+} */
 .full-banner.parallax-layout {
   padding-top: 350px;
   padding-bottom: 350px;
@@ -4388,7 +4388,7 @@ r
   padding: 0 80px;
 }
 .layout-8 .layout-8-bg {
-  background-image: url("/assets/images/electronics/bg.jpg");
+  /* background-image: url("/assets/images/electronics/bg.jpg"); */
   background-size: cover;
   background-attachment: fixed;
   height: 100%;
