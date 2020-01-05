@@ -25,8 +25,15 @@ const cartSchema = new mongoose.Schema({
 })
 
 // adds a cart item to the cart
-cartSchema.methods.addToCart = function(cartItemId) {
+cartSchema.methods.addToCart = async function(cartItemId) {
 	this.cartItems.push(cartItemId)
+	await this.save()
+}
+
+// creates a new cart
+cartSchema.statics.createNewCart = async function(userId) {
+	const newCart = await Cart.create({ user: userId })
+	return newCart
 }
 
 const Cart = mongoose.model('Cart', cartSchema)

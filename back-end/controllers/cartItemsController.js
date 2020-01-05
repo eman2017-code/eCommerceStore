@@ -8,11 +8,18 @@ const router = express.Router()
 
 // Create Route
 // this route create a new cart item and adds it to the users cart
-router.post('/', async (req, res, next) => {
+router.post('/', loginRequired, async (req, res, next) => {
 	const productId = req.body.productId
 
 	try {
-		const foundCart = await Cart.findOne({'user': req.session.userId})
+		let foundCart = await Cart.findOne({'user': req.session.userId})
+		console.log('found cart before:', foundCart)
+
+		// if the user does not have a cart created then a new cart is created
+		if (foundCart === null) {
+			foundCart = Cart.createNewCart(req.session.userId)
+			console.log('found cart after:', foundCart)
+		}
 
 		const newCartItem = await CartItem.create({
 			'product': productId 

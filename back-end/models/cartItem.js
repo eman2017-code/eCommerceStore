@@ -11,8 +11,8 @@ const cartItemSchema = new mongoose.Schema({
 		default: 1
 	},
 	lastUpdated: {
-  	type: Date,
-    default: Date.now
+  		type: Date,
+    	default: Date.now
 	},
 	timestamp: {
 	  type: Date,

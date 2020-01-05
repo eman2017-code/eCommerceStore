@@ -29,7 +29,7 @@ router.post("/signup/", async (req, res, next) => {
         firstName: clientData.firstName,
         lastName: clientData.lastName,
         email: clientData.email,
-        password: passwordHash
+        password: passwordHash,
       })
 
       newUser.login(req)
