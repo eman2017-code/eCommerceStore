@@ -8,18 +8,14 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      passowrd: "",
+      password: "",
       loggedIn: false,
       loggedInUser: null
     };
-    console.log("this.state in Login Component");
-    console.log(this.state);
   }
 
   // login route
   login = async loginInfo => {
-    console.log("loginInfo");
-    console.log(loginInfo);
     // fetch call to the api
     const response = await fetch(
       process.env.REACT_APP_API_URL + "/api/v1/users/login",
@@ -35,7 +31,7 @@ class Login extends Component {
     );
     // parse response to send back json
     const parsedLoginResponse = await response.json();
-    // if respoinse is 201
+    // if response is good
     if (response.ok) {
       this.setState({
         // log the user in
