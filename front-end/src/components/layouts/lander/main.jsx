@@ -45,7 +45,10 @@ class Lander extends Component {
                         <div>
                           <h4>Great Products</h4>
                           <h1>Check them out</h1>
-                          <a href="#" className="btn btn-outline btn-classic">
+                          <a
+                            href="/all-products"
+                            className="btn btn-outline btn-classic"
+                          >
                             shop now
                           </a>
                         </div>
@@ -64,7 +67,10 @@ class Lander extends Component {
                         <div>
                           <h4>We have great deals</h4>
                           <h1>Electronics</h1>
-                          <a href="#" className="btn btn-outline btn-classic">
+                          <a
+                            href="/all-products"
+                            className="btn btn-outline btn-classic"
+                          >
                             shop now
                           </a>
                         </div>
@@ -83,7 +89,10 @@ class Lander extends Component {
                         <div>
                           <h4>Great for the family</h4>
                           <h1>Family and Friends</h1>
-                          <a href="#" className="btn btn-outline btn-classic">
+                          <a
+                            href="/all-products"
+                            className="btn btn-outline btn-classic"
+                          >
                             shop now
                           </a>
                         </div>
