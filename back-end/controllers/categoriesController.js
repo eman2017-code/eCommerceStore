@@ -9,7 +9,8 @@ const router = express.Router()
 // this route shows a single category along with all the products in the category
 router.get('/:categoryId/', async (req, res, next) => {
 	try {
-		const foundCategory = await Category.findById(req.params.categoryId)		
+		const foundCategory = await Category.findById(req.params.categoryId)
+
 	} catch (error) {
 		next(error);
 	}		

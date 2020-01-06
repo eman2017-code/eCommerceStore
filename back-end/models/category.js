@@ -8,17 +8,14 @@ const categorySchema = new mongoose.Schema({
 		type: String,
 		required: true
 	}, 
+	products: [{
+		type: mongoose.Schema.Types.ObjectId
+	}],
 	timestamp: {
     	type: Date,
     	default: Date.now
   	}
 })
-
-// gets all of the products in the category
-categorySchema.methods.getAllProducts = async function() {
-	const allProducts = await Product.find({ 'category': this._id })
-	return allProducts
-}
 
 const Category = mongoose.model('Category', categorySchema)
 
