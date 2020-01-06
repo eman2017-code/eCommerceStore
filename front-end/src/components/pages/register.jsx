@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 
-import Breadcrumb from "../common/breadcrumb";
-
 class Register extends Component {
   constructor(props) {
     super(props);
