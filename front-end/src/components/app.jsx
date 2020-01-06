@@ -7,9 +7,6 @@ import HeaderOne from "./common/headers/header-one";
 // Footer Components
 import FooterOne from "./common/footers/footer-one";
 
-// ThemeSettings
-import ThemeSettings from "./common/theme-settings";
-
 class App extends Component {
   render() {
     return (
@@ -17,8 +14,6 @@ class App extends Component {
         <HeaderOne logoName={"layout4/logo.png"} />
         {this.props.children}
         <FooterOne logoName={"layout4/logo.png"} />
-
-        <ThemeSettings />
       </div>
     );
   }

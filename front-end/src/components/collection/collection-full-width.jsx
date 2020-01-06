@@ -12,13 +12,10 @@ import { Helmet } from "react-helmet";
 class CollectionFullWidth extends Component {
   constructor(props) {
     super(props);
-    console.log("props in CollectionFullWidth");
-    console.log(props);
 
     this.state = {
       limit: 5,
       hasMoreItems: true,
-      // loggedInUser: this.props.location.state.loggedInUser
       loggedInUser: null
     };
   }
@@ -50,11 +47,6 @@ class CollectionFullWidth extends Component {
   // onClick = () => {
   //   this.getAllProducts();
   // };
-
-  componentDidMount() {
-    // checking to see if someone is logged in or not
-    // if ()
-  }
 
   componentWillMount() {
     this.fetchMoreItems();
@@ -163,7 +155,6 @@ class CollectionFullWidth extends Component {
 const mapStateToProps = state => ({
   products: getVisibleproducts(state.data, state.filters),
   symbol: state.data.symbol
-  // loggedInUser: state.data
 });
 
 export default connect(mapStateToProps, {

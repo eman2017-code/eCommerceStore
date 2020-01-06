@@ -18,7 +18,6 @@ import TrandingCollection from "../common/collection";
 import Special from "../common/special";
 import HeaderOne from "../../common/headers/header-one";
 import FooterOne from "../../common/footers/footer-one";
-import ThemeSettings from "../../common/theme-settings";
 
 class Lander extends Component {
   componentDidMount() {
@@ -307,8 +306,6 @@ class Lander extends Component {
           </section>
         </div>
         {/*Service Layout End*/}
-
-        <ThemeSettings />
 
         <FooterOne logoName={"layout4/logo.png"} />
       </div>
