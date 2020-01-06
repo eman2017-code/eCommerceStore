@@ -4,7 +4,44 @@ import { Helmet } from "react-helmet";
 class Register extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      loggedInUser: null,
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: ""
+    };
   }
+
+  // register route
+  register = async registerInfo => {
+    // fetch call to the api
+    const response = await fetch(
+      process.env.REACT_APP_API_URL + "/api/v1/users/register",
+      {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(registerInfo),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+    // parse response to send back json
+    const parsedRegistrationResponse = await response.json();
+    // if respoinse is 201
+    if (response.ok) {
+      this.setState({
+        // log the user in
+        loggedIn: true,
+        // get the data for the logged in user
+        loggedInUser: parsedRegistrationResponse.data
+      });
+    } else {
+      console.log(parsedRegistrationResponse);
+    }
+  };
 
   render() {
     return (
