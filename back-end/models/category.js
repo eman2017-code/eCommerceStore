@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 
 
+// this schema represents a category that products are apart of
 const categorySchema = new mongoose.Schema({
 	name: {
 		type: String,
@@ -11,5 +12,9 @@ const categorySchema = new mongoose.Schema({
     	default: Date.now
   	}
 })
+
+const Category = mongoose.model('Category', categorySchema)
+
+module.exports = Category
 
 
