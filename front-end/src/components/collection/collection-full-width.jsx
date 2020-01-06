@@ -11,18 +11,42 @@ import { Helmet } from "react-helmet";
 
 class CollectionFullWidth extends Component {
   constructor(props) {
-    console.log("props in CollectionFullWidthComponent");
-    console.log(props);
     super(props);
 
     this.state = {
       limit: 5,
-      hasMoreItems: true,
-      loggedInUser: this.props.location.loggedInUser
+      hasMoreItems: true
+      // loggedInUser: this.props.location.loggedInUser
     };
-    console.log("this.state in CollectionFullWidthComponent");
-    console.log(this.state);
   }
+
+  // // go to the store
+  // // change api call to call from backend instead of data.json(where all the products are coming from)
+  // // make this fetch call BELOW instead
+  // getAllProducts = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       process.env.REACT_APP_API_URL + "/api/v1/all/products",
+  //       {
+  //         credentials: "include"
+  //       }
+  //     );
+
+  //     const parsedResponse = await response.json();
+  //     console.log("parsedResponse");
+  //     console.log(parsedResponse);
+
+  //     if (response.ok) {
+  //       this.setState({
+  //         products: parsedResponse.data
+  //       });
+  //     }
+  //   } catch (err) {}
+  // };
+
+  // onClick = () => {
+  //   this.getAllProducts();
+  // };
 
   componentWillMount() {
     this.fetchMoreItems();
@@ -57,6 +81,7 @@ class CollectionFullWidth extends Component {
         </Helmet>
 
         <div className="container-fluid">
+          {/* <button onClick={this.onClick}>click here</button> */}
           <div className="row">
             <div className="col-12">
               <div className="section-t-space portfolio-section portfolio-padding metro-section port-col">

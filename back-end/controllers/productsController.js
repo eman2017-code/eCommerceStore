@@ -64,6 +64,8 @@ router.get("/all/products/", async (req, res, next) => {
   try {
     // find all products
     const foundProducts = await Product.find({});
+    console.log("foundProducts");
+    console.log(foundProudcts);
 
     res.json({
       data: foundProducts,
