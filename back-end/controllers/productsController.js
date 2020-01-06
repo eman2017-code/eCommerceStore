@@ -9,15 +9,10 @@ const router = express.Router();
 // this route is where the admin can create a new product
 router.post("/", adminRequired, async (req, res, next) => {
   const clientData = req.body
-  const imageFile = req.files.coverImage
-
-  // uploads the products image
-  Product.uploadProductImage(imageFile)
 
   try {
     const newProduct = await Product.create(clientData)
     newProduct.postedBy = req.session.userId
-    newProduct.coverImage = imageFile.name
     await newProduct.save()
 
     res.send({
