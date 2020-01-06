@@ -18,7 +18,8 @@ class CollectionFullWidth extends Component {
     this.state = {
       limit: 5,
       hasMoreItems: true,
-      loggedInUser: this.props.location.state.loggedInUser
+      // loggedInUser: this.props.location.state.loggedInUser
+      loggedInUser: null
     };
   }
 
@@ -49,6 +50,10 @@ class CollectionFullWidth extends Component {
   // onClick = () => {
   //   this.getAllProducts();
   // };
+
+  componentDidMount() {
+    // checking to see if someone is logged in or not
+  }
 
   componentWillMount() {
     this.fetchMoreItems();
