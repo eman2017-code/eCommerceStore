@@ -20,7 +20,7 @@ router.get('/:categoryId/', async (req, res, next) => {
 		})
 
 	} catch (error) {
-		next(error);
+		next(error)
 	}		
 })
 
@@ -42,14 +42,33 @@ router.post('/', adminRequired, async (req, res, next) => {
 		})
 
 	} catch (error) {
-		next(error);
+		next(error)
 	}
 })
 
 
 // Update Route
 // this route is where a categories name and products can be updated
+router.post('/:categoryId/', adminRequired, async (req, res, next) => {
+	const clientData = req.body
 
+	try {
+		const foundCategory = await Category.findById(req.params.categoryId)
+
+		// gets all the newly added products 
+
+		res.json({
+			data: foundCategory,
+			status: {
+				code: 200,
+				message: 'Successfully updated category'
+			}
+		})
+
+	} catch (error) {
+		next(error)
+	}
+})
 
 
 module.exports = router
