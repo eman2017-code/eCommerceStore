@@ -16,7 +16,7 @@ router.post("/", adminRequired, async (req, res, next) => {
     await newProduct.save()
 
     // if the product has any categories added 
-    if (clientData.category.length > 0) {
+    if (clientData.category) {
       // adds the newly created product to the products array in whatever categories where specified
       await newProduct.addProductToCategories(clientData.category)
     }

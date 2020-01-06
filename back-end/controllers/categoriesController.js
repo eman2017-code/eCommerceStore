@@ -9,7 +9,15 @@ const router = express.Router()
 // this route shows a single category along with all the products in the category
 router.get('/:categoryId/', async (req, res, next) => {
 	try {
-		const foundCategory = await Category.findById(req.params.categoryId)
+		const foundCategory = await Category.findById(req.params.categoryId).populate('products')
+
+		res.json({
+			data: foundCategory,
+			status: {
+				code: 200,
+				message: 'Successfully found categories'
+			}
+		})
 
 	} catch (error) {
 		next(error);
@@ -37,6 +45,11 @@ router.post('/', adminRequired, async (req, res, next) => {
 		next(error);
 	}
 })
+
+
+// Update Route
+// this route is where a categories name and products can be updated
+
 
 
 module.exports = router
