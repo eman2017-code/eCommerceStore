@@ -7,6 +7,26 @@ const productSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
 	},
+	sku: {
+		type: Number,
+		required: true
+	},
+	upc: {
+		type: String,
+		required: true
+	},
+	manufacturer: {
+		type: String,
+		required: true
+	},
+	model: {
+		type: String,
+		required: true
+	},
+	type: {
+		type: String,
+		required: true
+	},
 	coverImage: { // stores the path to the image
 		type: String, 
 		default: null
@@ -23,7 +43,15 @@ const productSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	category: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Category' 
+	}],
 	price: {
+		type: Number,
+		required: true
+	},
+	shippingPrice: {
 		type: Number,
 		required: true
 	},
@@ -31,25 +59,22 @@ const productSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
-
-	// TODO - add array of Review ObjectIds when the review schema exists
-
 	lastUpdated: {
-    type: Date,
-    default: Date.now
+    	type: Date,
+    	default: Date.now
 	},
-  timestamp: {
-    type: Date,
-    default: Date.now
-  }
+	timestamp: {
+		type: Date,
+		default: Date.now
+	}
 })
 
 // uploads a product image 
 productSchema.statics.uploadProductImage = function(imageFile) {
 	imageFile.mv(`${__dirname}/../public/images/products/${imageFile.name}`, function(error) {
 		if (error) {
-      return res.status(500).send(error)
-    }
+	      return res.status(500).send(error)
+	    }
 	})
 }
 
