@@ -8,22 +8,17 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      passowrd: "",
+      password: "",
       loggedIn: false,
       loggedInUser: null
     };
-    console.log("this.state in Login Component");
-    console.log(this.state);
   }
 
   // login route
   login = async loginInfo => {
-    console.log("loginInfo");
-    console.log(loginInfo);
     // fetch call to the api
     const response = await fetch(
       process.env.REACT_APP_API_URL + "/api/v1/users/login",
-
       {
         method: "POST",
         credentials: "include",
@@ -48,7 +43,7 @@ class Login extends Component {
     }
   };
 
-  // handle change of user input
+  // handle change of the user input
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
