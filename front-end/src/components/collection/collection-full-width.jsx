@@ -18,7 +18,7 @@ class CollectionFullWidth extends Component {
     this.state = {
       limit: 5,
       hasMoreItems: true,
-      loggedInUser: this.props.location.loggedInUser
+      loggedInUser: this.props.location.state.loggedInUser
     };
   }
 
