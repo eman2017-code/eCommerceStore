@@ -19,7 +19,6 @@ class Login extends Component {
     // fetch call to the api
     const response = await fetch(
       process.env.REACT_APP_API_URL + "/api/v1/users/login",
-
       {
         method: "POST",
         credentials: "include",
@@ -31,15 +30,16 @@ class Login extends Component {
     );
     // parse response to send back json
     const parsedLoginResponse = await response.json();
+    console.log("parsedLoginResponse");
+    console.log(parsedLoginResponse);
     // if response is good
     if (response.ok) {
       this.setState({
-        // log the user in
         loggedIn: true,
-        // get the data for the logged in user
         loggedInUser: parsedLoginResponse.data
       });
     } else {
+      console.log("login failed");
       console.log(parsedLoginResponse);
     }
   };
