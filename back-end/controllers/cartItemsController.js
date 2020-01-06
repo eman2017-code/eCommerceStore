@@ -56,6 +56,28 @@ router.post('/', loginRequired, async (req, res, next) => {
 })
 
 
+// this route increases the quantity of a cart item by one
+router.put('/add/quantity/:cartItemId/', async (req, res, next) => {
+	try {
+		const foundCartItem = await CartItem.findById(req.params.cartItemId)
+		foundCartItem.quantity++
+		await foundCartItem.save()
+
+		res.json({
+			data: foundCartItem,
+			status: {
+				code: 200,
+				message: 'Quantity of product increases'
+			}
+		})
+
+	} catch (error) {
+		next(error);
+	}
+})
+
+
+
 // Delete Route
 // this route is where cart items are removed from their cart
 router.delete('/:cartItemId/', loginRequired, async (req, res, next) => {

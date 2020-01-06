@@ -5,6 +5,26 @@ const loginRequired = require('../middleware/users/loginRequired')
 const router = express.Router()
 
 
+// * for testing purposes *
+// Index Route 
+// this route return all of the carts in the database
+router.get('/', loginRequired, async (req, res, next) => {
+	try {
+		const allCarts = await Cart.find({}).populate('user').populate('cartItems')
+
+		res.send({
+			data: allCarts,
+			status: {
+				'code': 200,
+				'message': 'Successfully found all the carts'
+			}
+		})		
+	} catch (error) {
+		next(error);
+	}	
+})
+
+
 // Show Route
 // this route shows a single cart
 router.get('/:cartId/', loginRequired, async (req, res, next) => {
