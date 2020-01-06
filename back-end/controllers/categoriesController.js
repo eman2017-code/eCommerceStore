@@ -49,13 +49,23 @@ router.post('/', adminRequired, async (req, res, next) => {
 
 // Update Route
 // this route is where a categories name and products can be updated
-router.post('/:categoryId/', adminRequired, async (req, res, next) => {
+router.put('/:categoryId/', async (req, res, next) => {
 	const clientData = req.body
+	console.log('clientData:', clientData)
+
+	const productIds = clientData.products
 
 	try {
 		const foundCategory = await Category.findById(req.params.categoryId)
+		console.log('foundCategory:', foundCategory)
 
-		// gets all the newly added products 
+		// gets all the newly added products
+		const newProductIds = foundCategory.getNewlyAddedProductIds(productIds) 
+		console.log('newProductIds:', newProductIds)
+
+		// gets all the product ids that were removed from the category
+		const removedProductIds = foundCategory.getRemovedProductIds(productIds)
+		console.log('removedProductIds:', removedProductIds)
 
 		res.json({
 			data: foundCategory,
