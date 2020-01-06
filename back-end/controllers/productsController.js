@@ -15,8 +15,12 @@ router.post("/", adminRequired, async (req, res, next) => {
     newProduct.postedBy = req.session.userId
     await newProduct.save()
 
-    // adds the newly created product to the products array in whatever categories where specified
-    await newProduct.addProductToCategories(clientData.category)
+    // if the product has any categories added 
+    if (clientData.category.length > 0) {
+      // adds the newly created product to the products array in whatever categories where specified
+      await newProduct.addProductToCategories(clientData.category)
+    }
+
 
     res.send({
       data: newProduct,
@@ -57,8 +61,6 @@ router.get("/all/products/", async (req, res, next) => {
   try {
     // find all products
     const foundProducts = await Product.find({});
-    console.log("foundProducts");
-    console.log(foundProudcts);
 
     res.json({
       data: foundProducts,
@@ -68,7 +70,7 @@ router.get("/all/products/", async (req, res, next) => {
       }
     });
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 
