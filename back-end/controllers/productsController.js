@@ -15,6 +15,9 @@ router.post("/", adminRequired, async (req, res, next) => {
     newProduct.postedBy = req.session.userId
     await newProduct.save()
 
+    // adds the newly created product to the products array in whatever categories where specified
+    await newProduct.addProductToCategories(clientData.category)
+
     res.send({
       data: newProduct,
       status: {

@@ -1,4 +1,5 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
+const Category = require('./category.js')
 
 
 // this schema represents a Products
@@ -64,6 +65,15 @@ const productSchema = new mongoose.Schema({
 		default: Date.now
 	}
 })
+
+// adds a product model instance to the products array of whatever categories the product was added to
+productSchema.methods.addProductToCategories = function(categoryIds) {
+	categoryIds.forEach(async (id) => {
+		const foundCategory = await Category.findById(id)
+		foundCategory.products.push(id)
+		await foundCategory.save()
+	})
+}
 
 // uploads a product image 
 productSchema.statics.uploadProductImage = function(imageFile) {
