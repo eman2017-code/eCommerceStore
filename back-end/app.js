@@ -13,6 +13,8 @@ const usersController = require("./controllers/usersController.js");
 const productsController = require("./controllers/productsController.js");
 const cartsController = require("./controllers/cartsController.js");
 const cartItemsController = require("./controllers/cartItemsController.js");
+const categoriesController = require("./controllers/categoriesController.js");
+
 
 // imports the database connection module
 require("./db/db.js");
@@ -56,6 +58,7 @@ app.use(API_PATH + "users", usersController);
 app.use(API_PATH + "products", productsController);
 app.use(API_PATH + "carts", cartsController);
 app.use(API_PATH + "cart-items", cartItemsController);
+app.use(API_PATH + "categories", categoriesController);
 
 // runs the server
 app.listen(PORT, () => {
