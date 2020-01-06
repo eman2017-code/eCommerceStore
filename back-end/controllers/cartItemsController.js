@@ -67,7 +67,7 @@ router.put('/add/quantity/:cartItemId/', async (req, res, next) => {
 			data: foundCartItem,
 			status: {
 				code: 200,
-				message: 'Quantity of product increases'
+				message: 'Product quantity successfully increased'
 			}
 		})
 
@@ -76,6 +76,43 @@ router.put('/add/quantity/:cartItemId/', async (req, res, next) => {
 	}
 })
 
+
+// this route decreases the quantity o a cart item by 1
+router.put('/subtract/quantity/:cartItemId/', async (req, res, next) => {
+	try {
+		const foundCartItem = await CartItem.findById(req.params.cartItemId)
+
+		// if theres only one cart item left, then it gets deleted
+		if (foundCartItem.quantity === 1) {
+			foundCartItem.delete()
+
+			res.json({
+				data: {},
+				status: {
+					code: 204,
+					message: 'Product removed from the cart'
+				}
+			})
+
+		// otherwise just decrease the quantity of the cart item
+		} else {
+			foundCartItem.quantity--
+			await foundCartItem.save()
+
+			res.json({
+				data: foundCartItem,
+				status: {
+					code: 200,
+					message: 'Product quantity successfully subtracted'
+				}
+			})
+		}
+
+
+	} catch (error) {
+		next(error);
+	}
+})
 
 
 // Delete Route
