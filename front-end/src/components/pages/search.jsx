@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import Breadcrumb from "../common/breadcrumb";
-
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -10,8 +8,6 @@ class Search extends Component {
   render() {
     return (
       <div>
-        {/* <Breadcrumb title={"Search"} /> */}
-
         {/*Search section*/}
         <section className="authentication-page section-b-space">
           <div className="container">
