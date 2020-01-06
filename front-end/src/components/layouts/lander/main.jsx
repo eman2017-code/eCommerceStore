@@ -233,7 +233,7 @@ class Lander extends Component {
                     <div className="contain-banner banner-3">
                       <div>
                         <h4>minimum 10% off</h4>
-                        <h2>new watch</h2>
+                        <h2>new apple tv</h2>
                       </div>
                     </div>
                   </div>
@@ -264,8 +264,8 @@ class Lander extends Component {
                     </div>
                     <div className="contain-banner banner-3">
                       <div>
-                        <h4>minimum 50% off</h4>
-                        <h2>gold watch</h2>
+                        <h4>minimum 25% off</h4>
+                        <h2>apple iPad</h2>
                       </div>
                     </div>
                   </div>
