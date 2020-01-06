@@ -53,6 +53,7 @@ class CollectionFullWidth extends Component {
 
   componentDidMount() {
     // checking to see if someone is logged in or not
+    // if ()
   }
 
   componentWillMount() {
@@ -162,6 +163,7 @@ class CollectionFullWidth extends Component {
 const mapStateToProps = state => ({
   products: getVisibleproducts(state.data, state.filters),
   symbol: state.data.symbol
+  // loggedInUser: state.data
 });
 
 export default connect(mapStateToProps, {
