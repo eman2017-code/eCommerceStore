@@ -10,7 +10,6 @@ import "./index.scss";
 import store from "./store";
 import translations from "./constants/translations";
 import { getAllProducts } from "./actions";
-import Landing from "./components/landing";
 
 // Layouts
 import Lander from "./components/layouts/lander/main";
