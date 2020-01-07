@@ -50,7 +50,7 @@ router.post('/', adminRequired, async (req, res, next) => {
 
 // Update Route
 // this route is where a categories name and products can be updated
-router.put('/:categoryId/', async (req, res, next) => {
+router.put('/:categoryId/', adminRequired, async (req, res, next) => {
 	const categoryName = req.body.name
 
 	try {
