@@ -6,6 +6,25 @@ const adminRequired = require('../middleware/users/adminRequired.js')
 const router = express.Router()
 
 
+// Index Route
+// this route returns all of the categories that exist
+router.get('/', async (req, res, next) => {
+	try {
+		const allCategories = await Category.find({})
+
+		res.json({
+			data: allCategories,
+			status: {
+				code: 200,
+				message: 'Successfully found all categories' 
+			}
+		})		
+	} catch (error) {
+		next(error)
+	}	
+})
+
+
 // Show Route
 // this route shows a single category along with all the products in the category
 router.get('/:categoryId/', async (req, res, next) => {
