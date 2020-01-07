@@ -185,7 +185,7 @@ class cartComponent extends Component {
               <div className="row cart-buttons">
                 <div className="col-6">
                   <Link
-                    to={`${process.env.PUBLIC_URL}/left-sidebar/collection`}
+                    to={`${process.env.PUBLIC_URL}/all-products`}
                     className="btn btn-solid"
                   >
                     continue shopping
