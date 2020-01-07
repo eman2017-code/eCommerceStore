@@ -15,8 +15,8 @@ import Landing from "./components/landing";
 // Layouts
 import Lander from "./components/layouts/lander/main";
 
-// //Collection Pages
-import CollectionFullWidth from "./components/collection/collection-full-width";
+// Collection Pages
+import CollectionMetro from "./components/collection/collection-metro";
 
 // // Product Pages
 // import LeftSideBar from "./components/products/left-sidebar";
@@ -59,7 +59,7 @@ class Root extends React.Component {
                   <Route
                     exact
                     path={`${process.env.PUBLIC_URL}/all-products`}
-                    component={CollectionFullWidth}
+                    component={CollectionMetro}
                   />
                   <Route
                     path={`${process.env.PUBLIC_URL}/cart`}
@@ -81,8 +81,6 @@ class Root extends React.Component {
                     path={`${process.env.PUBLIC_URL}/pages/register`}
                     component={Register}
                   />
-                  {/* <Route
-                    path={`${process.env.PUBLIC_URL}`} */}
                 </Layout>
               </Switch>
             </ScrollContext>
