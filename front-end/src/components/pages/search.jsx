@@ -70,6 +70,13 @@ class Search extends Component {
                           </button>
                         </div>
                       </div>
+                      <br />
+                      <br />
+                      <button>this is a filter</button>
+                      <button>this is a filter</button>
+                      <button>this is a filter</button>
+                      <button>this is a filter</button>
+                      <button>this is a filter</button>
                     </form>
                   </div>
                 </div>

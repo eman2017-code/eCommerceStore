@@ -57,13 +57,11 @@ class CollectionMetro extends Component {
                 <div className="collection-content col">
                   <div className="page-main-content">
                     <div className="top-banner-wrapper">
-                      {/* <a href="#"> */}
                       <img
                         src="/assets/images/mega-menu/2.jpg"
                         className="img-fluid blur-up lazyload"
                         alt=""
                       />
-                      {/* </a> */}
                       <Search />
                     </div>
                     <div className="collection-product-wrapper">
