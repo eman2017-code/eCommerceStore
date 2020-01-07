@@ -51,14 +51,15 @@ router.post('/', adminRequired, async (req, res, next) => {
 // Update Route
 // this route is where a categories name and products can be updated
 router.put('/:categoryId/', async (req, res, next) => {
-	const clientData = req.body
-	const productIds = clientData.products
+	const categoryName = req.body.name
 
 	try {
-		const foundCategory = await Category.findById(req.params.categoryId)
+		const updatedCategory = await Category.findById(req.params.categoryId)
+		updatedCategory.name = categoryName
+		await updatedCategory.save()
 
 		res.json({
-			data: foundCategory,
+			data: updatedCategory,
 			status: {
 				code: 200,
 				message: 'Successfully updated category'
