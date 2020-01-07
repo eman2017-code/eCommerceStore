@@ -35,7 +35,6 @@ class Search extends Component {
           }
         }
       );
-
       // parse the response
       const parsedResponse = response.json();
       // put the results into the array to be displayed

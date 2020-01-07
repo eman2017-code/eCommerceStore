@@ -64,13 +64,13 @@ class HeaderOne extends Component {
       openmyslide.classList.add("open-side");
     }
   }
-  openSearch() {
-    document.getElementById("search-overlay").style.display = "block";
-  }
+  // openSearch() {
+  //   document.getElementById("search-overlay").style.display = "block";
+  // }
 
-  closeSearch() {
-    document.getElementById("search-overlay").style.display = "none";
-  }
+  // closeSearch() {
+  //   document.getElementById("search-overlay").style.display = "none";
+  // }
 
   load = () => {
     this.setState({ isLoading: true });
@@ -105,20 +105,6 @@ class HeaderOne extends Component {
                     <div>
                       <div className="icon-nav">
                         <ul>
-                          <li className="onhover-div mobile-search">
-                            <div>
-                              <img
-                                src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`}
-                                onClick={this.openSearch}
-                                className="img-fluid"
-                                alt=""
-                              />
-                              <i
-                                className="fa fa-search"
-                                onClick={this.openSearch}
-                              ></i>
-                            </div>
-                          </li>
                           {/*Header Cart Component */}
                           <CartContainer />
                         </ul>
