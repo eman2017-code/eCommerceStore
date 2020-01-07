@@ -83,7 +83,15 @@ router.post("/search", async (req, res, next) => {
         if (err) {
           res.send(err);
         } else {
-          res.send(data);
+          // res.send(data);
+          res.json({
+            data: foundProduct,
+            status: {
+              code: 201,
+              message:
+                "Successfully found the product that you were looking for"
+            }
+          });
         }
       }
     });
