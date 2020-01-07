@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
 
-
 // this schema represents a category that products are apart of
 const categorySchema = new mongoose.Schema({
 	name: {

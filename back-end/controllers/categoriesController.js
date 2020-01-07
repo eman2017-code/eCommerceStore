@@ -29,10 +29,18 @@ router.get('/', async (req, res, next) => {
 // this route shows a single category along with all the products in the category
 router.get('/:categoryId/', async (req, res, next) => {
 	try {
-		const foundCategory = await Category.findById(req.params.categoryId).populate('products')
+		const foundCategory = await Category.findById(req.params.categoryId)
+		const foundProducts = await Product.find({ 'category': foundCategory.id })
+
+		// combines the category with the categories products to they can be returned
+		// in the same object
+		const foundCategoryAndProducts = {
+			category: foundCategory,
+			products: foundProducts
+		}
 
 		res.json({
-			data: foundCategory,
+			data: foundCategoryAndProducts,
 			status: {
 				code: 200,
 				message: 'Successfully found categories'
@@ -48,10 +56,10 @@ router.get('/:categoryId/', async (req, res, next) => {
 // Create Route
 // this is where the admin can create a new category
 router.post('/', adminRequired, async (req, res, next) => {
-	const clientData = req.body
+	const categoryName = req.body.name
 
 	try {
-		const newCategory = await Category.create(clientData)
+		const newCategory = await Category.create({ 'name': categoryName })
 
 		res.json({
 			data: newCategory,
