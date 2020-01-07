@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { Link, Redirect } from "react-router-dom";
+import Breadcrumb from "../common/breadcrumb";
 
 class Register extends Component {
   constructor(props) {
@@ -86,6 +87,8 @@ class Register extends Component {
         <Helmet>
           <title>E-Commerce | Store</title>
         </Helmet>
+
+        <Breadcrumb title={"Register"} />
 
         {/*Regsiter section*/}
         <section className="register-page section-b-space">

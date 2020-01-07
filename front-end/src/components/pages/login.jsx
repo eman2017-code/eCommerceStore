@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Breadcrumb from "../common/breadcrumb";
 
 class Login extends Component {
   constructor(props) {
@@ -83,6 +84,8 @@ class Login extends Component {
         <Helmet>
           <title>E-Commerce | Store</title>
         </Helmet>
+
+        <Breadcrumb title={"Login"} />
 
         {/*Login section*/}
         <section className="login-page section-b-space">
