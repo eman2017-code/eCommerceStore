@@ -276,8 +276,6 @@ class Lander extends Component {
         </section>
         {/*Content Banner End*/}
 
-        <Special type={"watch"} />
-
         {/*Service Layout*/}
         <div className="container">
           <section className="service section-b-space border-section border-top-0">

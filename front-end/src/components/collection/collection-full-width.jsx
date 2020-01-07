@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Search from "../pages/search.jsx";
 
 import { getTotal, getCartProducts } from "../../reducers/index";
 import { addToCart, addToWishlist, addToCompare } from "../../actions/index";
@@ -81,6 +82,7 @@ class CollectionFullWidth extends Component {
         </Helmet>
 
         <div className="container-fluid">
+          <Search />
           {/* <button onClick={this.onClick}>click here</button> */}
           <div className="row">
             <div className="col-12">
