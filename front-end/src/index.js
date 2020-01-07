@@ -81,6 +81,8 @@ class Root extends React.Component {
                     path={`${process.env.PUBLIC_URL}/pages/register`}
                     component={Register}
                   />
+                  {/* <Route
+                    path={`${process.env.PUBLIC_URL}`} */}
                 </Layout>
               </Switch>
             </ScrollContext>
