@@ -12,12 +12,13 @@ import { Helmet } from "react-helmet";
 
 class CollectionFullWidth extends Component {
   constructor(props) {
+    console.log("props in CollectionFullWidth");
+    console.log(props);
     super(props);
 
     this.state = {
       limit: 5,
-      hasMoreItems: true,
-      loggedInUser: null
+      hasMoreItems: true
     };
   }
 
