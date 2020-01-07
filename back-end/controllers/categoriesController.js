@@ -76,7 +76,7 @@ router.post('/', adminRequired, async (req, res, next) => {
 
 
 // Update Route
-// this route is where a categories name and products can be updated
+// this route is where a categories name and products can be updated by the admin
 router.put('/:categoryId/', adminRequired, async (req, res, next) => {
 	const categoryName = req.body.name
 
@@ -97,6 +97,26 @@ router.put('/:categoryId/', adminRequired, async (req, res, next) => {
 		next(error)
 	}
 })
+
+
+// Delete Route
+// this route is where the admin can delete a category
+router.delete('/:categoryId/', async (req, res, next) => {
+	try {
+		const deletedCategory = Category.findByIdAndRemove(req.params.categoryId).exec()
+
+		res.json({
+			data: {},
+			status: {
+				code: 204,
+				message: 'Category successfully deleted'
+			}
+		})
+	} catch (error) {
+		next(error)
+	}	
+})
+
 
 
 module.exports = router
