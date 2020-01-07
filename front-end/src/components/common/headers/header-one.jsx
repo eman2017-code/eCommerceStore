@@ -64,13 +64,6 @@ class HeaderOne extends Component {
       openmyslide.classList.add("open-side");
     }
   }
-  // openSearch() {
-  //   document.getElementById("search-overlay").style.display = "block";
-  // }
-
-  // closeSearch() {
-  //   document.getElementById("search-overlay").style.display = "none";
-  // }
 
   load = () => {
     this.setState({ isLoading: true });
