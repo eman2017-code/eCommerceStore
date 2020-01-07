@@ -149,13 +149,13 @@ class cartComponent extends Component {
                               {item.qty >= item.stock ? "out of Stock" : ""}
                             </td>
                             <td>
-                              <a
-                                href="#"
+                              <button
+                                // href="#"
                                 className="icon"
                                 onClick={() => this.props.removeFromCart(item)}
                               >
                                 <i className="fa fa-times"></i>
-                              </a>
+                              </button>
                             </td>
                             <td>
                               <h2 className="td-color">
