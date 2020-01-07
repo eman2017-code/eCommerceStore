@@ -49,7 +49,6 @@ cartSchema.methods.getExistingCartItem = function(productId) {
 // creates a new cart
 cartSchema.statics.createNewCart = async function(userId) {
 	const newCart = await Cart.create({ user: userId })
-	return newCart
 }
 
 const Cart = mongoose.model('Cart', cartSchema)

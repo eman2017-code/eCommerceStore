@@ -12,7 +12,7 @@ router.post('/', loginRequired, async (req, res, next) => {
 	const productId = req.body.productId
 
 	try {
-		let foundCart = await Cart.findOne({'user': req.session.userId}).populate('cartItems')
+		let foundCart = await Cart.findOne({ 'user': req.session.userId }).populate('cartItems')
 
 		// if the user does not have a cart created then a new cart is created
 		if (foundCart === null) {
@@ -108,9 +108,8 @@ router.put('/subtract/quantity/:cartItemId/', async (req, res, next) => {
 			})
 		}
 
-
 	} catch (error) {
-		next(error);
+		next(error)
 	}
 })
 
@@ -130,7 +129,7 @@ router.delete('/:cartItemId/', loginRequired, async (req, res, next) => {
 		})
 
 	} catch (error) {
-		next(error);
+		next(error)
 	}	
 })
 

@@ -1,6 +1,7 @@
-const express = require("express");
-const User = require("../models/user.js");
-const loginRequired = require("../middleware/users/loginRequired.js");
+const express = require("express")
+const User = require("../models/user.js")
+const Cart = require('../models/cart.js')
+const loginRequired = require("../middleware/users/loginRequired.js")
 
 const router = express.Router()
 
@@ -23,7 +24,7 @@ router.post("/signup/", async (req, res, next) => {
       })
 
     } else {
-      // encrypts password and creates new user
+      // encrypts password, creates new user and logs them in
       const passwordHash = User.encryptPassword(clientData.password);
       const newUser = await User.create({
         firstName: clientData.firstName,
@@ -31,9 +32,10 @@ router.post("/signup/", async (req, res, next) => {
         email: clientData.email,
         password: passwordHash,
       })
-
       newUser.login(req)
-      newUser.removePassword()
+
+      // creates a cart for the new user
+      await Cart.createNewCart(newUser.id)
 
       res.json({
         data: newUser,
@@ -59,7 +61,7 @@ router.post("/login/", async (req, res, next) => {
     // logs in the user if the email and password match
     if (foundUser && User.doPasswordsMatch(clientData.password, foundUser.password)) {
       foundUser.login(req)
-      foundUser.removePassword()
+
 
       return res.json({
         data: foundUser,
@@ -93,7 +95,7 @@ router.post("/logout/", loginRequired, async (req, res, next) => {
         code: 200,
         message: "User successfully logged out"
       }
-    });
+    })
   } catch (error) {
     next(error)
   }
@@ -115,7 +117,6 @@ router.put("/password/:userId/", loginRequired, async (req, res, next) => {
       const newPasswordHash = User.encryptPassword(newPassword)
       user.password = newPasswordHash
       await user.save()
-      user.removePassword()
 
       res.json({
         data: user,
@@ -139,7 +140,7 @@ router.put("/password/:userId/", loginRequired, async (req, res, next) => {
 })
 
 module.exports = router
-
+  
 
 
 
