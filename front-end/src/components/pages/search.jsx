@@ -101,10 +101,10 @@ class Search extends Component {
                       </div>
                       <br />
                       <br />
-                      <li onClick={this.onClick}>FILTER 1</li>
-                      <li onClick={this.onClick}>FILTER 2</li>
-                      <li onClick={this.onClick}>FILTER 3</li>
-                      <li onClick={this.onClick}>FILTER 4</li>
+                      <button onClick={this.onClick}>ELECTRONICS</button>
+                      <button onClick={this.onClick}>FASHION</button>
+                      <button onClick={this.onClick}>FAMILY</button>
+                      <button onClick={this.onClick}>PHONES</button>
                     </form>
                   </div>
                 </div>
