@@ -5,6 +5,8 @@ class Search extends Component {
     super(props);
   }
 
+  // route to connect to the search api
+
   render() {
     return (
       <div>
