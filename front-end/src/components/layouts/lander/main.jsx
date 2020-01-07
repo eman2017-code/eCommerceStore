@@ -14,7 +14,6 @@ import {
 import LogoBlocks from "../common/logo-block";
 import BlogSection from "../common/blogsection";
 import Trending from "./trending";
-import TrandingCollection from "../common/collection";
 import Special from "../common/special";
 import HeaderOne from "../../common/headers/header-one";
 import FooterOne from "../../common/footers/footer-one";
@@ -211,10 +210,6 @@ class Lander extends Component {
         {/*Special Products Start*/}
         <Trending type={"watch"} />
         {/*Special Products End*/}
-
-        {/* Parallax banner*/}
-        <TrandingCollection type={"watch"} />
-        {/* Parallax banner end*/}
 
         {/*Content Banner*/}
         <section className="ratio_45">
