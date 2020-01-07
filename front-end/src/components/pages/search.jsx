@@ -3,7 +3,46 @@ import React, { Component } from "react";
 class Search extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      value: "",
+      results: []
+    };
   }
+
+  // handle change method
+  handleChange = e => {
+    this.setState({
+      value: e.target.value
+    });
+
+    // get the results
+    this.getResults();
+  };
+
+  // get results method
+  getResults = async () => {
+    try {
+      // api call to the search route
+      const response = await fetch(
+        process.env.REACT_APP_API_URL + "/api/v1/products/search",
+        {
+          method: "POST",
+          body: JSON.stringify({ value: this.state.value }),
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+      // parse the response
+      const parsedResponse = response.json();
+      // put the results into the array to be displayed
+      this.setState({
+        results: [...parsedResponse.data]
+      });
+    } catch (err) {}
+  };
 
   render() {
     return (
@@ -22,6 +61,8 @@ class Search extends Component {
                           className="form-control"
                           aria-label="Amount (to the nearest dollar)"
                           placeholder="Search Products......"
+                          value={this.state.value}
+                          onChange={this.handleChange}
                         />
                         <div className="input-group-append">
                           <button className="btn btn-solid">
