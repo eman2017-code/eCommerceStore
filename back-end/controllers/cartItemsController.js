@@ -119,7 +119,7 @@ router.put('/subtract/quantity/:cartItemId/', async (req, res, next) => {
 // this route is where cart items are removed from their cart
 router.delete('/:cartItemId/', loginRequired, async (req, res, next) => {
 	try {
-		const deleteCartItem = await CartItem.findByIdAndDelete(req.params.cartItemId)
+		const deleteCartItem = await CartItem.findByIdAndRemove(req.params.cartItemId).exec()
 
 		res.json({
 			data: {},
