@@ -11,6 +11,11 @@ const cartSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'CartItem'
 	}],
+	// total cost of all the items in the cart
+	totalCost: {
+		type: Number,
+		defualt: 0
+	},
 	hasPaid: {
 		type: Boolean,
 		default: false
