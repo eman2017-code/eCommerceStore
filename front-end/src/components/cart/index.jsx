@@ -150,7 +150,6 @@ class cartComponent extends Component {
                             </td>
                             <td>
                               <button
-                                // href="#"
                                 className="icon"
                                 onClick={() => this.props.removeFromCart(item)}
                               >
