@@ -42,8 +42,8 @@ class Lander extends Component {
                     <div className="col">
                       <div className="slider-contain">
                         <div>
-                          <h4>Great Products</h4>
-                          <h1>Check them out</h1>
+                          <h4>Check them out</h4>
+                          <h1>Watches</h1>
                           <a
                             href="/all-products"
                             className="btn btn-outline btn-classic"
@@ -64,8 +64,8 @@ class Lander extends Component {
                     <div className="col">
                       <div className="slider-contain">
                         <div>
-                          <h4>We have great deals</h4>
-                          <h1>Electronics</h1>
+                          <h4>Friends & Family</h4>
+                          <h1>Skateboards</h1>
                           <a
                             href="/all-products"
                             className="btn btn-outline btn-classic"
@@ -87,7 +87,7 @@ class Lander extends Component {
                       <div className="slider-contain">
                         <div>
                           <h4>Great for the family</h4>
-                          <h1>Family and Friends</h1>
+                          <h1>Electronics</h1>
                           <a
                             href="/all-products"
                             className="btn btn-outline btn-classic"
