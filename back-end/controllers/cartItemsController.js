@@ -1,6 +1,7 @@
 const express = require('express')
 const CartItem = require('../models/cartItem.js')
 const Cart = require('../models/cart.js')
+const Product = require('../models/product.js')
 const loginRequired = require('../middleware/users/loginRequired.js')
 
 const router = express.Router()
@@ -12,14 +13,23 @@ router.post('/', loginRequired, async (req, res, next) => {
 	const productId = req.body.productId
 
 	try {
-		const foundCart = await Cart.findOne({ 'user': req.session.userId }).populate('cartItems')
+		const foundCart = await Cart.findOne({ 'user': req.session.userId }).populate([{
+			path: 'cartItems',
+			model: CartItem,
+			populate: {
+				path: 'product',
+				model: Product
+			}
+		}])
+		console.log('found cart:', foundCart)
+		console.log('total cost:', foundCart.calculateTotalCost())
 
 		// if the product already exists as a cart item in the users cart
 		if (foundCart.doesProductExist(productId)) {
 			const existingCartItemId = foundCart.getExistingCartItem(productId)._id
 
 			// gets the cart item and increases the quantity by one
-			const foundCartItem = await CartItem.findById(existingCartItemId)
+			const foundCartItem = await CartItem.findById(existingCartItemId).populate('product')
 			foundCartItem.quantity++
 			await foundCartItem.save()
 
@@ -46,7 +56,7 @@ router.post('/', loginRequired, async (req, res, next) => {
 			})
 		}
 	} catch (error) {
-		next(error);
+		next(error)
 	}
 })
 

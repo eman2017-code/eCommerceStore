@@ -46,6 +46,12 @@ cartSchema.methods.getExistingCartItem = function(productId) {
 	return foundCartItems.filter(cartItem => cartItem.product == productId)[0]
 }
 
+// calculates and returns the total cost of all the cart items 
+cartSchema.methods.calculateTotalCost = function() {
+	const totalCost = this.cartItems.reduce((cost, item) => cost + (item.product.price * item.quantity), 0)
+	return totalCost
+}
+
 // creates a new cart
 cartSchema.statics.createNewCart = async function(userId) {
 	const newCart = await Cart.create({ user: userId })
