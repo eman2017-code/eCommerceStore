@@ -8,6 +8,12 @@
   },
   "author": "Emmanuel Miller & Mitchell Pottratz",
   "license": "ISC",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "@elastic/elasticsearch": "^7.5.0",
     "bcrypt": "^3.0.7",
