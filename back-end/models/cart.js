@@ -35,21 +35,25 @@ cartSchema.methods.doesProductExist = function(productIdToCheck) {
 	const foundCartItems = this.cartItems
 	
 	// creates an array of product ids in each cart items 
-	const productIds = foundCartItems.map(cartItem => cartItem.product)
+	const productIds = foundCartItems.map(cartItem => cartItem.product._id)
 
 	return productIds.includes(productIdToCheck)
 }
 
 // searches for a cart item in the cart by a product id and returns the cat item
 cartSchema.methods.getExistingCartItem = function(productId) {
-	const foundCartItems = this.cartItems
-	return foundCartItems.filter(cartItem => cartItem.product == productId)[0]
+	return this.cartItems.filter(cartItem => cartItem.product._id == productId)[0]
+}
+
+// sets the totalCost field
+cartSchema.methods.setTotalCost = function() {
+	const totalCost = this.calculateTotalCost()
+	this.totalCost = totalCost
 }
 
 // calculates and returns the total cost of all the cart items 
 cartSchema.methods.calculateTotalCost = function() {
-	const totalCost = this.cartItems.reduce((cost, item) => cost + (item.product.price * item.quantity), 0)
-	return totalCost
+	return this.cartItems.reduce((cost, item) => cost + (item.product.price * item.quantity), 0)
 }
 
 // creates a new cart
