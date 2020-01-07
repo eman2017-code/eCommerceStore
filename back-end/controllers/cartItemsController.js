@@ -28,7 +28,7 @@ router.post('/', loginRequired, async (req, res, next) => {
 			// gets the existing cart item and increases the quantity
 			const existingCartItem = foundCart.getExistingCartItem(productId)
 			existingCartItem.quantity++
-			await foundCart.setTotalCost()
+			existingCartItem.setTotalCost()
 			await existingCartItem.save()
 
 			res.json({
@@ -60,11 +60,14 @@ router.post('/', loginRequired, async (req, res, next) => {
 })
 
 
-// this route increases the quantity of a cart item by one
-router.put('/add/quantity/:cartItemId/', async (req, res, next) => {
+// Update Route
+// this route is where users can update the quantity of a cart item
+router.put('/:cartItemId/', loginRequired, async (req, res, next) => {
+	const newQuantity = req.body.quantity
+
 	try {
 		const foundCartItem = await CartItem.findById(req.params.cartItemId)
-		foundCartItem.quantity++
+		foundCartItem.quantity = newQuantity
 		await foundCartItem.save()
 
 		res.json({
@@ -74,47 +77,10 @@ router.put('/add/quantity/:cartItemId/', async (req, res, next) => {
 				message: 'Product quantity successfully increased'
 			}
 		})
-
-	} catch (error) {
-		next(error);
-	}
-})
-
-
-// this route decreases the quantity o a cart item by 1
-router.put('/subtract/quantity/:cartItemId/', async (req, res, next) => {
-	try {
-		const foundCartItem = await CartItem.findById(req.params.cartItemId)
-
-		// if theres only one cart item left, then it gets deleted
-		if (foundCartItem.quantity === 1) {
-			foundCartItem.delete()
-
-			res.json({
-				data: {},
-				status: {
-					code: 204,
-					message: 'Product removed from the cart'
-				}
-			})
-
-		// otherwise just decrease the quantity of the cart item
-		} else {
-			foundCartItem.quantity--
-			await foundCartItem.save()
-
-			res.json({
-				data: foundCartItem,
-				status: {
-					code: 200,
-					message: 'Product quantity successfully subtracted'
-				}
-			})
-		}
-
+				
 	} catch (error) {
 		next(error)
-	}
+	}	
 })
 
 
@@ -136,7 +102,6 @@ router.delete('/:cartItemId/', loginRequired, async (req, res, next) => {
 		next(error)
 	}	
 })
-
 
 
 module.exports = router
