@@ -12,12 +12,7 @@ router.post('/', loginRequired, async (req, res, next) => {
 	const productId = req.body.productId
 
 	try {
-		let foundCart = await Cart.findOne({ 'user': req.session.userId }).populate('cartItems')
-
-		// if the user does not have a cart created then a new cart is created
-		if (foundCart === null) {
-			foundCart = await Cart.createNewCart(req.session.userId)
-		}
+		const foundCart = await Cart.findOne({ 'user': req.session.userId }).populate('cartItems')
 
 		// if the product already exists as a cart item in the users cart
 		if (foundCart.doesProductExist(productId)) {
