@@ -20,6 +20,32 @@ class Search extends Component {
     this.getResults();
   };
 
+  onClick = e => {
+    console.log("they clicked the buttton");
+  };
+
+  // handle change of the user input
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  // handle submit
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log("they are have logged in");
+    this.loginUser();
+  };
+
+  // method to actually login user
+  loginUser = () => {
+    this.login({
+      email: this.state.email,
+      password: this.state.password
+    });
+  };
+
   // get results method
   getResults = async () => {
     try {
@@ -44,6 +70,9 @@ class Search extends Component {
     } catch (err) {}
   };
 
+  // filterCategories route
+  // will make a fetch call to the elasticsearch api
+
   render() {
     return (
       <div>
@@ -65,18 +94,17 @@ class Search extends Component {
                           onChange={this.handleChange}
                         />
                         <div className="input-group-append">
-                          <button className="btn btn-solid">
+                          <li onClick={this.onClick} className="btn btn-solid">
                             <i className="fa fa-search"></i>Search
-                          </button>
+                          </li>
                         </div>
                       </div>
                       <br />
                       <br />
-                      <button>this is a filter</button>
-                      <button>this is a filter</button>
-                      <button>this is a filter</button>
-                      <button>this is a filter</button>
-                      <button>this is a filter</button>
+                      <li onClick={this.onClick}>FILTER 1</li>
+                      <li onClick={this.onClick}>FILTER 2</li>
+                      <li onClick={this.onClick}>FILTER 3</li>
+                      <li onClick={this.onClick}>FILTER 4</li>
                     </form>
                   </div>
                 </div>
