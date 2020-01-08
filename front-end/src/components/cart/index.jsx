@@ -16,11 +16,9 @@ class cartComponent extends Component {
     const { cartItems, symbol, total } = this.props;
     return (
       <div>
-        {/*SEO Support*/}
         <Helmet>
           <title>E-Commerce | Store</title>
         </Helmet>
-        {/*SEO Support End */}
 
         <Breadcrumb title={"Cart Page"} />
 
