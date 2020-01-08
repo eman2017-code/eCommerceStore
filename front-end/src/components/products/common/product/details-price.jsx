@@ -9,7 +9,6 @@ class DetailsWithPrice extends Component {
     this.state = {
       open: false,
       quantity: 1,
-      stock: "InStock",
       nav3: null
     };
   }
@@ -125,32 +124,13 @@ class DetailsWithPrice extends Component {
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <div className="modal-body">
-                        <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/size-chart.jpg`}
-                          alt=""
-                          className="img-fluid"
-                        />
-                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="size-box">
-                  <ul>
-                    {item.size.map((size, i) => {
-                      return (
-                        <li key={i}>
-                          <a href="#">{size}</a>
-                        </li>
-                      );
-                    })}
-                  </ul>
                 </div>
               </div>
             ) : (
               ""
             )}
-            <span className="instock-cls">{this.state.stock}</span>
             <h6 className="product-title">quantity</h6>
             <div className="qty-box">
               <div className="input-group">
