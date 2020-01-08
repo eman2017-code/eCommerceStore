@@ -99,19 +99,6 @@ class DetailsWithPrice extends Component {
           <div className="product-description border-product">
             {item.size ? (
               <div>
-                <h6 className="product-title size-text">
-                  select size
-                  <span>
-                    <a
-                      href="#"
-                      data-toggle="modal"
-                      data-target="#sizemodal"
-                      onClick={this.onOpenModal}
-                    >
-                      size chart
-                    </a>
-                  </span>
-                </h6>
                 <div
                   className="modal fade"
                   id="sizemodal"
