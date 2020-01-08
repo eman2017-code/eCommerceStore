@@ -19,15 +19,6 @@ import CollectionMetro from "./components/collection/collection-metro";
 
 // // Product Pages
 import LeftSideBar from "./components/products/left-sidebar";
-// import RightSideBar from "./components/products/right-sidebar";
-// import NoSideBar from "./components/products/no-sidebar";
-// import LeftImage from "./components/products/left-image";
-// import RightImage from "./components/products/right-image";
-// import Accordian from "./components/products/accordian";
-// import ColumnLeft from "./components/products/column-left";
-// import ColumnRight from "./components/products/column-right";
-// import Column from "./components/products/column";
-// import Vertical from "./components/products/vertical";
 
 // // Features
 import Layout from "./components/app";
