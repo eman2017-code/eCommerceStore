@@ -49,33 +49,46 @@ class Root extends React.Component {
           <BrowserRouter basename={"/"}>
             <ScrollContext>
               <Switch>
+                {/* Main Page */}
                 <Route
                   exact
                   path={`${process.env.PUBLIC_URL}/`}
                   component={Lander}
                 />
                 <Layout>
+                  {/* All Products Page */}
                   <Route
                     exact
                     path={`${process.env.PUBLIC_URL}/all-products`}
                     component={CollectionMetro}
                   />
+                  {/* Single Product Page  */}
+                  <Route
+                    exact
+                    path={`${process.env.PUBLIC_URL}/left-sidebar/product/:id`}
+                    component={LeftSideBar}
+                  />
+                  {/* Cart Page  */}
                   <Route
                     path={`${process.env.PUBLIC_URL}/cart`}
                     component={Cart}
                   />
+                  {/* Checkout Page  */}
                   <Route
                     path={`${process.env.PUBLIC_URL}/checkout`}
                     component={checkOut}
                   />
+                  {/* Order Sucess Page */}
                   <Route
                     path={`${process.env.PUBLIC_URL}/order-success`}
                     component={orderSuccess}
                   />
+                  {/* Login Page */}
                   <Route
                     path={`${process.env.PUBLIC_URL}/pages/login`}
                     component={Login}
                   />
+                  {/* Register Page */}
                   <Route
                     path={`${process.env.PUBLIC_URL}/pages/register`}
                     component={Register}
