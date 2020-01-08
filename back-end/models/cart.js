@@ -53,7 +53,7 @@ cartSchema.methods.setTotalCost = function() {
 
 // calculates and returns the total cost of all the cart items 
 cartSchema.methods.calculateTotalCost = function() {
-	return this.cartItems.reduce((cost, item) => cost + (item.product.price * item.quantity), 0)
+	return this.cartItems.reduce((cost, item) => cost + (item.product.getProductPrice() * item.quantity), 0)
 }
 
 // creates a new cart

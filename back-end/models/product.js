@@ -8,27 +8,12 @@ const productSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
 	},
-	sku: {
-		type: Number,
-		required: true
-	},
-	upc: {
-		type: String,
-		required: true
-	},
-	manufacturer: {
-		type: String,
-		required: true
-	},
-	model: {
-		type: String,
-		required: true
-	},
-	type: {
-		type: String,
-		required: true
-	},
-	coverImage: { // stores the path to the image
+	sku: Number,
+	upc: String,
+	manufacturer: String,
+	model: String,
+	type: String,
+	image: { // stores the path to the image
 		type: String, 
 		default: null
 	},	
@@ -44,17 +29,21 @@ const productSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Category' 
 	}],
+	isOnSale: {
+		type: Boolean,
+		default: false
+	},
 	price: {
 		type: Number,
 		required: true
 	},
-	shippingPrice: {
+	salePrice: {
+		type: Number,
+		required: false
+	},
+	shipping: {
 		type: Number,
 		required: true
-	},
-	isOnSale: {
-		type: Boolean,
-		default: false
 	},
 	lastUpdated: {
     	type: Date,
@@ -73,6 +62,15 @@ productSchema.methods.addProductToCategories = function(categoryIds) {
 		foundCategory.products.push(id)
 		await foundCategory.save()
 	})
+}
+
+// returns either the price or sale price of the product depending on if its on sale
+productSchema.methods.getProductPrice = function() {
+	let price = this.price + this.shipping
+	if (this.isOnSale) {
+		price = this.salePrice + this.shipping
+	} 
+	return price
 }
 
 // uploads a product image 
