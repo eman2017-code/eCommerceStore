@@ -114,3 +114,8 @@ export const changeCurrency = symbol => ({
   type: types.CHANGE_CURRENCY,
   symbol
 });
+
+// Logging in User
+export const loginUser = person => ({
+  type: "LOGIN_USER"
+});

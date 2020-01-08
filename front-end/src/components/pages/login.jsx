@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+// import { addToCart, addToWishlist, addToCompare } from "../../actions/index";
+import { loginUser } from "../../actions/index";
 import { Helmet } from "react-helmet";
 import Breadcrumb from "../common/breadcrumb";
 
@@ -147,4 +150,17 @@ class Login extends Component {
   }
 }
 
-export default Login;
+// export default Login;
+const mapStateToProps = state => ({
+  loggedInUser: state
+});
+
+// export default connect(mapStateToProps, {
+//   addToCart,
+//   addToWishlist,
+//   addToCompare
+// })(CollectionMetro);
+
+export default connect(mapStateToProps, {
+  loginUser
+})(Login);
