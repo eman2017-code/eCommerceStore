@@ -13,7 +13,8 @@
 	"manufacturer":"Duracell",
 	"model":"MN1400R4Z",
 	"url":"http://www.bestbuy.com/site/duracell-c-batteries-4-pack/185230.p?id=1051384046486&skuId=185230&cmp=RMXCC",
-	"image":"http://img.bbystatic.com/BestBuy_US/images/products/1852/185230_sa.jpg"},
+	"image":"http://img.bbystatic.com/BestBuy_US/images/products/1852/185230_sa.jpg"
+},
 {
 	"sku":185267,
 	"name":"Duracell - D Batteries (4-Pack)",
@@ -60,3 +61,7 @@
 	"url":"http://www.bestbuy.com/site/energizer-n-cell-e90-batteries-2-pack/333179.p?id=1185268509951&skuId=333179&cmp=RMXCC",
 	"image":"http://img.bbystatic.com/BestBuy_US/images/products/3331/333179_sa.jpg"
 },
+
+
+
+

@@ -38,7 +38,7 @@ router.post("/signup/", async (req, res, next) => {
       await Cart.createNewCart(newUser.id)
 
       res.json({
-        data: newUser,
+        data: newUser.removePassword(),
         status: {
           code: 201,
           message: "Successfully signed up"
@@ -62,9 +62,8 @@ router.post("/login/", async (req, res, next) => {
     if (foundUser && User.doPasswordsMatch(clientData.password, foundUser.password)) {
       foundUser.login(req)
 
-
       return res.json({
-        data: foundUser,
+        data: foundUser.removePassword(),
         status: {
           code: 200,
           message: "Successfully logged in"
@@ -119,7 +118,7 @@ router.put("/password/:userId/", loginRequired, async (req, res, next) => {
       await user.save()
 
       res.json({
-        data: user,
+        data: user.removePassword(),
         status: {
           code: 200,
           message: "Password has been changed successfully"

@@ -49,9 +49,11 @@ userSchema.methods.login = function(req) {
   req.session.email = this.email
 }
 
-// removes the password from the user object
-userSchema.methods.removePassword = function(userObject) {
-  this.password = null
+// coverts the user instance to an object and removes the password hash
+userSchema.methods.removePassword = function() {
+  const userObject = this.toObject()
+  delete userObject.password
+  return userObject
 }
 
 // checks if password match
