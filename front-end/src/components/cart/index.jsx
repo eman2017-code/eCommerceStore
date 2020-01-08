@@ -9,6 +9,8 @@ import { removeFromCart, incrementQty, decrementQty } from "../../actions";
 
 class cartComponent extends Component {
   constructor(props) {
+    console.log("props in cartComponent");
+    console.log(props);
     super(props);
   }
 
