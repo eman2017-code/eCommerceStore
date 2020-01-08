@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Search from "../pages/search.jsx";
-
 import { getTotal, getCartProducts } from "../../reducers/index";
 import {
   addToCart,
   addToWishlist,
-  addToCompare,
-  loginUser
+  addToCompare
+  // loginUser
 } from "../../actions/index";
 import { getVisibleproducts } from "../../services/index";
 import ProductListItem from "./common/product-list-item";
@@ -147,13 +146,12 @@ class CollectionMetro extends Component {
 }
 const mapStateToProps = state => ({
   products: getVisibleproducts(state.data, state.filters),
-  symbol: state.data.symbol,
-  loggedInUser: state.data.loggedInUser
+  symbol: state.data.symbol
 });
 
 export default connect(mapStateToProps, {
   addToCart,
   addToWishlist,
-  addToCompare,
-  loginUser
+  addToCompare
+  // loginUser
 })(CollectionMetro);

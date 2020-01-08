@@ -151,10 +151,10 @@ class Login extends Component {
   }
 }
 
-// export default Login;
-const mapStateToProps = state => ({
-  loggedInUser: state.data
-});
+// // export default Login;
+// const mapStateToProps = state => ({
+//   loggedInUser: state
+// });
 
 // export default connect(mapStateToProps, {
 //   addToCart,
@@ -162,6 +162,8 @@ const mapStateToProps = state => ({
 //   addToCompare
 // })(CollectionMetro);
 
-export default connect(mapStateToProps, {
-  loginUser
-})(Login);
+// export default connect(mapStateToProps, {
+//   loginUser
+// })(Login);
+
+export default Login;
