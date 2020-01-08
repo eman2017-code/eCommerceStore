@@ -53,14 +53,14 @@ router.post("/", adminRequired, async (req, res, next) => {
   }
 });
 
+
 // Show Route
 // this route returns data for a single product
 router.get("/:productId/", async (req, res, next) => {
   const clientData = req.body;
 
   try {
-    const foundProduct = await Product.findOne({
-      _id: req.params.productId
+    const foundProduct = await Product.findOne({ '_id': req.params.productId
     }).populate("postedBy");
 
     res.json({
