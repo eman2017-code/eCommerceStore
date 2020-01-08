@@ -10,7 +10,7 @@ const router = express.Router();
 // returns all of the products
 router.get('/', async (req, res, next) => {
   try {
-    const foundProducts = await Product.find({});
+    const foundProducts = await Product.find({}).populate('postedBy', '-password')
 
     res.json({
       data: foundProducts,
@@ -61,8 +61,9 @@ router.get("/:productId/", async (req, res, next) => {
   const clientData = req.body;
 
   try {
-    const foundProduct = await Product.findOne({ '_id': req.params.productId
-    }).populate("postedBy");
+    const foundProduct = await Product.findOne({
+     '_id': req.params.productId
+   }).populate('postedBy', '-password')
 
     res.json({
       data: foundProduct,
