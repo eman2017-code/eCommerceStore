@@ -18,7 +18,7 @@ import Lander from "./components/layouts/lander/main";
 import CollectionMetro from "./components/collection/collection-metro";
 
 // // Product Pages
-// import LeftSideBar from "./components/products/left-sidebar";
+import LeftSideBar from "./components/products/left-sidebar";
 // import RightSideBar from "./components/products/right-sidebar";
 // import NoSideBar from "./components/products/no-sidebar";
 // import LeftImage from "./components/products/left-image";

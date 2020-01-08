@@ -12,6 +12,8 @@ import Breadcrumb from "../common/breadcrumb";
 
 class CollectionMetro extends Component {
   constructor(props) {
+    console.log("props in collectionMetro");
+    console.log(props);
     super(props);
 
     this.state = {
