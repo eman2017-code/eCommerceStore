@@ -41,7 +41,7 @@ const productSchema = new mongoose.Schema({
 		type: Number,
 		required: false
 	},
-	shippingPrice: {
+	shipping: {
 		type: Number,
 		required: true
 	},
@@ -66,9 +66,9 @@ productSchema.methods.addProductToCategories = function(categoryIds) {
 
 // returns either the price or sale price of the product depending on if its on sale
 productSchema.methods.getProductPrice = function() {
-	let price = this.price 
+	let price = this.price + this.shipping
 	if (this.isOnSale) {
-		price = this.salePrice
+		price = this.salePrice + this.shipping
 	} 
 	return price
 }

@@ -22,15 +22,20 @@ router.post('/', loginRequired, async (req, res, next) => {
 			}
 		}])
 
+
 		// if the product already exists as a cart item in the users cart
 		if (foundCart.doesProductExist(productId)) {
 
 			// gets the existing cart item and increases the quantity
 			const existingCartItem = foundCart.getExistingCartItem(productId)
+
 			existingCartItem.quantity++
-			existingCartItem.setTotalCost()
 			await existingCartItem.save()
 
+			// sets the new total cost of the cart
+			await foundCart.setTotalCost()
+			await foundCart.save()
+			
 			res.json({
 				data: existingCartItem,
 				status: {
@@ -41,8 +46,15 @@ router.post('/', loginRequired, async (req, res, next) => {
 
 		// otherwise, a new cart item is created and added to the cart
 		} else {
-			const newCartItem = await CartItem.create({ 'product': productId })
+			
+			// need to query the whole product so the getProductPrice method is accessible
+			const foundProduct = await Product.findById(productId)
+
+			const newCartItem = await CartItem.create({ 'product': foundProduct })
+
 			foundCart.cartItems.push(newCartItem)
+
+			// sets the new total cost of the cart
 			await foundCart.setTotalCost()
 			await foundCart.save()
 

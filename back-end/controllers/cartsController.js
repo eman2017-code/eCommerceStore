@@ -20,7 +20,7 @@ router.get('/', loginRequired, async (req, res, next) => {
 			}
 		})		
 	} catch (error) {
-		next(error);
+		next(error)
 	}	
 })
 
