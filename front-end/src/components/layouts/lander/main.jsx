@@ -216,55 +216,49 @@ class Lander extends Component {
           <div className="container">
             <div className="row partition3">
               <div className="col-md-4">
-                <a href="#">
-                  <div className="collection-banner p-left">
-                    <div className="img-part">
-                      <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/banner1.jpg`}
-                        className="img-fluid blur-up lazyload bg-img"
-                        alt=""
-                      />
-                    </div>
-                    <div className="contain-banner banner-3">
-                      <div>
-                        <h4>minimum 10% off</h4>
-                        <h2>new apple tv</h2>
-                      </div>
+                <div className="collection-banner p-left">
+                  <div className="img-part">
+                    <img
+                      src={`${process.env.PUBLIC_URL}/assets/images/banner1.jpg`}
+                      className="img-fluid blur-up lazyload bg-img"
+                      alt=""
+                    />
+                  </div>
+                  <div className="contain-banner banner-3">
+                    <div>
+                      <h4>minimum 10% off</h4>
+                      <h2>new apple tv</h2>
                     </div>
                   </div>
-                </a>
+                </div>
               </div>
               <div className="col-md-4">
-                <a href="#">
-                  <div className="collection-banner p-left text-left">
-                    <div className="img-part">
-                      <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/banner2.jpg`}
-                        className="img-fluid blur-up lazyload bg-img"
-                        alt=""
-                      />
-                    </div>
+                <div className="collection-banner p-left text-left">
+                  <div className="img-part">
+                    <img
+                      src={`${process.env.PUBLIC_URL}/assets/images/banner2.jpg`}
+                      className="img-fluid blur-up lazyload bg-img"
+                      alt=""
+                    />
                   </div>
-                </a>
+                </div>
               </div>
               <div className="col-md-4">
-                <a href="#">
-                  <div className="collection-banner p-left">
-                    <div className="img-part">
-                      <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/banner.jpg`}
-                        className="img-fluid blur-up lazyload bg-img"
-                        alt=""
-                      />
-                    </div>
-                    <div className="contain-banner banner-3">
-                      <div>
-                        <h4>minimum 25% off</h4>
-                        <h2>apple iPad</h2>
-                      </div>
+                <div className="collection-banner p-left">
+                  <div className="img-part">
+                    <img
+                      src={`${process.env.PUBLIC_URL}/assets/images/banner.jpg`}
+                      className="img-fluid blur-up lazyload bg-img"
+                      alt=""
+                    />
+                  </div>
+                  <div className="contain-banner banner-3">
+                    <div>
+                      <h4>minimum 25% off</h4>
+                      <h2>apple iPad</h2>
                     </div>
                   </div>
-                </a>
+                </div>
               </div>
             </div>
           </div>
