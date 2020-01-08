@@ -64,8 +64,13 @@ productSchema.methods.addProductToCategories = function(categoryIds) {
 	})
 }
 
-productSchema.methods.getProductCost = function() {
-
+// returns either the price or sale price of the product depending on if its on sale
+productSchema.methods.getProductPrice = function() {
+	let price = this.price 
+	if (this.isOnSale) {
+		price = this.salePrice
+	} 
+	return price
 }
 
 // uploads a product image 
