@@ -5,6 +5,26 @@ const adminRequired = require("../middleware/users/adminRequired.js");
 
 const router = express.Router();
 
+
+// Index Route
+// returns all of the products
+router.get('/', async (req, res, next) => {
+  try {
+    const foundProducts = await Product.find({});
+
+    res.json({
+      data: foundProducts,
+      status: {
+        code: 200,
+        message: "Successfully loaded all products"
+      }
+    })
+  } catch (error) {
+    next(error)
+  }
+})
+
+
 // Create Route
 // this route is where the admin can create a new product
 router.post("/", adminRequired, async (req, res, next) => {
@@ -55,23 +75,6 @@ router.get("/:productId/", async (req, res, next) => {
   }
 });
 
-// index route for all products
-router.get("/all/products/", async (req, res, next) => {
-  try {
-    // find all products
-    const foundProducts = await Product.find({});
-
-    res.json({
-      data: foundProducts,
-      status: {
-        code: 200,
-        message: "Successfully loaded all products"
-      }
-    });
-  } catch (error) {
-    next(error);
-  }
-});
 
 // searc route for the products
 router.post("/search", async (req, res, next) => {
