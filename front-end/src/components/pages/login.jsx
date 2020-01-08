@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-// import { addToCart, addToWishlist, addToCompare } from "../../actions/index";
 import { loginUser } from "../../actions/index";
 import { Helmet } from "react-helmet";
 import Breadcrumb from "../common/breadcrumb";
 
 class Login extends Component {
   constructor(props) {
+    console.log("props in login");
+    console.log(props);
     super(props);
 
     this.state = {
