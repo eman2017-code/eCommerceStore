@@ -39,72 +39,7 @@ async function productListingPage() {
     next(err);
   }
 }
-// console.log("productListingPage function output");
-// productListingPage();
-
-// filter route for 'mens' category ( this is how it will be for each filter result ['Electronics', 'Watches', 'Family', 'Fashion'] )
-// async function productFilterMenCategory() {
-// try {
-//   // callback API
-//   client.search(
-//     {
-//       index: "product_catalog",
-//       body: {
-//         query: {
-//           match: {
-//             "category": "men"
-//           }
-//         }
-//       }
-//     },
-//     {
-//       ignore: [404],
-//       maxRetries: 3
-//     },
-//     (err, result) => {
-//       if (err) {
-//         console.log("err");
-//         console.log(err);
-//       } else {
-//         console.log(
-//           " --- RESULTS IN PRODUCT_FILTER_MEN_CATEGORY FUNCTION --- "
-//         );
-//         console.log(result.body.hits.hits);
-//       }
-//     }
-//   );
-// } catch (err) {
-//   next(err);
-// }
-//   try {
-//     // callback api
-//     client.search({
-//       index: "product_catalog",
-//       body: {
-//         query: {
-//           match: {
-//             category: "men"
-//           }
-//         }
-//       },
-//       function(err, res, status) {
-//         if (err) {
-//           console.log("search error: " + err);
-//         } else {
-//           console.log("--- Response ---");
-//           console.log(res);
-//           console.log("--- Hits ---");
-//           res.hits.hits.forEach(function(hit) {
-//             console.log(hit);
-//           });
-//         }
-//       }
-//     });
-//   } catch (err) {
-//     next(err);
-//   }
-// }
-// console.log("productFilterMenCategory function output");
-// productFilterMenCategory();
+console.log("productListingPage function output");
+productListingPage();
 
 module.exports = router;
