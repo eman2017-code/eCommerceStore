@@ -25,9 +25,9 @@ class Trending extends Component {
                   <Tabs className="theme-tab">
                     <TabList className="tabs tab-title">
                       <Tab>ELECTRONICS</Tab>
-                      <Tab>FASHION</Tab>
+                      <Tab>WATCHES</Tab>
                       <Tab>FAMILY</Tab>
-                      <Tab>PHONES</Tab>
+                      <Tab>FASHION</Tab>
                     </TabList>
                     <div className="tab-content-cls">
                       <TabPanel className="tab-content">
