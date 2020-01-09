@@ -42,4 +42,6 @@ async function productListingPage() {
 // console.log("productListingPage function output");
 // productListingPage();
 
+// route for appliances filter
+
 module.exports = router;

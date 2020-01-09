@@ -24,10 +24,10 @@ class Trending extends Component {
                   </div>
                   <Tabs className="theme-tab">
                     <TabList className="tabs tab-title">
-                      <Tab>ELECTRONICS</Tab>
-                      <Tab>WATCHES</Tab>
-                      <Tab>FAMILY</Tab>
-                      <Tab>FASHION</Tab>
+                      <Tab>HEADPHONES</Tab>
+                      <Tab>VIDEO GAMES</Tab>
+                      <Tab>APPLIANCES</Tab>
+                      <Tab>CELL PHONES</Tab>
                     </TabList>
                     <div className="tab-content-cls">
                       <TabPanel className="tab-content">
