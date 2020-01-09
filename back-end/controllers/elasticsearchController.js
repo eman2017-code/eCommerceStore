@@ -43,6 +43,8 @@ router.get("/all-products", async (req, res, next) => {
   try {
     const results = await client.search({
       index: "store-products-catalog2-cats",
+      from: 1,
+      size: 9999,
       body: {}
     });
 
