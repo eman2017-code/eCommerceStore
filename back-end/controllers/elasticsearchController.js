@@ -16,7 +16,7 @@ async function productListingPage() {
     // calback API
     client.search(
       {
-        index: "product_catalog",
+        index: "store-products-catalog2-cats",
         body: {}
       },
       {
