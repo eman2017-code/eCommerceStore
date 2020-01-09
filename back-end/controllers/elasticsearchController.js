@@ -43,8 +43,7 @@ async function productListingPage() {
 // productListingPage();
 
 
-
-
+// filters products by whatever category is specified in the query paramaters
 router.get('/category/:categoryName/', async (req, res, next) => {
   const categoryName = req.params.categoryName
 
