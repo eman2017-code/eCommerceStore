@@ -42,4 +42,34 @@ async function productListingPage() {
 // console.log("productListingPage function output");
 // productListingPage();
 
+
+
+router.get('/category/:categoryName/', async (req, res, next) => {
+  const categoryName = req.params.categoryName
+
+  try {
+    const results = await client.search({
+      index: 'store-products-catalog2-cats',
+      body: {
+        query: {
+          bool: {
+            filter: {
+              term: { 'message.category.name': categoryName }
+            }
+          }
+        }
+      }
+    })
+    console.log(results)
+
+    res.json({
+      data: results
+    }) 
+  } catch (error) {
+    next(error)
+  }
+})
+
+
+
 module.exports = router;

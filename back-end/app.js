@@ -59,6 +59,7 @@ app.use(API_PATH + "products", productsController);
 app.use(API_PATH + "carts", cartsController);
 app.use(API_PATH + "cart-items", cartItemsController);
 app.use(API_PATH + "categories", categoriesController);
+app.use(API_PATH + "search", elasticsearchController)
 
 // runs the server
 app.listen(PORT, () => {
