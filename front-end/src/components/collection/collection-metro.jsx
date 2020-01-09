@@ -83,9 +83,6 @@ class CollectionMetro extends Component {
                                     <ProductListItem
                                       product={product}
                                       symbol={symbol}
-                                      // onAddToCompareClicked={() =>
-                                      //   addToCompare(product)
-                                      // }
                                       onAddToCartClicked={addToCart}
                                       key={index}
                                     />
