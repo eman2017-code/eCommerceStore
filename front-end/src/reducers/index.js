@@ -5,7 +5,6 @@ import { IntlReducer as Intl, IntlProvider } from "react-redux-multilingual";
 import productReducer from "./products";
 import cartReducer from "./cart";
 import filtersReducer from "./filters";
-// import compareReducer from "./compare";
 
 const rootReducer = combineReducers({
   data: productReducer,
