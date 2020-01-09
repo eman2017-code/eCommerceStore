@@ -5,7 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Search from "../pages/search.jsx";
 
 import { getTotal, getCartProducts } from "../../reducers/index";
-import { addToCart, addToWishlist, addToCompare } from "../../actions/index";
+import { addToCart, addToCompare } from "../../actions/index";
 import { getVisibleproducts } from "../../services/index";
 import ProductListItem from "./common/product-list-item";
 import Breadcrumb from "../common/breadcrumb";
@@ -38,13 +38,7 @@ class CollectionMetro extends Component {
   };
 
   render() {
-    const {
-      products,
-      addToCart,
-      symbol,
-      addToWishlist,
-      addToCompare
-    } = this.props;
+    const { products, addToCart, symbol, addToCompare } = this.props;
 
     return (
       <div>
@@ -91,9 +85,6 @@ class CollectionMetro extends Component {
                                       symbol={symbol}
                                       onAddToCompareClicked={() =>
                                         addToCompare(product)
-                                      }
-                                      onAddToWishlistClicked={() =>
-                                        addToWishlist(product)
                                       }
                                       onAddToCartClicked={addToCart}
                                       key={index}
@@ -145,6 +136,5 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   addToCart,
-  addToWishlist,
   addToCompare
 })(CollectionMetro);

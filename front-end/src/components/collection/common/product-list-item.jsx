@@ -49,7 +49,6 @@ class ProductListItem extends Component {
       product,
       symbol,
       onAddToCartClicked,
-      onAddToWishlistClicked,
       onAddToCompareClicked
     } = this.props;
     const { open } = this.state;
@@ -86,13 +85,7 @@ class ProductListItem extends Component {
             >
               <i className="fa fa-shopping-cart" aria-hidden="true"></i>
             </button>
-            <a
-              href="javascript:void(0)"
-              title="Add to Wishlist"
-              onClick={onAddToWishlistClicked}
-            >
-              <i className="fa fa-heart" aria-hidden="true"></i>
-            </a>
+            <i className="fa fa-heart" aria-hidden="true"></i>
             <a
               href="javascript:void(0)"
               data-toggle="modal"
