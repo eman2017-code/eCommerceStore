@@ -81,7 +81,6 @@ class ProductListItem extends Component {
               <i className="fa fa-shopping-cart" aria-hidden="true"></i>
             </button>
             <button
-              // href="javascript:void(0)"
               data-toggle="modal"
               data-target="#quick-view"
               title="Quick View"
@@ -89,15 +88,8 @@ class ProductListItem extends Component {
             >
               <i className="fa fa-search" aria-hidden="true"></i>
             </button>
-            {/* <Link
-              to={`${process.env.PUBLIC_URL}/compare`}
-              title="Compare"
-              onClick={onAddToCompareClicked}
-            >
-              <i className="fa fa-refresh" aria-hidden="true"></i>
-            </Link> */}
           </div>
-          {product.variants ? (
+          {/* {product.variants ? (
             <ul className="product-thumb-list">
               {product.variants.map((vari, i) => (
                 <li
@@ -117,7 +109,7 @@ class ProductListItem extends Component {
             </ul>
           ) : (
             ""
-          )}
+          )} */}
         </div>
         <div className="product-detail">
           <div>
@@ -217,7 +209,7 @@ class ProductListItem extends Component {
                               {product.size.map((size, i) => {
                                 return (
                                   <li key={i}>
-                                    <a href="#">{size}</a>
+                                    <li href="#">{size}</li>
                                   </li>
                                 );
                               })}
