@@ -15,7 +15,8 @@ import { getAllProducts } from "./actions";
 import Lander from "./components/layouts/lander/main";
 
 // Collection Pages
-import CollectionMetro from "./components/collection/collection-metro";
+// import CollectionMetro from "./components/collection/collection-metro";
+import CollectionLeftSidebar from "./components/collection/collection-left-sidebar";
 
 // // Product Pages
 import LeftSideBar from "./components/products/left-sidebar";
@@ -51,7 +52,7 @@ class Root extends React.Component {
                   <Route
                     exact
                     path={`${process.env.PUBLIC_URL}/all-products`}
-                    component={CollectionMetro}
+                    component={CollectionLeftSidebar}
                   />
                   {/* Single Product Page  */}
                   <Route
