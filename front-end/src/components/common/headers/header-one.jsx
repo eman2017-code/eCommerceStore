@@ -5,9 +5,7 @@ import Pace from "react-pace-progress";
 // Import custom components
 import store from "../../../store";
 import NavBar from "./common/navbar";
-import SideBar from "./common/sidebar";
 import CartContainer from "./../../../containers/CartContainer";
-import TopBar from "./common/topbar";
 import { changeCurrency } from "../../../actions";
 import { connect } from "react-redux";
 import TopBarDark from "./common/topbar-dark";
