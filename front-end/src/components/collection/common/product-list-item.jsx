@@ -10,7 +10,7 @@ class ProductListItem extends Component {
       open: false,
       stock: "InStock",
       quantity: 1,
-      image: ""
+      image: props.product.image
     };
   }
 
@@ -57,7 +57,7 @@ class ProductListItem extends Component {
       <div className="product-box">
         <div className="img-wrapper">
           <div className="front">
-            <Link
+            {/* <Link
               to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
             >
               <img
@@ -71,7 +71,7 @@ class ProductListItem extends Component {
                 className="img-fluid"
                 alt=""
               />
-            </Link>
+            </Link> */}
           </div>
           <div className="cart-info cart-wrap">
             <button
@@ -89,31 +89,11 @@ class ProductListItem extends Component {
               <i className="fa fa-search" aria-hidden="true"></i>
             </button>
           </div>
-          {/* {product.variants ? (
-            <ul className="product-thumb-list">
-              {product.variants.map((vari, i) => (
-                <li
-                  className={`grid_thumb_img ${
-                    vari.images === this.state.image ? "active" : ""
-                  }`}
-                  key={i}
-                >
-                  <a href="javascript:void(0)" title="Add to Wishlist">
-                    <img
-                      src={`${vari.images}`}
-                      onClick={() => this.onClickHandle(vari.images)}
-                    />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            ""
-          )} */}
         </div>
         <div className="product-detail">
           <div>
             <div className="rating">{RatingStars}</div>
+            <img src={product.image} className="img-fluid"></img>
             <Link
               to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
             >
@@ -159,11 +139,10 @@ class ProductListItem extends Component {
                     <div className="quick-view-img">
                       <img
                         src={
-                          product.variants
-                            ? this.state.image
-                              ? this.state.image
-                              : product.variants[0].images
-                            : product.pictures[0]
+                          // this.state.image
+                          this.image
+                          // ? this.state.image
+                          // : this.props.product.image
                         }
                         alt=""
                         className="img-fluid"
@@ -172,6 +151,7 @@ class ProductListItem extends Component {
                   </div>
                   <div className="col-lg-6 rtl-text">
                     <div className="product-right">
+                      {/* <img src={product.image}></img> */}
                       <h2> {product.name} </h2>
                       <h3>
                         {symbol}

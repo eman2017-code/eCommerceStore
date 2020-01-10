@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import Breadcrumb from "../common/breadcrumb";
-import NewProduct from "../common/new-product";
 import Filter from "./common/filter";
 import FilterBar from "./common/filter-bar";
 import ProductListing from "./common/product-listing";
@@ -41,9 +40,9 @@ class CollectionLeftSidebar extends Component {
                   <StickyBox offsetTop={20} offsetBottom={20}>
                     <div>
                       <Filter />
-                      {/* <NewProduct /> */}
                       <div className="collection-sidebar-banner">
                         <a href="#">
+                          test test test
                           <img
                             src={`${process.env.PUBLIC_URL}/assets/images/side-banner.png`}
                             className="img-fluid"
@@ -68,28 +67,6 @@ class CollectionLeftSidebar extends Component {
                                 alt=""
                               />
                             </a>
-                            <div className="top-banner-content small-section">
-                              <h4>fashion</h4>
-                              <h5>
-                                Lorem Ipsum is simply dummy text of the printing
-                                and typesetting industry.
-                              </h5>
-                              <p>
-                                Lorem Ipsum is simply dummy text of the printing
-                                and typesetting industry. Lorem Ipsum has been
-                                the industry's standard dummy text ever since
-                                the 1500s, when an unknown printer took a galley
-                                of type and scrambled it to make a type specimen
-                                book. It has survived not only five centuries,
-                                but also the leap into electronic typesetting,
-                                remaining essentially unchanged. It was
-                                popularised in the 1960s with the release of
-                                Letraset sheets containing Lorem Ipsum passages,
-                                and more recently with desktop publishing
-                                software like Aldus PageMaker including versions
-                                of Lorem Ipsum.{" "}
-                              </p>
-                            </div>
                           </div>
                           <div className="collection-product-wrapper">
                             <div className="product-top-filter">
