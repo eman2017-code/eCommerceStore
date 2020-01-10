@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Search from "../pages/search.jsx";
 
-import { getTotal, getCartProducts } from "../../reducers/index";
+// import { getCartProducts } from "../../reducers/index";
 import { addToCart } from "../../actions/index";
 import { getVisibleproducts } from "../../services/index";
 import ProductListItem from "./common/product-list-item";
