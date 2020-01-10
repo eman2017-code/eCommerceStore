@@ -5,7 +5,8 @@ const router = express.Router();
 const { Client } = require("@elastic/elasticsearch");
 
 // connect to elasticsearch port
-const client = new Client({ node: "http://35.224.98.206:9200/" });
+const client = new Client({ node: "http://34.68.86.219:9200" });
+
 
 // handling errors
 const { errors } = require("@elastic/elasticsearch");
@@ -62,8 +63,8 @@ router.get("/all-products", async (req, res, next) => {
 });
 
 // filters products by whatever category is specified in the query paramaters
-router.get("/category/:categoryName/", async (req, res, next) => {
-  const categoryName = req.params.categoryName;
+router.get("/category/", async (req, res, next) => {
+  const categoryName = req.body.categoryName
   try {
     const results = await client.search({
       index: "store-products-catalog2-cats",
@@ -76,16 +77,16 @@ router.get("/category/:categoryName/", async (req, res, next) => {
           }
         }
       }
-    });
+    })
     res.json({
       data: results.body.hits.hits,
       status: {
         code: 200,
         message: "Succesfully got products"
       }
-    });
+    })
   } catch (error) {
-    next(error);
+    next(error)
   }
 })
 
