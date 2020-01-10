@@ -41,7 +41,7 @@ class CollectionLeftSidebar extends Component {
                   <StickyBox offsetTop={20} offsetBottom={20}>
                     <div>
                       <Filter />
-                      <NewProduct />
+                      {/* <NewProduct /> */}
                       <div className="collection-sidebar-banner">
                         <a href="#">
                           <img
