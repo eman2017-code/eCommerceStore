@@ -9,6 +9,7 @@ import { filterBrand, filterColor, filterPrice } from "../../../actions";
 
 class Filter extends Component {
   constructor(props) {
+    console.log(props);
     super(props);
 
     this.state = {
@@ -43,7 +44,6 @@ class Filter extends Component {
     //console.log(this.props.brands);
     return (
       <div className="collection-filter-block">
-        {/*brand filter start*/}
         <div className="collection-mobile-back">
           <span className="filter-back" onClick={e => this.closeFilter(e)}>
             <i className="fa fa-angle-left" aria-hidden="true"></i> back
@@ -84,7 +84,7 @@ class Filter extends Component {
                 ref={setCollapsibleElement}
               >
                 <div className="collection-brand-filter">
-                  {this.props.brands.map((brand, index) => {
+                  {/* {this.props.brands.map((brand, index) => {
                     return (
                       <div
                         className="custom-control custom-checkbox collection-filter-checkbox"
@@ -107,7 +107,7 @@ class Filter extends Component {
                         </label>
                       </div>
                     );
-                  })}
+                  })} */}
                 </div>
               </div>
             </div>
