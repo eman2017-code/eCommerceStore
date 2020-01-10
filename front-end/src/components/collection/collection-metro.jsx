@@ -20,12 +20,12 @@ class CollectionMetro extends Component {
     };
   }
 
-  componentDidMount() {
-    const api = process.env.REACT_APP_API_URL + "/api/v1/search/all-products/";
-    fetch(api)
-      .then(reponse => reponse.json())
-      .then(data => console.log(data.data));
-  }
+  // componentDidMount() {
+  //   const api = process.env.REACT_APP_API_URL + "/api/v1/search/all-products/";
+  //   fetch(api)
+  //     .then(reponse => reponse.json())
+  //     .then(data => console.log(data.data));
+  // }
 
   componentWillMount() {
     this.fetchMoreItems();
