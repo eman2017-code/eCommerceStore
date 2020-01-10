@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-
 import { SlideUpDown } from "../../../services/script";
 import LogoImage from "../headers/common/logo";
 

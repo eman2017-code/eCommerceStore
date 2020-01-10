@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Breadcrumb from "../common/breadcrumb";
 
 class Register extends Component {
@@ -153,14 +153,9 @@ class Register extends Component {
                           onChange={this.handleChange}
                         />
                       </div>
-                      {/* <a href="#" className="btn btn-solid">
-                        create Account
-                      </a> */}
-                      {/* <Link to="/pages/login"> */}
                       <button type="Submit" className="btn btn-solid">
                         create account
                       </button>
-                      {/* </Link> */}
                     </div>
                   </form>
                 </div>

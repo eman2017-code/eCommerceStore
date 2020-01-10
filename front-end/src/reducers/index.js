@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { IntlReducer as Intl, IntlProvider } from "react-redux-multilingual";
+import { IntlReducer as Intl } from "react-redux-multilingual";
 
 // Import custom components
 import productReducer from "./products";

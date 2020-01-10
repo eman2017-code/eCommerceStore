@@ -46,13 +46,7 @@ class DetailsWithPrice extends Component {
   };
 
   render() {
-    const {
-      symbol,
-      item,
-      addToCartClicked,
-      BuynowClicked,
-      addToWishlistClicked
-    } = this.props;
+    const { symbol, item, addToCartClicked, BuynowClicked } = this.props;
 
     var colorsnav = {
       slidesToShow: 6,
@@ -167,12 +161,12 @@ class DetailsWithPrice extends Component {
             </div>
           </div>
           <div className="product-buttons">
-            <a
+            <li
               className="btn btn-solid"
               onClick={() => addToCartClicked(item, this.state.quantity)}
             >
               add to cart
-            </a>
+            </li>
             <Link
               to={`${process.env.PUBLIC_URL}/checkout`}
               className="btn btn-solid"
@@ -190,24 +184,16 @@ class DetailsWithPrice extends Component {
             <div className="product-icon">
               <ul className="product-social">
                 <li>
-                  <a href="https://www.facebook.com/" target="_blank">
-                    <i className="fa fa-facebook"></i>
-                  </a>
+                  <i className="fa fa-facebook"></i>
                 </li>
                 <li>
-                  <a href="https://plus.google.com/discover" target="_blank">
-                    <i className="fa fa-google-plus"></i>
-                  </a>
+                  <i className="fa fa-google-plus"></i>
                 </li>
                 <li>
-                  <a href="https://twitter.com/" target="_blank">
-                    <i className="fa fa-twitter"></i>
-                  </a>
+                  <i className="fa fa-twitter"></i>
                 </li>
                 <li>
-                  <a href="https://www.instagram.com/" target="_blank">
-                    <i className="fa fa-instagram"></i>
-                  </a>
+                  <i className="fa fa-instagram"></i>
                 </li>
               </ul>
             </div>
