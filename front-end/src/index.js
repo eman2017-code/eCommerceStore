@@ -33,6 +33,10 @@ import Register from "./components/pages/register";
 class Root extends React.Component {
   render() {
     store.dispatch(getAllProducts());
+    console.log("store");
+    console.log(store);
+    console.log("store dispatching all products now");
+    console.log(store.dispatch(getAllProducts()));
 
     return (
       <Provider store={store}>

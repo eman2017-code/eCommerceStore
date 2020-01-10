@@ -13,12 +13,12 @@ export const receiveProducts = products => ({
   products: products
 });
 
-export const getAllProducts = () => async (dispatch) => {
-  dispatch(fetchProductsBegin())
-  const products = await shop.getAllProducts()
-  dispatch(receiveProducts(products))
+export const getAllProducts = () => async dispatch => {
+  dispatch(fetchProductsBegin());
+  const products = await shop.getAllProducts();
+  dispatch(receiveProducts(products));
   return products;
-}
+};
 
 export const fetchSingleProduct = productId => ({
   type: types.FETCH_SINGLE_PRODUCT,
@@ -70,9 +70,9 @@ export const removeFromCompare = product_id => ({
 });
 
 // Filters
-export const filterBrand = brand => ({
+export const filterBrand = manufacturer => ({
   type: types.FILTER_BRAND,
-  brand
+  manufacturer
 });
 export const filterColor = color => ({
   type: types.FILTER_COLOR,

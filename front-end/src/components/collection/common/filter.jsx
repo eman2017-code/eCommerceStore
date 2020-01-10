@@ -9,6 +9,7 @@ import { filterBrand, filterColor, filterPrice } from "../../../actions";
 
 class Filter extends Component {
   constructor(props) {
+    console.log("props in Filter Component");
     console.log(props);
     super(props);
 
@@ -21,13 +22,13 @@ class Filter extends Component {
     document.querySelector(".collection-filter").style = "left: -365px";
   };
 
-  clickBrandHendle(event, brands) {
-    var index = brands.indexOf(event.target.value);
-    if (event.target.checked) brands.push(event.target.value);
+  clickBrandHendle(event, manufacturer) {
+    var index = manufacturer.indexOf(event.target.value);
+    if (event.target.checked) manufacturer.push(event.target.value);
     // push in array checked value
-    else brands.splice(index, 1); // removed in array unchecked value
+    else manufacturer.splice(index, 1); // removed in array unchecked value
 
-    this.props.filterBrand(brands);
+    this.props.filterBrand(manufacturer);
   }
 
   colorHandle(event, color) {
@@ -40,7 +41,7 @@ class Filter extends Component {
   }
 
   render() {
-    const filteredBrands = this.props.filters.brand;
+    const filteredBrands = this.props.filters.manufacturer;
     //console.log(this.props.brands);
     return (
       <div className="collection-filter-block">
@@ -150,7 +151,7 @@ class Filter extends Component {
 }
 
 const mapStateToProps = state => ({
-  brands: getBrands(state.data.products),
+  manufacturer: getBrands(state.data.products),
   colors: getColors(state.data.products),
   prices: getMinMaxPrice(state.data.products),
   filters: state.filters

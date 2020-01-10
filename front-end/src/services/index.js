@@ -1,5 +1,6 @@
 // Get Unique Brands from Json Data
 export const getBrands = products => {
+  console.log(products);
   var uniqueBrands = [];
   products.map((product, index) => {
     if (product.tags) {
