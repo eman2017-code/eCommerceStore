@@ -161,12 +161,12 @@ class DetailsWithPrice extends Component {
             </div>
           </div>
           <div className="product-buttons">
-            <a
+            <li
               className="btn btn-solid"
               onClick={() => addToCartClicked(item, this.state.quantity)}
             >
               add to cart
-            </a>
+            </li>
             <Link
               to={`${process.env.PUBLIC_URL}/checkout`}
               className="btn btn-solid"
