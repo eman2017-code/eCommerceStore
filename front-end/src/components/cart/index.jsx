@@ -8,10 +8,9 @@ import { getCartTotal } from "../../services";
 import { removeFromCart, incrementQty, decrementQty } from "../../actions";
 
 class cartComponent extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
   }
-
   render() {
     const { cartItems, symbol, total } = this.props;
     return (

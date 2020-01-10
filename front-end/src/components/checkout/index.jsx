@@ -22,8 +22,7 @@ class checkOut extends Component {
       address: "",
       city: "",
       state: "",
-      pincode: "",
-      create_account: ""
+      pincode: ""
     };
     this.validator = new SimpleReactValidator();
   }
@@ -268,24 +267,6 @@ class checkOut extends Component {
                             "pincode",
                             this.state.pincode,
                             "required|integer"
-                          )}
-                        </div>
-                        <div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <input
-                            type="checkbox"
-                            name="create_account"
-                            id="account-option"
-                            checked={this.state.create_account}
-                            onChange={this.setStateFromCheckbox}
-                          />
-                          &ensp;{" "}
-                          <label htmlFor="account-option">
-                            Create An Account?
-                          </label>
-                          {this.validator.message(
-                            "checkbox",
-                            this.state.create_account,
-                            "create_account"
                           )}
                         </div>
                       </div>
