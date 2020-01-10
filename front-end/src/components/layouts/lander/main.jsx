@@ -12,9 +12,7 @@ import {
 
 // Import custom components
 import LogoBlocks from "../common/logo-block";
-import BlogSection from "../common/blogsection";
 import Trending from "./trending";
-import Special from "../common/special";
 import HeaderOne from "../../common/headers/header-one";
 import FooterOne from "../../common/footers/footer-one";
 
