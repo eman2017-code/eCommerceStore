@@ -65,6 +65,7 @@ router.get("/all-products", async (req, res, next) => {
 // filters products by whatever category is specified in the query paramaters
 router.get("/category/", async (req, res, next) => {
   const categoryName = req.body.categoryName
+
   try {
     const results = await client.search({
       index: "store-products-catalog2-cats",
@@ -78,6 +79,7 @@ router.get("/category/", async (req, res, next) => {
         }
       }
     })
+
     res.json({
       data: results,
       status: {
@@ -111,7 +113,11 @@ router.get('/products/', async (req, res, next) => {
     })
 
     res.json({
-      data: results
+      data: results,
+      status: {
+        code: 200,
+        message: 'Successfully got products'
+      }
     })
   } catch (error) {
      next(error)
