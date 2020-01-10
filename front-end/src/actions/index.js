@@ -10,16 +10,16 @@ export const fetchProductsBegin = () => ({
 
 export const receiveProducts = products => ({
   type: types.RECEIVE_PRODUCTS,
-  products
+  products: products
 });
 
-export const getAllProducts = () => dispatch => {
-  dispatch(fetchProductsBegin());
-  shop.getProducts(products => {
-    dispatch(receiveProducts(products));
-    return products;
-  });
-};
+export const getAllProducts = () => async (dispatch) => {
+  dispatch(fetchProductsBegin())
+  const products = await shop.getAllProducts()
+  dispatch(receiveProducts(products))
+  return products;
+}
+
 export const fetchSingleProduct = productId => ({
   type: types.FETCH_SINGLE_PRODUCT,
   productId
