@@ -50,10 +50,36 @@ class Search extends Component {
                       </div>
                       <br />
                       <br />
-                      <button onClick={this.onClick}>ELECTRONICS</button>
-                      <button onClick={this.onClick}>FASHION</button>
-                      <button onClick={this.onClick}>FAMILY</button>
-                      <button onClick={this.onClick}>PHONES</button>
+                      <div>
+                        <h4>
+                          <strong>Categories</strong>
+                        </h4>
+                        <input type="radio" name="category" />
+                        "insert category name here"
+                        <input type="radio" name="category" />
+                        "insert category name here"
+                        <br />
+                        <input type="radio" name="category" />
+                        "insert category name here"
+                        <input type="radio" name="category" />
+                        "insert category name here"
+                        <br />
+                        <input type="radio" name="category" />
+                        "insert category name here"
+                        <input type="radio" name="category" />
+                        "insert category name here"
+                        <br />
+                        <input type="radio" name="category" />
+                        "insert category name here"
+                        <input type="radio" name="category" />
+                        "insert category name here"
+                        <br />
+                        <input type="radio" name="category" />
+                        "insert category name here"
+                        <input type="radio" name="category" />
+                        "insert category name here"
+                        <br />
+                      </div>
                     </form>
                   </div>
                 </div>
