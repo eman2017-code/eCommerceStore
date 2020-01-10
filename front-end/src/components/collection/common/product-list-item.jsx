@@ -85,7 +85,6 @@ class ProductListItem extends Component {
             >
               <i className="fa fa-shopping-cart" aria-hidden="true"></i>
             </button>
-            <i className="fa fa-heart" aria-hidden="true"></i>
             <a
               href="javascript:void(0)"
               data-toggle="modal"
