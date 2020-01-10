@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
 import { IntlActions } from "react-redux-multilingual";
 import Pace from "react-pace-progress";
 
