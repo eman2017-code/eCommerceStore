@@ -11,41 +11,13 @@ const client = new Client({ node: "http://34.68.86.219:9200" });
 // handling errors
 const { errors } = require("@elastic/elasticsearch");
 
-// // load product listing page route -- index route
-// async function productListingPage() {
-//   try {
-//     // calback API
-//     client.search(
-//       {
-//         index: "store-products-catalog2-cats",
-//         body: {}
-//       },
-//       {
-//         ignore: [404],
-//         maxRetries: 3
-//       },
-//       (err, result) => {
-//         if (err) {
-//           console.log("err");
-//           console.log(err);
-//         } else {
-//           console.log(" --- RESULTS IN PRODUCT_LISTING_PAGE FUNCTION --- ");
-//           console.log(result.body.hits.hits);
-//         }
-//       }
-//     );
-//   } catch (err) {
-//     next(err);
-//   }
-// }
-
 // load product listing page route -- index route
 router.get("/all-products", async (req, res, next) => {
   try {
     const results = await client.search({
       index: "store-products-catalog2-cats",
       from: 1,
-      size: 9999,
+      size: 499,
       body: {}
     });
 
@@ -90,27 +62,27 @@ router.get("/category/", async (req, res, next) => {
   } catch (error) {
     next(error)
   }
-})
+});
 
 // searches for products
-router.get('/products/', async (req, res, next) => {
-  const searchTerm = req.body.searchTerm
+router.get("/products/", async (req, res, next) => {
+  const searchTerm = req.body.searchTerm;
 
   try {
     const results = await client.search({
-      index: 'store-products-catalog2-cats',
+      index: "store-products-catalog2-cats",
       body: {
         query: {
           match_phrase_prefix: {
-            'message.name': {
+            "message.name": {
               query: searchTerm,
               slop: 2,
-              max_expansions: 10,
+              max_expansions: 10
             }
           }
         }
       }
-    })
+    });
 
     res.json({
       data: results,
@@ -120,9 +92,8 @@ router.get('/products/', async (req, res, next) => {
       }
     })
   } catch (error) {
-     next(error)
-  } 
-})
-
+    next(error);
+  }
+});
 
 module.exports = router;
