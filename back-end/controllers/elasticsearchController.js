@@ -79,7 +79,7 @@ router.get("/category/", async (req, res, next) => {
       }
     })
     res.json({
-      data: results.body.hits.hits,
+      data: results,
       status: {
         code: 200,
         message: "Succesfully got products"
