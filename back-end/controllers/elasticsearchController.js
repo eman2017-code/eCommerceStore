@@ -7,7 +7,6 @@ const { Client } = require("@elastic/elasticsearch");
 // connect to elasticsearch port
 const client = new Client({ node: "http://34.68.86.219:9200" });
 
-
 // handling errors
 const { errors } = require("@elastic/elasticsearch");
 
@@ -17,7 +16,7 @@ router.get("/all-products", async (req, res, next) => {
     const results = await client.search({
       index: "store-products-catalog2-cats",
       from: 1,
-      size: 499,
+      size: 1000,
       body: {}
     });
 
@@ -35,8 +34,13 @@ router.get("/all-products", async (req, res, next) => {
 });
 
 // filters products by whatever category is specified in the query paramaters
+<<<<<<< HEAD
 router.get("/category/:categoryName/", async (req, res, next) => {
   const categoryName = req.params.categoryName
+=======
+router.get("/category/", async (req, res, next) => {
+  const categoryName = req.body.categoryName;
+>>>>>>> 6f19deb7922312582d22f5891dc20a1411541571
 
   try {
     const results = await client.search({
@@ -50,7 +54,7 @@ router.get("/category/:categoryName/", async (req, res, next) => {
           }
         }
       }
-    })
+    });
 
     res.json({
       data: results,
@@ -58,9 +62,9 @@ router.get("/category/:categoryName/", async (req, res, next) => {
         code: 200,
         message: "Succesfully got products"
       }
-    })
+    });
   } catch (error) {
-    next(error)
+    next(error);
   }
 });
 
@@ -88,9 +92,9 @@ router.get("/products/", async (req, res, next) => {
       data: results,
       status: {
         code: 200,
-        message: 'Successfully got products'
+        message: "Successfully got products"
       }
-    })
+    });
   } catch (error) {
     next(error);
   }

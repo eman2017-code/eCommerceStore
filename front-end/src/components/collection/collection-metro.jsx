@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Search from "../pages/search.jsx";
 
-import { getTotal, getCartProducts } from "../../reducers/index";
+// import { getCartProducts } from "../../reducers/index";
 import { addToCart } from "../../actions/index";
 import { getVisibleproducts } from "../../services/index";
 import ProductListItem from "./common/product-list-item";
@@ -19,13 +19,6 @@ class CollectionMetro extends Component {
       hasMoreItems: true
     };
   }
-
-  // componentDidMount() {
-  //   const api = process.env.REACT_APP_API_URL + "/api/v1/search/all-products/";
-  //   fetch(api)
-  //     .then(reponse => reponse.json())
-  //     .then(data => console.log(data.data));
-  // }
 
   componentWillMount() {
     this.fetchMoreItems();

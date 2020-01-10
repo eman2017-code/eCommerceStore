@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 
 // import custom Components
 import Service from "./common/service";
-import BrandBlock from "./common/brand-block";
 import NewProduct from "../common/new-product";
 import Breadcrumb from "../common/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
