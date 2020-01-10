@@ -5,8 +5,7 @@ class Search extends Component {
     super(props);
 
     this.state = {
-      value: "",
-      results: []
+      value: ""
     };
   }
 
@@ -18,56 +17,6 @@ class Search extends Component {
 
     // get the results
     this.getResults();
-  };
-
-  onClick = e => {
-    console.log("they clicked the buttton");
-  };
-
-  // handle change of the user input
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  // handle submit
-  handleSubmit = e => {
-    e.preventDefault();
-    console.log("they are have logged in");
-    this.loginUser();
-  };
-
-  // method to actually login user
-  loginUser = () => {
-    this.login({
-      email: this.state.email,
-      password: this.state.password
-    });
-  };
-
-  // get results method
-  getResults = async () => {
-    try {
-      // api call to the search route
-      const response = await fetch(
-        process.env.REACT_APP_API_URL + "/api/v1/products/search",
-        {
-          method: "POST",
-          body: JSON.stringify({ value: this.state.value }),
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
-      );
-      // parse the response
-      const parsedResponse = response.json();
-      // put the results into the array to be displayed
-      this.setState({
-        results: [...parsedResponse.data]
-      });
-    } catch (err) {}
   };
 
   // filterCategories route
