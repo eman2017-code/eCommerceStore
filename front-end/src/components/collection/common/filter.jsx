@@ -51,9 +51,33 @@ class Filter extends Component {
         </div>
         <SlideToggle>
           {({ onToggle, setCollapsibleElement }) => (
+            <div className="collection-collapse-block open">
+              <h3 className="collapse-block-title" onClick={onToggle}>
+                price
+              </h3>
+              <div
+                className="collection-collapse-block-content block-price-content"
+                ref={setCollapsibleElement}
+              >
+                <div className="collection-brand-filter">
+                  <div className="custom-control custom-checkbox collection-filter-checkbox">
+                    <InputRange
+                      maxValue={this.props.prices.max}
+                      minValue={this.props.prices.min}
+                      value={this.props.filters.value}
+                      onChange={value => this.props.filterPrice({ value })}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </SlideToggle>
+        <SlideToggle>
+          {({ onToggle, setCollapsibleElement }) => (
             <div className="collection-collapse-block">
               <h3 className="collapse-block-title" onClick={onToggle}>
-                brand
+                Categories
               </h3>
               <div
                 className="collection-collapse-block-content"
@@ -91,7 +115,7 @@ class Filter extends Component {
         </SlideToggle>
 
         {/*color filter start here*/}
-        <SlideToggle>
+        {/* <SlideToggle>
           {({ onToggle, setCollapsibleElement }) => (
             <div className="collection-collapse-block">
               <h3 className="collapse-block-title" onClick={onToggle}>
@@ -118,32 +142,8 @@ class Filter extends Component {
               </div>
             </div>
           )}
-        </SlideToggle>
+        </SlideToggle> */}
         {/*price filter start here */}
-        <SlideToggle>
-          {({ onToggle, setCollapsibleElement }) => (
-            <div className="collection-collapse-block open">
-              <h3 className="collapse-block-title" onClick={onToggle}>
-                price
-              </h3>
-              <div
-                className="collection-collapse-block-content block-price-content"
-                ref={setCollapsibleElement}
-              >
-                <div className="collection-brand-filter">
-                  <div className="custom-control custom-checkbox collection-filter-checkbox">
-                    <InputRange
-                      maxValue={this.props.prices.max}
-                      minValue={this.props.prices.min}
-                      value={this.props.filters.value}
-                      onChange={value => this.props.filterPrice({ value })}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </SlideToggle>
       </div>
     );
   }
