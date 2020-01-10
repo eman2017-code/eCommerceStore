@@ -82,15 +82,15 @@ class cartComponent extends Component {
                                 </div>
                                 <div className="col-xs-3">
                                   <h2 className="td-color">
-                                    <a
-                                      href="#"
+                                    <button
+                                      // href="#"
                                       className="icon"
                                       onClick={() =>
                                         this.props.removeFromCart(item)
                                       }
                                     >
                                       <i className="icon-close"></i>
-                                    </a>
+                                    </button>
                                   </h2>
                                 </div>
                               </div>
