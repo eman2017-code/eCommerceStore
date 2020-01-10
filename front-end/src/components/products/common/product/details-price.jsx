@@ -46,13 +46,7 @@ class DetailsWithPrice extends Component {
   };
 
   render() {
-    const {
-      symbol,
-      item,
-      addToCartClicked,
-      BuynowClicked,
-      addToWishlistClicked
-    } = this.props;
+    const { symbol, item, addToCartClicked, BuynowClicked } = this.props;
 
     var colorsnav = {
       slidesToShow: 6,
