@@ -9,6 +9,8 @@ import { getCartTotal } from "../../services";
 
 class checkOut extends Component {
   constructor(props) {
+    console.log("props in checkout component");
+    console.log(props);
     super(props);
 
     this.state = {
@@ -114,15 +116,9 @@ class checkOut extends Component {
 
     return (
       <div>
-        {/*SEO Support*/}
         <Helmet>
-          <title>MultiKart | CheckOut Page</title>
-          <meta
-            name="description"
-            content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses."
-          />
+          <title>E-Commerce | Store</title>
         </Helmet>
-        {/*SEO Support End */}
 
         <Breadcrumb title={"Checkout"} />
 
