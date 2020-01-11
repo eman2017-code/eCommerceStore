@@ -60,10 +60,7 @@ class LeftSideBar extends Component {
       <div>
         {/*SEO Support*/}
         <Helmet>
-          <title>
-            {/* E-Commerce | {item.category} | {item.name} */}
-            E-Commerce
-          </title>
+          <title>E-Commerce | {item.name}</title>
         </Helmet>
         {/*SEO Support End */}
 
