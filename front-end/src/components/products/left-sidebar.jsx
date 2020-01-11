@@ -97,7 +97,11 @@ class LeftSideBar extends Component {
                                     <ImageZoom image={vari} />
                                   </div>
                                 ))} */}
-                          <img src={item.image} className="img-fluid"></img>
+                          <img
+                            src={item.image}
+                            alt="image"
+                            className="img-fluid"
+                          ></img>
                           {/* </Slider> */}
                         </div>
                         <DetailsWithPrice
