@@ -53,7 +53,7 @@ class Filter extends Component {
         </div>
 
         {/* price filter */}
-        <SlideToggle>
+        {/* <SlideToggle>
           {({ onToggle, setCollapsibleElement }) => (
             <div className="collection-collapse-block open">
               <h3 className="collapse-block-title" onClick={onToggle}>
@@ -76,7 +76,7 @@ class Filter extends Component {
               </div>
             </div>
           )}
-        </SlideToggle>
+        </SlideToggle> */}
 
         {/* manufacturer filter here  */}
         <SlideToggle>
