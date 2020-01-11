@@ -33,31 +33,4 @@ router.post("/", adminRequired, async (req, res, next) => {
   }
 });
 
-// searc route for the products
-router.post("/search", async (req, res, next) => {
-  try {
-    // find the appropriate product
-    const foundProduct = await Product.find({
-      name: "value",
-      function(err, data) {
-        if (err) {
-          res.send(err);
-        } else {
-          // res.send(data);
-          res.json({
-            data: foundProduct,
-            status: {
-              code: 201,
-              message:
-                "Successfully found the product that you were looking for"
-            }
-          });
-        }
-      }
-    });
-  } catch (err) {
-    next(err);
-  }
-});
-
 module.exports = router;
