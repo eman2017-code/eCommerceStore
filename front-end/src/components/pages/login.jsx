@@ -54,7 +54,6 @@ class Login extends Component {
   // handle submit
   handleSubmit = e => {
     e.preventDefault();
-    console.log("they are have logged in");
     this.loginUser();
   };
 

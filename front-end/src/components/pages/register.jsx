@@ -55,7 +55,6 @@ class Register extends Component {
   // handle submit
   handleSubmit = e => {
     e.preventDefault();
-    console.log("they have registered");
     this.registerUser();
   };
 

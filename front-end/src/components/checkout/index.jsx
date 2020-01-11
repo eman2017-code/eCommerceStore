@@ -9,8 +9,6 @@ import { getCartTotal } from "../../services";
 
 class checkOut extends Component {
   constructor(props) {
-    console.log("props in checkout component");
-    console.log(props);
     super(props);
 
     this.state = {

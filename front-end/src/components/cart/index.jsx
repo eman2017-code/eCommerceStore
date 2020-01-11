@@ -10,8 +10,6 @@ import { removeFromCart, incrementQty, decrementQty } from "../../actions";
 class cartComponent extends Component {
   render() {
     const { cartItems, symbol, total } = this.props;
-    console.log("this.props");
-    console.log(this.props);
     return (
       <div>
         {/*SEO Support*/}
