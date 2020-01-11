@@ -34,13 +34,8 @@ router.get("/all-products", async (req, res, next) => {
 });
 
 // filters products by whatever category is specified in the query paramaters
-<<<<<<< HEAD
-router.get("/category/:categoryName/", async (req, res, next) => {
-  const categoryName = req.params.categoryName
-=======
 router.get("/category/", async (req, res, next) => {
   const categoryName = req.body.categoryName;
->>>>>>> 6f19deb7922312582d22f5891dc20a1411541571
 
   try {
     const results = await client.search({
