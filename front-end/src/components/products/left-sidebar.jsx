@@ -38,6 +38,8 @@ class LeftSideBar extends Component {
 
   render() {
     const { symbol, item, addToCart, addToCartUnsafe } = this.props;
+    console.log("this.props");
+    console.log(this.props);
     var products = {
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -141,9 +143,9 @@ class LeftSideBar extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let productId = ownProps.match.params.id;
+  let productId = ownProps.match.params.sku;
   return {
-    item: state.data.products.find(el => el.id == productId),
+    item: state.data.products.find(el => el.sku == productId),
     symbol: state.data.symbol
   };
 };

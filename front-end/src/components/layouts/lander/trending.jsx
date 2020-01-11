@@ -6,35 +6,34 @@ import { getTrendingTagCollection } from "../../../services";
 import SideImageItem from "../common/side-image-item";
 
 class Trending extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       electronics: []
-    }
+    };
   }
 
   componentDidMount() {
-    console.log('componentDidMount')
-    this.getCategoryProducts()
+    console.log("componentDidMount");
+    // this.getCategoryProducts();
   }
 
-  // returns top 8 products from whatever category tab was clicked on
-  getCategoryProducts = async () => {
-    console.log('getCategoryProducts')
-    const categoryName = 'electronics'
+  // // returns top 8 products from whatever category tab was clicked on
+  // getCategoryProducts = async () => {
+  //   console.log('getCategoryProducts')
+  //   const categoryName = 'electronics'
 
-    try {
-      const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/search/category/' + categoryName + '/')
+  //   try {
+  //     const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/search/category/' + categoryName + '/')
 
-      const parsedResponse = await response.json()
-      console.log('reponse:', parsedResponse)
+  //     const parsedResponse = await response.json()
+  //     console.log('reponse:', parsedResponse)
 
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   render() {
     const { titan, reebok, rolex, unisex, symbol } = this.props;

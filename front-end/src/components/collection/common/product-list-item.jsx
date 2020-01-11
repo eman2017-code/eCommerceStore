@@ -4,9 +4,6 @@ import Modal from "react-responsive-modal";
 
 class ProductListItem extends Component {
   constructor(props) {
-    console.log("props in ProductListItem");
-    console.log(props);
-    console.log(props.product.sku);
     super(props);
 
     this.state = {
@@ -61,7 +58,7 @@ class ProductListItem extends Component {
         <div className="img-wrapper">
           <div className="front">
             <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
+              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.product.sku}`}
             >
               <img src={this.image} className="img-fluid" alt="" />
             </Link>
@@ -88,7 +85,7 @@ class ProductListItem extends Component {
             <div className="rating">{RatingStars}</div>
             <img src={product.image} className="img-fluid"></img>
             <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
             >
               <h6>{product.name}</h6>
             </Link>
@@ -108,15 +105,7 @@ class ProductListItem extends Component {
             <div className="modal-content quick-view-modal">
               <div className="modal-body">
                 <div className="row">
-                  <div className="col-lg-6  col-xs-12">
-                    {/* <div className="quick-view-img">
-                      <img
-                        src={this.props.product.image}
-                        alt="product image"
-                        className="img-fluid"
-                      />
-                    </div> */}
-                  </div>
+                  <div className="col-lg-6  col-xs-12"></div>
                   <div className="col-lg-6 rtl-text">
                     <div className="product-right">
                       <img
@@ -175,7 +164,7 @@ class ProductListItem extends Component {
                           add to cart
                         </button>
                         <Link
-                          to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+                          to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
                           className="btn btn-solid"
                         >
                           view detail
