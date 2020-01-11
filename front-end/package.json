@@ -1,8 +1,8 @@
 {
-  "name": "react-multikart",
+  "name": "weblink-mile-high-team",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://35.238.166.83/",
+  "homepage": "http://35.222.68.3",
   "basename": "/",
   "dependencies": {
     "@babel/core": "7.1.0",
