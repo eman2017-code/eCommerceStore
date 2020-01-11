@@ -29,8 +29,8 @@ export default {
 		const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/search/category/' + category + '/')
 		const parsedResponse = await response.json()
 		console.log('cateogyr products response:', parsedResponse)
-		// const products = parsedResponse.data.map(product => product._source.message)
-		// return products
+		const products = parsedResponse.data.map(product => product._source.message)
+		return products
 	}
 }
 
