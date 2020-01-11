@@ -61,70 +61,12 @@ class DetailsWithPrice extends Component {
         <div className="product-right">
           <h2> {item.name} </h2>
           <h4>
-            <del>
+            <span className="money">
               {symbol}
               {item.price}
-            </del>
-            <span>{item.discount}% off</span>
+            </span>
           </h4>
-          <h3>
-            {symbol}
-            {item.price - (item.price * item.discount) / 100}{" "}
-          </h3>
-          {item.variants ? (
-            <ul>
-              <Slider
-                {...colorsnav}
-                asNavFor={this.props.navOne}
-                ref={slider => (this.slider1 = slider)}
-                className="color-variant"
-              >
-                {item.variants.map((vari, i) => {
-                  return (
-                    <li className={vari.color} key={i} title={vari.color}></li>
-                  );
-                })}
-              </Slider>
-            </ul>
-          ) : (
-            ""
-          )}
           <div className="product-description border-product">
-            {item.size ? (
-              <div>
-                <div
-                  className="modal fade"
-                  id="sizemodal"
-                  tabIndex="-1"
-                  role="dialog"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div
-                    className="modal-dialog modal-dialog-centered"
-                    role="document"
-                  >
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">
-                          Sheer Straight Kurta
-                        </h5>
-                        <button
-                          type="button"
-                          className="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              ""
-            )}
             <h6 className="product-title">quantity</h6>
             <div className="qty-box">
               <div className="input-group">
