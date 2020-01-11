@@ -29,7 +29,7 @@ class Trending extends Component {
   }
 
   render() {
-    const { electronics, watches, videoGames, appliances, symbol } = this.props;
+    const { cellPhones, computersAndTablets, headphones, appliances, symbol } = this.props;
 
     return (
       <div>
@@ -55,7 +55,7 @@ class Trending extends Component {
                     <div className="tab-content-cls">
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {electronics.map((item, i) => (
+                          {cellPhones.map((item, i) => (
                             <div className="tab-box" key={i}>
                               <SideImageItem product={item} symbol={symbol} />
                             </div>
@@ -64,7 +64,7 @@ class Trending extends Component {
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {watches.map((item, i) => (
+                          {computersAndTablets.map((item, i) => (
                             <div className="tab-box" key={i}>
                               <SideImageItem product={item} symbol={symbol} />
                             </div>
@@ -73,7 +73,7 @@ class Trending extends Component {
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {videoGames.map((item, i) => (
+                          {headphones.map((item, i) => (
                             <div className="tab-box" key={i}>
                               <SideImageItem product={item} symbol={symbol} />
                             </div>

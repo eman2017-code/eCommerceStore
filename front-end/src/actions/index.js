@@ -31,7 +31,6 @@ export const getProductsByCategory = (category) => async dispatch => {
   dispatch(fetchProductsBegin())
   const products = await shop.getProductsByCategory(category)
   dispatch(receiveCategoryProducts(products, category))
-  
 }
 
 export const fetchSingleProduct = productId => ({

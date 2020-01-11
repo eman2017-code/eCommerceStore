@@ -29,9 +29,8 @@ const productReducer = (state = initialState, action) => {
       // the [categoryName] syntax is used to set the category with its products in state,
       // so this .map() converts the category name with spaces to the category name using 
       // camel-case format. 
-      // * AKA: nobody touch this code without talking to Mitch first *
-     
-      const formattedCategoryName = categoryNameArray.map((word, i) => {
+      // *** AKA: nobody touch this code without talking to Mitch first ***
+      const formattedCategoryNameArray = categoryNameArray.map((word, i) => {
         if (i > 0) {
           const wordArray = word.split('')
           const firstLetterCapitalized = wordArray[0].toUpperCase()
@@ -44,7 +43,9 @@ const productReducer = (state = initialState, action) => {
         }
         return word
       })
-      console.log('formattedCategoryName:', formattedCategoryName.join(''))
+
+      // joins the array of words
+      const formattedCategoryName = formattedCategoryNameArray.join('')
 
       return {
         ...state,
