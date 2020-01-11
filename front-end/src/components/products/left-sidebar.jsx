@@ -12,7 +12,6 @@ import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
 import { addToCart, addToCartUnsafe } from "../../actions";
 import ImageZoom from "./common/product/image-zoom";
-import SmallImages from "./common/product/small-image";
 
 class LeftSideBar extends Component {
   constructor() {
@@ -62,12 +61,13 @@ class LeftSideBar extends Component {
         {/*SEO Support*/}
         <Helmet>
           <title>
-            E-Commerce | {item.category} | {item.name}
+            {/* E-Commerce | {item.category} | {item.name} */}
+            E-Commerce
           </title>
         </Helmet>
         {/*SEO Support End */}
 
-        <Breadcrumb parent={"Product"} title={item.name} />
+        {/* <Breadcrumb parent={"Product"} title={item.name} /> */}
 
         {/*Section Start*/}
         {item ? (
@@ -84,9 +84,9 @@ class LeftSideBar extends Component {
                     </div>
 
                     {/* <BrandBlock/> */}
-                    <Service />
+                    {/* <Service /> */}
                     {/*side-bar single product slider start*/}
-                    <NewProduct />
+                    {/* <NewProduct /> */}
                     {/*side-bar single product slider end*/}
                   </div>
                   <div className="col-lg-9 col-sm-12 col-xs-12">
@@ -115,7 +115,7 @@ class LeftSideBar extends Component {
                             ref={slider => (this.slider1 = slider)}
                             className="product-slick"
                           >
-                            {item.variants
+                            {/* {item.variants
                               ? item.variants.map((vari, index) => (
                                   <div key={index}>
                                     <ImageZoom image={vari.images} />
@@ -125,13 +125,8 @@ class LeftSideBar extends Component {
                                   <div key={index}>
                                     <ImageZoom image={vari} />
                                   </div>
-                                ))}
+                                ))} */}
                           </Slider>
-                          <SmallImages
-                            item={item}
-                            settings={productsnav}
-                            navOne={this.state.nav1}
-                          />
                         </div>
                         <DetailsWithPrice
                           symbol={symbol}

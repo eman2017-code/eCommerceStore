@@ -6,6 +6,7 @@ class ProductListItem extends Component {
   constructor(props) {
     console.log("props in ProductListItem");
     console.log(props);
+    console.log(props.product.sku);
     super(props);
 
     this.state = {
@@ -14,8 +15,6 @@ class ProductListItem extends Component {
       quantity: 1,
       image: props.product.image
     };
-    console.log("this.state");
-    console.log(this.state);
   }
 
   onOpenModal = () => {
@@ -62,7 +61,7 @@ class ProductListItem extends Component {
         <div className="img-wrapper">
           <div className="front">
             <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
             >
               <img src={this.image} className="img-fluid" alt="" />
             </Link>

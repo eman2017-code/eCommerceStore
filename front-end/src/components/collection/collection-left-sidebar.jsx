@@ -24,11 +24,9 @@ class CollectionLeftSidebar extends Component {
   render() {
     return (
       <div>
-        {/*SEO Support*/}
         <Helmet>
           <title>E-Commerce | Store</title>
         </Helmet>
-        {/*SEO Support End */}
 
         <Breadcrumb title={"Collection"} />
 

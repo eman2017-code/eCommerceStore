@@ -56,7 +56,7 @@ class Root extends React.Component {
                   {/* Single Product Page  */}
                   <Route
                     exact
-                    path={`${process.env.PUBLIC_URL}/left-sidebar/product/:id`}
+                    path={`${process.env.PUBLIC_URL}/left-sidebar/product/:sku`}
                     component={LeftSideBar}
                   />
                   {/* Cart Page  */}
