@@ -39,14 +39,11 @@ class CollectionLeftSidebar extends Component {
                     <div>
                       <Filter />
                       <div className="collection-sidebar-banner">
-                        <a href="#">
-                          test test test
-                          <img
-                            src={`${process.env.PUBLIC_URL}/assets/images/side-banner.png`}
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
+                        <img
+                          src={`${process.env.PUBLIC_URL}/assets/images/side-banner.png`}
+                          className="img-fluid"
+                          alt=""
+                        />
                       </div>
                     </div>
                   </StickyBox>
