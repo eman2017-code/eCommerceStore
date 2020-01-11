@@ -9,9 +9,6 @@ import { filterBrand, filterColor, filterPrice } from "../../../actions";
 
 class Filter extends Component {
   constructor(props) {
-    console.log("props in Filter Component");
-    console.log(props);
-    console.log(typeof props.prices.min);
     super(props);
 
     this.state = {
@@ -43,7 +40,6 @@ class Filter extends Component {
 
   render() {
     const filteredBrands = this.props.manufacturer;
-    //console.log(this.props.brands);
     return (
       <div className="collection-filter-block">
         <div className="collection-mobile-back">
