@@ -14,6 +14,8 @@ class SideImageItem extends Component {
     this.setState({ image: img });
   }
 
+  
+
   render() {
     const { product, symbol } = this.props;
 
@@ -28,16 +30,9 @@ class SideImageItem extends Component {
             to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
           >
             <img
-              src={`${
-                product.variants
-                  ? this.state.image
-                    ? this.state.image
-                    : product.variants[0].images
-                  : product.pictures[0]
-              }`}
+              src={ product.image }
               className="img-fluid lazyload bg-img"
-              alt=""
-            />
+              alt={ product.name } />
           </Link>
           <div className="media-body align-self-center">
             <div>
