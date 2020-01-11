@@ -280,20 +280,13 @@ class checkOut extends Component {
                                 <li key={index}>
                                   {item.name} × {item.qty}{" "}
                                   <span>
-                                    {symbol} {item.sum}
+                                    {symbol} {total}
                                   </span>
                                 </li>
                               );
                             })}
                           </ul>
                           <ul className="sub-total">
-                            <li>
-                              Subtotal{" "}
-                              <span className="count">
-                                {symbol}
-                                {total}
-                              </span>
-                            </li>
                             <li>
                               Shipping{" "}
                               <div className="shipping">
@@ -395,56 +388,6 @@ class checkOut extends Component {
                           ) : (
                             ""
                           )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row section-t-space">
-                    <div className="col-lg-6">
-                      <div className="stripe-section">
-                        <h5>stripe js example</h5>
-                        <div>
-                          <h5 className="checkout_class">dummy test</h5>
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td>cart number</td>
-                                <td>4242424242424242</td>
-                              </tr>
-                              <tr>
-                                <td>mm/yy</td>
-                                <td>2/2020</td>
-                              </tr>
-                              <tr>
-                                <td>cvc</td>
-                                <td>2222</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-6 m-sm-t-2">
-                      <div className="stripe-section">
-                        <h5>paypal example</h5>
-                        <div>
-                          <h5 className="checkout_class">dummy test</h5>
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td>cart number</td>
-                                <td>4152521541244</td>
-                              </tr>
-                              <tr>
-                                <td>mm/yy</td>
-                                <td>11/18</td>
-                              </tr>
-                              <tr>
-                                <td>cvc</td>
-                                <td>521</td>
-                              </tr>
-                            </tbody>
-                          </table>
                         </div>
                       </div>
                     </div>
