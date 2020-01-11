@@ -58,13 +58,11 @@ class LeftSideBar extends Component {
 
     return (
       <div>
-        {/*SEO Support*/}
         <Helmet>
           <title>E-Commerce | {item.name}</title>
         </Helmet>
-        {/*SEO Support End */}
 
-        {/* <Breadcrumb parent={"Product"} title={item.name} /> */}
+        <Breadcrumb parent={"Product"} title={item.name} />
 
         {/*Section Start*/}
         {item ? (
