@@ -4,6 +4,8 @@ import Modal from "react-responsive-modal";
 
 class ProductListItem extends Component {
   constructor(props) {
+    console.log("props in ProductListItem");
+    console.log(props);
     super(props);
 
     this.state = {
@@ -100,14 +102,10 @@ class ProductListItem extends Component {
               <h6>{product.name}</h6>
             </Link>
             <h4>
-              {symbol}
-              {product.price - (product.price * product.discount) / 100}
-              <del>
-                <span className="money">
-                  {symbol}
-                  {product.price}
-                </span>
-              </del>
+              <span className="money">
+                {symbol}
+                {product.price}
+              </span>
             </h4>
             {product.variants ? (
               <ul className="color-variant">
@@ -137,23 +135,13 @@ class ProductListItem extends Component {
                 <div className="row">
                   <div className="col-lg-6  col-xs-12">
                     <div className="quick-view-img">
-                      <img
-                        src={
-                          // this.state.image
-                          this.image
-                          // ? this.state.image
-                          // : this.props.product.image
-                        }
-                        alt=""
-                        className="img-fluid"
-                      />
+                      <img src={this.image} alt="" className="img-fluid" />
                     </div>
                   </div>
                   <div className="col-lg-6 rtl-text">
                     <div className="product-right">
-                      {/* <img src={product.image}></img> */}
                       <h2> {product.name} </h2>
-                      <h3>
+                      {/* <h3>
                         {symbol}
                         {product.price -
                           (product.price * product.discount) / 100}
@@ -163,8 +151,8 @@ class ProductListItem extends Component {
                             {product.price}
                           </span>
                         </del>
-                      </h3>
-                      {product.variants ? (
+                      </h3> */}
+                      {/* {product.variants ? (
                         <ul className="color-variant">
                           {product.variants.map((vari, i) => (
                             <li
@@ -177,13 +165,13 @@ class ProductListItem extends Component {
                         </ul>
                       ) : (
                         ""
-                      )}
+                      )} */}
                       <div className="border-product">
                         <h6 className="product-title">product details</h6>
                         <p>{product.shortDetails}</p>
                       </div>
                       <div className="product-description border-product">
-                        {product.size ? (
+                        {/* {product.size ? (
                           <div className="size-box">
                             <ul>
                               {product.size.map((size, i) => {
@@ -197,7 +185,7 @@ class ProductListItem extends Component {
                           </div>
                         ) : (
                           ""
-                        )}
+                        )} */}
                         <h6 className="product-title">quantity</h6>
                         <div className="qty-box">
                           <div className="input-group">
