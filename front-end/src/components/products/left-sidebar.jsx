@@ -22,8 +22,6 @@ class LeftSideBar extends Component {
     };
   }
 
-  // document.getElementById('idOfElement').classList.add('newClassName');
-
   componentDidMount() {
     this.setState({
       nav1: this.slider1,
@@ -98,13 +96,13 @@ class LeftSideBar extends Component {
                       </div>
                       <div className="row">
                         <div className="col-lg-6 product-thumbnail">
-                          <Slider
-                            {...products}
+                          {/* <Slider */}
+                          {/* {...products}
                             asNavFor={this.state.nav2}
                             ref={slider => (this.slider1 = slider)}
                             className="product-slick"
-                          >
-                            {/* {item.variants
+                          > */}
+                          {/* {item.variants
                               ? item.variants.map((vari, index) => (
                                   <div key={index}>
                                     <ImageZoom image={vari.images} />
@@ -115,7 +113,8 @@ class LeftSideBar extends Component {
                                     <ImageZoom image={vari} />
                                   </div>
                                 ))} */}
-                          </Slider>
+                          <img src={item.image} className="img-fluid"></img>
+                          {/* </Slider> */}
                         </div>
                         <DetailsWithPrice
                           symbol={symbol}
