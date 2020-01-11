@@ -80,23 +80,6 @@ class LeftSideBar extends Component {
                       </div>
                       <div className="row">
                         <div className="col-lg-6 product-thumbnail">
-                          {/* <Slider */}
-                          {/* {...products}
-                            asNavFor={this.state.nav2}
-                            ref={slider => (this.slider1 = slider)}
-                            className="product-slick"
-                          > */}
-                          {/* {item.variants
-                              ? item.variants.map((vari, index) => (
-                                  <div key={index}>
-                                    <ImageZoom image={vari.images} />
-                                  </div>
-                                ))
-                              : item.pictures.map((vari, index) => (
-                                  <div key={index}>
-                                    <ImageZoom image={vari} />
-                                  </div>
-                                ))} */}
                           <img
                             src={item.image}
                             alt="image"
