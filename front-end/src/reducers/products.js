@@ -20,7 +20,7 @@ const productReducer = (state = initialState, action) => {
     case RECEIVE_CATEGORY_PRODUCTS:
       return {
         ...state,
-        [category]: actions.products
+        [action.category]: action.products
       }
 
     case FETCH_SINGLE_PRODUCT:

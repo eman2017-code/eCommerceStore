@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types'
 import { getTrendingTagCollection } from "../../../services";
 
 import { getProductsByCategory } from '../../../actions'
@@ -18,6 +19,7 @@ class Trending extends Component {
   }
 
   render() {
+    console.log('electronics:', this.props.electronics)
     const { titan, reebok, rolex, unisex, symbol } = this.props;
 
     return (
@@ -44,7 +46,7 @@ class Trending extends Component {
                     <div className="tab-content-cls">
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {unisex.map((item, i) => (
+                          {this.props.electronics.map((item, i) => (
                             <div className="tab-box" key={i}>
                               <SideImageItem product={item} symbol={symbol} />
                             </div>
@@ -88,6 +90,10 @@ class Trending extends Component {
       </div>
     );
   }
+}
+
+Trending.propTypes = {
+  getProductsByCategory: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => ({
