@@ -79,7 +79,7 @@ class LeftSideBar extends Component {
                     </div>
 
                     {/* <BrandBlock/> */}
-                    {/* <Service /> */}
+                    <Service />
                     {/*side-bar single product slider start*/}
                     {/* <NewProduct /> */}
                     {/*side-bar single product slider end*/}
