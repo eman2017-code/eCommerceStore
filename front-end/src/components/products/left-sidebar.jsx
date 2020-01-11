@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import Slider from "react-slick";
 import "../common/index.scss";
 import { connect } from "react-redux";
 
@@ -10,7 +9,6 @@ import Breadcrumb from "../common/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
 import { addToCart, addToCartUnsafe } from "../../actions";
-import ImageZoom from "./common/product/image-zoom";
 
 class LeftSideBar extends Component {
   constructor() {
@@ -38,22 +36,6 @@ class LeftSideBar extends Component {
 
   render() {
     const { symbol, item, addToCart, addToCartUnsafe } = this.props;
-    console.log("this.props");
-    console.log(this.props);
-    var products = {
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      dots: false,
-      arrows: true,
-      fade: true
-    };
-    var productsnav = {
-      slidesToShow: 3,
-      swipeToSlide: true,
-      arrows: false,
-      dots: false,
-      focusOnSelect: true
-    };
 
     return (
       <div>

@@ -3,7 +3,7 @@
  */
 import _products from "./data.json";
 
-const TIMEOUT = 100;
+// const TIMEOUT = 100;
 
 // export default {
 //   getProducts: (cb, timeout) =>
@@ -12,33 +12,18 @@ const TIMEOUT = 100;
 //     setTimeout(() => cb(), timeout || TIMEOUT)
 // };
 
+export default {
+  getAllProducts: async callBack => {
+    const response = await fetch(
+      process.env.REACT_APP_API_URL + "/api/v1/search/all-products/"
+    );
+    const parsedResponse = await response.json();
 
-export default { 
-	getAllProducts: async (callBack) => {
-		const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/search/all-products/')
-		const parsedResponse = await response.json()
-		
-		// creates a new array including only information about the product
-		const products = parsedResponse.data.map(product => product._source.message)
+    // creates a new array including only information about the product
+    const products = parsedResponse.data.map(
+      product => product._source.message
+    );
 
-		return products
-	}
-}
-
-// // global variable
-// let products;
-
-// // make fetch call to elastic index route
-// function listAllProducts() {
-//   const api = process.env.REACT_APP_API_URL + "/api/v1/search/all-products/";
-//   fetch(api)
-//     .then(reponse => reponse.json())
-//     .then(data => (products = data.data));
-//   // .then(data => console.log(data.data));
-//   console.log("products");
-//   console.log(products);
-// }
-
-// listAllProducts();
-// console.log("products");
-// console.log(products);
+    return products;
+  }
+};
