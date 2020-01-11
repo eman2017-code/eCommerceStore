@@ -69,9 +69,10 @@ router.get("/category/:categoryName/", async (req, res, next) => {
         query: {
           multi_match: {
             query: categoryName,
-            fields: ['message.category.name^2', 'message.name']
+            fields: ['message.category.name^2', 'message.name'],
           }
-        }
+        },
+        size: 8
       }
     })
 
