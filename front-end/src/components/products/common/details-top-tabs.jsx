@@ -61,9 +61,9 @@ class DetailsTopTabs extends Component {
                       ></textarea>
                     </div>
                     <div className="col-md-12">
-                      <li className="btn btn-solid" type="submit">
+                      <button className="btn btn-solid" type="submit">
                         Submit YOur Review
-                      </li>
+                      </button>
                     </div>
                   </div>
                 </form>
