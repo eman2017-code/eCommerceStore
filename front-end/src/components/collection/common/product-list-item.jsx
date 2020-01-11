@@ -48,11 +48,6 @@ class ProductListItem extends Component {
     const { product, symbol, onAddToCartClicked } = this.props;
     const { open } = this.state;
 
-    let RatingStars = [];
-    for (var i = 0; i < product.rating; i++) {
-      RatingStars.push(<i className="fa fa-star" key={i}></i>);
-    }
-
     return (
       <div className="product-box">
         <div className="img-wrapper">
@@ -82,7 +77,6 @@ class ProductListItem extends Component {
         </div>
         <div className="product-detail">
           <div>
-            <div className="rating">{RatingStars}</div>
             <img src={product.image} className="img-fluid"></img>
             <Link
               to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
