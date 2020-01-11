@@ -59,7 +59,6 @@ const { errors } = require("@elastic/elasticsearch");
 // });
 
 // load product listing page route -- index route
-// load product listing page route -- index route
 router.get("/all-products", async (req, res, next) => {
   try {
     const results = await client.search({
