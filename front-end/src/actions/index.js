@@ -13,6 +13,12 @@ export const receiveProducts = products => ({
   products: products
 });
 
+export const receiveCategoryProducts = (products, category) => ({
+  type: types.RECEIVE_CATEGORY_PRODUCTS,
+  products: products,
+  category: category
+})
+
 export const getAllProducts = () => async dispatch => {
   dispatch(fetchProductsBegin());
   const products = await shop.getAllProducts();
@@ -20,10 +26,12 @@ export const getAllProducts = () => async dispatch => {
   return products;
 };
 
+// gets products by category specified in the parameter
 export const getProductsByCategory = (category) => async dispatch => {
   dispatch(fetchProductsBegin())
   const products = await shop.getProductsByCategory(category)
-  console.log('category products:', products)
+  dispatch(receiveCategoryProducts(products, category))
+  
 }
 
 export const fetchSingleProduct = productId => ({

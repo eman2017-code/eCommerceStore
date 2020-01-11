@@ -1,7 +1,8 @@
 import {
   FETCH_SINGLE_PRODUCT,
   CHANGE_CURRENCY,
-  RECEIVE_PRODUCTS
+  RECEIVE_PRODUCTS,
+  RECEIVE_CATEGORY_PRODUCTS
 } from "../constants/ActionTypes";
 
 const initialState = {
@@ -15,6 +16,13 @@ const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_PRODUCTS:
       return { ...state, products: action.products };
+
+    case RECEIVE_CATEGORY_PRODUCTS:
+      return {
+        ...state,
+        [category]: actions.products
+      }
+
     case FETCH_SINGLE_PRODUCT:
       if (
         state.products.findIndex(product => product.id === action.productId) !==
