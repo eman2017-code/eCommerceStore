@@ -110,13 +110,13 @@ class ProductListItem extends Component {
               <div className="modal-body">
                 <div className="row">
                   <div className="col-lg-6  col-xs-12">
-                    <div className="quick-view-img">
+                    {/* <div className="quick-view-img">
                       <img
                         src={this.props.product.image}
                         alt="product image"
                         className="img-fluid"
                       />
-                    </div>
+                    </div> */}
                   </div>
                   <div className="col-lg-6 rtl-text">
                     <div className="product-right">
@@ -128,7 +128,7 @@ class ProductListItem extends Component {
                       <h2> {product.name} </h2>
                       <div className="border-product">
                         <h6 className="product-title">product details</h6>
-                        <p>{product.shortDetails}</p>
+                        <p>{product.description}</p>
                       </div>
                       <div className="product-description border-product">
                         <h6 className="product-title">quantity</h6>
