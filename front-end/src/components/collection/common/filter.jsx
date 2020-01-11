@@ -11,6 +11,7 @@ class Filter extends Component {
   constructor(props) {
     console.log("props in Filter Component");
     console.log(props);
+    console.log(typeof props.prices.min);
     super(props);
 
     this.state = {
@@ -50,7 +51,9 @@ class Filter extends Component {
             <i className="fa fa-angle-left" aria-hidden="true"></i> back
           </span>
         </div>
-        {/* <SlideToggle>
+
+        {/* price filter */}
+        <SlideToggle>
           {({ onToggle, setCollapsibleElement }) => (
             <div className="collection-collapse-block open">
               <h3 className="collapse-block-title" onClick={onToggle}>
@@ -73,7 +76,9 @@ class Filter extends Component {
               </div>
             </div>
           )}
-        </SlideToggle> */}
+        </SlideToggle>
+
+        {/* manufacturer filter here  */}
         <SlideToggle>
           {({ onToggle, setCollapsibleElement }) => (
             <div className="collection-collapse-block">
@@ -117,77 +122,6 @@ class Filter extends Component {
             </div>
           )}
         </SlideToggle>
-        <SlideToggle>
-          {({ onToggle, setCollapsibleElement }) => (
-            <div className="collection-collapse-block">
-              <h3 className="collapse-block-title" onClick={onToggle}>
-                Categories
-              </h3>
-              <div
-                className="collection-collapse-block-content"
-                ref={setCollapsibleElement}
-              >
-                <div className="collection-brand-filter">
-                  {/* {this.props.brands.map((brand, index) => {
-                    return (
-                      <div
-                        className="custom-control custom-checkbox collection-filter-checkbox"
-                        key={index}
-                      >
-                        <input
-                          type="checkbox"
-                          onClick={e =>
-                            this.clickBrandHendle(e, filteredBrands)
-                          }
-                          value={brand}
-                          defaultChecked={
-                            filteredBrands.includes(brand) ? true : false
-                          }
-                          className="custom-control-input"
-                          id={brand}
-                        />
-                        <label className="custom-control-label" htmlFor={brand}>
-                          {brand}
-                        </label>
-                      </div>
-                    );
-                  })} */}
-                </div>
-              </div>
-            </div>
-          )}
-        </SlideToggle>
-
-        {/*color filter start here*/}
-        {/* <SlideToggle>
-          {({ onToggle, setCollapsibleElement }) => (
-            <div className="collection-collapse-block">
-              <h3 className="collapse-block-title" onClick={onToggle}>
-                colors
-              </h3>
-              <div
-                className="collection-collapse-block-content"
-                ref={setCollapsibleElement}
-              >
-                <div className="color-selector">
-                  <ul>
-                    {this.props.colors.map((color, index) => {
-                      return (
-                        <li
-                          className={color}
-                          title={color}
-                          onClick={e => this.colorHandle(e, color)}
-                          key={index}
-                        ></li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          )}
-        </SlideToggle> */}
-        {/*price filter start here */}
       </div>
     );
   }
