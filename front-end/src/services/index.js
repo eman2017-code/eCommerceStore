@@ -1,17 +1,31 @@
 // Get Unique Brands from Json Data
+// export const getBrands = products => {
+//   console.log("products in /front-end/src/services");
+//   console.log(products);
+//   var uniqueBrands = [];
+//   products.map((product, index) => {
+//     if (product.tags) {
+//       product.tags.map(tag => {
+//         if (uniqueBrands.indexOf(tag) === -1) {
+//           uniqueBrands.push(tag);
+//         }
+//       });
+//     }
+//   });
+//   //console.log(uniqueBrands)
+//   return uniqueBrands;
+// };
+
+// Get Unique Brands from Json Data
 export const getBrands = products => {
-  console.log(products);
   var uniqueBrands = [];
-  products.map((product, index) => {
-    if (product.tags) {
-      product.tags.map(tag => {
-        if (uniqueBrands.indexOf(tag) === -1) {
-          uniqueBrands.push(tag);
-        }
-      });
+  products.map(product => {
+    let tag = product.manufacturer;
+    if (tag) {
+      uniqueBrands.push(tag);
     }
   });
-  //console.log(uniqueBrands)
+  console.log(uniqueBrands);
   return uniqueBrands;
 };
 

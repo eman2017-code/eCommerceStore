@@ -10,8 +10,6 @@ import ProductListItem from "./product-list-item";
 
 class ProductListing extends Component {
   constructor(props) {
-    console.log("props.product");
-    console.log(props.products);
     super(props);
 
     this.state = { limit: 5, hasMoreItems: true };

@@ -26,7 +26,7 @@ class Filter extends Component {
     var index = manufacturer.indexOf(event.target.value);
     if (event.target.checked) manufacturer.push(event.target.value);
     // push in array checked value
-    else manufacturer.splice(index, 1); // removed in array unchecked value
+    else manufacturer.splice(manufacturer, 1); // removed in array unchecked value
 
     this.props.filterBrand(manufacturer);
   }
