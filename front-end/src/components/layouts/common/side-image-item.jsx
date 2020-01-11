@@ -28,16 +28,9 @@ class SideImageItem extends Component {
             to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
           >
             <img
-              src={`${
-                product.variants
-                  ? this.state.image
-                    ? this.state.image
-                    : product.variants[0].images
-                  : product.pictures[0]
-              }`}
+              src={ product.image }
               className="img-fluid lazyload bg-img"
-              alt=""
-            />
+              alt={ product.name } />
           </Link>
           <div className="media-body align-self-center">
             <div>
@@ -47,16 +40,13 @@ class SideImageItem extends Component {
               >
                 <h6>{product.name}</h6>
               </Link>
+
               <h4>
                 {symbol}
-                {product.price - (product.price * product.discount) / 100}
-                <del>
-                  <span className="money">
-                    {symbol}
-                    {product.price}
-                  </span>
-                </del>
+                {product.price}
               </h4>
+
+
               {product.variants ? (
                 <ul className="color-variant">
                   {product.variants.map((vari, i) => {
