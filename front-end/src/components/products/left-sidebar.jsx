@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 
 // import custom Components
 import Service from "./common/service";
-import NewProduct from "../common/new-product";
 import Breadcrumb from "../common/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
@@ -77,12 +76,7 @@ class LeftSideBar extends Component {
                         back
                       </span>
                     </div>
-
-                    {/* <BrandBlock/> */}
                     <Service />
-                    {/*side-bar single product slider start*/}
-                    {/* <NewProduct /> */}
-                    {/*side-bar single product slider end*/}
                   </div>
                   <div className="col-lg-9 col-sm-12 col-xs-12">
                     <div className="">
