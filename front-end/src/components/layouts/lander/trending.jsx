@@ -1,35 +1,42 @@
 import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { connect } from "react-redux";
-import PropTypes from 'prop-types'
-import { getTrendingTagCollection } from "../../../services";
+import PropTypes from "prop-types";
 
-import { getProductsByCategory } from '../../../actions'
+import { getProductsByCategory } from "../../../actions";
 
 import SideImageItem from "../common/side-image-item";
 
 class Trending extends Component {
-
   constructor(props) {
-    super(props)
-    this.trendingCategories = ['cell phones', 'computers and tablets', 'headphones', 'appliances']
+    super(props);
+    this.trendingCategories = [
+      "cell phones",
+      "computers and tablets",
+      "headphones",
+      "appliances"
+    ];
 
-    this.getAllTrendingProducts()
+    this.getAllTrendingProducts();
   }
 
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
-  // makes a fetch call for each trending category to get the products 
+  // makes a fetch call for each trending category to get the products
   getAllTrendingProducts = () => {
-    this.trendingCategories.forEach((category) => {
-      this.props.getProductsByCategory(category)
-    }) 
-  }
+    this.trendingCategories.forEach(category => {
+      this.props.getProductsByCategory(category);
+    });
+  };
 
   render() {
-    const { cellPhones, computersAndTablets, headphones, appliances, symbol } = this.props;
+    const {
+      cellPhones,
+      computersAndTablets,
+      headphones,
+      appliances,
+      symbol
+    } = this.props;
 
     return (
       <div>
@@ -103,7 +110,7 @@ class Trending extends Component {
 
 Trending.propTypes = {
   getProductsByCategory: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = (state, ownProps) => ({
   computersAndTablets: state.data.computersAndTablets,
@@ -111,11 +118,6 @@ const mapStateToProps = (state, ownProps) => ({
   headphones: state.data.headphones,
   appliances: state.data.appliances,
   symbol: state.data.symbol
-})
+});
 
-
-export default connect(mapStateToProps, { getProductsByCategory })(Trending)
-
-
-
-
+export default connect(mapStateToProps, { getProductsByCategory })(Trending);

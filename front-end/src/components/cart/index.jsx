@@ -38,15 +38,15 @@ class cartComponent extends Component {
                         <th scope="col">total</th>
                       </tr>
                     </thead>
-                    {cartItems.map((item, index) => {
+                    {cartItems.map((item, sku) => {
                       return (
-                        <tbody key={index}>
+                        <tbody key={sku}>
                           <tr>
                             <td>
                               <Link
                                 to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.sku}`}
                               >
-                                <img src={item.image} alt="image picture" />
+                                <img src={item.image} alt="" />
                               </Link>
                             </td>
                             <td>

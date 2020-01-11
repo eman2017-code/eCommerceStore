@@ -82,7 +82,7 @@ class LeftSideBar extends Component {
                         <div className="col-lg-6 product-thumbnail">
                           <img
                             src={item.image}
-                            alt="image"
+                            alt=""
                             className="img-fluid"
                           ></img>
                           {/* </Slider> */}

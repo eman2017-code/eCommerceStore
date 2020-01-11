@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
 import Modal from "react-responsive-modal";
 
 class DetailsWithPrice extends Component {
@@ -61,14 +60,6 @@ class DetailsWithPrice extends Component {
 
   render() {
     const { symbol, item, addToCartClicked, BuynowClicked } = this.props;
-
-    var colorsnav = {
-      slidesToShow: 6,
-      swipeToSlide: true,
-      arrows: false,
-      dots: false,
-      focusOnSelect: true
-    };
 
     return (
       <div className="col-lg-6 rtl-text">

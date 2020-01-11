@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { getTotal, getCartProducts } from "../../../reducers";
 import { addToCart } from "../../../actions";
 import { getVisibleproducts } from "../../../services";
 import ProductListItem from "./product-list-item";
@@ -75,6 +74,7 @@ class ProductListing extends Component {
                 <div className="col-sm-12 text-center section-b-space mt-5 no-found">
                   <img
                     src={`${process.env.PUBLIC_URL}/assets/images/empty-search.jpg`}
+                    alt=""
                     className="img-fluid mb-4"
                   />
                   <h3>

@@ -25,7 +25,6 @@ export const getBrands = products => {
       uniqueBrands.push(tag);
     }
   });
-  console.log(uniqueBrands);
   return uniqueBrands;
 };
 
