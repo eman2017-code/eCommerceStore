@@ -85,7 +85,6 @@ class LeftSideBar extends Component {
                             alt=""
                             className="img-fluid"
                           ></img>
-                          {/* </Slider> */}
                         </div>
                         <DetailsWithPrice
                           symbol={symbol}

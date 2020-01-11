@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { addToCart } from "../../../actions";
 import { getVisibleproducts } from "../../../services";
 import ProductListItem from "./product-list-item";
+import Search from "../../pages/search";
 
 class ProductListing extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class ProductListing extends Component {
     const { products, addToCart, symbol } = this.props;
     return (
       <div>
+        <Search />
         <div className="product-wrapper-grid">
           <div className="container-fluid">
             {products.length > 0 ? (

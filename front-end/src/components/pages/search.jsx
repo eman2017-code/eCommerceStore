@@ -48,38 +48,6 @@ class Search extends Component {
                           </li>
                         </div>
                       </div>
-                      <br />
-                      <br />
-                      <div>
-                        <h4>
-                          <strong>Categories</strong>
-                        </h4>
-                        <input type="radio" name="category" />
-                        "insert category name here"
-                        <input type="radio" name="category" />
-                        "insert category name here"
-                        <br />
-                        <input type="radio" name="category" />
-                        "insert category name here"
-                        <input type="radio" name="category" />
-                        "insert category name here"
-                        <br />
-                        <input type="radio" name="category" />
-                        "insert category name here"
-                        <input type="radio" name="category" />
-                        "insert category name here"
-                        <br />
-                        <input type="radio" name="category" />
-                        "insert category name here"
-                        <input type="radio" name="category" />
-                        "insert category name here"
-                        <br />
-                        <input type="radio" name="category" />
-                        "insert category name here"
-                        <input type="radio" name="category" />
-                        "insert category name here"
-                        <br />
-                      </div>
                     </form>
                   </div>
                 </div>
