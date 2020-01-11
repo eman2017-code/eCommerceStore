@@ -41,7 +41,7 @@ class Filter extends Component {
   }
 
   render() {
-    const filteredBrands = this.props.filters.manufacturer;
+    const filteredBrands = this.props.manufacturer;
     //console.log(this.props.brands);
     return (
       <div className="collection-filter-block">
@@ -50,7 +50,7 @@ class Filter extends Component {
             <i className="fa fa-angle-left" aria-hidden="true"></i> back
           </span>
         </div>
-        <SlideToggle>
+        {/* <SlideToggle>
           {({ onToggle, setCollapsibleElement }) => (
             <div className="collection-collapse-block open">
               <h3 className="collapse-block-title" onClick={onToggle}>
@@ -69,6 +69,49 @@ class Filter extends Component {
                       onChange={value => this.props.filterPrice({ value })}
                     />
                   </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </SlideToggle> */}
+        <SlideToggle>
+          {({ onToggle, setCollapsibleElement }) => (
+            <div className="collection-collapse-block">
+              <h3 className="collapse-block-title" onClick={onToggle}>
+                manufacturer
+              </h3>
+              <div
+                className="collection-collapse-block-content"
+                ref={setCollapsibleElement}
+              >
+                <div className="collection-brand-filter">
+                  {this.props.manufacturer.map((manufacturer, index) => {
+                    return (
+                      <div
+                        className="custom-control custom-checkbox collection-filter-checkbox"
+                        key={index}
+                      >
+                        <input
+                          type="checkbox"
+                          onClick={e =>
+                            this.clickBrandHendle(e, filteredBrands)
+                          }
+                          value={manufacturer}
+                          defaultChecked={
+                            filteredBrands.includes(manufacturer) ? true : false
+                          }
+                          className="custom-control-input"
+                          id={manufacturer}
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor={manufacturer}
+                        >
+                          {manufacturer}
+                        </label>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
