@@ -60,13 +60,11 @@ class CollectionLeftSidebar extends Component {
                       <div className="row">
                         <div className="col-sm-12">
                           <div className="top-banner-wrapper">
-                            <a href="#">
-                              <img
-                                src={`${process.env.PUBLIC_URL}/assets/images/mega-menu/2.jpg`}
-                                className="img-fluid"
-                                alt=""
-                              />
-                            </a>
+                            <img
+                              src={`${process.env.PUBLIC_URL}/assets/images/mega-menu/2.jpg`}
+                              className="img-fluid"
+                              alt=""
+                            />
                           </div>
                           <div className="collection-product-wrapper">
                             <div className="product-top-filter">
