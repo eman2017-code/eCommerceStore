@@ -1,42 +1,35 @@
 import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types'
 import { getTrendingTagCollection } from "../../../services";
+
+import { getProductsByCategory } from '../../../actions'
 
 import SideImageItem from "../common/side-image-item";
 
 class Trending extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      electronics: []
-    };
+  constructor(props) {
+    super(props)
+    this.trendingCategories = ['cell phones', 'computers and tablets', 'headphones', 'appliances']
+
+    this.getAllTrendingProducts()
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
-    // this.getCategoryProducts();
+    
   }
 
-  // // returns top 8 products from whatever category tab was clicked on
-  // getCategoryProducts = async () => {
-  //   console.log('getCategoryProducts')
-  //   const categoryName = 'electronics'
-
-  //   try {
-  //     const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/search/category/' + categoryName + '/')
-
-  //     const parsedResponse = await response.json()
-  //     console.log('reponse:', parsedResponse)
-
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+  // makes a fetch call for each trending category to get the products 
+  getAllTrendingProducts = () => {
+    this.trendingCategories.forEach((category) => {
+      this.props.getProductsByCategory(category)
+    }) 
+  }
 
   render() {
-    const { titan, reebok, rolex, unisex, symbol } = this.props;
+    const { cellPhones, computersAndTablets, headphones, appliances, symbol } = this.props;
 
     return (
       <div>
@@ -54,15 +47,15 @@ class Trending extends Component {
                   </div>
                   <Tabs className="theme-tab">
                     <TabList className="tabs tab-title">
-                      <Tab>ELECTRONICS</Tab>
-                      <Tab>WATCHES</Tab>
-                      <Tab>FAMILY</Tab>
-                      <Tab>FASHION</Tab>
+                      <Tab>CELL PHONES</Tab>
+                      <Tab>COMPUTERS & TABLETS</Tab>
+                      <Tab>HEADPHONES</Tab>
+                      <Tab>APPLIANCES</Tab>
                     </TabList>
                     <div className="tab-content-cls">
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {unisex.map((item, i) => (
+                          {cellPhones.map((item, i) => (
                             <div className="tab-box" key={i}>
                               <SideImageItem product={item} symbol={symbol} />
                             </div>
@@ -71,7 +64,7 @@ class Trending extends Component {
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {titan.map((item, i) => (
+                          {computersAndTablets.map((item, i) => (
                             <div className="tab-box" key={i}>
                               <SideImageItem product={item} symbol={symbol} />
                             </div>
@@ -80,7 +73,7 @@ class Trending extends Component {
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {reebok.map((item, i) => (
+                          {headphones.map((item, i) => (
                             <div className="tab-box" key={i}>
                               <SideImageItem product={item} symbol={symbol} />
                             </div>
@@ -89,7 +82,7 @@ class Trending extends Component {
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {rolex.map((item, i) => (
+                          {appliances.map((item, i) => (
                             <div className="tab-box" key={i}>
                               <SideImageItem product={item} symbol={symbol} />
                             </div>
@@ -108,19 +101,21 @@ class Trending extends Component {
   }
 }
 
+Trending.propTypes = {
+  getProductsByCategory: PropTypes.func.isRequired
+}
+
 const mapStateToProps = (state, ownProps) => ({
-  titan: getTrendingTagCollection(state.data.products, ownProps.type, "titan"),
-  reebok: getTrendingTagCollection(
-    state.data.products,
-    ownProps.type,
-    "reebok"
-  ),
-  rolex: getTrendingTagCollection(state.data.products, ownProps.type, "rolex"),
-  unisex: getTrendingTagCollection(
-    state.data.products,
-    ownProps.type,
-    "unisex"
-  ),
+  computersAndTablets: state.data.computersAndTablets,
+  cellPhones: state.data.cellPhones,
+  headphones: state.data.headphones,
+  appliances: state.data.appliances,
   symbol: state.data.symbol
-});
-export default connect(mapStateToProps)(Trending);
+})
+
+
+export default connect(mapStateToProps, { getProductsByCategory })(Trending)
+
+
+
+
