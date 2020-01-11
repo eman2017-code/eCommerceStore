@@ -33,28 +33,6 @@ router.post("/", adminRequired, async (req, res, next) => {
   }
 });
 
-// Show Route
-// this route returns data for a single product
-router.get("/:productId/", async (req, res, next) => {
-  const clientData = req.body;
-
-  try {
-    const foundProduct = await Product.findOne({
-      _id: req.params.productId
-    }).populate("postedBy", "-password");
-
-    res.json({
-      data: foundProduct,
-      status: {
-        code: 200,
-        message: "Successfully found product"
-      }
-    });
-  } catch (error) {
-    next(error);
-  }
-});
-
 // searc route for the products
 router.post("/search", async (req, res, next) => {
   try {
