@@ -5,7 +5,7 @@ const CartHeader = ({ item, total, symbol, removeFromCart }) => (
   <li>
     <div className="media">
       <Link to={`${process.env.PUBLIC_URL}/product/${item.id}`}>
-        <img alt="" className="mr-3" src={`${item.pictures[0]}`} />
+        <img alt="" className="mr-3" src={`${item.picture}`} />
       </Link>
       <div className="media-body">
         <Link to={`${process.env.PUBLIC_URL}/product/${item.id}`}>

@@ -44,14 +44,7 @@ class cartComponent extends Component {
                               <Link
                                 to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.id}`}
                               >
-                                <img
-                                  src={
-                                    item.variants
-                                      ? item.variants[0].images
-                                      : item.pictures[0]
-                                  }
-                                  alt=""
-                                />
+                                <img src={item.picture} alt="" />
                               </Link>
                             </td>
                             <td>
