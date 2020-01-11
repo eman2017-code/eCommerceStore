@@ -67,14 +67,13 @@ router.get("/category/:categoryName/", async (req, res, next) => {
       index: "store-products-catalog2-cats",
       body: {
         query: {
-          bool: {
-            filter: {
-              term: { "message.category.name": categoryName }
-            }
+          multi_match: {
+            query: categoryName,
+            fields: ['message.category.name^2', 'message.name']
           }
         }
       }
-    });
+    })
 
     res.json({
       data: results.body.hits.hits,
