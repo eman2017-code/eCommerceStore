@@ -3,37 +3,19 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { connect } from "react-redux";
 import { getTrendingTagCollection } from "../../../services";
 
+import { getProductsByCategory } from '../../../actions'
+
 import SideImageItem from "../common/side-image-item";
 
 class Trending extends Component {
   constructor(props) {
-    super(props);
-
-    this.state = {
-      electronics: []
-    };
+    super(props)
   }
 
   componentDidMount() {
     console.log("componentDidMount");
-    // this.getCategoryProducts();
+    this.props.getProductsByCategory('electronics')
   }
-
-  // // returns top 8 products from whatever category tab was clicked on
-  // getCategoryProducts = async () => {
-  //   console.log('getCategoryProducts')
-  //   const categoryName = 'electronics'
-
-  //   try {
-  //     const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/search/category/' + categoryName + '/')
-
-  //     const parsedResponse = await response.json()
-  //     console.log('reponse:', parsedResponse)
-
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
 
   render() {
     const { titan, reebok, rolex, unisex, symbol } = this.props;
@@ -109,6 +91,8 @@ class Trending extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
+  electronics: state.data.electronics,
+
   titan: getTrendingTagCollection(state.data.products, ownProps.type, "titan"),
   reebok: getTrendingTagCollection(
     state.data.products,
@@ -123,4 +107,4 @@ const mapStateToProps = (state, ownProps) => ({
   ),
   symbol: state.data.symbol
 });
-export default connect(mapStateToProps)(Trending);
+export default connect(mapStateToProps, { getProductsByCategory })(Trending);

@@ -7,7 +7,8 @@ import {
 const initialState = {
   products: [],
   symbol: "$",
-  product_details: []
+  product_details: [],
+  electronics: []
 };
 
 const productReducer = (state = initialState, action) => {

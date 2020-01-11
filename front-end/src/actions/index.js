@@ -20,6 +20,12 @@ export const getAllProducts = () => async dispatch => {
   return products;
 };
 
+export const getProductsByCategory = (category) => async dispatch => {
+  dispatch(fetchProductsBegin())
+  const products = await shop.getProductsByCategory(category)
+  console.log('category products:', products)
+}
+
 export const fetchSingleProduct = productId => ({
   type: types.FETCH_SINGLE_PRODUCT,
   productId
