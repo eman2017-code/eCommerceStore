@@ -10,6 +10,8 @@ import { removeFromCart, incrementQty, decrementQty } from "../../actions";
 class cartComponent extends Component {
   render() {
     const { cartItems, symbol, total } = this.props;
+    console.log("this.props");
+    console.log(this.props);
     return (
       <div>
         {/*SEO Support*/}
@@ -42,14 +44,14 @@ class cartComponent extends Component {
                           <tr>
                             <td>
                               <Link
-                                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.id}`}
+                                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.sku}`}
                               >
-                                <img src={item.picture} alt="" />
+                                <img src={item.image} alt="image picture" />
                               </Link>
                             </td>
                             <td>
                               <Link
-                                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.id}`}
+                                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.sku}`}
                               >
                                 {item.name}
                               </Link>
@@ -68,15 +70,7 @@ class cartComponent extends Component {
                                 </div>
                                 <div className="col-xs-3">
                                   <h2 className="td-color">
-                                    {symbol}
-                                    {item.price -
-                                      (item.price * item.discount) / 100}
-                                  </h2>
-                                </div>
-                                <div className="col-xs-3">
-                                  <h2 className="td-color">
                                     <button
-                                      // href="#"
                                       className="icon"
                                       onClick={() =>
                                         this.props.removeFromCart(item)
@@ -91,8 +85,7 @@ class cartComponent extends Component {
                             <td>
                               <h2>
                                 {symbol}
-                                {item.price -
-                                  (item.price * item.discount) / 100}
+                                {item.price}
                               </h2>
                             </td>
                             <td>

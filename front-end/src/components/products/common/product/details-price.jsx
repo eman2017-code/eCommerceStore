@@ -35,29 +35,25 @@ class DetailsWithPrice extends Component {
   };
 
   plusQty = () => {
-    // if (this.props.item.stock >= this.state.quantity) {
     this.setState({ quantity: this.state.quantity + 1 });
-    // } else {
-    //   this.setState({ stock: "Out of Stock !" });
-    // }
   };
 
-  // update cart route
-  updateQuantityOfItem = async productId => {
-    const response = await fetch(
-      process.env.REACT_APP_API_URL +
-        "/api/v1/cart-items/" +
-        {
-          method: "PUT",
-          credentials: "include",
-          body: JSON.stringify(productId),
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
-    );
-    const parsedResponse = response.json();
-  };
+  // // update cart route
+  // updateQuantityOfItem = async productId => {
+  //   const response = await fetch(
+  //     process.env.REACT_APP_API_URL +
+  //       "/api/v1/cart-items/" +
+  //       {
+  //         method: "PUT",
+  //         credentials: "include",
+  //         body: JSON.stringify(productId),
+  //         headers: {
+  //           "Content-Type": "application/json"
+  //         }
+  //       }
+  //   );
+  //   const parsedResponse = response.json();
+  // };
 
   changeQty = e => {
     this.setState({ quantity: parseInt(e.target.value) });
