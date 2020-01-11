@@ -5,26 +5,6 @@ const adminRequired = require("../middleware/users/adminRequired.js");
 
 const router = express.Router();
 
-
-// Index Route
-// returns all of the products
-router.get('/', async (req, res, next) => {
-  try {
-    const foundProducts = await Product.find({}).populate('postedBy', '-password')
-
-    res.json({
-      data: foundProducts,
-      status: {
-        code: 200,
-        message: "Successfully loaded all products"
-      }
-    })
-  } catch (error) {
-    next(error)
-  }
-})
-
-
 // Create Route
 // this route is where the admin can create a new product
 router.post("/", adminRequired, async (req, res, next) => {
@@ -37,7 +17,6 @@ router.post("/", adminRequired, async (req, res, next) => {
 
     // if the product has any categories added
     if (clientData.category) {
-      
       // adds the newly created product to the products array in whatever categories where specified
       await newProduct.addProductToCategories(clientData.category);
     }
@@ -54,7 +33,6 @@ router.post("/", adminRequired, async (req, res, next) => {
   }
 });
 
-
 // Show Route
 // this route returns data for a single product
 router.get("/:productId/", async (req, res, next) => {
@@ -62,8 +40,8 @@ router.get("/:productId/", async (req, res, next) => {
 
   try {
     const foundProduct = await Product.findOne({
-     '_id': req.params.productId
-   }).populate('postedBy', '-password')
+      _id: req.params.productId
+    }).populate("postedBy", "-password");
 
     res.json({
       data: foundProduct,
@@ -76,7 +54,6 @@ router.get("/:productId/", async (req, res, next) => {
     next(error);
   }
 });
-
 
 // searc route for the products
 router.post("/search", async (req, res, next) => {
