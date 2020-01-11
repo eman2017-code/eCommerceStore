@@ -14,6 +14,8 @@ class ProductListItem extends Component {
       quantity: 1,
       image: props.product.image
     };
+    console.log("this.state");
+    console.log(this.state);
   }
 
   onOpenModal = () => {
@@ -59,21 +61,11 @@ class ProductListItem extends Component {
       <div className="product-box">
         <div className="img-wrapper">
           <div className="front">
-            {/* <Link
+            <Link
               to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
             >
-              <img
-                src={
-                  product.variants
-                    ? this.state.image
-                      ? this.state.image
-                      : product.variants[0].images
-                    : product.pictures[0]
-                }
-                className="img-fluid"
-                alt=""
-              />
-            </Link> */}
+              <img src={this.image} className="img-fluid" alt="" />
+            </Link>
           </div>
           <div className="cart-info cart-wrap">
             <button
@@ -107,22 +99,6 @@ class ProductListItem extends Component {
                 {product.price}
               </span>
             </h4>
-            {product.variants ? (
-              <ul className="color-variant">
-                {product.variants.map((vari, i) => {
-                  return (
-                    <li
-                      className={vari.color}
-                      key={i}
-                      title={vari.color}
-                      onClick={() => this.onClickHandle(vari.images)}
-                    ></li>
-                  );
-                })}
-              </ul>
-            ) : (
-              ""
-            )}
           </div>
         </div>
         <Modal open={open} onClose={this.onCloseModal} center>
@@ -135,57 +111,26 @@ class ProductListItem extends Component {
                 <div className="row">
                   <div className="col-lg-6  col-xs-12">
                     <div className="quick-view-img">
-                      <img src={this.image} alt="" className="img-fluid" />
+                      <img
+                        src={this.props.product.image}
+                        alt="product image"
+                        className="img-fluid"
+                      />
                     </div>
                   </div>
                   <div className="col-lg-6 rtl-text">
                     <div className="product-right">
+                      <img
+                        src={this.props.product.image}
+                        alt=""
+                        className="img-fluid"
+                      />
                       <h2> {product.name} </h2>
-                      {/* <h3>
-                        {symbol}
-                        {product.price -
-                          (product.price * product.discount) / 100}
-                        <del>
-                          <span className="money">
-                            {symbol}
-                            {product.price}
-                          </span>
-                        </del>
-                      </h3> */}
-                      {/* {product.variants ? (
-                        <ul className="color-variant">
-                          {product.variants.map((vari, i) => (
-                            <li
-                              className={vari.color}
-                              key={i}
-                              title={vari.color}
-                              onClick={() => this.onClickHandle(vari.images)}
-                            ></li>
-                          ))}
-                        </ul>
-                      ) : (
-                        ""
-                      )} */}
                       <div className="border-product">
                         <h6 className="product-title">product details</h6>
                         <p>{product.shortDetails}</p>
                       </div>
                       <div className="product-description border-product">
-                        {/* {product.size ? (
-                          <div className="size-box">
-                            <ul>
-                              {product.size.map((size, i) => {
-                                return (
-                                  <li key={i}>
-                                    <li href="#">{size}</li>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </div>
-                        ) : (
-                          ""
-                        )} */}
                         <h6 className="product-title">quantity</h6>
                         <div className="qty-box">
                           <div className="input-group">
