@@ -10,29 +10,6 @@ const client = new Client({ node: "http://34.68.86.219:9200" });
 // handling errors
 const { errors } = require("@elastic/elasticsearch");
 
-// // load product listing page route -- index route
-// router.get("/all-products", async (req, res, next) => {
-//   try {
-//     const results = await client.search({
-//       index: "store-products-catalog2-cats",
-//       from: 1,
-//       size: 1000,
-//       body: {}
-//     });
-
-//     // send success if all data is returned
-//     res.json({
-//       data: results.body.hits.hits,
-//       status: {
-//         code: 200,
-//         message: "Loaded all products"
-//       }
-//     });
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
 // index route for products
 router.get("/all-products", async (req, res, next) => {
   try {
@@ -70,7 +47,7 @@ router.get("/all-products", async (req, res, next) => {
 
     // if success
     res.json({
-      data: results,
+      data: results.body.hits.hits,
       status: {
         code: 200,
         message: "Success loading products"
