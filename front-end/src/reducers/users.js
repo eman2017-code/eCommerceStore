@@ -2,21 +2,25 @@ import { LOGIN, REGISTER, LOGOUT } from "../constants/ActionTypes"
 
 const initialState = {
 	isLoggedIn: false,
-	userId: "",
+	userInfo: "",
 	cartId: ""
 }
 
 export default function usersReducer(state=initialState, action) {
-	switch (action) {
+	switch (action.type) {
 
 		case LOGIN:
-			console.log('LOGIN action')
+			return {
+				...state,
+				isLoggedIn: true,
+				userInfo: action.userInfo
+			}
 
 		case REGISTER:
 			console.log('REGISTER action')
 
 		case LOGOUT:
-			console.log('REGISTER action')
+			console.log('LOGOUT action')
 
 		default:
 			console.log('default action')

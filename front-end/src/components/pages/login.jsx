@@ -35,13 +35,11 @@ class Login extends Component {
   render() {
 
     // if the user is logged in
-    if (this.state.isLoggedIn) {
+    if (this.props.isLoggedIn) {
       return (
         <Redirect
           to={{
             pathname: "/all-products",
-            // passing props
-            state: { loggedInUser: this.state.loggedInUser }
           }}
         />
       );

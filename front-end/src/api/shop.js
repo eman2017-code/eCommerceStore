@@ -16,9 +16,8 @@ export default {
           "Content-Type": "application/json"
         }
       })
-
       const parsedResponse = await response.json()
-      console.log('login response:', parsedResponse)
+      return parsedResponse
 
     } catch (error) {
       next(error)

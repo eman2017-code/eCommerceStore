@@ -5,9 +5,22 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 
-// logs in a user
+// attempts to log in a user
 export const loginUser = loginInfo => async dispatch => {
-  await shop.loginUser(loginInfo)
+  const loginResponse = await shop.loginUser(loginInfo)
+  console.log('loginResponse:', loginResponse)
+
+  const userInfo = loginResponse.data
+
+  // if the user successfully logged in
+  if (loginResponse.status.code === 200) {
+    dispatch({
+      type: types.LOGIN,
+      userInfo: userInfo 
+    })
+  } else {
+    toast.error(loginResponse.status.message)
+  }
 } 
 
 export const fetchProductsBegin = () => ({
