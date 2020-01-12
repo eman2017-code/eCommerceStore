@@ -4,6 +4,12 @@ import * as types from "../constants/ActionTypes";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
+
+// logs in a user
+export const loginUser = loginInfo => async dispatch => {
+  await shop.loginUser(loginInfo)
+} 
+
 export const fetchProductsBegin = () => ({
   type: types.FETCH_PRODUCTS_BEGIN
 });

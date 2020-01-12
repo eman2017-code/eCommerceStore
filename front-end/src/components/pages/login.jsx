@@ -2,72 +2,40 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Breadcrumb from "../common/breadcrumb";
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { loginUser } from '../../actions'
+
 
 class Login extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       email: "",
-      password: "",
-      loggedIn: false,
-      loggedInUser: null
-    };
-  }
-
-  // login route
-  login = async loginInfo => {
-    // fetch call to the api
-    const response = await fetch(
-      process.env.REACT_APP_API_URL + "/api/v1/users/login",
-      {
-        method: "POST",
-        credentials: "include",
-        body: JSON.stringify(loginInfo),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
-    );
-    // parse response to send back json
-    const parsedLoginResponse = await response.json();
-    // if respoinse is 201
-    if (response.ok) {
-      this.setState({
-        // log the user in
-        loggedIn: true,
-        // get the data for the logged in user
-        loggedInUser: parsedLoginResponse.data
-      });
-    } else {
-      console.log(parsedLoginResponse);
+      password: ""
     }
-  };
+  }
 
   // handle change of the user input
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
-  };
+  }
 
   // handle submit
   handleSubmit = e => {
-    e.preventDefault();
-    this.loginUser();
-  };
+    e.preventDefault()
 
-  // method to actually login user
-  loginUser = () => {
-    this.login({
-      email: this.state.email,
-      password: this.state.password
-    });
-  };
+    // makes fetch call to try to log in the user
+    this.props.loginUser(this.state)
+  }
 
   render() {
+
     // if the user is logged in
-    if (this.state.loggedIn === true) {
+    if (this.state.isLoggedIn) {
       return (
         <Redirect
           to={{
@@ -78,6 +46,7 @@ class Login extends Component {
         />
       );
     }
+
     return (
       <div>
         <Helmet>
@@ -146,4 +115,17 @@ class Login extends Component {
   }
 }
 
-export default Login;
+
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
+}
+
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn
+})
+
+export default connect(mapStateToProps, { loginUser })(Login)
+
+
+
