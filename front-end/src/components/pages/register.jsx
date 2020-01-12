@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
 import Breadcrumb from "../common/breadcrumb";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions';
+
 
 class Register extends Component {
   constructor(props) {
@@ -167,4 +171,18 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  registerUser: PropTypes.func
+}
+
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn
+})
+
+
+export default connect(mapStateToProps, { registerUser })(Register);
+
+
+
+

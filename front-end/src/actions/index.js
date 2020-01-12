@@ -5,6 +5,23 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 
+// registers a new user
+export const registerUser = registrationInfo => async dispatch => {
+  const registrationResponse = await shop.registerUser(registrationInfo)
+  const userInfo = registrationResponse.data
+
+  if (registrationResponse.state.code === 201) {
+    dispatch({
+      type: types.LOGIN,
+      userInfo: userInfo
+    })
+    toast.success(registrationResponse.status.message)
+  } else {
+    toast.error(registrationResponse.status.message)
+  }
+}
+
+
 // attempts to log in a user
 export const loginUser = loginInfo => async dispatch => {
   const loginResponse = await shop.loginUser(loginInfo)

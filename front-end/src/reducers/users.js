@@ -19,8 +19,8 @@ export default function usersReducer(state=initialState, action) {
 			console.log('REGISTER action')
 
 		case LOGOUT:
-			console.log('LOGOUT action')
 			return {
+				...state,
 				isLoggedIn: false,
 				userInfo: {}
 			}
