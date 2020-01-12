@@ -64,8 +64,8 @@ class TopBarDark extends Component {
                       <li>
                         Hey, { userInfo.firstName }
                       </li>
-                      <li>
-                        <a onClick={ logoutUser }>Logout</a>
+                      <li onClick={ logoutUser }>
+                        Log out
                       </li>
                     </ul>
 

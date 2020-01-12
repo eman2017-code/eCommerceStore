@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { withTranslate } from "react-redux-multilingual";
 
+// for pop up notifications
+import { ToastContainer } from 'react-toastify';
+
 // Header Components
 import HeaderOne from "./common/headers/header-one";
 
@@ -8,9 +11,12 @@ import HeaderOne from "./common/headers/header-one";
 import FooterOne from "./common/footers/footer-one";
 
 class App extends Component {
+  
   render() {
     return (
+
       <div>
+      	<ToastContainer autoClose={5000} />
         <HeaderOne logoName={"layout4/logo.png"} />
         {this.props.children}
         <FooterOne logoName={"layout4/logo.png"} />

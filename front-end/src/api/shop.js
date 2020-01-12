@@ -36,8 +36,6 @@ export default {
         }
       })
       const parsedResponse = await response.json()
-      console.log('logout response:', parsedResponse)
-
       return parsedResponse
 
     } catch (error) {
