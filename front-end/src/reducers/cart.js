@@ -4,12 +4,13 @@ import {
   DECREMENT_QTY
 } from "../constants/ActionTypes";
 
-export default function cartReducer(
-  state = {
-    cart: []
-  },
-  action
-) {
+
+const initialState = {
+  carts: []
+}
+
+
+export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TO_CART:
       const productId = action.product.id;
