@@ -1,8 +1,40 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class TopBarDark extends Component {
+
+  // determines what links to show under the 'My Account' dropdown
+  renderMyAccountLinks = () => {
+
+    if (this.props.isLoggedIn) {
+      return (
+        <ul className="onhover-show-div">
+          <li>
+            <Link>Logout</Link>
+          </li>
+        </ul>
+      )
+
+    } else {
+      return (
+        <ul className="onhover-show-div">
+          <li>
+            <Link to="/pages/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/pages/register">Register</Link>
+          </li>
+        </ul>
+      )
+    } 
+  }
+
   render() {
+
+    const { isLoggedIn, userInfo } = this.props
+
     return (
       <div className="top-header top-header-dark3">
         <div className="container">
@@ -21,15 +53,33 @@ class TopBarDark extends Component {
             <div className="col-lg-6 text-right">
               <ul className="header-dropdown">
                 <li className="onhover-dropdown mobile-account">
-                  <i className="fa fa-user" aria-hidden="true"></i> My Account
-                  <ul className="onhover-show-div">
-                    <li>
-                      <Link to="/pages/login">Login</Link>
-                    </li>
-                    <li>
-                      <Link to="/pages/register">Register</Link>
-                    </li>
-                  </ul>
+                  <i className="fa fa-user" aria-hidden="true"></i>Account
+                  
+                  {
+                    (isLoggedIn) 
+                    ?
+
+                    <ul className="onhover-show-div">
+                      <li>
+                        Hey, { userInfo.firstName }
+                      </li>
+                      <li>
+                        <Link to="">Logout</Link>
+                      </li>
+                    </ul>
+
+                    :
+
+                    <ul className="onhover-show-div">
+                      <li>
+                        <Link to="/pages/login">Login</Link>
+                      </li>
+                      <li>
+                        <Link to="/pages/register">Register</Link>
+                      </li>
+                    </ul>
+                  }
+
                 </li>
               </ul>
             </div>
@@ -40,4 +90,21 @@ class TopBarDark extends Component {
   }
 }
 
-export default TopBarDark;
+TopBarDark.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  userInfo: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn,
+  userInfo: state.user.userInfo
+});
+
+
+export default connect(mapStateToProps, null)(TopBarDark);
+
+
+
+
+
+
