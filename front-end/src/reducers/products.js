@@ -63,7 +63,6 @@ const productReducer = (state = initialState, action) => {
         }, []);
         return { ...state, product_details: singleItem };
       }
-      break;
 
     case CHANGE_CURRENCY:
       return { ...state, symbol: action.symbol };

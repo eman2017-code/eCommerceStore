@@ -33,6 +33,7 @@ export const getProductsByCategory = category => async dispatch => {
   dispatch(receiveCategoryProducts(products, category));
 };
 
+// get individual product
 export const fetchSingleProduct = productId => ({
   type: types.FETCH_SINGLE_PRODUCT,
   productId

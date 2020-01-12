@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 class SideImageItem extends Component {
   constructor(props) {
-    console.log("props in SideImageItem");
-    console.log(props.product);
     super(props);
 
     this.state = {
@@ -17,42 +15,33 @@ class SideImageItem extends Component {
   }
 
   render() {
-    const { symbol } = this.props;
+    const { product, symbol } = this.props;
     console.log("this.props in SideImageItem");
     console.log(this.props);
 
     return (
       <div className="product-box2">
         <div className="media">
-          {/* <Link
-            to={`${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.product.sku}`}
-          > */}
           <Link
-            to={{
-              // pathname: {`${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.product.sku}`},
-              pathname: "/left-sidebar/product/" + this.props.product.sku,
-              state: {
-                item: this.props.product
-              }
-            }}
+            to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
           >
             <img
-              src={this.props.product.image}
+              src={product.image}
               className="img-fluid lazyload bg-img"
-              alt={this.props.name}
+              alt={product.name}
             />
           </Link>
           <div className="media-body align-self-center">
             <div>
               <Link
-                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.product.sku}`}
+                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
               >
-                <h6>{this.props.product.name}</h6>
+                <h6>{product.name}</h6>
               </Link>
 
               <h4>
                 {symbol}
-                {this.props.product.price}
+                {product.price}
               </h4>
             </div>
           </div>
