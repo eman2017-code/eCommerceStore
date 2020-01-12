@@ -9,6 +9,8 @@ import { filterBrand, filterColor, filterPrice } from "../../../actions";
 
 class Filter extends Component {
   constructor(props) {
+    console.log("props in filter component");
+    console.log(props);
     super(props);
 
     this.state = {
@@ -49,7 +51,7 @@ class Filter extends Component {
         </div>
 
         {/* price filter */}
-        <SlideToggle>
+        {/* <SlideToggle>
           {({ onToggle, setCollapsibleElement }) => (
             <div className="collection-collapse-block open">
               <h3 className="collapse-block-title" onClick={onToggle}>
@@ -58,7 +60,7 @@ class Filter extends Component {
               <div
                 className="collection-collapse-block-content block-price-content"
                 ref={setCollapsibleElement}
-              >
+              > 
                 <div className="collection-brand-filter">
                   <div className="custom-control custom-checkbox collection-filter-checkbox">
                     <InputRange
@@ -72,7 +74,7 @@ class Filter extends Component {
               </div>
             </div>
           )}
-        </SlideToggle>
+        </SlideToggle> */}
 
         {/* manufacturer filter here  */}
         <SlideToggle>

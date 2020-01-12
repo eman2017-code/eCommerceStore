@@ -1,17 +1,19 @@
 import * as types from "../constants/ActionTypes";
 
 const filtersReducerDefaultState = {
-  manufacturer: ["nike", "caprese", "lifestyle"],
+  brand: ["nike", "caprese", "lifestyle"],
   value: { min: 250, max: 950 },
   sortBy: ""
 };
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
+  // console.log('Action Result');
+  // console.log(action);
   switch (action.type) {
     case types.FILTER_BRAND:
       return {
         ...state,
-        manufacturer: action.manufacturer
+        brand: action.brand
       };
     case types.FILTER_COLOR:
       return {
