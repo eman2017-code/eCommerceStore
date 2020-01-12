@@ -42,14 +42,13 @@ class HeaderOne extends Component {
       document.body.scrollTop ||
       0;
 
-    // if (number >= 300) {
-    if (window.innerWidth < 576) {
+    if (number >= 300) {
+      if (window.innerWidth < 576) {
+        document.getElementById("sticky").classList.remove("fixed");
+      } else document.getElementById("sticky").classList.add("fixed");
+    } else {
       document.getElementById("sticky").classList.remove("fixed");
-    } else document.getElementById("sticky").classList.add("fixed");
-    // }
-    // else {
-    //   document.getElementById("sticky").classList.remove("fixed");
-    // }
+    }
   };
 
   changeLanguage(lang) {

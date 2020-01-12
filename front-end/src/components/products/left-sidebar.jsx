@@ -11,13 +11,19 @@ import DetailsTopTabs from "./common/details-top-tabs";
 import { addToCart, addToCartUnsafe } from "../../actions";
 
 class LeftSideBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    console.log("props in LeftSideBar");
+    console.log(props);
+
+    super(props);
     this.state = {
       open: false,
       nav1: null,
-      nav2: null
+      nav2: null,
+      item: this.props.location.state
     };
+    console.log("this.state in leftSideBar");
+    console.log(this.state);
   }
 
   componentDidMount() {
@@ -112,9 +118,18 @@ class LeftSideBar extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("exported state in leftSideBar");
+  console.log(state);
+  console.log("(ownProps)");
+  console.log(ownProps);
+  // convert string to number so they can === each other
   let productId = Number(ownProps.match.params.sku);
   return {
     item: state.data.products.find(el => el.sku === productId),
+    // item: state.data.products.find(function(el) {
+    //   console.log("el");
+    //   console.log(el.sku);
+    // }),
     symbol: state.data.symbol
   };
 };

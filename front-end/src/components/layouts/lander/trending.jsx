@@ -18,8 +18,6 @@ class Trending extends Component {
     ];
 
     this.getAllTrendingProducts();
-    console.log("this.getAllTrendingProducts()");
-    console.log(this.getAllTrendingProducts());
   }
 
   // makes a fetch call for each trending category to get the products
@@ -37,6 +35,9 @@ class Trending extends Component {
       appliances,
       symbol
     } = this.props;
+
+    console.log("this.props in Trending Component");
+    console.log(this.props);
 
     return (
       <div>

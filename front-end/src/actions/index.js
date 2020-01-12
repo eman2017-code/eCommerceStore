@@ -1,6 +1,6 @@
 import shop from "../api/shop";
 import * as types from "../constants/ActionTypes";
-// import store from "../store";
+import store from "../store";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
