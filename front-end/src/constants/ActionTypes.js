@@ -1,6 +1,7 @@
 // User 
 export const LOGIN = "LOGIN";
 export const REGISTER = "REGISTER";
+export const LOGOUT = "LOGOUT";
 
 // Get Products
 export const FETCH_PRODUCTS_BEGIN = "FETCH_PRODUCTS_BEGIN";
