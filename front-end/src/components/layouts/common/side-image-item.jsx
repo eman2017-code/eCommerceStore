@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 class SideImageItem extends Component {
   constructor(props) {
+    console.log("props in SideImageItem component");
+    console.log(props);
     super(props);
 
     this.state = {
@@ -25,18 +27,19 @@ class SideImageItem extends Component {
       <div className="product-box2">
         <div className="media">
           <Link
-            to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+            to={`${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.product.sku}`}
           >
             <img
-              src={ product.image }
+              src={product.image}
               className="img-fluid lazyload bg-img"
-              alt={ product.name } />
+              alt={product.name}
+            />
           </Link>
           <div className="media-body align-self-center">
             <div>
               <div className="rating">{RatingStars}</div>
               <Link
-                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.product.sku}`}
               >
                 <h6>{product.name}</h6>
               </Link>
@@ -45,7 +48,6 @@ class SideImageItem extends Component {
                 {symbol}
                 {product.price}
               </h4>
-
 
               {product.variants ? (
                 <ul className="color-variant">
