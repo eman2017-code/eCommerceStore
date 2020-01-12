@@ -6,17 +6,38 @@ import _products from "./data.json";
 
 export default {
 
-  // calls the api and attempts to login the user
+  // makes call to the api to attempt to login the user
   loginUser: async (loginInfo, next) => {
     try {
       const response = await fetch(process.env.REACT_APP_API_URL + "/api/v1/users/login/", {
         method: "POST",
         body: JSON.stringify(loginInfo),
+        credentials: "include",
         headers: {
           "Content-Type": "application/json"
         }
       })
       const parsedResponse = await response.json()
+      return parsedResponse
+
+    } catch (error) {
+      next(error)
+    }
+  },
+
+  // makes call to teh api to logout the user
+  logoutUser: async (next) => {
+    try {
+      const response = await fetch(process.env.REACT_APP_API_URL + "/api/v1/users/logout/", {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      const parsedResponse = await response.json()
+      console.log('logout response:', parsedResponse)
+
       return parsedResponse
 
     } catch (error) {

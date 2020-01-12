@@ -8,8 +8,6 @@ import "react-toastify/dist/ReactToastify.min.css";
 // attempts to log in a user
 export const loginUser = loginInfo => async dispatch => {
   const loginResponse = await shop.loginUser(loginInfo)
-  console.log('loginResponse:', loginResponse)
-
   const userInfo = loginResponse.data
 
   // if the user successfully logged in
@@ -22,6 +20,20 @@ export const loginUser = loginInfo => async dispatch => {
     toast.error(loginResponse.status.message)
   }
 } 
+
+// logs out a user 
+export const logoutUser = () => async dispatch => {
+  const logoutResponse = await shop.logoutUser()
+  console.log('logout response in action:', logoutResponse)
+
+  if (logoutResponse.status.code === 200) {
+    dispatch({
+      type: types.LOGOUT
+    })
+  } else {
+    toast.error('Something went wrong')
+  }
+}
 
 export const fetchProductsBegin = () => ({
   type: types.FETCH_PRODUCTS_BEGIN

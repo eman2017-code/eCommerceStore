@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { logoutUser } from '../../../../actions';
 
 class TopBarDark extends Component {
 
@@ -33,7 +34,7 @@ class TopBarDark extends Component {
 
   render() {
 
-    const { isLoggedIn, userInfo } = this.props
+    const { logoutUser, isLoggedIn, userInfo } = this.props
 
     return (
       <div className="top-header top-header-dark3">
@@ -64,7 +65,7 @@ class TopBarDark extends Component {
                         Hey, { userInfo.firstName }
                       </li>
                       <li>
-                        <Link to="">Logout</Link>
+                        <a onClick={ logoutUser }>Logout</a>
                       </li>
                     </ul>
 
@@ -91,8 +92,9 @@ class TopBarDark extends Component {
 }
 
 TopBarDark.propTypes = {
+  logoutUser: PropTypes.func, 
   isLoggedIn: PropTypes.bool.isRequired,
-  userInfo: PropTypes.object.isRequired
+  userInfo: PropTypes.object
 }
 
 const mapStateToProps = state => ({
@@ -101,7 +103,7 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, null)(TopBarDark);
+export default connect(mapStateToProps, { logoutUser })(TopBarDark);
 
 
 
