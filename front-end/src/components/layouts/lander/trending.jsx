@@ -10,6 +10,8 @@ import SideImageItem from "../common/side-image-item";
 class Trending extends Component {
   constructor(props) {
     super(props);
+    console.log("props in trending");
+    console.log(props);
     this.trendingCategories = [
       "cell phones",
       "computers and tablets",
