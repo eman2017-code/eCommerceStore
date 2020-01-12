@@ -10,8 +10,6 @@ import SideImageItem from "../common/side-image-item";
 class Trending extends Component {
   constructor(props) {
     super(props);
-    console.log("props in trending");
-    console.log(props);
     this.trendingCategories = [
       "cell phones",
       "computers and tablets",
@@ -21,8 +19,6 @@ class Trending extends Component {
 
     this.getAllTrendingProducts();
   }
-
-  componentDidMount() {}
 
   // makes a fetch call for each trending category to get the products
   getAllTrendingProducts = () => {
@@ -39,6 +35,9 @@ class Trending extends Component {
       appliances,
       symbol
     } = this.props;
+
+    console.log("this.props in Trending Component");
+    console.log(this.props);
 
     return (
       <div>
@@ -64,36 +63,48 @@ class Trending extends Component {
                     <div className="tab-content-cls">
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {cellPhones.map((item, i) => (
+                          {cellPhones.map((product, i) => (
                             <div className="tab-box" key={i}>
-                              <SideImageItem product={item} symbol={symbol} />
+                              <SideImageItem
+                                product={product}
+                                symbol={symbol}
+                              />
                             </div>
                           ))}
                         </div>
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {computersAndTablets.map((item, i) => (
+                          {computersAndTablets.map((product, i) => (
                             <div className="tab-box" key={i}>
-                              <SideImageItem product={item} symbol={symbol} />
+                              <SideImageItem
+                                product={product}
+                                symbol={symbol}
+                              />
                             </div>
                           ))}
                         </div>
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {headphones.map((item, i) => (
+                          {headphones.map((product, i) => (
                             <div className="tab-box" key={i}>
-                              <SideImageItem product={item} symbol={symbol} />
+                              <SideImageItem
+                                product={product}
+                                symbol={symbol}
+                              />
                             </div>
                           ))}
                         </div>
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {appliances.map((item, i) => (
+                          {appliances.map((product, i) => (
                             <div className="tab-box" key={i}>
-                              <SideImageItem product={item} symbol={symbol} />
+                              <SideImageItem
+                                product={product}
+                                symbol={symbol}
+                              />
                             </div>
                           ))}
                         </div>

@@ -11,8 +11,10 @@ import DetailsTopTabs from "./common/details-top-tabs";
 import { addToCart, addToCartUnsafe } from "../../actions";
 
 class LeftSideBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log("this.props in LeftSideBar from {connect}");
+    console.log(this.props);
     this.state = {
       open: false,
       nav1: null,
@@ -35,18 +37,18 @@ class LeftSideBar extends Component {
   }
 
   render() {
-    const { symbol, item, addToCart, addToCartUnsafe } = this.props;
+    const { symbol, product, addToCart, addToCartUnsafe } = this.props;
 
     return (
       <div>
         <Helmet>
-          <title>E-Commerce | {item.name}</title>
+          <title>E-Commerce | {product.name}</title>
         </Helmet>
 
-        <Breadcrumb parent={"Product"} title={item.name} />
+        <Breadcrumb parent={"Product"} title={product.name} />
 
         {/*Section Start*/}
-        {item ? (
+        {product ? (
           <section className="section-b-space">
             <div className="collection-wrapper">
               <div className="container">
@@ -81,21 +83,21 @@ class LeftSideBar extends Component {
                       <div className="row">
                         <div className="col-lg-6 product-thumbnail">
                           <img
-                            src={item.image}
+                            src={product.image}
                             alt=""
                             className="img-fluid"
                           ></img>
                         </div>
                         <DetailsWithPrice
                           symbol={symbol}
-                          item={item}
+                          product={product}
                           navOne={this.state.nav1}
                           addToCartClicked={addToCart}
                           BuynowClicked={addToCartUnsafe}
                         />
                       </div>
                     </div>
-                    <DetailsTopTabs item={item} />
+                    <DetailsTopTabs product={product} />
                   </div>
                 </div>
               </div>
@@ -104,16 +106,20 @@ class LeftSideBar extends Component {
         ) : (
           ""
         )}
-        {/*Section End*/}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("exported state in leftSideBar");
+  console.log(state);
+  console.log("(ownProps)");
+  console.log(ownProps);
+  // convert string to number so they can === each other
   let productId = ownProps.match.params.sku;
   return {
-    item: state.data.products.find(el => el.sku == productId),
+    product: state.data.products.find(el => el.sku == productId),
     symbol: state.data.symbol
   };
 };

@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 class SideImageItem extends Component {
   constructor(props) {
-    console.log("props in SideImageItem component");
-    console.log(props);
     super(props);
 
     this.state = {
@@ -18,16 +16,14 @@ class SideImageItem extends Component {
 
   render() {
     const { product, symbol } = this.props;
+    console.log("this.props in SideImageItem");
+    console.log(this.props);
 
-    let RatingStars = [];
-    for (var i = 0; i < product.rating; i++) {
-      RatingStars.push(<i className="fa fa-star" key={i}></i>);
-    }
     return (
       <div className="product-box2">
         <div className="media">
           <Link
-            to={`${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.product.sku}`}
+            to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
           >
             <img
               src={product.image}
@@ -37,9 +33,8 @@ class SideImageItem extends Component {
           </Link>
           <div className="media-body align-self-center">
             <div>
-              <div className="rating">{RatingStars}</div>
               <Link
-                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.product.sku}`}
+                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
               >
                 <h6>{product.name}</h6>
               </Link>
@@ -48,23 +43,6 @@ class SideImageItem extends Component {
                 {symbol}
                 {product.price}
               </h4>
-
-              {product.variants ? (
-                <ul className="color-variant">
-                  {product.variants.map((vari, i) => {
-                    return (
-                      <li
-                        className={vari.color}
-                        key={i}
-                        title={vari.color}
-                        onClick={() => this.onClickHandle(vari.images)}
-                      ></li>
-                    );
-                  })}
-                </ul>
-              ) : (
-                ""
-              )}
             </div>
           </div>
         </div>
