@@ -10,8 +10,6 @@ import SideImageItem from "../common/side-image-item";
 class Trending extends Component {
   constructor(props) {
     super(props);
-    console.log("props in trending");
-    console.log(props);
     this.trendingCategories = [
       "cell phones",
       "computers and tablets",
@@ -20,9 +18,9 @@ class Trending extends Component {
     ];
 
     this.getAllTrendingProducts();
+    console.log("this.getAllTrendingProducts()");
+    console.log(this.getAllTrendingProducts());
   }
-
-  componentDidMount() {}
 
   // makes a fetch call for each trending category to get the products
   getAllTrendingProducts = () => {
