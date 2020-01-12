@@ -106,7 +106,6 @@ class LeftSideBar extends Component {
         ) : (
           ""
         )}
-        {/*Section End*/}
       </div>
     );
   }

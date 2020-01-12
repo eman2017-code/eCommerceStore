@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 class SideImageItem extends Component {
   constructor(props) {
-    console.log("props in SideImageItem component");
-    console.log(props);
     super(props);
 
     this.state = {
@@ -18,8 +16,6 @@ class SideImageItem extends Component {
 
   render() {
     const { product, symbol } = this.props;
-    console.log("this.props in SideImageItem component");
-    console.log(this.props);
 
     return (
       <div className="product-box2">
