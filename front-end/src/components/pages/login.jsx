@@ -28,7 +28,7 @@ class Login extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    // makes fetch call to try to log in the user
+    // calls the action to make a fetch call to attempt to login the user
     this.props.loginUser(this.state)
   }
 

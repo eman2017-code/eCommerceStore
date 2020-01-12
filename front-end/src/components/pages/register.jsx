@@ -29,6 +29,8 @@ class Register extends Component {
   // handle submit
   handleSubmit = e => {
     e.preventDefault();
+
+    // calls the action to make a fetch call to register the user
     this.props.registerUser(this.state);
   }
 

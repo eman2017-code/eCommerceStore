@@ -7,7 +7,8 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 // registers a new user
 export const registerUser = registrationInfo => async dispatch => {
-  console.log('register action')
+
+  // makes the api call to register
   const registrationResponse = await shop.registerUser(registrationInfo)
   const userInfo = registrationResponse.data
 
@@ -25,6 +26,8 @@ export const registerUser = registrationInfo => async dispatch => {
 
 // attempts to log in a user
 export const loginUser = loginInfo => async dispatch => {
+
+  // makes the api call to login
   const loginResponse = await shop.loginUser(loginInfo)
   const userInfo = loginResponse.data
 
@@ -42,6 +45,8 @@ export const loginUser = loginInfo => async dispatch => {
 
 // logs out a user 
 export const logoutUser = () => async dispatch => {
+
+  // makes the api call to logout
   const logoutResponse = await shop.logoutUser()
 
   if (logoutResponse.status.code === 200) {

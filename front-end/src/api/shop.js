@@ -18,8 +18,6 @@ export default {
         }
       })
       const parsedResponse = await response.json()
-      console.log('register response:', parsedResponse)
-
       return parsedResponse
 
     } catch (error) {

@@ -1,4 +1,4 @@
-import { LOGIN, REGISTER, LOGOUT } from "../constants/ActionTypes"
+import { LOGIN, LOGOUT } from "../constants/ActionTypes"
 
 const initialState = {
 	isLoggedIn: false,
@@ -14,9 +14,6 @@ export default function usersReducer(state=initialState, action) {
 				isLoggedIn: true,
 				userInfo: action.userInfo
 			}
-
-		case REGISTER:
-			console.log('REGISTER action')
 
 		case LOGOUT:
 			return {
