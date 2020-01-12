@@ -7,7 +7,7 @@ const router = express.Router()
 
 
 // this route is where new users signup
-router.post("/signup/", async (req, res, next) => {
+router.post("/register/", async (req, res, next) => {
   const clientData = req.body
 
   try {

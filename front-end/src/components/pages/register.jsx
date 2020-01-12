@@ -12,42 +12,12 @@ class Register extends Component {
     super(props);
 
     this.state = {
-      loggedInUser: null,
       firstName: "",
       lastName: "",
       email: "",
       password: ""
-    };
-  }
-
-  // register route
-  register = async registerInfo => {
-    // fetch call to the api
-    const response = await fetch(
-      process.env.REACT_APP_API_URL + "/api/v1/users/signup",
-      {
-        method: "POST",
-        credentials: "include",
-        body: JSON.stringify(registerInfo),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
-    );
-    // parse response to send back json
-    const parsedRegistrationResponse = await response.json();
-    // if respoinse is 201
-    if (response.ok) {
-      this.setState({
-        // log the user in
-        loggedIn: true,
-        // get the data for the logged in user
-        loggedInUser: parsedRegistrationResponse.data
-      });
-    } else {
-      console.log(parsedRegistrationResponse);
     }
-  };
+  }
 
   // handle change of the user input
   handleChange = e => {
@@ -59,22 +29,12 @@ class Register extends Component {
   // handle submit
   handleSubmit = e => {
     e.preventDefault();
-    this.registerUser();
-  };
-
-  // method to actually login user
-  registerUser = () => {
-    this.register({
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      password: this.state.password
-    });
-  };
+    this.props.registerUser(this.state);
+  }
 
   render() {
     // if the user is logged in
-    if (this.state.loggedIn === true) {
+    if (this.props.isLoggedIn === true) {
       return (
         <Redirect
           to={{

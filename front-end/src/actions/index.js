@@ -7,10 +7,11 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 // registers a new user
 export const registerUser = registrationInfo => async dispatch => {
+  console.log('register action')
   const registrationResponse = await shop.registerUser(registrationInfo)
   const userInfo = registrationResponse.data
 
-  if (registrationResponse.state.code === 201) {
+  if (registrationResponse.status.code === 201) {
     dispatch({
       type: types.LOGIN,
       userInfo: userInfo
