@@ -38,16 +38,25 @@ export const fetchSingleProduct = productId => ({
   productId
 });
 
+
+export const getUsersCart = () => async dispatch => {
+  const cart = await shop.getUsersCart()
+  console.log('cart:', cart)
+}
+
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => dispatch => {
   toast.success("Item Added to Cart");
   dispatch(addToCartUnsafe(product, qty));
 };
+
 export const addToCartUnsafe = (product, qty) => ({
   type: types.ADD_TO_CART,
   product,
   qty
 });
+
+
 export const removeFromCart = product_id => dispatch => {
   toast.error("Item Removed from Cart");
   dispatch({

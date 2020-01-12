@@ -3,14 +3,6 @@
  */
 import _products from "./data.json";
 
-// const TIMEOUT = 100;
-
-// export default {
-//   getProducts: (cb, timeout) =>
-//     setTimeout(() => cb(_products), timeout || TIMEOUT),
-//   buyProducts: (payload, cb, timeout) =>
-//     setTimeout(() => cb(), timeout || TIMEOUT)
-// };
 
 export default {
   getAllProducts: async callBack => {
@@ -40,5 +32,10 @@ export default {
       product => product._source.message
     );
     return products;
+  },
+
+  getUsersCart: async () => {
+    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/')
   }
+
 };
