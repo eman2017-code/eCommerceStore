@@ -59,16 +59,16 @@ class DetailsWithPrice extends Component {
   };
 
   render() {
-    const { symbol, item, addToCartClicked, BuynowClicked } = this.props;
+    const { symbol, product, addToCartClicked, BuynowClicked } = this.props;
 
     return (
       <div className="col-lg-6 rtl-text">
         <div className="product-right">
-          <h2> {item.name} </h2>
+          <h2> {product.name} </h2>
           <h4>
             <span className="money">
               {symbol}
-              {item.price}
+              {product.price}
             </span>
           </h4>
           <div className="product-description border-product">
@@ -110,21 +110,21 @@ class DetailsWithPrice extends Component {
           <div className="product-buttons">
             <li
               className="btn btn-solid"
-              onClick={() => addToCartClicked(item, this.state.quantity)}
+              onClick={() => addToCartClicked(product, this.state.quantity)}
             >
               add to cart
             </li>
             <Link
               to={`${process.env.PUBLIC_URL}/checkout`}
               className="btn btn-solid"
-              onClick={() => BuynowClicked(item, this.state.quantity)}
+              onClick={() => BuynowClicked(product, this.state.quantity)}
             >
               buy now
             </Link>
           </div>
           <div className="border-product">
             <h6 className="product-title">product details</h6>
-            <p>{item.shortDetails}</p>
+            <p>{product.shortDetails}</p>
           </div>
           <div className="border-product">
             <h6 className="product-title">share it</h6>
