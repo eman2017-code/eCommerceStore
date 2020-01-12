@@ -1,3 +1,7 @@
+// User 
+export const LOGIN = "LOGIN";
+export const REGISTER = "REGISTER";
+
 // Get Products
 export const FETCH_PRODUCTS_BEGIN = "FETCH_PRODUCTS_BEGIN";
 export const RECEIVE_PRODUCTS = "RECEIVE_PRODUCTS";
