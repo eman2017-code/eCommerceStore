@@ -67,20 +67,17 @@ export const logoutUser = () => async dispatch => {
   // makes the api call to logout
   const logoutResponse = await shop.logoutUser();
 
-  if (logoutResponse.status.code === 403) {
+  // removes the users cart from the state
+  dispatch({
+    type: types.REMOVE_USERS_CART
+  })
 
-    // removes the users cart from the state
-    dispatch({
-      type: types.REMOVE_USERS_CART
-    })
-
-    dispatch({
-      type: types.LOGOUT
-    });
-    toast.success(logoutResponse.status.message);
-  } else {
-    toast.error(logoutResponse.status.message);
-  }
+  // removes logged in user from the state
+  dispatch({
+    type: types.LOGOUT
+  });
+  toast.success(logoutResponse.status.message);
+ 
 };
 
 export const fetchProductsBegin = () => ({
