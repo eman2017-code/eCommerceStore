@@ -1,5 +1,6 @@
 import {
   SET_USERS_CART,
+  REMOVE_USERS_CART,
   ADD_TO_CART,
   REMOVE_FROM_CART,
   DECREMENT_QTY
@@ -19,6 +20,13 @@ export default function cartReducer(state = initialState, action) {
       return {
         ...state,
         cart: [...action.cart.cartItems]
+      }
+
+    // removes the users cart after they log out
+    case REMOVE_USERS_CART:
+      return {
+        ...state,
+        cart: []
       }
 
     case ADD_TO_CART:

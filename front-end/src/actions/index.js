@@ -21,7 +21,7 @@ export const registerUser = registrationInfo => async dispatch => {
       type: types.SET_USERS_CART,
       cart: usersCart
     })
-    
+
     dispatch({
       type: types.LOGIN,
       userInfo: userInfo
@@ -70,6 +70,12 @@ export const logoutUser = () => async dispatch => {
   console.log('logout response:', logoutResponse)
 
   if (logoutResponse.status.code === 200) {
+
+    // removes the users cart from the state
+    dispatch({
+      type: types.REMOVE_USERS_CART
+    })
+
     dispatch({
       type: types.LOGOUT
     });
