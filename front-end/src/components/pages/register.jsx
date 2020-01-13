@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
-import Breadcrumb from "../common/breadcrumb";
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { registerUser } from '../../actions';
-
+import Breadcrumb from "../boilerplates/breadcrumb";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions";
 
 class Register extends Component {
   constructor(props) {
@@ -16,7 +15,7 @@ class Register extends Component {
       lastName: "",
       email: "",
       password: ""
-    }
+    };
   }
 
   // handle change of the user input
@@ -32,7 +31,7 @@ class Register extends Component {
 
     // calls the action to make a fetch call to register the user
     this.props.registerUser(this.state);
-  }
+  };
 
   render() {
     // if the user is logged in
@@ -136,15 +135,10 @@ class Register extends Component {
 Register.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   registerUser: PropTypes.func
-}
+};
 
 const mapStateToProps = state => ({
   isLoggedIn: state.user.isLoggedIn
-})
-
+});
 
 export default connect(mapStateToProps, { registerUser })(Register);
-
-
-
-

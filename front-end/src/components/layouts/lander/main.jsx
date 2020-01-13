@@ -13,8 +13,8 @@ import {
 // Import custom components
 import LogoBlocks from "../common/logo-block";
 import Trending from "./trending";
-import HeaderOne from "../../common/headers/header-one";
-import FooterOne from "../../common/footers/footer-one";
+import HeaderOne from "../../boilerplates/headers/header-one";
+import FooterOne from "../../boilerplates/footers/footer-one";
 
 class Lander extends Component {
   componentDidMount() {

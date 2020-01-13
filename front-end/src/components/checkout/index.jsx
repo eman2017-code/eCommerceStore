@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 import SimpleReactValidator from "simple-react-validator";
 
-import Breadcrumb from "../common/breadcrumb";
+import Breadcrumb from "../boilerplates/breadcrumb";
 import { getCartTotal } from "../../services";
 
 class checkOut extends Component {
@@ -27,21 +27,21 @@ class checkOut extends Component {
   }
 
   componentDidMount() {
-    this.prefillBillingDetails() 
+    this.prefillBillingDetails();
   }
 
   // if the user is logged in, their details on the billing form are prefilled
   prefillBillingDetails = () => {
-    const userInfo = this.props.userInfo
+    const userInfo = this.props.userInfo;
 
     if (this.props.isLoggedIn) {
       this.setState({
         first_name: userInfo.firstName,
         last_name: userInfo.lastName,
         email: userInfo.email
-      })
+      });
     }
-  }
+  };
 
   setStateFromInput = event => {
     var obj = {};
@@ -426,7 +426,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(checkOut);
-
-
-
-

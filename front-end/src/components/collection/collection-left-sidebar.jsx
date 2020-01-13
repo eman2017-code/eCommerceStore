@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import Breadcrumb from "../common/breadcrumb";
+import Breadcrumb from "../boilerplates/breadcrumb";
 import Filter from "./common/filter";
 import FilterBar from "./common/filter-bar";
 import ProductListing from "./common/product-listing";

@@ -4,11 +4,11 @@ import Pace from "react-pace-progress";
 
 // Import custom components
 import store from "../../../store";
-import NavBar from "./common/navbar";
+import NavBar from "./navbar";
 import CartContainer from "./../../../containers/CartContainer";
 import { changeCurrency } from "../../../actions";
 import { connect } from "react-redux";
-import TopBarDark from "./common/topbar-dark";
+import TopBarDark from "./topbar-dark";
 import LogoImage from "./common/logo";
 
 class HeaderOne extends Component {

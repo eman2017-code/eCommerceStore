@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 // import custom Components
 import Service from "./common/service";
-import Breadcrumb from "../common/breadcrumb";
+import Breadcrumb from "../boilerplates/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
 import { addToCart, addToCartUnsafe } from "../../actions";

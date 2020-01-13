@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 
-import Breadcrumb from "../common/breadcrumb";
+import Breadcrumb from "../boilerplates/breadcrumb";
 
 class PageNotFound extends Component {
   constructor(props) {
