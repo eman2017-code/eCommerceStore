@@ -1,4 +1,4 @@
-// User 
+// User
 export const LOGIN = "LOGIN";
 export const REGISTER = "REGISTER";
 export const LOGOUT = "LOGOUT";
@@ -7,11 +7,10 @@ export const LOGOUT = "LOGOUT";
 export const FETCH_PRODUCTS_BEGIN = "FETCH_PRODUCTS_BEGIN";
 export const RECEIVE_PRODUCTS = "RECEIVE_PRODUCTS";
 export const FETCH_SINGLE_PRODUCT = "FETCH_SINGLE_PRODUCT";
-export const RECEIVE_CATEGORY_PRODUCTS = "RECEIVE_CATEGORY_PRODUCTS"
+export const RECEIVE_CATEGORY_PRODUCTS = "RECEIVE_CATEGORY_PRODUCTS";
 
 // FILTERS
 export const FILTER_BRAND = "FILTER_BRAND";
-// export const FILTER_CATEGORY = "FILTER_BRAND";
 export const FILTER_COLOR = "FILTER_COLOR";
 export const FILTER_PRICE = "FILTER_PRICE";
 export const SORT_BY = "SORT_BY";
