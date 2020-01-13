@@ -11,6 +11,17 @@ export const registerUser = registrationInfo => async dispatch => {
   const userInfo = registrationResponse.data;
 
   if (registrationResponse.status.code === 201) {
+
+    // gets the user cart
+    const getUsersCartResponse = await shop.getUsersCart(userInfo._id)
+    const usersCart = getUsersCartResponse.data
+
+    // sets the users cart in the store
+    dispatch({
+      type: types.SET_USERS_CART,
+      cart: usersCart
+    })
+    
     dispatch({
       type: types.LOGIN,
       userInfo: userInfo
