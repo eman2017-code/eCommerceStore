@@ -63,15 +63,6 @@ const productReducer = (state = initialState, action) => {
         }, []);
         return { ...state, product_details: singleItem };
       }
-      // case FETCH_SINGLE_PRODUCT:
-      //   // itterate through the products array
-      //   const singleItem = state.data.products.filter(
-      //     product => product.sku === action.productId
-      //   );
-      //   // grab the first (and only one) that meets the requirements out of array
-      //   const matchingProduct = singleItem[0];
-      //   // put that item in the products_details array
-      //   return { ...state, product_details: matchingProduct };
       break;
 
     case CHANGE_CURRENCY:
