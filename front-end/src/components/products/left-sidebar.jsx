@@ -111,6 +111,8 @@ class LeftSideBar extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("state from mapStateToProps in LeftSideBar");
+  console.log(state);
   // convert string to number so they can === each other
   let productId = Number(ownProps.match.params.sku);
   return {
