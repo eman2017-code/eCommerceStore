@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import "../common/index.scss";
 import { connect } from "react-redux";
-import store from "../../store";
 
 // import custom Components
 import Service from "./common/service";
@@ -10,16 +9,10 @@ import Breadcrumb from "../common/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
 import { addToCart, addToCartUnsafe } from "../../actions";
-// import { getSingleItem } from "../../services";
 
 class LeftSideBar extends Component {
-  constructor() {
-    super();
-
-    store.getState();
-    console.log("store.getState() in LeftSideBar");
-    console.log(store.getState());
-
+  constructor(props) {
+    super(props);
     this.state = {
       open: false,
       nav1: null,
@@ -42,20 +35,20 @@ class LeftSideBar extends Component {
   }
 
   render() {
-    const { symbol, item, addToCart, addToCartUnsafe } = this.props;
-    console.log("this.props in LeftSideBar");
+    const { symbol, product, addToCart, addToCartUnsafe } = this.props;
+    console.log("this.props in LeftSideBar from");
     console.log(this.props);
 
     return (
       <div>
         <Helmet>
-          <title>E-Commerce | {item.name}</title>
+          <title>E-Commerce | {product.name}</title>
         </Helmet>
 
-        <Breadcrumb parent={"Product"} title={item.name} />
+        <Breadcrumb parent={"Product"} title={product.name} />
 
         {/*Section Start*/}
-        {item ? (
+        {product ? (
           <section className="section-b-space">
             <div className="collection-wrapper">
               <div className="container">
@@ -90,21 +83,21 @@ class LeftSideBar extends Component {
                       <div className="row">
                         <div className="col-lg-6 product-thumbnail">
                           <img
-                            src={item.image}
+                            src={product.image}
                             alt=""
                             className="img-fluid"
                           ></img>
                         </div>
                         <DetailsWithPrice
                           symbol={symbol}
-                          item={item}
+                          product={product}
                           navOne={this.state.nav1}
                           addToCartClicked={addToCart}
                           BuynowClicked={addToCartUnsafe}
                         />
                       </div>
                     </div>
-                    <DetailsTopTabs item={item} />
+                    <DetailsTopTabs product={product} />
                   </div>
                 </div>
               </div>
@@ -119,10 +112,12 @@ class LeftSideBar extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // lets convert string to number so they can === each other
+  console.log("state");
+  console.log(state);
+  // convert string to number so they can === each other
   let productId = Number(ownProps.match.params.sku);
   return {
-    item: state.data.products.find(element => element.sku === productId),
+    product: state.data.products.find(el => el.sku === productId),
     symbol: state.data.symbol
   };
 };
