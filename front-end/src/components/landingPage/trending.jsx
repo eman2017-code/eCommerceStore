@@ -9,6 +9,8 @@ import SideImageItem from "../products/side-image-item.jsx";
 
 class Trending extends Component {
   constructor(props) {
+    console.log("props in trendingComponent");
+    console.log(props);
     super(props);
     this.trendingCategories = [
       "cell phones",
@@ -33,6 +35,7 @@ class Trending extends Component {
       computersAndTablets,
       headphones,
       appliances,
+      products,
       symbol
     } = this.props;
 
@@ -115,6 +118,7 @@ const mapStateToProps = (state, ownProps) => ({
   cellPhones: state.data.cellPhones,
   headphones: state.data.headphones,
   appliances: state.data.appliances,
+  products: state.data.products,
   symbol: state.data.symbol
 });
 
