@@ -48,7 +48,7 @@ router.post("/", loginRequired, async (req, res, next) => {
       // otherwise, a new cart item is created and added to the cart
     } else {
       // need to query the whole product so the getProductPrice method is accessible
-      const foundProduct = await Product.findById(productId);
+      const foundProduct = await Product.findOne({ 'sku': productId });
 
       const newCartItem = await CartItem.create({ product: foundProduct });
 

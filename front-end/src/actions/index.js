@@ -67,7 +67,6 @@ export const logoutUser = () => async dispatch => {
 
   // makes the api call to logout
   const logoutResponse = await shop.logoutUser();
-  console.log('logout response:', logoutResponse)
 
   if (logoutResponse.status.code === 200) {
 
@@ -130,6 +129,10 @@ export const addToCart = (product, qty) => dispatch => {
   toast.success("Item Added to Cart");
   dispatch(addToCartUnsafe(product, qty));
 };
+
+export const userAddToCart = (product, qty) => dispatch => {
+
+}
 
 export const addToCartUnsafe = (product, qty) => ({
   type: types.ADD_TO_CART,

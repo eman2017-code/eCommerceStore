@@ -1,6 +1,7 @@
 import {
   SET_USERS_CART,
   REMOVE_USERS_CART,
+  ADD_TO_USERS_CART,
   ADD_TO_CART,
   REMOVE_FROM_CART,
   DECREMENT_QTY
@@ -17,9 +18,13 @@ export default function cartReducer(state = initialState, action) {
 
     // sets the users cart right after they login or register
     case SET_USERS_CART:
+
+      // creates a new array of products from each cart item in the users cart
+      const productsInCart = action.cart.cartItems.map(cartItem => cartItem.product)
+
       return {
         ...state,
-        cart: [...action.cart.cartItems]
+        cart: [...productsInCart]
       }
 
     // removes the users cart after they log out
