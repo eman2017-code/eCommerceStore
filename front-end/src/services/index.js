@@ -196,8 +196,8 @@ export const getWomensWear = products => {
 
 // Get Single Product
 export const getSingleItem = (products, id) => {
-  const items = products.find(element => {
-    return element.id === id;
+  const items = products.find(product => {
+    return product.sku === id;
   });
   return items;
 };

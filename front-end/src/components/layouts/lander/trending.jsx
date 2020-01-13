@@ -36,9 +36,6 @@ class Trending extends Component {
       symbol
     } = this.props;
 
-    console.log("this.props in Trending Component");
-    console.log(this.props);
-
     return (
       <div>
         {/*Paragraph*/}
@@ -63,7 +60,7 @@ class Trending extends Component {
                     <div className="tab-content-cls">
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {cellPhones.map((product, i) => (
+                          {this.props.cellPhones.map((product, i) => (
                             <div className="tab-box" key={i}>
                               <SideImageItem
                                 product={product}
@@ -75,7 +72,7 @@ class Trending extends Component {
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {computersAndTablets.map((product, i) => (
+                          {this.props.computersAndTablets.map((product, i) => (
                             <div className="tab-box" key={i}>
                               <SideImageItem
                                 product={product}
@@ -87,7 +84,7 @@ class Trending extends Component {
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {headphones.map((product, i) => (
+                          {this.props.headphones.map((product, i) => (
                             <div className="tab-box" key={i}>
                               <SideImageItem
                                 product={product}
@@ -99,7 +96,7 @@ class Trending extends Component {
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {appliances.map((product, i) => (
+                          {this.props.appliances.map((product, i) => (
                             <div className="tab-box" key={i}>
                               <SideImageItem
                                 product={product}

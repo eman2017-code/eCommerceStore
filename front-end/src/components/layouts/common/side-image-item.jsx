@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import store from "../../../store";
 
 class SideImageItem extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      image: ""
-    };
+    this.state = {};
+  }
+
+  componentDidMount() {
+    store.getState();
+    console.log("store.getState() in SideImageItem");
+    console.log(store.getState());
   }
 
   onClickHandle(img) {
@@ -16,8 +21,6 @@ class SideImageItem extends Component {
 
   render() {
     const { product, symbol } = this.props;
-    console.log("this.props in SideImageItem");
-    console.log(this.props);
 
     return (
       <div className="product-box2">

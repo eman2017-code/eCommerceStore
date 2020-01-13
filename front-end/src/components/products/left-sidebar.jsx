@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import "../common/index.scss";
 import { connect } from "react-redux";
+import store from "../../store";
 
 // import custom Components
 import Service from "./common/service";
@@ -9,12 +10,16 @@ import Breadcrumb from "../common/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
 import { addToCart, addToCartUnsafe } from "../../actions";
+import { getSingleItem } from "../../services";
 
 class LeftSideBar extends Component {
-  constructor(props) {
-    super(props);
-    console.log("this.props in LeftSideBar from {connect}");
-    console.log(this.props);
+  constructor() {
+    super();
+
+    store.getState();
+    console.log("store.getState() in LeftSideBar");
+    console.log(store.getState());
+
     this.state = {
       open: false,
       nav1: null,
@@ -38,6 +43,8 @@ class LeftSideBar extends Component {
 
   render() {
     const { symbol, product, addToCart, addToCartUnsafe } = this.props;
+    console.log("this.props in LeftSideBar");
+    console.log(this.props);
 
     return (
       <div>
@@ -112,14 +119,10 @@ class LeftSideBar extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("exported state in leftSideBar");
-  console.log(state);
-  console.log("(ownProps)");
-  console.log(ownProps);
-  // convert string to number so they can === each other
-  let productId = ownProps.match.params.sku;
+  // lets convert string to number so they can === each other
+  let productId = Number(ownProps.match.params.sku);
   return {
-    product: state.data.products.find(el => el.sku == productId),
+    product: state.data.products.find(element => element.sku === productId),
     symbol: state.data.symbol
   };
 };

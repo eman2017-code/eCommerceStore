@@ -55,7 +55,7 @@ class ProductListItem extends Component {
             <Link
               to={`${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.product.sku}`}
             >
-              <img src={this.image} className="img-fluid" alt="" />
+              <img src={this.state.image} className="img-fluid" alt="" />
             </Link>
           </div>
           <div className="cart-info cart-wrap">
