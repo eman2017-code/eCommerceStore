@@ -69,10 +69,12 @@ const productReducer = (state = initialState, action) => {
         state.products.filter(product => product.sku === action.productId) !==
         undefined
       ) {
-        const singleItem = state.product.reduce((itemAcc, product) => {
-          return product;
-        }, []);
-        return { ...state, product_details: singleItem };
+        return {
+          ...state,
+          product_details: state.products.filter(
+            product => product.sku === action.productId
+          )
+        };
       }
       break;
 
