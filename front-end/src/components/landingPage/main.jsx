@@ -16,7 +16,7 @@ import Trending from "./trending";
 import HeaderOne from "../boilerplates/headers/header-one";
 import FooterOne from "../boilerplates/footers/footer-one";
 
-class Lander extends Component {
+class LandingPage extends Component {
   componentDidMount() {
     document
       .getElementById("color")
@@ -298,4 +298,4 @@ class Lander extends Component {
   }
 }
 
-export default Lander;
+export default LandingPage;
