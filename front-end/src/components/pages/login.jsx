@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import Breadcrumb from "../common/breadcrumb";
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { loginUser } from '../../actions'
-
+import Breadcrumb from "../boilerplates/breadcrumb";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions";
 
 class Login extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       email: "",
       password: ""
-    }
+    };
   }
 
   // handle change of the user input
@@ -22,24 +21,23 @@ class Login extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  };
 
   // handle submit
   handleSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
 
     // calls the action to make a fetch call to attempt to login the user
-    this.props.loginUser(this.state)
-  }
+    this.props.loginUser(this.state);
+  };
 
   render() {
-
     // if the user is logged in
     if (this.props.isLoggedIn) {
       return (
         <Redirect
           to={{
-            pathname: "/all-products",
+            pathname: "/all-products"
           }}
         />
       );
@@ -113,17 +111,13 @@ class Login extends Component {
   }
 }
 
-
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
-}
+};
 
 const mapStateToProps = state => ({
   isLoggedIn: state.user.isLoggedIn
-})
+});
 
-export default connect(mapStateToProps, { loginUser })(Login)
-
-
-
+export default connect(mapStateToProps, { loginUser })(Login);

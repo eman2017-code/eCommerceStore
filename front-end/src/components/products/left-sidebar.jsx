@@ -5,10 +5,11 @@ import { connect } from "react-redux";
 
 // import custom Components
 import Service from "./common/service";
-import Breadcrumb from "../common/breadcrumb";
+import Breadcrumb from "../boilerplates/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
 import { addToCart, addToCartUnsafe } from "../../actions";
+import PageNotFound from "../pages/404.jsx";
 
 class LeftSideBar extends Component {
   constructor(props) {
@@ -41,11 +42,9 @@ class LeftSideBar extends Component {
 
     return (
       <div>
-        <Helmet>
-          <title>E-Commerce | {product.name}</title>
-        </Helmet>
+        <Helmet>{/* <title>E-Commerce | {product.name}</title> */}</Helmet>
 
-        <Breadcrumb parent={"Product"} title={product.name} />
+        {/* <Breadcrumb parent={"Product"} title={product.name} /> */}
 
         {/*Section Start*/}
         {product ? (
@@ -104,7 +103,7 @@ class LeftSideBar extends Component {
             </div>
           </section>
         ) : (
-          ""
+          <PageNotFound />
         )}
       </div>
     );
