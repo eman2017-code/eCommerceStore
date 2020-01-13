@@ -60,7 +60,7 @@ class Filter extends Component {
               <div
                 className="collection-collapse-block-content block-price-content"
                 ref={setCollapsibleElement}
-              > 
+              >
                 <div className="collection-brand-filter">
                   <div className="custom-control custom-checkbox collection-filter-checkbox">
                     <InputRange

@@ -53,9 +53,9 @@ class ProductListItem extends Component {
         <div className="img-wrapper">
           <div className="front">
             <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.product.sku}`}
+              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
             >
-              <img src={this.image} className="img-fluid" alt="" />
+              <img src={this.state.image} className="img-fluid" alt="" />
             </Link>
           </div>
           <div className="cart-info cart-wrap">
@@ -77,7 +77,7 @@ class ProductListItem extends Component {
         </div>
         <div className="product-detail">
           <div>
-            <img src={product.image} alt="" className="img-fluid"></img>
+            {/* <img src={product.image} alt="" className="img-fluid"></img> */}
             <Link
               to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
             >
@@ -102,11 +102,7 @@ class ProductListItem extends Component {
                   <div className="col-lg-6  col-xs-12"></div>
                   <div className="col-lg-6 rtl-text">
                     <div className="product-right">
-                      <img
-                        src={this.props.product.image}
-                        alt=""
-                        className="img-fluid"
-                      />
+                      <img src={product.image} alt="" className="img-fluid" />
                       <h2> {product.name} </h2>
                       <div className="border-product">
                         <h6 className="product-title">product details</h6>

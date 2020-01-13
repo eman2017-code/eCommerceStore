@@ -36,9 +36,6 @@ class Trending extends Component {
       symbol
     } = this.props;
 
-    console.log("this.props in Trending Component");
-    console.log(this.props);
-
     return (
       <div>
         {/*Paragraph*/}
@@ -63,48 +60,36 @@ class Trending extends Component {
                     <div className="tab-content-cls">
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {cellPhones.map((product, i) => (
+                          {cellPhones.map((item, i) => (
                             <div className="tab-box" key={i}>
-                              <SideImageItem
-                                product={product}
-                                symbol={symbol}
-                              />
+                              <SideImageItem product={item} symbol={symbol} />
                             </div>
                           ))}
                         </div>
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {computersAndTablets.map((product, i) => (
+                          {computersAndTablets.map((item, i) => (
                             <div className="tab-box" key={i}>
-                              <SideImageItem
-                                product={product}
-                                symbol={symbol}
-                              />
+                              <SideImageItem product={item} symbol={symbol} />
                             </div>
                           ))}
                         </div>
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {headphones.map((product, i) => (
+                          {headphones.map((item, i) => (
                             <div className="tab-box" key={i}>
-                              <SideImageItem
-                                product={product}
-                                symbol={symbol}
-                              />
+                              <SideImageItem product={item} symbol={symbol} />
                             </div>
                           ))}
                         </div>
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {appliances.map((product, i) => (
+                          {appliances.map((item, i) => (
                             <div className="tab-box" key={i}>
-                              <SideImageItem
-                                product={product}
-                                symbol={symbol}
-                              />
+                              <SideImageItem product={item} symbol={symbol} />
                             </div>
                           ))}
                         </div>

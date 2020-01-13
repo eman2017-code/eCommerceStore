@@ -13,8 +13,6 @@ import { addToCart, addToCartUnsafe } from "../../actions";
 class LeftSideBar extends Component {
   constructor(props) {
     super(props);
-    console.log("this.props in LeftSideBar from {connect}");
-    console.log(this.props);
     this.state = {
       open: false,
       nav1: null,
@@ -38,6 +36,8 @@ class LeftSideBar extends Component {
 
   render() {
     const { symbol, product, addToCart, addToCartUnsafe } = this.props;
+    console.log("this.props in LeftSideBar from");
+    console.log(this.props);
 
     return (
       <div>
@@ -112,14 +112,10 @@ class LeftSideBar extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("exported state in leftSideBar");
-  console.log(state);
-  console.log("(ownProps)");
-  console.log(ownProps);
   // convert string to number so they can === each other
-  let productId = ownProps.match.params.sku;
+  let productId = Number(ownProps.match.params.sku);
   return {
-    product: state.data.products.find(el => el.sku == productId),
+    product: state.data.products.find(el => el.sku === productId),
     symbol: state.data.symbol
   };
 };
