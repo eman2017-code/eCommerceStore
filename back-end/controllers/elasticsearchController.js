@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const Product = require('../models/product.js')
+const Category = require('../models/category.js')
 
 // require elasticsearch
 const { Client } = require("@elastic/elasticsearch");
@@ -80,6 +82,62 @@ router.get("/all-products", async (req, res, next) => {
     next(err);
   }
 });
+
+router.post('/import/', async (req, res, next) => {
+
+  try {
+    const results = await client.search({
+      index: "store-products-catalog2-cats",
+      from: 1,
+      size: 10000,
+      body: {}
+    }) 
+
+    const products = results.body.hits.hits.map(product => product._source.message)
+
+    products.forEach(async (product) => {
+      const existingProduct = await Product.findOne({ 'sku': product.sku })
+
+        if (!existingProduct) {
+
+          const productsCategories = product.category.map(async (category) => {
+
+            const existingCategory = await Category.find({ 'name': category.name })
+
+            if (!existingCategory) {
+              const newCategory = await Category.create({
+                name: category.name
+              })
+              return newCategory.id
+            }
+            return existingCategory.id
+
+            const newProduct = await Product.create({
+              sku: products.sku,
+              name: product.name,
+              type: product.type,
+              upc: product.upc,
+              price: product.price,
+              shipping: product.shipping,
+              manufacturer: product.manufacturer,
+              model: product.model,
+              image: product.image,
+              description: product.description,
+              category: productsCategories
+            })
+          })
+        }
+    })
+
+    res.json({
+      data: products
+    })
+
+  } catch (error) {
+    next(error)
+  }
+
+})
 
 // filters products by whatever category is specified in the query paramaters
 router.get("/category/:categoryName/", async (req, res, next) => {

@@ -6,11 +6,12 @@ const productsData = fs.readFileSync('products.json')
 
 const products = JSON.parse(productsData)
 
+console.log('typeof products:', typeof(products))
 
 // iterate through each product and create a new mongodb product
-const mogngoDbProducts = products.map(async (product) => {
+// const mongoDbProducts = products.map(async (product) => {
 
-	try {
+// 	try {
 		const newProduct = await Product.create({
 			sku: products.sku,
 			name: product.name,
@@ -24,8 +25,8 @@ const mogngoDbProducts = products.map(async (product) => {
 			description: product.description
 		})
 
-		// iterate through each category on the products and create a new one if it doesnt exists,
-		// then add the category to the product
+// 		// iterate through each category on the products and create a new one if it doesnt exists,
+// 		// then add the category to the product
 		product.category.forEach(async (category) => {
 			const getCategory = await Category.find({ 'name': category.name })
 
@@ -44,13 +45,13 @@ const mogngoDbProducts = products.map(async (product) => {
 			
 		})
 
-		console.log('product created')
-		return newProduct
+// 		console.log('product created')
+// 		return newProduct
 
-	} catch (error) {
-		console.log('ERROR:', error)
-	}
-})
+// 	} catch (error) {
+// 		console.log('ERROR:', error)
+// 	}
+// })
 
 
 

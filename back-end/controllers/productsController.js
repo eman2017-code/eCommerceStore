@@ -10,7 +10,15 @@ const router = express.Router();
 // returns all of the products the database
 router.get('/', async (req, res, next) => {
   try {
-    
+    const allProducts = await Product.find({})
+
+    res.json({
+      data: allProducts,
+      status: {
+        code: 200,
+        message: 'Successfully got all products'
+      }
+    })
   } catch (error) {
     next(error)
   }
