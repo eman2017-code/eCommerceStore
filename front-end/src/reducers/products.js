@@ -52,13 +52,24 @@ const productReducer = (state = initialState, action) => {
         [formattedCategoryName]: action.products
       };
 
+    // case FETCH_SINGLE_PRODUCT:
+    //   if (
+    //     state.products.findIndex(
+    //       product => product.sku === action.productId
+    //     ) !== -1
+    //   ) {
+    //     const singleItem = state.products.reduce((itemAcc, product) => {
+    //       return product;
+    //     }, []);
+    //     return { ...state, product_details: singleItem };
+    //   }
+    //   break;
     case FETCH_SINGLE_PRODUCT:
       if (
-        state.products.findIndex(
-          product => product.sku === action.productId
-        ) !== -1
+        state.products.filter(product => product.sku === action.productId) !==
+        undefined
       ) {
-        const singleItem = state.products.reduce((itemAcc, product) => {
+        const singleItem = state.product.reduce((itemAcc, product) => {
           return product;
         }, []);
         return { ...state, product_details: singleItem };
