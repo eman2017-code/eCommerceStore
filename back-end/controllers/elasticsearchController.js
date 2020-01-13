@@ -83,8 +83,10 @@ router.get("/all-products", async (req, res, next) => {
   }
 });
 
-router.post('/import/', async (req, res, next) => {
 
+// this route queries elasticsearch for all the product data and imports the products and 
+// categories into mongoDB
+router.post('/import/', async (req, res, next) => {
   try {
     const results = await client.search({
       index: "store-products-catalog2-cats",
@@ -95,13 +97,14 @@ router.post('/import/', async (req, res, next) => {
 
     const products = results.body.hits.hits.map(product => product._source.message)
 
+    // iterate through all the products and creates product instances if they dont already exist
     products.forEach(async (product) => {
       const existingProduct = await Product.findOne({ 'sku': product.sku })
 
         if (!existingProduct) {
 
+          // iterates through the products categories and creates new category instances if they dont exist
           const productsCategories = product.category.map(async (category) => {
-
             const existingCategory = await Category.find({ 'name': category.name })
 
             if (!existingCategory) {
