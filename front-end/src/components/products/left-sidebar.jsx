@@ -42,9 +42,11 @@ class LeftSideBar extends Component {
 
     return (
       <div>
-        <Helmet>{/* <title>E-Commerce | {product.name}</title> */}</Helmet>
+        <Helmet>
+          <title>E-Commerce | Store </title>
+        </Helmet>
 
-        {/* <Breadcrumb parent={"Product"} title={product.name} /> */}
+        <Breadcrumb parent={"Product"} title={product.name} />
 
         {/*Section Start*/}
         {product ? (
@@ -116,7 +118,7 @@ const mapStateToProps = (state, ownProps) => {
   // convert string to number so they can === each other
   let productId = Number(ownProps.match.params.sku);
   return {
-    product: state.data.products.find(el => el.sku === productId),
+    product: state.data.products.filter(el => el.sku === productId),
     symbol: state.data.symbol
   };
 };
