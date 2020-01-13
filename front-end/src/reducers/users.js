@@ -17,7 +17,6 @@ export default function usersReducer(state=initialState, action) {
 
 		case LOGOUT:
 			return {
-				...state,
 				isLoggedIn: false,
 				userInfo: {}
 			}

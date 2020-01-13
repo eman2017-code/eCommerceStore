@@ -1,4 +1,5 @@
 import {
+  SET_USERS_CART,
   ADD_TO_CART,
   REMOVE_FROM_CART,
   DECREMENT_QTY
@@ -12,6 +13,14 @@ const initialState = {
 
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
+
+    // sets the users cart right after they login or register
+    case SET_USERS_CART:
+      return {
+        ...state,
+        cart: [...action.cart.cartItems]
+      }
+
     case ADD_TO_CART:
       const productId = action.product.id;
       if (state.cart.findIndex(product => product.id === productId) !== -1) {

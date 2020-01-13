@@ -95,7 +95,24 @@ export default {
     return products;
   },
 
-  getUsersCart: async () => {
-    const response = await fetch(process.env.REACT_APP_API_URL + "/api/v1/");
+  getUsersCart: async (userId) => {
+    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/carts/' + userId + '/', {
+      credentials: 'include'
+    })
+    const parsedResponse = await response.json()
+
+    console.log('users cart response:', parsedResponse)
+
+    return parsedResponse
+
   }
 };
+
+
+
+
+
+
+
+
+

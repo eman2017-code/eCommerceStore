@@ -27,9 +27,9 @@ router.get('/', loginRequired, async (req, res, next) => {
 
 // Show Route
 // this route shows a single cart
-router.get('/:cartId/', loginRequired, async (req, res, next) => {
+router.get('/:userId/', loginRequired, async (req, res, next) => {
 	try {
-		const foundCart = await Cart.findById(req.params.cartId)
+		const foundCart = await Cart.findOne({ 'user': req.params.userId })
 
 		res.json({
 			data: foundCart,

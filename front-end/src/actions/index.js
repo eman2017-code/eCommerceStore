@@ -29,6 +29,17 @@ export const loginUser = loginInfo => async dispatch => {
 
   // if the user successfully logged in
   if (loginResponse.status.code === 200) {
+
+    // gets the user cart
+    const getUsersCartResponse = await shop.getUsersCart(userInfo._id)
+    const usersCart = getUsersCartResponse.data
+
+    // sets the users cart in the store
+    dispatch({
+      type: types.SET_USERS_CART,
+      cart: usersCart
+    })
+
     dispatch({
       type: types.LOGIN,
       userInfo: userInfo
@@ -41,8 +52,11 @@ export const loginUser = loginInfo => async dispatch => {
 
 // logs out a user
 export const logoutUser = () => async dispatch => {
+  console.log('logout action')
+
   // makes the api call to logout
   const logoutResponse = await shop.logoutUser();
+  console.log('logout response:', logoutResponse)
 
   if (logoutResponse.status.code === 200) {
     dispatch({
@@ -89,9 +103,9 @@ export const fetchSingleProduct = productId => ({
   productId
 });
 
-export const getUsersCart = () => async dispatch => {
-  const cart = await shop.getUsersCart();
-  console.log("cart:", cart);
+export const getUsersCart = (userId) => async dispatch => {
+  const cartResponse = await shop.getUsersCart(userId)
+  console.log('cartResponse in actions:', cartResponse)
 };
 
 //it seems that I should probably use this as the basis for "Cart"
