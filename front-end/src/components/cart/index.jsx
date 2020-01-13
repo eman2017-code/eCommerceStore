@@ -5,9 +5,18 @@ import { Link } from "react-router-dom";
 
 import Breadcrumb from "../boilerplates/breadcrumb";
 import { getCartTotal } from "../../services";
-import { removeFromCart, incrementQty, decrementQty } from "../../actions";
+import { removeFromCart, removeFromUsersCart, incrementQty, decrementQty } from "../../actions";
 
 class cartComponent extends Component {
+
+  removeFromCartClicked = (productId) => {
+    if (this.props.isLoggedIn) {
+      this.props.removeFromUsersCart(productId)
+    } else {
+      this.props.removeFromCart(productId)
+    }
+  }
+
   render() {
     const { cartItems, symbol, total } = this.props;
     return (
@@ -129,7 +138,7 @@ class cartComponent extends Component {
                             <td>
                               <button
                                 className="icon"
-                                onClick={() => this.props.removeFromCart(item)}
+                                onClick={() => this.removeFromCartClicked(item.upc)}
                               >
                                 <i className="fa fa-times"></i>
                               </button>
@@ -207,6 +216,7 @@ class cartComponent extends Component {
   }
 }
 const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn,
   cartItems: state.cartList.cart,
   symbol: state.data.symbol,
   total: getCartTotal(state.cartList.cart)
@@ -214,6 +224,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   removeFromCart,
+  removeFromUsersCart,
   incrementQty,
   decrementQty
 })(cartComponent);

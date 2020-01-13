@@ -2,6 +2,7 @@ import {
   SET_USERS_CART,
   REMOVE_USERS_CART,
   ADD_TO_USERS_CART,
+  REMOVE_FROM_USERS_CART,
   ADD_TO_CART,
   REMOVE_FROM_CART,
   DECREMENT_QTY
@@ -69,6 +70,16 @@ export default function cartReducer(state = initialState, action) {
       return {
         ...state,
         cart: state.cart
+      }
+
+    case REMOVE_FROM_USERS_CART:
+      const productIdToRemove = action.productId
+
+      const updatedProductsInCart = state.cart.filter(product => product.upc !== productIdToRemove)
+
+      return {
+        ...state,
+        cart: updatedProductsInCart
       }
 
     case ADD_TO_CART:

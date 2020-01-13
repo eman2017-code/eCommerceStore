@@ -107,9 +107,8 @@ export default {
 
   },
 
+  // adds a product to a logged in users cart
   addToUsersCart: async (productId, quantity) => {
-    console.log('add to users cart api call')
-
     const dataToSend = {
       productId: productId,
       quantity: quantity
@@ -126,8 +125,21 @@ export default {
     const parsedResponse = await response.json()
 
     return parsedResponse
+  },
+
+  // removes a product from a logged in users cart
+  removeFromUsersCart: async (productId) => {
+    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cart-items/' + productId + '/', {
+      method: 'DELETE',
+      credentials: 'include'
+    }) 
+    const parsedResponse = await response.json()
+    console.log(parsedResponse)
+
+    return parsedResponse
+
   }
-};
+}
 
 
 

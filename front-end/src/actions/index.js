@@ -147,14 +147,13 @@ export const addToUsersCart = (product, quantity) => async dispatch => {
   })
 }
 
-export const removeFromUsersCart = (product) => async dispatch => {
-  const productId = product.upc
-
+export const removeFromUsersCart = (productId) => async dispatch => {
   const removeFromCartResponse = await shop.removeFromUsersCart(productId)
 
-  // dispatch({
-    
-  // })
+  dispatch({
+    type: types.REMOVE_FROM_USERS_CART,
+    productId: productId
+  })
 
 }
 
