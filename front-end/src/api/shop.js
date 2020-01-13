@@ -105,6 +105,12 @@ export default {
 
     return parsedResponse
 
+  },
+
+  addToUsersCart: async (productId) => {
+    console.log('add to users cart api call')
+
+    return 
   }
 };
 

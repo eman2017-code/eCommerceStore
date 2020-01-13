@@ -63,7 +63,6 @@ export const loginUser = loginInfo => async dispatch => {
 
 // logs out a user
 export const logoutUser = () => async dispatch => {
-  console.log('logout action')
 
   // makes the api call to logout
   const logoutResponse = await shop.logoutUser();
@@ -136,8 +135,15 @@ export const clearCart = () => dispatch => {
   })
 }
 
-export const userAddToCart = (product, qty) => dispatch => {
+export const addToUsersCart = (productId, qty) => async dispatch => {
+  console.log('addToUsersCart action')
+  console.log('productId:', productId)
+  const addToCartResponse = await shop.addToUsersCart(productId)
 
+  // dispatch({
+  //   type: types.ADD_TO_USERS_CART,
+  //   productId: productId
+  // })
 }
 
 export const addToCartUnsafe = (product, qty) => ({
