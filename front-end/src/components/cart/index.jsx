@@ -13,7 +13,7 @@ class cartComponent extends Component {
     if (this.props.isLoggedIn) {
       this.props.removeFromUsersCart(product.upc)
     } else {
-      this.props.removeFromCart(product.id)
+      this.props.removeFromCart(product.upc)
     }
   }
 

@@ -154,8 +154,8 @@ export default function cartReducer(state = initialState, action) {
 
     case REMOVE_FROM_CART:
       return {
-        cart: state.cart.filter(item => item.id !== action.product_id.id)
-      };
+        cart: state.cart.filter(product => product.upc !== action.productId)
+      }
 
     default:
   }

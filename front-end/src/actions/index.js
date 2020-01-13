@@ -124,6 +124,7 @@ export const addToCart = (product, qty) => dispatch => {
   toast.success("Item added to cart");
 };
 
+// action for when logged in users add a product to their cart
 export const addToUsersCart = (product, quantity) => async dispatch => {
   const productId = product.upc
 
@@ -137,6 +138,7 @@ export const addToUsersCart = (product, quantity) => async dispatch => {
   toast.success('Item added to cart')
 }
 
+// action fro when logged in users remove a product from their cart
 export const removeFromUsersCart = (productId) => async dispatch => {
   const removeFromCartResponse = await shop.removeFromUsersCart(productId)
 
@@ -153,11 +155,11 @@ export const addToCartUnsafe = (product, qty) => ({
   qty
 });
 
-export const removeFromCart = product_id => dispatch => {
+export const removeFromCart = productId => dispatch => {
   toast.success("Item Removed from Cart");
   dispatch({
     type: types.REMOVE_FROM_CART,
-    product_id
+    productId: productId
   });
 };
 
