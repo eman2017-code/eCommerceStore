@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+const elasticsearch = window.ElasticAppSearch;
 
 class Search extends Component {
   constructor(props) {
@@ -14,13 +15,7 @@ class Search extends Component {
     this.setState({
       value: e.target.value
     });
-
-    // get the results
-    this.getResults();
   };
-
-  // filterCategories route
-  // will make a fetch call to the elasticsearch api
 
   render() {
     return (
