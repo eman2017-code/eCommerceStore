@@ -31,14 +31,14 @@ class LeftSideBar extends Component {
   // determines if the user is logged in, then either adds the product to that users account,
   // or adds it to the state of the 'guest account'
   addToCartClicked = (product, quantity) => {
-    const productToAdd = this.props.product
+    const productToAdd = this.props.product;
 
     if (this.props.isLoggedIn) {
-      this.props.addToUsersCart(productToAdd, quantity)
+      this.props.addToUsersCart(productToAdd, quantity);
     } else {
-      this.props.addToCart(productToAdd, quantity)
+      this.props.addToCart(productToAdd, quantity);
     }
-  }
+  };
 
   filterClick() {
     document.getElementById("filter").style.left = "-15px";
@@ -54,9 +54,11 @@ class LeftSideBar extends Component {
 
     return (
       <div>
-        <Helmet>{/* <title>E-Commerce | {product.name}</title> */}</Helmet>
+        <Helmet>
+          <title>E-Commerce | Store </title>
+        </Helmet>
 
-        {/* <Breadcrumb parent={"Product"} title={product.name} /> */}
+        <Breadcrumb parent={"Product"} title={product.name} />
 
         {/*Section Start*/}
         {product ? (
@@ -123,11 +125,46 @@ class LeftSideBar extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // convert string to number so they can === each other
   let productId = Number(ownProps.match.params.sku);
+  let foundProduct1 = state.data.products.find(el => el.sku === productId);
+  let foundProduct2 = state.data.computersAndTablets.find(
+    el => el.sku === productId
+  );
+  let foundProduct3 = state.data.cellPhones.find(el => el.sku === productId);
+  let foundProduct4 = state.data.headphones.find(el => el.sku === productId);
+  let foundProduct5 = state.data.appliances.find(el => el.sku === productId);
+
+  // function to determine which array in state to look through
+  function decideWhichArray() {
+    switch (!undefined) {
+      case foundProduct1:
+        return foundProduct1;
+      // break;
+      case foundProduct2:
+        return foundProduct2;
+      // break;
+      case foundProduct3:
+        return foundProduct3;
+      // break;
+      case foundProduct4:
+        return foundProduct4;
+      // break;
+      case foundProduct5:
+        return foundProduct5;
+      // break;
+      default:
+        return "product no where to be found";
+    }
+  }
+
+  console.log("state from mapStateToProps in LeftSideBar");
+  console.log(state);
+
   return {
-    product: state.data.products.find(el => el.sku === productId),
+    // product: state.data.products.find(el => el.sku === productId),
     isLoggedIn: state.user.isLoggedIn,
+    product: decideWhichArray(),
+
     symbol: state.data.symbol
   };
 };
@@ -135,5 +172,5 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
   addToCart,
   addToCartUnsafe,
-  addToUsersCart,
+  addToUsersCart
 })(LeftSideBar);
