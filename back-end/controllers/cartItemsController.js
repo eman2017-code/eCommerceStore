@@ -9,7 +9,8 @@ const router = express.Router();
 // Create Route
 // this route create a new cart item and adds it to the users cart
 router.post("/", loginRequired, async (req, res, next) => {
-  const productId = req.body.productId;
+  const productId = req.body.productId
+  const quantity = req.body.quantity
 
   try {
     const foundCart = await Cart.findOne({ user: req.session.userId }).populate(
@@ -27,30 +28,36 @@ router.post("/", loginRequired, async (req, res, next) => {
 
     // if the product already exists as a cart item in the users cart
     if (foundCart.doesProductExist(productId)) {
+
       // gets the existing cart item and increases the quantity
       const existingCartItem = foundCart.getExistingCartItem(productId);
 
-      existingCartItem.quantity++;
+      existingCartItem.quantity = quantity;
       await existingCartItem.save();
 
       // sets the new total cost of the cart
       await foundCart.setTotalCost();
       await foundCart.save();
 
+
       res.json({
-        data: existingCartItem,
+        data: existingCartItem.product,
         status: {
           code: 200,
-          message: "Product added to cart"
+          message: "${existingCartItem.product.name} added to cart"
         }
       });
 
-      // otherwise, a new cart item is created and added to the cart
+    // otherwise, a new cart item is created and added to the cart
     } else {
+
       // need to query the whole product so the getProductPrice method is accessible
       const foundProduct = await Product.findOne({ 'sku': productId });
 
-      const newCartItem = await CartItem.create({ product: foundProduct });
+      const newCartItem = await CartItem.create({ 
+        product: foundProduct,
+        quantity: quantity
+      });
 
       foundCart.cartItems.push(newCartItem);
 
@@ -59,10 +66,10 @@ router.post("/", loginRequired, async (req, res, next) => {
       await foundCart.save();
 
       res.json({
-        data: newCartItem,
+        data: foundProduct,
         status: {
           code: 201,
-          message: "Product added to cart"
+          message: "${foundProduct.name} added to cart"
         }
       });
     }

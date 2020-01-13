@@ -135,10 +135,11 @@ export const clearCart = () => dispatch => {
   })
 }
 
-export const addToUsersCart = (productId, qty) => async dispatch => {
+export const addToUsersCart = (product, quantity) => async dispatch => {
   console.log('addToUsersCart action')
-  console.log('productId:', productId)
-  const addToCartResponse = await shop.addToUsersCart(productId)
+
+  const productId = product.sku
+  const addToCartResponse = await shop.addToUsersCart(productId, quantity)
 
   // dispatch({
   //   type: types.ADD_TO_USERS_CART,

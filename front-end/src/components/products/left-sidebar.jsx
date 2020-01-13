@@ -8,7 +8,7 @@ import Service from "./common/service";
 import Breadcrumb from "../boilerplates/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
-import { addToCart, addToCartUnsafe } from "../../actions";
+import { addToCart, addToCartUnsafe, addToUsersCart } from "../../actions";
 import PageNotFound from "../pages/404.jsx";
 
 class LeftSideBar extends Component {
@@ -26,6 +26,18 @@ class LeftSideBar extends Component {
       nav1: this.slider1,
       nav2: this.slider2
     });
+  }
+
+  // determines if the user is logged in, then either adds the product to that users account,
+  // or adds it to the state of the 'guest account'
+  addToCartClicked = (product, quantity) => {
+    const productToAdd = this.props.product
+
+    if (this.props.isLoggedIn) {
+      this.props.addToUsersCart(productToAdd, quantity)
+    } else {
+      this.props.addToCart(productToAdd, quantity)
+    }
   }
 
   filterClick() {
@@ -91,7 +103,7 @@ class LeftSideBar extends Component {
                           symbol={symbol}
                           product={product}
                           navOne={this.state.nav1}
-                          addToCartClicked={addToCart}
+                          addToCartClicked={this.addToCartClicked}
                           BuynowClicked={addToCartUnsafe}
                         />
                       </div>
@@ -115,11 +127,13 @@ const mapStateToProps = (state, ownProps) => {
   let productId = Number(ownProps.match.params.sku);
   return {
     product: state.data.products.find(el => el.sku === productId),
+    isLoggedIn: state.user.isLoggedIn,
     symbol: state.data.symbol
   };
 };
 
 export default connect(mapStateToProps, {
   addToCart,
-  addToCartUnsafe
+  addToCartUnsafe,
+  addToUsersCart,
 })(LeftSideBar);

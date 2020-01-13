@@ -107,10 +107,25 @@ export default {
 
   },
 
-  addToUsersCart: async (productId) => {
+  addToUsersCart: async (productId, quantity) => {
     console.log('add to users cart api call')
 
-    return 
+    const dataToSend = {
+      productId: productId,
+      quantity: quantity
+    }
+
+    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cart-items/', {
+      method: 'POST',
+      body: JSON.parse(dataToSend),
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const parsedResponse = await response.json()
+
+    return parsedResponse
   }
 };
 
