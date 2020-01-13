@@ -24,6 +24,26 @@ class checkOut extends Component {
       pincode: ""
     };
     this.validator = new SimpleReactValidator();
+
+    console.log('is logged in?', this.props.isLoggedIn)
+    console.log('user info: ', this.props.userInfo)
+  }
+
+  componentDidMount() {
+    this.prefillBillingDetails() 
+  }
+
+  // if the user is logged in, their details on the billing form are prefilled
+  prefillBillingDetails = () => {
+    const userInfo = this.props.userInfo
+
+    if (this.props.isLoggedIn) {
+      this.setState({
+        first_name: userInfo.firstName,
+        last_name: userInfo.lastName,
+        email: userInfo.email
+      })
+    }
   }
 
   setStateFromInput = event => {
@@ -399,10 +419,17 @@ class checkOut extends Component {
     );
   }
 }
+
 const mapStateToProps = state => ({
   cartItems: state.cartList.cart,
   symbol: state.data.symbol,
-  total: getCartTotal(state.cartList.cart)
+  total: getCartTotal(state.cartList.cart),
+  isLoggedIn: state.user.isLoggedIn,
+  userInfo: state.user.userInfo
 });
 
 export default connect(mapStateToProps)(checkOut);
+
+
+
+
