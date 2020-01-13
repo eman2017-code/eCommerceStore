@@ -35,16 +35,11 @@ router.post("/", loginRequired, async (req, res, next) => {
       existingCartItem.quantity = quantity;
       await existingCartItem.save();
 
-      // sets the new total cost of the cart
-      await foundCart.setTotalCost();
-      await foundCart.save();
-
-
       res.json({
         data: existingCartItem.product,
         status: {
           code: 200,
-          message: "${existingCartItem.product.name} added to cart"
+          message: existingCartItem.product.name + " added to cart"
         }
       });
 
@@ -52,24 +47,21 @@ router.post("/", loginRequired, async (req, res, next) => {
     } else {
 
       // need to query the whole product so the getProductPrice method is accessible
-      const foundProduct = await Product.findOne({ 'sku': productId });
+      const foundProduct = await Product.findOne({ 'upc': productId });
 
       const newCartItem = await CartItem.create({ 
-        product: foundProduct,
+        product: foundProduct._id,
         quantity: quantity
       });
 
       foundCart.cartItems.push(newCartItem);
-
-      // sets the new total cost of the cart
-      await foundCart.setTotalCost();
       await foundCart.save();
 
       res.json({
         data: foundProduct,
         status: {
           code: 201,
-          message: "${foundProduct.name} added to cart"
+          message: foundProduct.name + " added to cart"
         }
       });
     }

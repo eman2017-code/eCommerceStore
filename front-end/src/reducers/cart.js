@@ -24,13 +24,17 @@ export default function cartReducer(state = initialState, action) {
 
     // sets the users cart right after they login or register
     case SET_USERS_CART:
-
-      // creates a new array of products from each cart item in the users cart
-      const productsInCart = action.cart.cartItems.map(cartItem => cartItem.product)
+      const formattedProducts = action.cart.cartItems.map(cartItem => {
+        return {
+          ...cartItem.product,
+          qty: cartItem.quantity,
+          sum: cartItem.product.price * cartItem.quantity
+        }
+      })
 
       return {
         ...state,
-        cart: [...productsInCart]
+        cart: [...formattedProducts]
       }
 
     // removes the users cart after they log out
@@ -38,6 +42,33 @@ export default function cartReducer(state = initialState, action) {
       return {
         ...state,
         cart: []
+      }
+
+    case ADD_TO_USERS_CART:
+      const newProduct = action.product
+      const quantity = action.quantity
+
+      const indexOfProduct = state.cart.findIndex(product => product.upc === newProduct.upc)
+
+      // if the product already exists
+      if (indexOfProduct !== -1) {
+        state.cart[indexOfProduct].quantity = quantity
+        state.cart[indexOfProduct].sum = newProduct.price * state.cart[indexOfProduct].qty
+
+      // if the product doesnt already exist
+      } else {
+        const formattedProduct = {
+          ...newProduct,
+          qty: quantity,
+          sum: newProduct.price * quantity
+        }
+
+        state.cart.push(formattedProduct)
+      }
+
+      return {
+        ...state,
+        cart: state.cart
       }
 
     case ADD_TO_CART:
