@@ -1,64 +1,68 @@
 /**
  * Mocking client-server processing
  */
-import _products from "./data.json";
-
+// import _products from "./data.json";
 
 export default {
-
   // makes call to the api to register a new user
   registerUser: async (registrationInfo, next) => {
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL + "/api/v1/users/register/", {
-        method: "POST",
-        body: JSON.stringify(registrationInfo),
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
+      const response = await fetch(
+        process.env.REACT_APP_API_URL + "/api/v1/users/register/",
+        {
+          method: "POST",
+          body: JSON.stringify(registrationInfo),
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          }
         }
-      })
-      const parsedResponse = await response.json()
-      return parsedResponse
-
+      );
+      const parsedResponse = await response.json();
+      return parsedResponse;
     } catch (error) {
-      next(error)
+      next(error);
     }
   },
 
   // makes call to the api to attempt to login the user
   loginUser: async (loginInfo, next) => {
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL + "/api/v1/users/login/", {
-        method: "POST",
-        body: JSON.stringify(loginInfo),
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
+      const response = await fetch(
+        process.env.REACT_APP_API_URL + "/api/v1/users/login/",
+        {
+          method: "POST",
+          body: JSON.stringify(loginInfo),
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          }
         }
-      })
-      const parsedResponse = await response.json()
-      return parsedResponse
-
+      );
+      const parsedResponse = await response.json();
+      return parsedResponse;
     } catch (error) {
-      next(error)
+      next(error);
     }
   },
 
   // makes call to teh api to logout the user
-  logoutUser: async (next) => {
+  logoutUser: async next => {
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL + "/api/v1/users/logout/", {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          "Content-Type": "application/json"
+      const response = await fetch(
+        process.env.REACT_APP_API_URL + "/api/v1/users/logout/",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          }
         }
-      })
-      const parsedResponse = await response.json()
-      return parsedResponse
-
+      );
+      const parsedResponse = await response.json();
+      return parsedResponse;
     } catch (error) {
-      next(error)
+      next(error);
     }
   },
 
@@ -92,7 +96,6 @@ export default {
   },
 
   getUsersCart: async () => {
-    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/')
+    const response = await fetch(process.env.REACT_APP_API_URL + "/api/v1/");
   }
-
 };

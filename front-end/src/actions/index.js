@@ -1,63 +1,58 @@
 import shop from "../api/shop";
 import * as types from "../constants/ActionTypes";
-import store from "../store";
+// import store from "../store";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
-
 // registers a new user
 export const registerUser = registrationInfo => async dispatch => {
-
   // makes the api call to register
-  const registrationResponse = await shop.registerUser(registrationInfo)
-  const userInfo = registrationResponse.data
+  const registrationResponse = await shop.registerUser(registrationInfo);
+  const userInfo = registrationResponse.data;
 
   if (registrationResponse.status.code === 201) {
     dispatch({
       type: types.LOGIN,
       userInfo: userInfo
-    })
-    toast.success(registrationResponse.status.message)
+    });
+    toast.success(registrationResponse.status.message);
   } else {
-    toast.error(registrationResponse.status.message)
+    toast.error(registrationResponse.status.message);
   }
-}
-
+};
 
 // attempts to log in a user
 export const loginUser = loginInfo => async dispatch => {
-
   // makes the api call to login
-  const loginResponse = await shop.loginUser(loginInfo)
-  const userInfo = loginResponse.data
+  const loginResponse = await shop.loginUser(loginInfo);
+  const userInfo = loginResponse.data;
 
   // if the user successfully logged in
   if (loginResponse.status.code === 200) {
     dispatch({
       type: types.LOGIN,
-      userInfo: userInfo 
-    })
-    toast.success(loginResponse.status.message)
+      userInfo: userInfo
+    });
+    toast.success(loginResponse.status.message);
   } else {
-    toast.error(loginResponse.status.message)
+    toast.error(loginResponse.status.message);
   }
-} 
+};
 
-// logs out a user 
+// logs out a user
 export const logoutUser = () => async dispatch => {
-
   // makes the api call to logout
-  const logoutResponse = await shop.logoutUser()
+  const logoutResponse = await shop.logoutUser();
 
   if (logoutResponse.status.code === 200) {
     dispatch({
       type: types.LOGOUT
-    })
-    toast.success(logoutResponse.status.message)
+    });
+    toast.success(logoutResponse.status.message);
   } else {
-    toast.error(logoutResponse.status.message)
+    toast.error(logoutResponse.status.message);
   }
-}
+};
 
 export const fetchProductsBegin = () => ({
   type: types.FETCH_PRODUCTS_BEGIN
@@ -94,11 +89,10 @@ export const fetchSingleProduct = productId => ({
   productId
 });
 
-
 export const getUsersCart = () => async dispatch => {
-  const cart = await shop.getUsersCart()
-  console.log('cart:', cart)
-}
+  const cart = await shop.getUsersCart();
+  console.log("cart:", cart);
+};
 
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => dispatch => {
@@ -111,7 +105,6 @@ export const addToCartUnsafe = (product, qty) => ({
   product,
   qty
 });
-
 
 export const removeFromCart = product_id => dispatch => {
   toast.error("Item Removed from Cart");
