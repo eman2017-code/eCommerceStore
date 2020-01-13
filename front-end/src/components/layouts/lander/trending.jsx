@@ -60,48 +60,36 @@ class Trending extends Component {
                     <div className="tab-content-cls">
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {this.props.cellPhones.map((product, i) => (
+                          {cellPhones.map((item, i) => (
                             <div className="tab-box" key={i}>
-                              <SideImageItem
-                                product={product}
-                                symbol={symbol}
-                              />
+                              <SideImageItem product={item} symbol={symbol} />
                             </div>
                           ))}
                         </div>
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {this.props.computersAndTablets.map((product, i) => (
+                          {computersAndTablets.map((item, i) => (
                             <div className="tab-box" key={i}>
-                              <SideImageItem
-                                product={product}
-                                symbol={symbol}
-                              />
+                              <SideImageItem product={item} symbol={symbol} />
                             </div>
                           ))}
                         </div>
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {this.props.headphones.map((product, i) => (
+                          {headphones.map((item, i) => (
                             <div className="tab-box" key={i}>
-                              <SideImageItem
-                                product={product}
-                                symbol={symbol}
-                              />
+                              <SideImageItem product={item} symbol={symbol} />
                             </div>
                           ))}
                         </div>
                       </TabPanel>
                       <TabPanel className="tab-content">
                         <div className="row product-tab">
-                          {this.props.appliances.map((product, i) => (
+                          {appliances.map((item, i) => (
                             <div className="tab-box" key={i}>
-                              <SideImageItem
-                                product={product}
-                                symbol={symbol}
-                              />
+                              <SideImageItem product={item} symbol={symbol} />
                             </div>
                           ))}
                         </div>

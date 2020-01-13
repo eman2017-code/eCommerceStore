@@ -10,7 +10,7 @@ import Breadcrumb from "../common/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
 import { addToCart, addToCartUnsafe } from "../../actions";
-import { getSingleItem } from "../../services";
+// import { getSingleItem } from "../../services";
 
 class LeftSideBar extends Component {
   constructor() {
@@ -42,20 +42,20 @@ class LeftSideBar extends Component {
   }
 
   render() {
-    const { symbol, product, addToCart, addToCartUnsafe } = this.props;
+    const { symbol, item, addToCart, addToCartUnsafe } = this.props;
     console.log("this.props in LeftSideBar");
     console.log(this.props);
 
     return (
       <div>
         <Helmet>
-          <title>E-Commerce | {product.name}</title>
+          <title>E-Commerce | {item.name}</title>
         </Helmet>
 
-        <Breadcrumb parent={"Product"} title={product.name} />
+        <Breadcrumb parent={"Product"} title={item.name} />
 
         {/*Section Start*/}
-        {product ? (
+        {item ? (
           <section className="section-b-space">
             <div className="collection-wrapper">
               <div className="container">
@@ -90,21 +90,21 @@ class LeftSideBar extends Component {
                       <div className="row">
                         <div className="col-lg-6 product-thumbnail">
                           <img
-                            src={product.image}
+                            src={item.image}
                             alt=""
                             className="img-fluid"
                           ></img>
                         </div>
                         <DetailsWithPrice
                           symbol={symbol}
-                          product={product}
+                          item={item}
                           navOne={this.state.nav1}
                           addToCartClicked={addToCart}
                           BuynowClicked={addToCartUnsafe}
                         />
                       </div>
                     </div>
-                    <DetailsTopTabs product={product} />
+                    <DetailsTopTabs item={item} />
                   </div>
                 </div>
               </div>
@@ -122,7 +122,7 @@ const mapStateToProps = (state, ownProps) => {
   // lets convert string to number so they can === each other
   let productId = Number(ownProps.match.params.sku);
   return {
-    product: state.data.products.find(element => element.sku === productId),
+    item: state.data.products.find(element => element.sku === productId),
     symbol: state.data.symbol
   };
 };
