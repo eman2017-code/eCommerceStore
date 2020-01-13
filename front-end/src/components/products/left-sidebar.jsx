@@ -117,8 +117,11 @@ const mapStateToProps = (state, ownProps) => {
   console.log(state);
   // convert string to number so they can === each other
   let productId = Number(ownProps.match.params.sku);
+  let foundProduct = state.data.products.find(el => el.sku === productId);
+  let singleProductArray = [];
+  singleProductArray.push(foundProduct);
   return {
-    product: state.data.products.filter(el => el.sku === productId),
+    product: [...singleProductArray],
     symbol: state.data.symbol
   };
 };
