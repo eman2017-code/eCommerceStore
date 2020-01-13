@@ -136,8 +136,6 @@ export const clearCart = () => dispatch => {
 }
 
 export const addToUsersCart = (product, quantity) => async dispatch => {
-  console.log('addToUsersCart action')
-
   const productId = product.upc
 
   const addToCartResponse = await shop.addToUsersCart(productId, quantity)
@@ -147,6 +145,17 @@ export const addToUsersCart = (product, quantity) => async dispatch => {
     product: product,
     quantity: quantity
   })
+}
+
+export const removeFromUsersCart = (product) => async dispatch => {
+  const productId = product.upc
+
+  const removeFromCartResponse = await shop.removeFromUsersCart(productId)
+
+  // dispatch({
+    
+  // })
+
 }
 
 export const addToCartUnsafe = (product, qty) => ({
