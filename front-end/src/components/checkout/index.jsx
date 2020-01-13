@@ -24,9 +24,6 @@ class checkOut extends Component {
       pincode: ""
     };
     this.validator = new SimpleReactValidator();
-
-    console.log('is logged in?', this.props.isLoggedIn)
-    console.log('user info: ', this.props.userInfo)
   }
 
   componentDidMount() {

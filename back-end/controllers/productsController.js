@@ -5,6 +5,17 @@ const adminRequired = require("../middleware/users/adminRequired.js");
 
 const router = express.Router();
 
+
+// Index Route
+// returns all of the products the database
+router.get('/', async (req, res, next) => {
+  try {
+    
+  } catch (error) {
+    next(error)
+  }
+})
+
 // Create Route
 // this route is where the admin can create a new product
 router.post("/", adminRequired, async (req, res, next) => {

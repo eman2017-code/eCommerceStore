@@ -120,10 +120,12 @@ export const removeFromCart = product_id => dispatch => {
     product_id
   });
 };
+
 export const incrementQty = (product, qty) => dispatch => {
   toast.success("Item Added to Cart");
   dispatch(addToCartUnsafe(product, qty));
 };
+
 export const decrementQty = productId => dispatch => {
   toast.warn("Item Decrement Qty to Cart");
 

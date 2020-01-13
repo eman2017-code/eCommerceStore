@@ -6,7 +6,7 @@ import {
 
 
 const initialState = {
-  carts: []
+  cart: []
 }
 
 

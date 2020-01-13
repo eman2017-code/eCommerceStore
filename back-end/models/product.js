@@ -17,14 +17,8 @@ const productSchema = new mongoose.Schema({
 		type: String, 
 		default: null
 	},	
-	name: {
-		type: String,
-		required: true
-	},
-	description: {
-		type: String,
-		required: true
-	},
+	name: String,
+	description: String,
 	category: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Category' 
@@ -33,18 +27,9 @@ const productSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
-	price: {
-		type: Number,
-		required: true
-	},
-	salePrice: {
-		type: Number,
-		required: false
-	},
-	shipping: {
-		type: Number,
-		required: true
-	},
+	price: Number,
+	salePrice: Number,
+	shipping: Number,
 	lastUpdated: {
     	type: Date,
     	default: Date.now
