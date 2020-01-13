@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { SlideUpDown } from "../../../services/script";
-import LogoImage from "../headers/common/logo";
+import LogoImage from "../../logos/logo";
 
 class FooterOne extends Component {
   componentDidMount() {

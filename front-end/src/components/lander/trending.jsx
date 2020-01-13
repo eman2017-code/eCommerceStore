@@ -3,9 +3,9 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getProductsByCategory } from "../../../actions";
+import { getProductsByCategory } from "../../actions";
 
-import SideImageItem from "../common/side-image-item";
+import SideImageItem from "../products/side-image-item.jsx";
 
 class Trending extends Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 
-import { Slider6 } from "../../../services/script";
+import { Slider6 } from "../../services/script";
 
 class LogoBlock extends Component {
   render() {

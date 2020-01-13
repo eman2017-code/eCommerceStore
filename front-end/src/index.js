@@ -12,7 +12,7 @@ import translations from "./constants/translations";
 import { getAllProducts } from "./actions";
 
 // Layouts
-import Lander from "./components/layouts/lander/main";
+import Lander from "./components/lander/main";
 
 // Collection Pages
 import CollectionLeftSidebar from "./components/collection/collection-left-sidebar";

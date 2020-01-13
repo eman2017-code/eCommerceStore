@@ -9,7 +9,7 @@ import CartContainer from "./../../../containers/CartContainer";
 import { changeCurrency } from "../../../actions";
 import { connect } from "react-redux";
 import TopBarDark from "./topbar-dark";
-import LogoImage from "./common/logo";
+import LogoImage from "../../logos/logo";
 
 class HeaderOne extends Component {
   constructor(props) {

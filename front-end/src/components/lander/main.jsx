@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import "../../common/index.scss";
+import "../common/index.scss";
 import Slider from "react-slick";
 import {
   Slider4,
@@ -8,12 +8,12 @@ import {
   svgservice,
   svgoffer,
   svgpayment
-} from "../../../services/script";
+} from "../../services/script";
 
 // Import custom components
-import LogoBlocks from "../common/logo-block";
+import LogoBlocks from "../logos/logo-block";
 import Trending from "./trending";
-import HeaderOne from "../../boilerplates/headers/header-one";
+import HeaderOne from "../boilerplates/headers/header-one";
 import FooterOne from "../boilerplates/footers/footer-one";
 
 class Lander extends Component {
