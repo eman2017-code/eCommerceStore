@@ -130,6 +130,12 @@ export const addToCart = (product, qty) => dispatch => {
   dispatch(addToCartUnsafe(product, qty));
 };
 
+export const clearCart = () => dispatch => {
+  dispatch({
+    type: 'CLEAR_CART'
+  })
+}
+
 export const userAddToCart = (product, qty) => dispatch => {
 
 }

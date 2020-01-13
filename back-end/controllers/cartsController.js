@@ -1,5 +1,7 @@
 const express = require('express')
 const Cart = require('../models/cart.js')
+const CartItem = require('../models/cartItem.js')
+const Product = require('../models/product.js')
 const loginRequired = require('../middleware/users/loginRequired')
 
 const router = express.Router()
@@ -29,7 +31,14 @@ router.get('/', loginRequired, async (req, res, next) => {
 // this route shows a single cart
 router.get('/:userId/', loginRequired, async (req, res, next) => {
 	try {
-		const foundCart = await Cart.findOne({ 'user': req.params.userId })
+		const foundCart = await Cart.findOne({ 'user': req.params.userId }).populate([{
+			path: 'cartItems',
+			model: CartItem,
+			populate: {
+				path: 'product',
+				model: Product
+			}
+		}])
 
 		res.json({
 			data: foundCart,

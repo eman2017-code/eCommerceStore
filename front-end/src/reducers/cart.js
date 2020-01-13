@@ -16,6 +16,12 @@ const initialState = {
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
 
+    case 'CLEAR_CART': 
+      return {
+        ...state,
+        cart: []
+      }
+
     // sets the users cart right after they login or register
     case SET_USERS_CART:
 
