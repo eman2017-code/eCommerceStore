@@ -9,11 +9,11 @@ import { removeFromCart, removeFromUsersCart, incrementQty, decrementQty } from 
 
 class cartComponent extends Component {
 
-  removeFromCartClicked = (productId) => {
+  removeFromCartClicked = (product) => {
     if (this.props.isLoggedIn) {
-      this.props.removeFromUsersCart(productId)
+      this.props.removeFromUsersCart(product.upc)
     } else {
-      this.props.removeFromCart(productId)
+      this.props.removeFromCart(product.id)
     }
   }
 
@@ -138,7 +138,7 @@ class cartComponent extends Component {
                             <td>
                               <button
                                 className="icon"
-                                onClick={() => this.removeFromCartClicked(item.upc)}
+                                onClick={() => this.removeFromCartClicked(item)}
                               >
                                 <i className="fa fa-times"></i>
                               </button>

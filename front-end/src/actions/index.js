@@ -118,22 +118,11 @@ export const fetchSingleProduct = productId => ({
   productId
 });
 
-export const getUsersCart = (userId) => async dispatch => {
-  const cartResponse = await shop.getUsersCart(userId)
-  console.log('cartResponse in actions:', cartResponse)
-};
-
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => dispatch => {
-  toast.success("Item Added to Cart");
   dispatch(addToCartUnsafe(product, qty));
+  toast.success("Item added to cart");
 };
-
-export const clearCart = () => dispatch => {
-  dispatch({
-    type: 'CLEAR_CART'
-  })
-}
 
 export const addToUsersCart = (product, quantity) => async dispatch => {
   const productId = product.upc
@@ -145,6 +134,7 @@ export const addToUsersCart = (product, quantity) => async dispatch => {
     product: product,
     quantity: quantity
   })
+  toast.success('Item added to cart')
 }
 
 export const removeFromUsersCart = (productId) => async dispatch => {
@@ -154,7 +144,7 @@ export const removeFromUsersCart = (productId) => async dispatch => {
     type: types.REMOVE_FROM_USERS_CART,
     productId: productId
   })
-
+  toast.success('Item removed from cart')
 }
 
 export const addToCartUnsafe = (product, qty) => ({
@@ -164,7 +154,7 @@ export const addToCartUnsafe = (product, qty) => ({
 });
 
 export const removeFromCart = product_id => dispatch => {
-  toast.error("Item Removed from Cart");
+  toast.success("Item Removed from Cart");
   dispatch({
     type: types.REMOVE_FROM_CART,
     product_id
