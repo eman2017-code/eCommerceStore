@@ -24,13 +24,12 @@ class SideImageItem extends Component {
   render() {
     const { product, symbol } = this.props;
 
-    console.log(this.state + " <--- this.state in SideImageItem");
-
     return (
       <div className="product-box2">
         <div className="media">
           <Link
             to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
+            // product={this.state.producs}
             product={product}
           >
             <img
@@ -43,6 +42,7 @@ class SideImageItem extends Component {
             <div>
               <Link
                 to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
+                // product={this.state.producs}
                 product={product}
               >
                 <h6>{product.name}</h6>
