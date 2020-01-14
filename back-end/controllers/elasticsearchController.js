@@ -154,4 +154,34 @@ router.get("/products/", async (req, res, next) => {
   }
 });
 
+// get specific product id route
+router.get("/product/:sku", async (req, res, next) => {
+  productId = req.params.sku;
+  try {
+    const results = await client.search({
+      index: "store-products-catalog2-cats",
+      body: {
+        query: {
+          term: {
+            "message.sku": {
+              value: productId
+            }
+          }
+        }
+      }
+    });
+
+    // send success
+    res.json({
+      data: results.body.hits.hits,
+      status: {
+        code: 200,
+        message: "Succesfully got products"
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
