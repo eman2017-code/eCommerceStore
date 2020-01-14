@@ -122,37 +122,37 @@ router.get("/category/:categoryName/", async (req, res, next) => {
   }
 });
 
-// // searches for products
-// router.get("/products/", async (req, res, next) => {
-//   const searchTerm = req.body.searchTerm;
+// searches for products
+router.post("/products/", async (req, res, next) => {
+  const searchTerm = req.body.searchTerm;
 
-//   try {
-//     const results = await client.search({
-//       index: "store-products-catalog2-cats",
-//       body: {
-//         query: {
-//           match_phrase_prefix: {
-//             "message.name": {
-//               query: searchTerm,
-//               slop: 2,
-//               max_expansions: 10
-//             }
-//           }
-//         }
-//       }
-//     });
+  try {
+    const results = await client.search({
+      index: "store-products-catalog2-cats",
+      body: {
+        query: {
+          match_phrase_prefix: {
+            "message.name": {
+              query: searchTerm,
+              slop: 2,
+              max_expansions: 10
+            }
+          }
+        }
+      }
+    });
 
-//     res.json({
-//       data: results,
-//       status: {
-//         code: 200,
-//         message: "Successfully got products"
-//       }
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+    res.json({
+      data: results,
+      status: {
+        code: 200,
+        message: "Successfully got products"
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 // get specific product id route
 router.get("/product/:sku", async (req, res, next) => {
