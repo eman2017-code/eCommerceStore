@@ -3,7 +3,10 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getProductsByCategory } from "../../actions";
+import {
+  getProductsByCategory,
+  fetchSingleProductFromElastic
+} from "../../actions";
 
 import SideImageItem from "../products/side-image-item.jsx";
 
@@ -27,6 +30,11 @@ class Trending extends Component {
     this.trendingCategories.forEach(category => {
       this.props.getProductsByCategory(category);
     });
+  };
+
+  // creates fetch call to query products based off of product id
+  getProductFromElastic = productId => {
+    this.props.fetchSingleProductFromElastic(productId);
   };
 
   render() {
@@ -122,4 +130,6 @@ const mapStateToProps = (state, ownProps) => ({
   symbol: state.data.symbol
 });
 
-export default connect(mapStateToProps, { getProductsByCategory })(Trending);
+export default connect(mapStateToProps, {
+  getProductsByCategory
+})(Trending);

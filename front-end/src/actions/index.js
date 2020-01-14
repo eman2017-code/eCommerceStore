@@ -3,25 +3,20 @@ import * as types from "../constants/ActionTypes";
 // import store from "../store";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-
 // registers a new user
 export const registerUser = registrationInfo => async dispatch => {
   // makes the api call to register
   const registrationResponse = await shop.registerUser(registrationInfo);
   const userInfo = registrationResponse.data;
-
   if (registrationResponse.status.code === 201) {
-
     // gets the user cart
-    const getUsersCartResponse = await shop.getUsersCart(userInfo._id)
-    const usersCart = getUsersCartResponse.data
-
+    const getUsersCartResponse = await shop.getUsersCart(userInfo._id);
+    const usersCart = getUsersCartResponse.data;
     // sets the users cart in the store
     dispatch({
       type: types.SET_USERS_CART,
       cart: usersCart
-    })
-
+    });
     dispatch({
       type: types.LOGIN,
       userInfo: userInfo
@@ -31,26 +26,21 @@ export const registerUser = registrationInfo => async dispatch => {
     toast.error(registrationResponse.status.message);
   }
 };
-
 // attempts to log in a user
 export const loginUser = loginInfo => async dispatch => {
   // makes the api call to login
   const loginResponse = await shop.loginUser(loginInfo);
   const userInfo = loginResponse.data;
-
   // if the user successfully logged in
   if (loginResponse.status.code === 200) {
-
     // gets the user cart
-    const getUsersCartResponse = await shop.getUsersCart(userInfo._id)
-    const usersCart = getUsersCartResponse.data
-
+    const getUsersCartResponse = await shop.getUsersCart(userInfo._id);
+    const usersCart = getUsersCartResponse.data;
     // sets the users cart in the store
     dispatch({
       type: types.SET_USERS_CART,
       cart: usersCart
-    })
-
+    });
     dispatch({
       type: types.LOGIN,
       userInfo: userInfo
@@ -60,98 +50,79 @@ export const loginUser = loginInfo => async dispatch => {
     toast.error(loginResponse.status.message);
   }
 };
-
 // logs out a user
 export const logoutUser = () => async dispatch => {
-
   // makes the api call to logout
   const logoutResponse = await shop.logoutUser();
-
   // removes the users cart from the state
   dispatch({
     type: types.REMOVE_USERS_CART
-  })
-
+  });
   // removes logged in user from the state
   dispatch({
     type: types.LOGOUT
   });
   toast.success(logoutResponse.status.message);
- 
 };
-
 export const fetchProductsBegin = () => ({
   type: types.FETCH_PRODUCTS_BEGIN
 });
-
 export const receiveProducts = products => ({
   type: types.RECEIVE_PRODUCTS,
   products: products
 });
-
 export const receiveCategoryProducts = (products, category) => ({
   type: types.RECEIVE_CATEGORY_PRODUCTS,
   products: products,
   category: category
 });
-
 export const getAllProducts = () => async dispatch => {
   dispatch(fetchProductsBegin());
   const products = await shop.getAllProducts();
   dispatch(receiveProducts(products));
   return products;
 };
-
 // gets products by category specified in the parameter
 export const getProductsByCategory = category => async dispatch => {
   dispatch(fetchProductsBegin());
   const products = await shop.getProductsByCategory(category);
   dispatch(receiveCategoryProducts(products, category));
 };
-
 // get individual product
 export const fetchSingleProduct = productId => ({
   type: types.FETCH_SINGLE_PRODUCT,
   productId
 });
-
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => dispatch => {
   dispatch(addToCartUnsafe(product, qty));
   toast.success("Item added to cart");
 };
-
 // action for when logged in users add a product to their cart
 export const addToUsersCart = (product, quantity) => async dispatch => {
-  const productId = product.upc
-
-  const addToCartResponse = await shop.addToUsersCart(productId, quantity)
-
+  const productId = product.upc;
+  const addToCartResponse = await shop.addToUsersCart(productId, quantity);
   dispatch({
     type: types.ADD_TO_USERS_CART,
     product: product,
     quantity: quantity
-  })
-  toast.success('Item added to cart')
-}
-
+  });
+  toast.success("Item added to cart");
+};
 // action fro when logged in users remove a product from their cart
-export const removeFromUsersCart = (productId) => async dispatch => {
-  const removeFromCartResponse = await shop.removeFromUsersCart(productId)
-
+export const removeFromUsersCart = productId => async dispatch => {
+  const removeFromCartResponse = await shop.removeFromUsersCart(productId);
   dispatch({
     type: types.REMOVE_FROM_USERS_CART,
     productId: productId
-  })
-  toast.success('Item removed from cart')
-}
-
+  });
+  toast.success("Item removed from cart");
+};
 export const addToCartUnsafe = (product, qty) => ({
   type: types.ADD_TO_CART,
   product,
   qty
 });
-
 export const removeFromCart = productId => dispatch => {
   toast.success("Item Removed from Cart");
   dispatch({
@@ -159,21 +130,17 @@ export const removeFromCart = productId => dispatch => {
     productId: productId
   });
 };
-
 export const incrementQty = (product, qty) => dispatch => {
   toast.success("Item Added to Cart");
   dispatch(addToCartUnsafe(product, qty));
 };
-
 export const decrementQty = productId => dispatch => {
   toast.warn("Item Decrement Qty to Cart");
-
   dispatch({
     type: types.DECREMENT_QTY,
     productId
   });
 };
-
 //Compare Products
 export const addToCompare = product => dispatch => {
   toast.success("Item Added to Compare");
@@ -187,7 +154,6 @@ export const removeFromCompare = product_id => ({
   type: types.REMOVE_FROM_COMPARE,
   product_id
 });
-
 // Filters
 export const filterBrand = manufacturer => ({
   type: types.FILTER_BRAND,
@@ -205,7 +171,6 @@ export const filterSort = sort_by => ({
   type: types.SORT_BY,
   sort_by
 });
-
 // Currency
 export const changeCurrency = symbol => ({
   type: types.CHANGE_CURRENCY,

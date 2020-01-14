@@ -95,16 +95,18 @@ export default {
     return products;
   },
 
-  getUsersCart: async (userId) => {
-    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/carts/' + userId + '/', {
-      credentials: 'include'
-    })
-    const parsedResponse = await response.json()
+  getUsersCart: async userId => {
+    const response = await fetch(
+      process.env.REACT_APP_API_URL + "/api/v1/carts/" + userId + "/",
+      {
+        credentials: "include"
+      }
+    );
+    const parsedResponse = await response.json();
 
-    console.log('users cart response:', parsedResponse)
+    console.log("users cart response:", parsedResponse);
 
-    return parsedResponse
-
+    return parsedResponse;
   },
 
   // adds a product to a logged in users cart
@@ -112,40 +114,36 @@ export default {
     const dataToSend = {
       productId: productId,
       quantity: quantity
-    }
+    };
 
-    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cart-items/', {
-      method: 'POST',
-      body: JSON.stringify(dataToSend),
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json'
+    const response = await fetch(
+      process.env.REACT_APP_API_URL + "/api/v1/cart-items/",
+      {
+        method: "POST",
+        body: JSON.stringify(dataToSend),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        }
       }
-    })
-    const parsedResponse = await response.json()
+    );
+    const parsedResponse = await response.json();
 
-    return parsedResponse
+    return parsedResponse;
   },
 
   // removes a product from a logged in users cart
-  removeFromUsersCart: async (productId) => {
-    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cart-items/' + productId + '/', {
-      method: 'DELETE',
-      credentials: 'include'
-    }) 
-    const parsedResponse = await response.json()
-    console.log(parsedResponse)
+  removeFromUsersCart: async productId => {
+    const response = await fetch(
+      process.env.REACT_APP_API_URL + "/api/v1/cart-items/" + productId + "/",
+      {
+        method: "DELETE",
+        credentials: "include"
+      }
+    );
+    const parsedResponse = await response.json();
+    console.log(parsedResponse);
 
-    return parsedResponse
-
+    return parsedResponse;
   }
-}
-
-
-
-
-
-
-
-
-
+};

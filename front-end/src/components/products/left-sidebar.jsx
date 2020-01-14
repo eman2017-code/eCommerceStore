@@ -122,23 +122,24 @@ class LeftSideBar extends Component {
   }
 }
 
-// IMPORTANT: this got changed while we were trying to fix the trending products bug, 
-// and it broke the ability to view products that were in the 'all-products' section. 
-// whenever you change this code make sure to test it out by clicking on a product in the 
+// IMPORTANT: this got changed while we were trying to fix the trending products bug,
+// and it broke the ability to view products that were in the 'all-products' section.
+// whenever you change this code make sure to test it out by clicking on a product in the
 // all-products section too
 const mapStateToProps = (state, ownProps) => {
-  const productId = ownProps.match.params.sku
-
-  // product being viewed
-  const foundProduct = state.data.products.filter(product => product.sku == productId)[0]
+  let productId = Number(ownProps.match.params.sku);
+  console.log("ownProps");
+  console.log(ownProps.match.params.sku[0]);
+  let product = state.data.products.find(el => el.sku === productId);
+  console.log("state from mapStateToProps in LeftSideBar");
+  console.log(state);
 
   return {
     isLoggedIn: state.user.isLoggedIn,
-    product: foundProduct,
+    product: product,
     symbol: state.data.symbol
-  }
-}
-
+  };
+};
 
 export default connect(mapStateToProps, {
   addToCart,
