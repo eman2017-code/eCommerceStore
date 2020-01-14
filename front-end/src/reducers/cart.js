@@ -88,14 +88,13 @@ export default function cartReducer(state = initialState, action) {
       const quantityToAdd = action.qty
 
       indexOfProduct = state.cart.findIndex(product => product.upc === productToAdd.upc) 
-      console.log('doesProductExist:', indexOfProduct)
 
       // if the product already exists
       if (indexOfProduct !== -1) {
         const productToUpdate = state.cart[indexOfProduct]
 
         // updates the products quantity and sum
-        productToUpdate.qty = quantityToAdd
+        productToUpdate.qty = productToUpdate.qty + quantityToAdd
         productToUpdate.sum = productToUpdate.price * productToUpdate.qty
 
       // if the product doesnt already exist
