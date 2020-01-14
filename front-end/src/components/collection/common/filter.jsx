@@ -9,8 +9,6 @@ import { filterBrand, filterColor, filterPrice } from "../../../actions";
 
 class Filter extends Component {
   constructor(props) {
-    console.log("props in filter component");
-    console.log(props);
     super(props);
 
     this.state = {
