@@ -155,7 +155,7 @@ router.get("/products/", async (req, res, next) => {
 });
 
 // get specific product id route
-router.get("/product/:sku", async (req, res, next) => {
+router.get("/product/:sku/", async (req, res, next) => {
   productId = req.params.sku;
   try {
     const results = await client.search({

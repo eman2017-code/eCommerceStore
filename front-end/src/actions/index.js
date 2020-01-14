@@ -113,7 +113,11 @@ export const fetchSingleProduct = productId => ({
 });
 
 export const fetchSingleProductFromElastic = productId => async dispatch => {
-  await shop.fetchSingleProductFromElastic(productId)
+  console.log('fetchSingleProductFromElastic action')
+
+  const fetchProductResponse = await shop.fetchSingleProductFromElastic(productId)
+
+
 }
 
 

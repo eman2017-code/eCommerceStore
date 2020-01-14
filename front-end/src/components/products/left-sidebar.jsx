@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import "../common/index.scss";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 
 // import custom Components
 import Service from "./common/service";
 import Breadcrumb from "../boilerplates/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
-import { addToCart, addToCartUnsafe, addToUsersCart, fetchSingleProduct } from "../../actions";
+import { addToCart, addToCartUnsafe, addToUsersCart, fetchSingleProductFromElastic } from "../../actions";
 import PageNotFound from "../pages/404.jsx";
 
 class LeftSideBar extends Component {
@@ -18,7 +19,7 @@ class LeftSideBar extends Component {
     this.state = {
       open: false,
       nav1: null,
-      nav2: null
+      nav2: null,
     }
   }
 
@@ -123,15 +124,23 @@ class LeftSideBar extends Component {
   }
 }
 
+
+LeftSideBar.propTypes = {
+  fetchSingleProductFromElastic: PropTypes.func.isRequired,
+  product: PropTypes.object.isRequired
+}
+
+
 // IMPORTANT: this got changed while we were trying to fix the trending products bug,
 // and it broke the ability to view products that were in the 'all-products' section.
 // whenever you change this code make sure to test it out by clicking on a product in the
 // all-products section too
 const mapStateToProps = (state, ownProps) => {
+
   let productId = Number(ownProps.match.params.sku);
+  fetchSingleProductFromElastic(productId)
 
   let product = state.data.products.find(el => el.sku === productId);
-
 
   return {
     isLoggedIn: state.user.isLoggedIn,
@@ -143,5 +152,6 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
   addToCart,
   addToCartUnsafe,
-  addToUsersCart
+  addToUsersCart,
+  fetchSingleProductFromElastic
 })(LeftSideBar);

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-responsive-modal";
+import { connect } from "react-redux";
+import { fetchSingleProductFromElastic } from '../../../actions'
 
 class ProductListItem extends Component {
   constructor(props) {
@@ -45,7 +47,7 @@ class ProductListItem extends Component {
   };
 
   render() {
-    const { product, symbol, onAddToCartClicked } = this.props;
+    const { product, symbol, onAddToCartClicked, fetchSingleProductFromElastic } = this.props;
     const { open } = this.state;
 
     return (
@@ -79,7 +81,7 @@ class ProductListItem extends Component {
           <div>
             <Link
               to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
-            >
+              onClick={ () => {fetchSingleProductFromElastic(product.sku)} }>
               <h6>{product.name}</h6>
             </Link>
             <h4>
@@ -171,4 +173,10 @@ class ProductListItem extends Component {
   }
 }
 
-export default ProductListItem;
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn
+})
+
+export default connect(mapStateToProps, { fetchSingleProductFromElastic })(ProductListItem);
+
+
