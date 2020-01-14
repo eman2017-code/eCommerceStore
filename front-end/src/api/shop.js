@@ -147,12 +147,15 @@ export default {
     return parsedResponse;
   },
 
+  // makes a fetch call to search for a product via elasticsearch
   fetchSingleProductFromElastic: async productId => {
     const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/search/product/' + productId + '/')
-
     const parsedResponse = await response.json()
 
-    console.log('fetchSingleProductFromElastic response:', parsedResponse)
+    // maps the response to get just the needed products information
+    const foundProduct = parsedResponse.data.map(product => product._source.message)[0]
+
+    return foundProduct
 
   }
 

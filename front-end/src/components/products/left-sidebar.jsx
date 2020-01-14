@@ -138,13 +138,12 @@ LeftSideBar.propTypes = {
 const mapStateToProps = (state, ownProps) => {
 
   let productId = Number(ownProps.match.params.sku);
-  fetchSingleProductFromElastic(productId)
 
   let product = state.data.products.find(el => el.sku === productId);
 
   return {
     isLoggedIn: state.user.isLoggedIn,
-    product: product,
+    product: state.data.product,
     symbol: state.data.symbol
   };
 };

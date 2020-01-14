@@ -53,13 +53,14 @@ const productReducer = (state = initialState, action) => {
         [formattedCategoryName]: action.products
       };
 
-      
+
       case FETCH_SINGLE_PRODUCT:
         return {
           ...state,
           product: action.product
         }
 
+    // ** OLD **
     // case FETCH_SINGLE_PRODUCT:
     //   let foundProductArray = [];
     //   // query for the matching product
