@@ -94,11 +94,6 @@ export const receiveCategoryProducts = (products, category) => ({
   category: category
 });
 
-export const fetchSingleProductFromElastic = productId => ({
-  type: types.RECEIVE_CATEGORY_PRODUCTS,
-  productId
-});
-
 export const getAllProducts = () => async dispatch => {
   dispatch(fetchProductsBegin());
   const products = await shop.getAllProducts();
@@ -113,11 +108,17 @@ export const getProductsByCategory = category => async dispatch => {
   dispatch(receiveCategoryProducts(products, category));
 };
 
-// // get individual product
-// export const fetchSingleProduct = productId => ({
-//   type: types.FETCH_SINGLE_PRODUCT,
-//   productId
-// });
+// get individual product
+export const fetchSingleProduct = productId => ({
+  type: types.FETCH_SINGLE_PRODUCT,
+  productId
+});
+
+// get individual product from elastic
+export const fetchSingleProductFromElastic = productId => ({
+  type: types.FETCH_PRODUCT_FROM_ELASTICSEARCH,
+  productId
+});
 
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => dispatch => {

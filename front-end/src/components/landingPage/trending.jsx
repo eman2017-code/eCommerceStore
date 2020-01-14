@@ -3,7 +3,10 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getProductsByCategory } from "../../actions";
+import {
+  getProductsByCategory,
+  fetchSingleProductFromElastic
+} from "../../actions";
 
 import SideImageItem from "../products/side-image-item.jsx";
 
