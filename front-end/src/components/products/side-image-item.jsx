@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { fetchSingleProductFromElastic } from "../../actions";
 
 class SideImageItem extends Component {
   constructor(props) {
@@ -21,14 +22,38 @@ class SideImageItem extends Component {
     this.setState({ image: img });
   }
 
+  // route to fetch product based off productId
+  fetchProductFromElastic = async productId => {
+    try {
+      // api call
+      const response = await fetch(
+        process.env.REACT_APP_API_URL + "/api/v1/search/product/" + productId,
+        {
+          credentials: "include"
+        }
+      );
+      // convert response to json
+      const parsedResponse = response.json();
+      console.log("parsedResponse");
+      console.log(parsedResponse);
+      return parsedResponse;
+    } catch (err) {}
+  };
+
   render() {
     const { product, symbol } = this.props;
+    console.log("this.props in SideImageItem");
+    console.log(this.props);
 
     return (
       <div className="product-box2">
         <div className="media">
           <Link
-            to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
+            to={`${
+              process.env.PUBLIC_URL
+            }/left-sidebar/product/${this.fetchProductFromElastic(
+              product.sku
+            )}`}
           >
             <img
               src={product.image}
@@ -39,7 +64,11 @@ class SideImageItem extends Component {
           <div className="media-body align-self-center">
             <div>
               <Link
-                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
+                to={`${
+                  process.env.PUBLIC_URL
+                }/left-sidebar/product/${this.fetchProductFromElastic(
+                  product.sku
+                )}`}
               >
                 <h6>{product.name}</h6>
               </Link>

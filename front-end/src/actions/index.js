@@ -114,12 +114,6 @@ export const fetchSingleProduct = productId => ({
   productId
 });
 
-// get individual product from elastic
-export const fetchSingleProductFromElastic = productId => ({
-  type: types.FETCH_PRODUCT_FROM_ELASTICSEARCH,
-  productId
-});
-
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => dispatch => {
   dispatch(addToCartUnsafe(product, qty));

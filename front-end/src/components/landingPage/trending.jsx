@@ -32,6 +32,11 @@ class Trending extends Component {
     });
   };
 
+  // creates fetch call to query products based off of product id
+  getProductFromElastic = productId => {
+    this.props.fetchSingleProductFromElastic(productId);
+  };
+
   render() {
     const {
       cellPhones,
@@ -125,4 +130,6 @@ const mapStateToProps = (state, ownProps) => ({
   symbol: state.data.symbol
 });
 
-export default connect(mapStateToProps, { getProductsByCategory })(Trending);
+export default connect(mapStateToProps, {
+  getProductsByCategory
+})(Trending);

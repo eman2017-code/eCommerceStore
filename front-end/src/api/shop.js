@@ -80,19 +80,6 @@ export default {
     return products;
   },
 
-  // finds product by id
-  getProductById: async productId => {
-    const response = await fetch(
-      process.env.REACT_APP_API_URL + "/api/v1/search/product/" + productId
-    );
-    const parsedResponse = await response.json();
-
-    // create array including product id
-    const product = parsedResponse.data.map(product => product._source.message);
-
-    return product;
-  },
-
   // gets products by category
   getProductsByCategory: async category => {
     const response = await fetch(
