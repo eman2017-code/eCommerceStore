@@ -79,7 +79,7 @@ export const logoutUser = () => async dispatch => {
   dispatch({
     type: types.LOGOUT
   });
-  
+
   toast.success(logoutResponse.status.message);
 };
 
@@ -126,6 +126,15 @@ export const fetchSingleProduct = productId => ({
 
 // makes a fetch call to find a single product in elasticsearch
 export const fetchSingleProductFromElastic = productId => async dispatch => {
+
+  // calling this reducer clears the product that is already in the state,
+  // this is being done because if a product is already in the state, it will appear 
+  // on the show product page for half a second, then it switches to the product that was
+  // returned in the fetch call.
+  dispatch({
+    type: types.CLEAR_SINGLE_PRODUCT
+  })
+
   const foundProduct = await shop.fetchSingleProductFromElastic(productId)
 
   // sets the found product in the store 

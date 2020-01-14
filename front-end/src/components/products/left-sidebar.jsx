@@ -125,21 +125,8 @@ class LeftSideBar extends Component {
 }
 
 
-LeftSideBar.propTypes = {
-  fetchSingleProductFromElastic: PropTypes.func.isRequired,
-  product: PropTypes.object.isRequired
-}
-
-
-// IMPORTANT: this got changed while we were trying to fix the trending products bug,
-// and it broke the ability to view products that were in the 'all-products' section.
-// whenever you change this code make sure to test it out by clicking on a product in the
-// all-products section too
 const mapStateToProps = (state, ownProps) => {
-
-  let productId = Number(ownProps.match.params.sku);
-
-  let product = state.data.products.find(el => el.sku === productId);
+  const productId = Number(ownProps.match.params.sku);
 
   return {
     isLoggedIn: state.user.isLoggedIn,
@@ -151,6 +138,5 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
   addToCart,
   addToCartUnsafe,
-  addToUsersCart,
-  fetchSingleProductFromElastic
+  addToUsersCart
 })(LeftSideBar);

@@ -1,5 +1,6 @@
 import {
   FETCH_SINGLE_PRODUCT,
+  CLEAR_SINGLE_PRODUCT,
   CHANGE_CURRENCY,
   RECEIVE_PRODUCTS,
   RECEIVE_CATEGORY_PRODUCTS
@@ -53,7 +54,14 @@ const productReducer = (state = initialState, action) => {
         [formattedCategoryName]: action.products
       };
 
+      // this clears the single product that in the store
+      case CLEAR_SINGLE_PRODUCT:
+        return {
+          ...state,
+          product: {}
+        }
 
+      // sets a singel product in the store
       case FETCH_SINGLE_PRODUCT:
         return {
           ...state,
