@@ -11,7 +11,13 @@ class ProductListing extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { limit: 5, hasMoreItems: true, searchTerm: "", results: [] };
+    this.state = {
+      limit: 5,
+      hasMoreItems: true,
+      searchTerm: "",
+      results: [],
+      currentlySearching: false
+    };
   }
 
   // handle change
@@ -19,7 +25,8 @@ class ProductListing extends Component {
     e.preventDefault();
     // handles value
     this.setState({
-      searchTerm: e.target.value
+      searchTerm: e.target.value,
+      currentlySearching: true
     });
 
     this.queryProduct();
@@ -72,6 +79,7 @@ class ProductListing extends Component {
     const { products, addToCart, symbol } = this.props;
     const { results } = this.state;
     return (
+      // {this.state.currentlySearching ? show these results : do what you normally do}
       <div>
         <div>
           {/* Search section */}
