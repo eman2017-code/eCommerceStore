@@ -49,8 +49,6 @@ class LeftSideBar extends Component {
 
   render() {
     const { symbol, product, addToCart, addToCartUnsafe } = this.props;
-    console.log("this.props in LeftSideBar from");
-    console.log(this.props);
 
     return (
       <div>
@@ -124,50 +122,23 @@ class LeftSideBar extends Component {
   }
 }
 
+// IMPORTANT: this got changed while we were trying to fix the trending products bug, 
+// and it broke the ability to view products that were in the 'all-products' section. 
+// whenever you change this code make sure to test it out by clicking on a product in the 
+// all-products section too
 const mapStateToProps = (state, ownProps) => {
-  let productId = Number(ownProps.match.params.sku);
-  let foundProduct1 = state.data.products.find(el => el.sku === productId);
-  let foundProduct2 = state.data.computersAndTablets.find(
-    el => el.sku === productId
-  );
-  let foundProduct3 = state.data.cellPhones.find(el => el.sku === productId);
-  let foundProduct4 = state.data.headphones.find(el => el.sku === productId);
-  let foundProduct5 = state.data.appliances.find(el => el.sku === productId);
+  const productId = ownProps.match.params.sku
 
-  // function to determine which array in state to look through
-  function decideWhichArray() {
-    switch (!undefined) {
-      case foundProduct1:
-        return foundProduct1;
-      // break;
-      case foundProduct2:
-        return foundProduct2;
-      // break;
-      case foundProduct3:
-        return foundProduct3;
-      // break;
-      case foundProduct4:
-        return foundProduct4;
-      // break;
-      case foundProduct5:
-        return foundProduct5;
-      // break;
-      default:
-        return "product no where to be found";
-    }
-  }
-
-  console.log("state from mapStateToProps in LeftSideBar");
-  console.log(state);
+  // product being viewed
+  const foundProduct = state.data.products.filter(product => product.sku == productId)[0]
 
   return {
-    // product: state.data.products.find(el => el.sku === productId),
     isLoggedIn: state.user.isLoggedIn,
-    product: decideWhichArray(),
-
+    product: foundProduct,
     symbol: state.data.symbol
-  };
-};
+  }
+}
+
 
 export default connect(mapStateToProps, {
   addToCart,

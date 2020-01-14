@@ -8,6 +8,7 @@ import {
 const initialState = {
   products: [],
   symbol: "$",
+  product: {},
   product_details: [],
 
   // trending product categories
