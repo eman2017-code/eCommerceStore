@@ -53,22 +53,29 @@ const productReducer = (state = initialState, action) => {
         [formattedCategoryName]: action.products
       };
 
-    case FETCH_SINGLE_PRODUCT:
-      let foundProductArray = [];
-      // query for the matching product
-      let foundProduct = state.data.products.find(
-        product => product.sku === action.productId
-      );
-      // if foudnProduct is valid
-      if (foundProduct !== undefined) {
-        // push into array
-        foundProductArray.push(foundProduct);
+      
+      case FETCH_SINGLE_PRODUCT:
         return {
           ...state,
-          product_details: foundProductArray
-        };
-      }
-      break;
+          product: action.product
+        }
+
+    // case FETCH_SINGLE_PRODUCT:
+    //   let foundProductArray = [];
+    //   // query for the matching product
+    //   let foundProduct = state.data.products.find(
+    //     product => product.sku === action.productId
+    //   );
+    //   // if foudnProduct is valid
+    //   if (foundProduct !== undefined) {
+    //     // push into array
+    //     foundProductArray.push(foundProduct);
+    //     return {
+    //       ...state,
+    //       product_details: foundProductArray
+    //     };
+    //   }
+    //   break;
 
     case CHANGE_CURRENCY:
       return { ...state, symbol: action.symbol };
