@@ -123,7 +123,7 @@ router.get("/category/:categoryName/", async (req, res, next) => {
 });
 
 // searches for products
-router.get("/products/", async (req, res, next) => {
+router.post("/products/", async (req, res, next) => {
   const searchTerm = req.body.searchTerm;
 
   try {
