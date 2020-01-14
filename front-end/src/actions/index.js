@@ -114,7 +114,6 @@ export const fetchSingleProduct = productId => ({
 
 // makes a fetch call to find a single product in elasticsearch
 export const fetchSingleProductFromElastic = productId => async dispatch => {
-  console.log('fetchSingleProductFromElastic action')
   const foundProduct = await shop.fetchSingleProductFromElastic(productId)
 
   // sets the found product in the store 

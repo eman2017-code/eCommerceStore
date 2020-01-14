@@ -22,36 +22,6 @@ class SideImageItem extends Component {
     this.setState({ image: img });
   }
 
-  // // route to fetch product based off productId
-  // fetchProductFromElastic = async productId => {
-  //   try {
-  //     // api call
-  //     const response = await fetch(
-  //       process.env.REACT_APP_API_URL + "/api/v1/search/product/" + productId,
-  //       {
-  //         credentials: "include"
-  //       }
-  //     );
-  //     // convert response to json
-  //     const parsedResponse = response.json();
-  //     console.log("parsedResponse");
-  //     console.log(parsedResponse);
-  //     return parsedResponse;
-  //   } catch (err) {}
-  // };
-
-
-  // fetchProductFromElastic = async productId => {
-  //   const api = process.env.REACT_APP_API_URL + "/api/v1/search/product/" + productId;
-  //   fetch(api)
-  //     .then(response => {
-  //       return response.json();
-  //     })
-  //     .then(json => {
-  //       return json.data[0]._source.message;
-  //     });
-  // };
-
   render() {
     const { product, symbol } = this.props;
     console.log("this.props in SideImageItem");

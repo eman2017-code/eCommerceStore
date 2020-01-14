@@ -56,7 +56,7 @@ class ProductListItem extends Component {
           <div className="front">
             <Link
               to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
-            >
+              onClick={ () => {fetchSingleProductFromElastic(product.sku)} }>
               <img src={this.state.image} className="img-fluid" alt="" />
             </Link>
           </div>
@@ -156,6 +156,7 @@ class ProductListItem extends Component {
                         </button>
                         <Link
                           to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
+                          onClick={ () => {fetchSingleProductFromElastic(product.sku)} }
                           className="btn btn-solid"
                         >
                           view detail
