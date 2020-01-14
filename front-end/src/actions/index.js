@@ -197,13 +197,23 @@ export const removeFromCart = productId => dispatch => {
 };
 
 
-export const incrementQty = (product, qty) => dispatch => {
-  dispatch(addToCartUnsafe(product, qty))
+export const incrementQty = (product, isLoggedIn) => async dispatch => {
+
+  if (isLoggedIn) {
+    const newQuantity = product.qty += 1
+    await shop.incrementQuantity(product.upc, newQuantity)
+  }
+
+  dispatch({
+    type: types.INCREMENT_QTY,
+    product: product 
+  })
+
   toast.success("Item Added to Cart")
 };
 
 
-export const decrementQty = product => dispatch => {
+export const decrementQty = (product) => dispatch => {
   dispatch({
     type: types.DECREMENT_QTY,
     product: product

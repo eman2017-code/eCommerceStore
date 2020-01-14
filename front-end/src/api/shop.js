@@ -142,9 +142,24 @@ export default {
       }
     );
     const parsedResponse = await response.json();
-    console.log(parsedResponse);
 
     return parsedResponse;
+  },
+
+  incrementQuantity: async (productId, quantity) => {
+    console.log('quantity:', quantity)
+    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cart-items/' + productId, {
+      method: 'PUT',
+      credentials: 'include',
+      body: JSON.stringify({ quantity: quantity }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const parsedResponse = await response.json()
+    console.log('parsedResponse', parsedResponse)
+
   },
 
   // makes a fetch call to search for a product via elasticsearch
