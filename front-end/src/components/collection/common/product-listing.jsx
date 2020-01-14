@@ -102,7 +102,7 @@ class ProductListing extends Component {
                           />
                           <div className="input-group-append">
                             <li
-                              // onClick={this.queryProduct}
+                              onClick={this.queryProduct}
                               className="btn btn-solid"
                             >
                               <i className="fa fa-search"></i>Search
@@ -123,15 +123,15 @@ class ProductListing extends Component {
           <div className="container-fluid">
             {/* if the user is currently typing */}
             {this.state.currentlySearching ? (
-              <div
-                className={`${
-                  this.props.colSize === 3
-                    ? "col-xl-3 col-md-6 col-grid-box"
-                    : "col-lg-" + this.props.colSize
-                }`}
-              >
+              <div className="row">
                 {results.map((product, sku) => (
-                  <div>
+                  <div
+                    className={`${
+                      this.props.colSize === 3
+                        ? "col-xl-3 col-md-6 col-grid-box"
+                        : "col-lg-" + this.props.colSize
+                    }`}
+                  >
                     <ProductListItem
                       product={product._source.message}
                       symbol={symbol}
