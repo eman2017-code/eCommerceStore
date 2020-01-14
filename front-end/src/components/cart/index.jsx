@@ -101,7 +101,7 @@ class cartComponent extends Component {
                                       type="button"
                                       className="btn quantity-left-minus"
                                       onClick={() =>
-                                        this.props.decrementQty(item.id)
+                                        this.props.decrementQty(item)
                                       }
                                       data-type="minus"
                                       data-field=""

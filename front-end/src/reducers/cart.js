@@ -110,6 +110,7 @@ export default function cartReducer(state = initialState, action) {
         cart: state.cart
       }
 
+    // increments the quantity of a product
     case INCREMENT_QTY:
       indexOfProduct = state.cart.findIndex(product => product.upc === action.product.upc)
 
@@ -135,41 +136,62 @@ export default function cartReducer(state = initialState, action) {
         cart: state.cart
       }
 
-
+    // decrements the quantity of a product
     case DECREMENT_QTY:
-      if (
-        state.cart.findIndex(product => product.id === action.productId) !== -1
-      ) {
-        const cart = state.cart.reduce((cartAcc, product) => {
-          if (product.id === action.productId && product.qty > 1) {
-            //console.log('price: '+product.price+'Qty: '+product.qty)
-            cartAcc.push({
-              ...product,
-              qty: product.qty - 1,
-              sum:
-                ((product.price * product.discount) / 100) * (product.qty - 1)
-            }); // Decrement qty
-          } else {
-            cartAcc.push(product);
-          }
+      indexOfProduct = state.cart.findIndex(product => product.upc === action.product.upc)
 
-          return cartAcc;
-        }, []);
+      // if the quantity of the product is atleast two
+      if (state.cart[indexOfProduct].qty > 1) {
+        const productToUpdate = state.cart[indexOfProduct]
 
-        return { ...state, cart };
+        productToUpdate.qty -= 1
+        productToUpdate.sum = productToUpdate.price * productToUpdate.qty
+      
+      // if the quantity is only one
+      } else {
+        delete state.cart[indexOfProduct]
       }
 
       return {
         ...state,
-        cart: [
-          ...state.cart,
-          {
-            ...action.product,
-            qty: action.qty,
-            sum: action.product.price * action.qty
-          }
-        ]
-      };
+        cart: state.cart
+      }
+
+
+    // case DECREMENT_QTY:
+    //   if (
+    //     state.cart.findIndex(product => product.id === action.productId) !== -1
+    //   ) {
+    //     const cart = state.cart.reduce((cartAcc, product) => {
+    //       if (product.id === action.productId && product.qty > 1) {
+    //         //console.log('price: '+product.price+'Qty: '+product.qty)
+    //         cartAcc.push({
+    //           ...product,
+    //           qty: product.qty - 1,
+    //           sum:
+    //             ((product.price * product.discount) / 100) * (product.qty - 1)
+    //         }); // Decrement qty
+    //       } else {
+    //         cartAcc.push(product);
+    //       }
+
+    //       return cartAcc;
+    //     }, []);
+
+    //     return { ...state, cart };
+    //   }
+
+    //   return {
+    //     ...state,
+    //     cart: [
+    //       ...state.cart,
+    //       {
+    //         ...action.product,
+    //         qty: action.qty,
+    //         sum: action.product.price * action.qty
+    //       }
+    //     ]
+    //   };
 
     case REMOVE_FROM_CART:
       return {

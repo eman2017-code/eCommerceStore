@@ -198,10 +198,10 @@ export const incrementQty = (product, qty) => dispatch => {
 };
 
 
-export const decrementQty = productId => dispatch => {
+export const decrementQty = product => dispatch => {
   dispatch({
     type: types.DECREMENT_QTY,
-    productId
+    product: product
   });
   toast.success("Item removed from cart");
 };
