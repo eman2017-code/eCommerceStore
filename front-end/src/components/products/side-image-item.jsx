@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { fetchSingleProductFromElastic } from "../../actions";
+import { connect } from "react-redux";
 
 class SideImageItem extends Component {
   constructor(props) {
@@ -23,14 +24,13 @@ class SideImageItem extends Component {
   }
 
   render() {
-    const { product, symbol } = this.props;
-    console.log("this.props in SideImageItem");
-    console.log(this.props);
+    const { product, symbol, fetchSingleProductFromElastic } = this.props;
 
     return (
       <div className="product-box2">
         <div className="media">
-          <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}>
+          <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
+                onClick={ () => fetchSingleProductFromElastic(product.sku) }>
             <img
               src={product.image}
               className="img-fluid lazyload bg-img"
@@ -39,7 +39,8 @@ class SideImageItem extends Component {
           </Link>
           <div className="media-body align-self-center">
             <div>
-              <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}>
+              <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
+                    onClick={ () => fetchSingleProductFromElastic(product.sku) }>
                 <h6>{product.name}</h6>
               </Link>
 
@@ -55,4 +56,8 @@ class SideImageItem extends Component {
   }
 }
 
-export default SideImageItem;
+const mapStateToProps = state => ({
+})
+
+
+export default connect(mapStateToProps, { fetchSingleProductFromElastic })(SideImageItem);

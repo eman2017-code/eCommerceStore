@@ -7,13 +7,17 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 // registers a new user
 export const registerUser = registrationInfo => async dispatch => {
+
   // makes the api call to register
   const registrationResponse = await shop.registerUser(registrationInfo);
   const userInfo = registrationResponse.data;
+
   if (registrationResponse.status.code === 201) {
+
     // gets the user cart
     const getUsersCartResponse = await shop.getUsersCart(userInfo._id);
     const usersCart = getUsersCartResponse.data;
+
     // sets the users cart in the store
     dispatch({
       type: types.SET_USERS_CART,
@@ -32,14 +36,18 @@ export const registerUser = registrationInfo => async dispatch => {
 
 // attempts to log in a user
 export const loginUser = loginInfo => async dispatch => {
+
   // makes the api call to login
   const loginResponse = await shop.loginUser(loginInfo);
   const userInfo = loginResponse.data;
+
   // if the user successfully logged in
   if (loginResponse.status.code === 200) {
+
     // gets the user cart
     const getUsersCartResponse = await shop.getUsersCart(userInfo._id);
     const usersCart = getUsersCartResponse.data;
+
     // sets the users cart in the store
     dispatch({
       type: types.SET_USERS_CART,
@@ -58,16 +66,20 @@ export const loginUser = loginInfo => async dispatch => {
 
 // logs out a user
 export const logoutUser = () => async dispatch => {
+
   // makes the api call to logout
   const logoutResponse = await shop.logoutUser();
+
   // removes the users cart from the state
   dispatch({
     type: types.REMOVE_USERS_CART
   });
+
   // removes logged in user from the state
   dispatch({
     type: types.LOGOUT
   });
+  
   toast.success(logoutResponse.status.message);
 };
 
