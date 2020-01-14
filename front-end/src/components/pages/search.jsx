@@ -6,25 +6,43 @@ class Search extends Component {
 
     this.state = {
       query: "",
-      response: null
+      results: []
     };
   }
 
+  // handle change
+  handleChange = e => {
+    // handles value
+    this.setState({
+      query: e.target.value
+    });
+
+    // shows results every key stroke
+    this.queryProduct();
+  };
+
   // route to search for products
-  queryProduct = async query => {
+  queryProduct = async queryString => {
     try {
       const product = await fetch(
-        process.env.REACT_APP_API_URL + "/api/v1/search/products/" + query,
+        process.env.REACT_APP_API_URL +
+          "/api/v1/search/products/" +
+          queryString,
         {
+          // method: "POST",
+          // body: JSON.stringify({ query: this.state.value }),
           credentials: "include"
+          // headers: {
+          //   "Content-Type": "application/json"
+          // }
         }
       );
 
       // convert response to json
       const parsedProduct = await product.json();
-
+      // add results to state
       this.setState({
-        query: query
+        results: [...parsedProduct.data]
       });
     } catch (err) {}
   };
