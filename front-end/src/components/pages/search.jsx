@@ -5,7 +5,8 @@ class Search extends Component {
     super(props);
 
     this.state = {
-      query: "",
+      searchTerm: "",
+      // result of products
       results: []
     };
   }
@@ -14,7 +15,7 @@ class Search extends Component {
   handleChange = e => {
     // handles value
     this.setState({
-      query: e.target.value
+      searchTerm: e.target.value
     });
 
     // shows results every key stroke
@@ -22,27 +23,25 @@ class Search extends Component {
   };
 
   // route to search for products
-  queryProduct = async queryString => {
+  queryProduct = async () => {
     try {
-      const product = await fetch(
-        process.env.REACT_APP_API_URL +
-          "/api/v1/search/products/" +
-          queryString,
+      const response = await fetch(
+        process.env.REACT_APP_API_URL + "/api/v1/search/products/",
         {
-          // method: "POST",
-          // body: JSON.stringify({ query: this.state.value }),
-          credentials: "include"
-          // headers: {
-          //   "Content-Type": "application/json"
-          // }
+          method: "POST",
+          body: JSON.stringify({ searchTerm: this.state.value }),
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          }
         }
       );
 
       // convert response to json
-      const parsedProduct = await product.json();
+      const parsedResponse = await response.json();
       // add results to state
       this.setState({
-        results: [...parsedProduct.data]
+        results: [...parsedResponse.data]
       });
     } catch (err) {}
   };
@@ -64,7 +63,7 @@ class Search extends Component {
                           className="form-control"
                           aria-label="Amount (to the nearest dollar)"
                           placeholder="Search Products......"
-                          value={this.state.value}
+                          value={this.state.searchTerm}
                           onChange={this.handleChange}
                         />
                         <div className="input-group-append">
