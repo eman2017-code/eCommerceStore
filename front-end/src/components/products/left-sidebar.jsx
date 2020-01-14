@@ -8,17 +8,18 @@ import Service from "./common/service";
 import Breadcrumb from "../boilerplates/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
-import { addToCart, addToCartUnsafe, addToUsersCart } from "../../actions";
+import { addToCart, addToCartUnsafe, addToUsersCart, fetchSingleProduct } from "../../actions";
 import PageNotFound from "../pages/404.jsx";
 
 class LeftSideBar extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       open: false,
       nav1: null,
       nav2: null
-    };
+    }
   }
 
   componentDidMount() {
@@ -128,11 +129,9 @@ class LeftSideBar extends Component {
 // all-products section too
 const mapStateToProps = (state, ownProps) => {
   let productId = Number(ownProps.match.params.sku);
-  console.log("ownProps");
-  console.log(ownProps.match.params.sku[0]);
+
   let product = state.data.products.find(el => el.sku === productId);
-  console.log("state from mapStateToProps in LeftSideBar");
-  console.log(state);
+
 
   return {
     isLoggedIn: state.user.isLoggedIn,

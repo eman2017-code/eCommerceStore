@@ -39,17 +39,18 @@ class SideImageItem extends Component {
   //     return parsedResponse;
   //   } catch (err) {}
   // };
-  fetchProductFromElastic = async productId => {
-    const api =
-      process.env.REACT_APP_API_URL + "/api/v1/search/product/" + productId;
-    fetch(api)
-      .then(response => {
-        return response.json();
-      })
-      .then(json => {
-        return json.data[0]._source.message;
-      });
-  };
+
+
+  // fetchProductFromElastic = async productId => {
+  //   const api = process.env.REACT_APP_API_URL + "/api/v1/search/product/" + productId;
+  //   fetch(api)
+  //     .then(response => {
+  //       return response.json();
+  //     })
+  //     .then(json => {
+  //       return json.data[0]._source.message;
+  //     });
+  // };
 
   render() {
     const { product, symbol } = this.props;
@@ -59,13 +60,7 @@ class SideImageItem extends Component {
     return (
       <div className="product-box2">
         <div className="media">
-          <Link
-            to={`${
-              process.env.PUBLIC_URL
-            }/left-sidebar/product/${this.fetchProductFromElastic(
-              product.sku
-            )}`}
-          >
+          <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}>
             <img
               src={product.image}
               className="img-fluid lazyload bg-img"
@@ -74,13 +69,7 @@ class SideImageItem extends Component {
           </Link>
           <div className="media-body align-self-center">
             <div>
-              <Link
-                to={`${
-                  process.env.PUBLIC_URL
-                }/left-sidebar/product/${this.fetchProductFromElastic(
-                  product.sku
-                )}`}
-              >
+              <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}>
                 <h6>{product.name}</h6>
               </Link>
 
