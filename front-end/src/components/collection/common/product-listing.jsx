@@ -89,7 +89,6 @@ class ProductListing extends Component {
   render() {
     const { products, addToCart, symbol } = this.props;
     const { results } = this.state;
-
     return (
       <div>
         <div>
