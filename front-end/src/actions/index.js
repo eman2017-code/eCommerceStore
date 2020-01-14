@@ -178,8 +178,8 @@ export const removeFromUsersCart = productId => async dispatch => {
 
 export const addToCartUnsafe = (product, qty) => ({
   type: types.ADD_TO_CART,
-  product,
-  qty
+  product: product,
+  qty: qty
 });
 
 

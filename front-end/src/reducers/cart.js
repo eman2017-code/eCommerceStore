@@ -49,11 +49,11 @@ export default function cartReducer(state = initialState, action) {
       const newProduct = action.product
       const quantity = action.quantity
 
-      const indexOfProduct = state.cart.findIndex(product => product.upc === newProduct.upc)
+      let indexOfProduct = state.cart.findIndex(product => product.upc === newProduct.upc)
 
       // if the product already exists
       if (indexOfProduct !== -1) {
-        state.cart[indexOfProduct].quantity = quantity
+        state.cart[indexOfProduct].qty = quantity
         state.cart[indexOfProduct].sum = newProduct.price * state.cart[indexOfProduct].qty
 
       // if the product doesnt already exist
@@ -82,40 +82,74 @@ export default function cartReducer(state = initialState, action) {
         cart: updatedProductsInCart
       }
 
+    // reducer for when a non logged in user adds an item to the cart
     case ADD_TO_CART:
-      const productId = action.product.id;
-      if (state.cart.findIndex(product => product.id === productId) !== -1) {
-        const cart = state.cart.reduce((cartAcc, product) => {
-          if (product.id === productId) {
-            cartAcc.push({
-              ...product,
-              qty: product.qty + 1,
-              sum:
-                ((product.price * product.discount) / 100) * (product.qty + 1)
-            }); // Increment qty
-          } else {
-            cartAcc.push(product);
-          }
+      const productToAdd = action.product
+      const quantityToAdd = action.qty
 
-          return cartAcc;
-        }, []);
+      indexOfProduct = state.cart.findIndex(product => product.upc === productToAdd.upc) 
+      console.log('doesProductExist:', indexOfProduct)
 
-        return { ...state, cart };
-      }
+      // if the product already exists
+      if (indexOfProduct !== -1) {
+        const productToUpdate = state.cart[indexOfProduct]
+
+        // updates the products quantity and sum
+        productToUpdate.qty = quantityToAdd
+        productToUpdate.sum = productToUpdate.price * productToUpdate.qty
+
+      // if the product doesnt already exist
+      } else {
+
+        // formats the product in the correct way
+        const formattedProductToAdd = {
+          ...productToAdd,
+          qty: quantityToAdd,
+          sum: productToAdd.price * quantityToAdd
+        }
+
+        state.cart.push(formattedProductToAdd)
+      } 
 
       return {
-        ...state,
-        cart: [
-          ...state.cart,
-          {
-            ...action.product,
-            qty: action.qty,
-            sum:
-              ((action.product.price * action.product.discount) / 100) *
-              action.qty
-          }
-        ]
-      };
+        ...state, 
+        cart: state.cart
+      }
+
+    // case ADD_TO_CART:
+    //   const productId = action.product.id;
+    //   if (state.cart.findIndex(product => product.id === productId) !== -1) {
+    //     const cart = state.cart.reduce((cartAcc, product) => {
+    //       if (product.id === productId) {
+    //         cartAcc.push({
+    //           ...product,
+    //           qty: product.qty + 1,
+    //           sum:
+    //             ((product.price * product.discount) / 100) * (product.qty + 1)
+    //         }); // Increment qty
+    //       } else {
+    //         cartAcc.push(product);
+    //       }
+
+    //       return cartAcc;
+    //     }, []);
+
+    //     return { ...state, cart };
+    //   }
+
+    //   return {
+    //     ...state,
+    //     cart: [
+    //       ...state.cart,
+    //       {
+    //         ...action.product,
+    //         qty: action.qty,
+    //         sum:
+    //           ((action.product.price * action.product.discount) / 100) *
+    //           action.qty
+    //       }
+    //     ]
+    //   };
 
     case DECREMENT_QTY:
       if (
