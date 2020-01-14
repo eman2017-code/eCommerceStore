@@ -126,6 +126,8 @@ class LeftSideBar extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   let productId = Number(ownProps.match.params.sku);
+  console.log("ownProps");
+  console.log(ownProps.match.params.sku[0]);
   let product = state.data.products.find(el => el.sku === productId);
   console.log("state from mapStateToProps in LeftSideBar");
   console.log(state);

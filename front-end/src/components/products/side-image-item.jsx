@@ -22,7 +22,7 @@ class SideImageItem extends Component {
     this.setState({ image: img });
   }
 
-  // route to fetch product based off productId
+  // // route to fetch product based off productId
   // fetchProductFromElastic = async productId => {
   //   try {
   //     // api call
@@ -42,13 +42,12 @@ class SideImageItem extends Component {
   fetchProductFromElastic = async productId => {
     const api =
       process.env.REACT_APP_API_URL + "/api/v1/search/product/" + productId;
-
     fetch(api)
-      .then(reponse => {
-        return reponse.json();
+      .then(response => {
+        return response.json();
       })
       .then(json => {
-        return json.data._source;
+        return json.data[0]._source.message;
       });
   };
 
