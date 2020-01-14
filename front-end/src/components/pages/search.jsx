@@ -1,25 +1,14 @@
 import React, { Component } from "react";
-import * as ElasticAppSearch from "@elastic/app-search-javascript";
 
 class Search extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      value: "",
-      query: ""
+      query: "",
+      response: null
     };
   }
-
-  // handle change method
-  handleChange = e => {
-    this.setState({
-      value: e.target.value
-    });
-
-    // get the results
-    this.queryProduct();
-  };
 
   // route to search for products
   queryProduct = async query => {
@@ -61,7 +50,10 @@ class Search extends Component {
                           onChange={this.handleChange}
                         />
                         <div className="input-group-append">
-                          <li onClick={this.onClick} className="btn btn-solid">
+                          <li
+                            onClick={this.queryProduct}
+                            className="btn btn-solid"
+                          >
                             <i className="fa fa-search"></i>Search
                           </li>
                         </div>
