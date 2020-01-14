@@ -113,11 +113,11 @@ export const getProductsByCategory = category => async dispatch => {
   dispatch(receiveCategoryProducts(products, category));
 };
 
-// get individual product
-export const fetchSingleProduct = productId => ({
-  type: types.FETCH_SINGLE_PRODUCT,
-  productId
-});
+// // get individual product
+// export const fetchSingleProduct = productId => ({
+//   type: types.FETCH_SINGLE_PRODUCT,
+//   productId
+// });
 
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => dispatch => {
