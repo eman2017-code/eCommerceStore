@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import CartPage from "../components/boilerplates/headers/cart-header";
-import { removeFromCart } from "../actions";
+import { removeFromCart, fetchSingleProductFromElastic } from "../actions";
 import { getCartTotal } from "../services";
 
-const CartContainer = ({ cartList, total, symbol, removeFromCart }) => (
+const CartContainer = ({ cartList, total, symbol, removeFromCart, fetchSingleProductFromElastic }) => (
   <li className="onhover-div mobile-cart">
     <div className="cart-qty-cls">{cartList.length}</div>
     <Link to={`${process.env.PUBLIC_URL}/cart`}>
@@ -24,7 +24,8 @@ const CartContainer = ({ cartList, total, symbol, removeFromCart }) => (
           item={item}
           total={total}
           symbol={symbol}
-          removeFromCart={() => removeFromCart(item)}
+          removeFromCart={ () => removeFromCart(item) }
+          fetchSingleProductFromElastic={ () => fetchSingleProductFromElastic(item.sku) }
         />
       ))}
       {cartList.length > 0 ? (
@@ -42,7 +43,8 @@ const CartContainer = ({ cartList, total, symbol, removeFromCart }) => (
           </li>
           <li>
             <div className="buttons">
-              <Link to={`${process.env.PUBLIC_URL}/cart`} className="view-cart">
+              <Link to={`${process.env.PUBLIC_URL}/cart`}
+                    className="view-cart">
                 view cart
               </Link>
               <Link
@@ -71,4 +73,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { removeFromCart })(CartContainer);
+export default connect(mapStateToProps, { removeFromCart, fetchSingleProductFromElastic })(CartContainer);
