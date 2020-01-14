@@ -49,8 +49,6 @@ class ProductListing extends Component {
 
       // convert response to json
       const parsedResponse = await response.json();
-      console.log("parsedResponse");
-      console.log(parsedResponse.data.body.hits.hits);
       // add results to state
       this.setState({
         results: [...parsedResponse.data.body.hits.hits]
@@ -64,6 +62,19 @@ class ProductListing extends Component {
 
   fetchMoreItems = () => {
     if (this.state.limit >= this.props.products.length) {
+      this.setState({ hasMoreItems: false });
+      return;
+    }
+    // a fake async api call
+    setTimeout(() => {
+      this.setState({
+        limit: this.state.limit + 5
+      });
+    }, 3000);
+  };
+
+  fetchMoreItemsFromElastic = () => {
+    if (this.state.limit >= this.state.results.length) {
       this.setState({ hasMoreItems: false });
       return;
     }
@@ -123,24 +134,36 @@ class ProductListing extends Component {
           <div className="container-fluid">
             {/* if the user is currently typing */}
             {this.state.currentlySearching ? (
-              <div className="row">
-                {results.map((product, sku) => (
-                  <div
-                    className={`${
-                      this.props.colSize === 3
-                        ? "col-xl-3 col-md-6 col-grid-box"
-                        : "col-lg-" + this.props.colSize
-                    }`}
-                  >
-                    <ProductListItem
-                      product={product._source.message}
-                      symbol={symbol}
-                      onAddToCartClicked={addToCart}
-                      key={sku}
-                    />
-                  </div>
-                ))}
-              </div>
+              <InfiniteScroll
+                dataLength={this.state.limit}
+                next={this.fetchMoreItemsFromElastic}
+                hasMore={this.state.hasMoreItems}
+                loader={<div className="loading-cls"></div>}
+                endMessage={
+                  <p className="seen-cls seen-it-cls">
+                    <b>Yay! You have seen it all</b>
+                  </p>
+                }
+              >
+                <div className="row">
+                  {results.map((product, sku) => (
+                    <div
+                      className={`${
+                        this.props.colSize === 3
+                          ? "col-xl-3 col-md-6 col-grid-box"
+                          : "col-lg-" + this.props.colSize
+                      }`}
+                    >
+                      <ProductListItem
+                        product={product._source.message}
+                        symbol={symbol}
+                        onAddToCartClicked={addToCart}
+                        key={sku}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </InfiniteScroll>
             ) : (
               // otherwise just list all the product for the user to search through
               <InfiniteScroll
