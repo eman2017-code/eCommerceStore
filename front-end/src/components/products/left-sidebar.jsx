@@ -2,13 +2,19 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import "../common/index.scss";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 // import custom Components
 import Service from "./common/service";
 import Breadcrumb from "../boilerplates/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
-import { addToCart, addToCartUnsafe, addToUsersCart } from "../../actions";
+import {
+  addToCart,
+  addToCartUnsafe,
+  addToUsersCart,
+  getProductById
+} from "../../actions";
 import PageNotFound from "../pages/404.jsx";
 
 class LeftSideBar extends Component {
@@ -19,6 +25,8 @@ class LeftSideBar extends Component {
       nav1: null,
       nav2: null
     };
+
+    this.getProductById();
   }
 
   componentDidMount() {
@@ -26,7 +34,14 @@ class LeftSideBar extends Component {
       nav1: this.slider1,
       nav2: this.slider2
     });
+
+    console.log(this.getProductById());
   }
+
+  // get the id of the product
+  getProductById = productId => {
+    return this.props.getProductById(productId);
+  };
 
   // determines if the user is logged in, then either adds the product to that users account,
   // or adds it to the state of the 'guest account'
@@ -46,20 +61,6 @@ class LeftSideBar extends Component {
   backClick() {
     document.getElementById("filter").style.left = "-365px";
   }
-
-  getProductById = async id => {
-    const response = await fetch(
-      process.env.REACT_APP_API_URL + "/api/v1/search/product/" + id
-    );
-    const parsedResponse = await response.json();
-
-    // creates a new array including only information about the product
-    const products = parsedResponse.data.map(
-      product => product._source.message
-    );
-
-    return products;
-  };
 
   render() {
     const { symbol, product, addToCart, addToCartUnsafe } = this.props;
@@ -138,16 +139,21 @@ class LeftSideBar extends Component {
   }
 }
 
+LeftSideBar.propTypes = {
+  getProductById: PropTypes.func.isRequired
+};
+
 const mapStateToProps = (state, ownProps) => {
+  console.log("ownProps");
+  console.log(ownProps);
   let productId = Number(ownProps.match.params.sku);
-  let foundProduct1 = state.data.products.find(el => el.sku === productId);
+  let foundProduct = getProductById(productId);
+  console.log("foundProduct");
+  console.log(foundProduct);
 
   return {
-    // product: state.data.products.find(el => el.sku === productId),
     isLoggedIn: state.user.isLoggedIn,
-    // product: decideWhichArray(),
-    product: foundProduct1,
-
+    product: foundProduct,
     symbol: state.data.symbol
   };
 };
@@ -155,5 +161,6 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
   addToCart,
   addToCartUnsafe,
-  addToUsersCart
+  addToUsersCart,
+  getProductById
 })(LeftSideBar);

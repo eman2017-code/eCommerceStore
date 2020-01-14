@@ -35,9 +35,9 @@ router.get("/all-products", async (req, res, next) => {
   }
 });
 
-// get specif product id route
-router.get("/product/:productId", async (req, res, next) => {
-  productId = req.params.productId;
+// get specific product id route
+router.get("/product/:sku", async (req, res, next) => {
+  productId = req.params.sku;
   try {
     const results = await client.search({
       index: "store-products-catalog2-cats",
