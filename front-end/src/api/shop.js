@@ -146,12 +146,12 @@ export default {
     return parsedResponse;
   },
 
-  incrementQuantity: async (productId, quantity) => {
+  updateProductQuantity: async (productId, quantity) => {
     console.log('quantity:', quantity)
-    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cart-items/' + productId, {
+    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cart-items/' + productId + '/', {
       method: 'PUT',
       credentials: 'include',
-      body: JSON.stringify({ quantity: quantity }),
+      body: JSON.stringify({ quantity: quantity + 1 }),
       headers: {
         'Content-Type': 'application/json'
       }

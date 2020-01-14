@@ -72,16 +72,33 @@ router.post("/", loginRequired, async (req, res, next) => {
 
 // Update Route
 // this route is where users can update the quantity of a cart item
-router.put("/:cartItemId/", loginRequired, async (req, res, next) => {
-  const newQuantity = req.body.quantity;
+router.put("/:productId/", loginRequired, async (req, res, next) => {
+  const productId = req.params.productId
+  const newQuantity = req.body.quantity
 
   try {
-    const foundCartItem = await CartItem.findById(req.params.cartItemId);
-    foundCartItem.quantity = newQuantity;
-    await foundCartItem.save();
+    // finds the users cart
+    const foundCart = await Cart.findOne({ 'user': req.session.userId }).populate(
+      [{
+        path: "cartItems",
+        model: CartItem,
+        populate: {
+          path: "product",
+          model: Product
+        }
+      }]
+    )
+    console.log('foundCart:', foundCart)
+
+    // finds the cart item that needs to be updated
+    const foundCartItem = foundCart.getExistingCartItem(productId)
+    console.log('foundCartItem:', foundCartItem)
+
+    foundCartItem.quantity = newQuantity
+    await foundCartItem.save()
 
     res.json({
-      data: foundCartItem,
+      data: foundCartItem.product,
       status: {
         code: 200,
         message: "Product quantity successfully increased"

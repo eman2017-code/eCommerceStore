@@ -200,8 +200,8 @@ export const removeFromCart = productId => dispatch => {
 export const incrementQty = (product, isLoggedIn) => async dispatch => {
 
   if (isLoggedIn) {
-    const newQuantity = product.qty += 1
-    await shop.incrementQuantity(product.upc, newQuantity)
+    
+    await shop.updateProductQuantity(product.upc, product.qty)
   }
 
   dispatch({
