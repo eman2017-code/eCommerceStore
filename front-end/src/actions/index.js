@@ -112,6 +112,10 @@ export const fetchSingleProduct = productId => ({
   productId
 });
 
+export const fetchSingleProductFromElastic = productId => async dispatch => {
+  await shop.fetchSingleProductFromElastic(productId)
+}
+
 
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => dispatch => {

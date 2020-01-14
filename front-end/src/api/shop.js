@@ -145,5 +145,20 @@ export default {
     console.log(parsedResponse);
 
     return parsedResponse;
+  },
+
+  fetchSingleProductFromElastic: async productId => {
+    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/search/product/' + productId + '/')
+
+    const parsedResponse = await response.json()
+
+    console.log('fetchSingleProductFromElastic response:', parsedResponse)
+
   }
+
 };
+
+
+
+
+
