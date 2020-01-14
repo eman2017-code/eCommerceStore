@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import * as ElasticAppSearch from "@elastic/app-search-javascript";
 
 class Search extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class Search extends Component {
     });
 
     // get the results
-    this.getResults();
+    this.queryProduct();
   };
 
   // route to search for products
