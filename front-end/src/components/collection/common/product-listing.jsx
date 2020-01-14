@@ -50,10 +50,10 @@ class ProductListing extends Component {
       // convert response to json
       const parsedResponse = await response.json();
       console.log("parsedResponse");
-      console.log(parsedResponse);
+      console.log(parsedResponse.data.body.hits.hits);
       // add results to state
       this.setState({
-        results: [...parsedResponse.data]
+        results: [...parsedResponse.data.body.hits.hits]
       });
     } catch (err) {}
   };
@@ -78,8 +78,8 @@ class ProductListing extends Component {
   render() {
     const { products, addToCart, symbol } = this.props;
     const { results } = this.state;
+
     return (
-      // {this.state.currentlySearching ? show these results : do what you normally do}
       <div>
         <div>
           {/* Search section */}
@@ -101,12 +101,12 @@ class ProductListing extends Component {
                             autoComplete="on"
                           />
                           <div className="input-group-append">
-                            <button
-                              onClick={this.queryProduct}
+                            <li
+                              // onClick={this.queryProduct}
                               className="btn btn-solid"
                             >
                               <i className="fa fa-search"></i>Search
-                            </button>
+                            </li>
                           </div>
                         </div>
                       </form>
@@ -116,17 +116,33 @@ class ProductListing extends Component {
               </section>
             </div>
           </section>
-          <ul>
-            {results.map(result => (
-              <li key={result.name}>{result.name}</li>
-            ))}
-          </ul>
         </div>
 
-        {/* Listing products section */}
+        {/* Listing products section  */}
         <div className="product-wrapper-grid">
           <div className="container-fluid">
-            {products.length > 0 ? (
+            {/* if the user is currently typing */}
+            {this.state.currentlySearching ? (
+              <div
+                className={`${
+                  this.props.colSize === 3
+                    ? "col-xl-3 col-md-6 col-grid-box"
+                    : "col-lg-" + this.props.colSize
+                }`}
+              >
+                {results.map((product, sku) => (
+                  <div>
+                    <ProductListItem
+                      product={product._source.message}
+                      symbol={symbol}
+                      onAddToCartClicked={addToCart}
+                      key={sku}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              // otherwise just list all the product for the user to search through
               <InfiniteScroll
                 dataLength={this.state.limit} //This is important field to render the next data
                 next={this.fetchMoreItems}
@@ -158,7 +174,10 @@ class ProductListing extends Component {
                   ))}
                 </div>
               </InfiniteScroll>
-            ) : (
+            )}
+
+            {/* if there are no more products */}
+            {products.length <= 0 ? (
               <div className="row">
                 <div className="col-sm-12 text-center section-b-space mt-5 no-found">
                   <img
@@ -181,6 +200,8 @@ class ProductListing extends Component {
                   </Link>
                 </div>
               </div>
+            ) : (
+              ""
             )}
           </div>
         </div>
