@@ -5,6 +5,7 @@ import {
   REMOVE_FROM_USERS_CART,
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  INCREMENT_QTY,
   DECREMENT_QTY
 } from "../constants/ActionTypes";
 
@@ -16,12 +17,6 @@ const initialState = {
 
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
-
-    case 'CLEAR_CART': 
-      return {
-        ...state,
-        cart: []
-      }
 
     // sets the users cart right after they login or register
     case SET_USERS_CART:
@@ -115,40 +110,31 @@ export default function cartReducer(state = initialState, action) {
         cart: state.cart
       }
 
-    // case ADD_TO_CART:
-    //   const productId = action.product.id;
-    //   if (state.cart.findIndex(product => product.id === productId) !== -1) {
-    //     const cart = state.cart.reduce((cartAcc, product) => {
-    //       if (product.id === productId) {
-    //         cartAcc.push({
-    //           ...product,
-    //           qty: product.qty + 1,
-    //           sum:
-    //             ((product.price * product.discount) / 100) * (product.qty + 1)
-    //         }); // Increment qty
-    //       } else {
-    //         cartAcc.push(product);
-    //       }
+    case INCREMENT_QTY:
+      indexOfProduct = state.cart.findIndex(product => product.upc === action.product.upc)
 
-    //       return cartAcc;
-    //     }, []);
+      // if the product exists
+      if (indexOfProduct !== -1) {
+        const productToUpdate = state.cart[indexOfProduct]
 
-    //     return { ...state, cart };
-    //   }
+        productToUpdate.qty += 1
+        productToUpdate.sum = productToUpdate.price * productToUpdate.qty
 
-    //   return {
-    //     ...state,
-    //     cart: [
-    //       ...state.cart,
-    //       {
-    //         ...action.product,
-    //         qty: action.qty,
-    //         sum:
-    //           ((action.product.price * action.product.discount) / 100) *
-    //           action.qty
-    //       }
-    //     ]
-    //   };
+      // otherwise if it doenst exist, just add the product to the cart
+      } else {
+        const formattedProductToAdd = {
+          ...action.product,
+          qty: 1,
+          sum: productToAdd.price  
+        }
+        state.cart.push(formattedProductToAdd)
+      }
+
+      return {
+        ...state,
+        cart: state.cart
+      }
+
 
     case DECREMENT_QTY:
       if (

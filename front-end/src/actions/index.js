@@ -193,17 +193,17 @@ export const removeFromCart = productId => dispatch => {
 
 
 export const incrementQty = (product, qty) => dispatch => {
-  toast.success("Item Added to Cart");
-  dispatch(addToCartUnsafe(product, qty));
+  dispatch(addToCartUnsafe(product, qty))
+  toast.success("Item Added to Cart")
 };
 
 
 export const decrementQty = productId => dispatch => {
-  toast.warn("Item Decrement Qty to Cart");
   dispatch({
     type: types.DECREMENT_QTY,
     productId
   });
+  toast.success("Item removed from cart");
 };
 
 
