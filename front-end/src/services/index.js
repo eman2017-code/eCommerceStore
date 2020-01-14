@@ -103,7 +103,11 @@ export const getVisibleproducts = (
 export const getCartTotal = cartItems => {
   var total = 0;
   for (var i = 0; i < cartItems.length; i++) {
-    total += cartItems[i].qty * cartItems[i].price;
+
+    if (cartItems[i] !== null) {
+      total += cartItems[i].qty * cartItems[i].price;
+    }
+    
   }
   return total;
 };

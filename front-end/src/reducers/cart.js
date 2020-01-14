@@ -18,6 +18,12 @@ const initialState = {
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
 
+    case 'CLEAR_CART':
+      return {
+        ...state,
+        cart: []
+      }
+
     // sets the users cart right after they login or register
     case SET_USERS_CART:
       const formattedProducts = action.cart.cartItems.map(cartItem => {
@@ -146,52 +152,19 @@ export default function cartReducer(state = initialState, action) {
 
         productToUpdate.qty -= 1
         productToUpdate.sum = productToUpdate.price * productToUpdate.qty
+
+        return {
+          ...state,
+          cart: state.cart
+        }
       
       // if the quantity is only one
       } else {
-        delete state.cart[indexOfProduct]
+        return {
+          cart: state.cart.filter(product => product.upc !== action.product.upc) // removes the product
+        }
       }
 
-      return {
-        ...state,
-        cart: state.cart
-      }
-
-
-    // case DECREMENT_QTY:
-    //   if (
-    //     state.cart.findIndex(product => product.id === action.productId) !== -1
-    //   ) {
-    //     const cart = state.cart.reduce((cartAcc, product) => {
-    //       if (product.id === action.productId && product.qty > 1) {
-    //         //console.log('price: '+product.price+'Qty: '+product.qty)
-    //         cartAcc.push({
-    //           ...product,
-    //           qty: product.qty - 1,
-    //           sum:
-    //             ((product.price * product.discount) / 100) * (product.qty - 1)
-    //         }); // Decrement qty
-    //       } else {
-    //         cartAcc.push(product);
-    //       }
-
-    //       return cartAcc;
-    //     }, []);
-
-    //     return { ...state, cart };
-    //   }
-
-    //   return {
-    //     ...state,
-    //     cart: [
-    //       ...state.cart,
-    //       {
-    //         ...action.product,
-    //         qty: action.qty,
-    //         sum: action.product.price * action.qty
-    //       }
-    //     ]
-    //   };
 
     case REMOVE_FROM_CART:
       return {

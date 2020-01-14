@@ -4,6 +4,11 @@ import * as types from "../constants/ActionTypes";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
+export const clearCart = () => async dispatch => {
+  dispatch({
+    type: 'CLEAR_CART'
+  })
+}
 
 // registers a new user
 export const registerUser = registrationInfo => async dispatch => {
