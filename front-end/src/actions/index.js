@@ -197,13 +197,32 @@ export const removeFromCart = productId => dispatch => {
 };
 
 
-export const incrementQty = (product, qty) => dispatch => {
-  dispatch(addToCartUnsafe(product, qty))
+// increments the quanity of a item in the cart
+export const incrementQty = (product, isLoggedIn) => async dispatch => {
+  product.qty++
+
+  // updates cart item quantity in the back if user is logged in
+  if (isLoggedIn) {
+    await shop.updateProductQuantity(product)
+  }
+
+  dispatch({
+    type: types.INCREMENT_QTY,
+    product: product 
+  })
   toast.success("Item Added to Cart")
 };
 
 
-export const decrementQty = product => dispatch => {
+// decrements the quanity of a item in the cart
+export const decrementQty = (product, isLoggedIn) => async dispatch => {
+  product.qty--
+
+  // updates cart item quantity in the back if user is logged in
+  if (isLoggedIn) {
+    await shop.updateProductQuantity(product)
+  }
+
   dispatch({
     type: types.DECREMENT_QTY,
     product: product
