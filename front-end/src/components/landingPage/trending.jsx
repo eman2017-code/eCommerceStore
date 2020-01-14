@@ -12,8 +12,6 @@ import SideImageItem from "../products/side-image-item.jsx";
 
 class Trending extends Component {
   constructor(props) {
-    console.log("props in trendingComponent");
-    console.log(props);
     super(props);
     this.trendingCategories = [
       "cell phones",
