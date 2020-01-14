@@ -146,20 +146,17 @@ export default {
     return parsedResponse;
   },
 
-  updateProductQuantity: async (productId, quantity) => {
-    console.log('quantity:', quantity)
-    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cart-items/' + productId + '/', {
+  // updates the quantity of a users cart item
+  updateProductQuantity: async (product) => {
+    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cart-items/' + product.upc + '/', {
       method: 'PUT',
       credentials: 'include',
-      body: JSON.stringify({ quantity: quantity + 1 }),
+      body: JSON.stringify({ quantity: product.qty }),
       headers: {
         'Content-Type': 'application/json'
       }
     })
-
     const parsedResponse = await response.json()
-    console.log('parsedResponse', parsedResponse)
-
   },
 
   // makes a fetch call to search for a product via elasticsearch
@@ -171,7 +168,6 @@ export default {
     const foundProduct = parsedResponse.data.map(product => product._source.message)[0]
 
     return foundProduct
-
   }
 
 };
