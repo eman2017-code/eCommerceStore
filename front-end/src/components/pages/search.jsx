@@ -5,7 +5,8 @@ class Search extends Component {
     super(props);
 
     this.state = {
-      value: ""
+      value: "",
+      query: ""
     };
   }
 
@@ -19,8 +20,24 @@ class Search extends Component {
     this.getResults();
   };
 
-  // filterCategories route
-  // will make a fetch call to the elasticsearch api
+  // route to search for products
+  queryProduct = async query => {
+    try {
+      const product = await fetch(
+        process.env.REACT_APP_API_URL + "/api/v1/search/products/" + query,
+        {
+          credentials: "include"
+        }
+      );
+
+      // convert response to json
+      const parsedProduct = await product.json();
+
+      this.setState({
+        query: query
+      });
+    } catch (err) {}
+  };
 
   render() {
     return (

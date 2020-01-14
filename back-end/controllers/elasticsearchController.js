@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const Product = require('../models/product.js')
-const Category = require('../models/category.js')
+const Product = require("../models/product.js");
+const Category = require("../models/category.js");
 
 // require elasticsearch
 const { Client } = require("@elastic/elasticsearch");
@@ -11,54 +11,6 @@ const client = new Client({ node: "http://34.68.86.219:9200" });
 
 // handling errors
 const { errors } = require("@elastic/elasticsearch");
-
-// // index route for products
-// router.get("/all-products", async (req, res, next) => {
-//   try {
-//     const results = await client.search({
-//       index: "store-products-catalog2-cats",
-//       body: {
-//         query: {
-//           bool: {
-//             should: [
-//               {
-//                 match: {
-//                   "message.category.name.keyword": {
-//                     // must have this name in the category
-//                     query: "Cell Phones",
-//                     // bring this up to the top
-//                     boost: 5
-//                   }
-//                 }
-//               },
-//               {
-//                 match: {
-//                   "message.category.name.keyword": {
-//                     // must have this name in the cateogry
-//                     query: "Computers & Tablets",
-//                     // push this towards the front over others
-//                     boost: 4
-//                   }
-//                 }
-//               }
-//             ]
-//           }
-//         }
-//       }
-//     });
-
-//     // if success
-//     res.json({
-//       data: results.body.hits.hits,
-//       status: {
-//         code: 200,
-//         message: "Success loading products"
-//       }
-//     });
-//   } catch (err) {
-//     next(err);
-//   }
-// });
 
 // load product listing page route -- index route
 router.get("/all-products", async (req, res, next) => {
@@ -83,64 +35,62 @@ router.get("/all-products", async (req, res, next) => {
   }
 });
 
-
-// this route queries elasticsearch for all the product data and imports the products and 
+// this route queries elasticsearch for all the product data and imports the products and
 // categories into mongoDB
-router.post('/import/', async (req, res, next) => {
+router.post("/import/", async (req, res, next) => {
   try {
     const results = await client.search({
       index: "store-products-catalog2-cats",
       from: 1,
       size: 10000,
       body: {}
-    }) 
+    });
 
-    const products = results.body.hits.hits.map(product => product._source.message)
+    const products = results.body.hits.hits.map(
+      product => product._source.message
+    );
 
     // iterate through all the products and creates product instances if they dont already exist
-    products.forEach(async (product) => {
-      const existingProduct = await Product.findOne({ 'sku': product.sku })
+    products.forEach(async product => {
+      const existingProduct = await Product.findOne({ sku: product.sku });
 
-        if (!existingProduct) {
+      if (!existingProduct) {
+        // iterates through the products categories and creates new category instances if they dont exist
+        const productsCategories = product.category.map(async category => {
+          const existingCategory = await Category.find({ name: category.name });
 
-          // iterates through the products categories and creates new category instances if they dont exist
-          const productsCategories = product.category.map(async (category) => {
-            const existingCategory = await Category.find({ 'name': category.name })
+          if (!existingCategory) {
+            const newCategory = await Category.create({
+              name: category.name
+            });
+            return newCategory.id;
+          }
+          return existingCategory.id;
 
-            if (!existingCategory) {
-              const newCategory = await Category.create({
-                name: category.name
-              })
-              return newCategory.id
-            }
-            return existingCategory.id
-
-            const newProduct = await Product.create({
-              sku: products.sku,
-              name: product.name,
-              type: product.type,
-              upc: product.upc,
-              price: product.price,
-              shipping: product.shipping,
-              manufacturer: product.manufacturer,
-              model: product.model,
-              image: product.image,
-              description: product.description,
-              category: productsCategories
-            })
-          })
-        }
-    })
+          const newProduct = await Product.create({
+            sku: products.sku,
+            name: product.name,
+            type: product.type,
+            upc: product.upc,
+            price: product.price,
+            shipping: product.shipping,
+            manufacturer: product.manufacturer,
+            model: product.model,
+            image: product.image,
+            description: product.description,
+            category: productsCategories
+          });
+        });
+      }
+    });
 
     res.json({
       data: products
-    })
-
+    });
   } catch (error) {
-    next(error)
+    next(error);
   }
-
-})
+});
 
 // filters products by whatever category is specified in the query paramaters
 router.get("/category/:categoryName/", async (req, res, next) => {
@@ -153,12 +103,12 @@ router.get("/category/:categoryName/", async (req, res, next) => {
         query: {
           multi_match: {
             query: categoryName,
-            fields: ['message.category.name^2', 'message.name'],
+            fields: ["message.category.name^2", "message.name"]
           }
         },
         size: 8
       }
-    })
+    });
 
     res.json({
       data: results.body.hits.hits,
