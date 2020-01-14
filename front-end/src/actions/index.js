@@ -11,16 +11,15 @@ export const registerUser = registrationInfo => async dispatch => {
   const userInfo = registrationResponse.data;
 
   if (registrationResponse.status.code === 201) {
-
     // gets the user cart
-    const getUsersCartResponse = await shop.getUsersCart(userInfo._id)
-    const usersCart = getUsersCartResponse.data
+    const getUsersCartResponse = await shop.getUsersCart(userInfo._id);
+    const usersCart = getUsersCartResponse.data;
 
     // sets the users cart in the store
     dispatch({
       type: types.SET_USERS_CART,
       cart: usersCart
-    })
+    });
 
     dispatch({
       type: types.LOGIN,
@@ -40,16 +39,15 @@ export const loginUser = loginInfo => async dispatch => {
 
   // if the user successfully logged in
   if (loginResponse.status.code === 200) {
-
     // gets the user cart
-    const getUsersCartResponse = await shop.getUsersCart(userInfo._id)
-    const usersCart = getUsersCartResponse.data
+    const getUsersCartResponse = await shop.getUsersCart(userInfo._id);
+    const usersCart = getUsersCartResponse.data;
 
     // sets the users cart in the store
     dispatch({
       type: types.SET_USERS_CART,
       cart: usersCart
-    })
+    });
 
     dispatch({
       type: types.LOGIN,
@@ -63,16 +61,14 @@ export const loginUser = loginInfo => async dispatch => {
 
 // logs out a user
 export const logoutUser = () => async dispatch => {
-
   // makes the api call to logout
   const logoutResponse = await shop.logoutUser();
 
   if (logoutResponse.status.code === 200) {
-
     // removes the users cart from the state
     dispatch({
       type: types.REMOVE_USERS_CART
-    })
+    });
 
     dispatch({
       type: types.LOGOUT
@@ -96,6 +92,11 @@ export const receiveCategoryProducts = (products, category) => ({
   type: types.RECEIVE_CATEGORY_PRODUCTS,
   products: products,
   category: category
+});
+
+export const fetchSingleProductFromElastic = productId => ({
+  type: types.RECEIVE_CATEGORY_PRODUCTS,
+  productId
 });
 
 export const getAllProducts = () => async dispatch => {
@@ -126,28 +127,28 @@ export const addToCart = (product, qty) => dispatch => {
 
 // action for when logged in users add a product to their cart
 export const addToUsersCart = (product, quantity) => async dispatch => {
-  const productId = product.upc
+  const productId = product.upc;
 
-  const addToCartResponse = await shop.addToUsersCart(productId, quantity)
+  const addToCartResponse = await shop.addToUsersCart(productId, quantity);
 
   dispatch({
     type: types.ADD_TO_USERS_CART,
     product: product,
     quantity: quantity
-  })
-  toast.success('Item added to cart')
-}
+  });
+  toast.success("Item added to cart");
+};
 
 // action fro when logged in users remove a product from their cart
-export const removeFromUsersCart = (productId) => async dispatch => {
-  const removeFromCartResponse = await shop.removeFromUsersCart(productId)
+export const removeFromUsersCart = productId => async dispatch => {
+  const removeFromCartResponse = await shop.removeFromUsersCart(productId);
 
   dispatch({
     type: types.REMOVE_FROM_USERS_CART,
     productId: productId
-  })
-  toast.success('Item removed from cart')
-}
+  });
+  toast.success("Item removed from cart");
+};
 
 export const addToCartUnsafe = (product, qty) => ({
   type: types.ADD_TO_CART,
