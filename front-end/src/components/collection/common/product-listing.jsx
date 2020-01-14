@@ -34,6 +34,8 @@ class ProductListing extends Component {
 
   render() {
     const { products, addToCart, symbol } = this.props;
+    console.log("this.props productListing");
+    console.log(this.props);
     return (
       <div>
         <Search />

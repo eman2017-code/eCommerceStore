@@ -23,21 +23,33 @@ class SideImageItem extends Component {
   }
 
   // route to fetch product based off productId
+  // fetchProductFromElastic = async productId => {
+  //   try {
+  //     // api call
+  //     const response = await fetch(
+  //       process.env.REACT_APP_API_URL + "/api/v1/search/product/" + productId,
+  //       {
+  //         credentials: "include"
+  //       }
+  //     );
+  //     // convert response to json
+  //     const parsedResponse = response.json();
+  //     console.log("parsedResponse");
+  //     console.log(parsedResponse);
+  //     return parsedResponse;
+  //   } catch (err) {}
+  // };
   fetchProductFromElastic = async productId => {
-    try {
-      // api call
-      const response = await fetch(
-        process.env.REACT_APP_API_URL + "/api/v1/search/product/" + productId,
-        {
-          credentials: "include"
-        }
-      );
-      // convert response to json
-      const parsedResponse = response.json();
-      console.log("parsedResponse");
-      console.log(parsedResponse);
-      return parsedResponse;
-    } catch (err) {}
+    const api =
+      process.env.REACT_APP_API_URL + "/api/v1/search/product/" + productId;
+
+    fetch(api)
+      .then(reponse => {
+        return reponse.json();
+      })
+      .then(json => {
+        return json.data._source;
+      });
   };
 
   render() {
