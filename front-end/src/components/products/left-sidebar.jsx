@@ -47,6 +47,20 @@ class LeftSideBar extends Component {
     document.getElementById("filter").style.left = "-365px";
   }
 
+  getProductById = async id => {
+    const response = await fetch(
+      process.env.REACT_APP_API_URL + "/api/v1/search/product/" + id
+    );
+    const parsedResponse = await response.json();
+
+    // creates a new array including only information about the product
+    const products = parsedResponse.data.map(
+      product => product._source.message
+    );
+
+    return products;
+  };
+
   render() {
     const { symbol, product, addToCart, addToCartUnsafe } = this.props;
     console.log("this.props in LeftSideBar from");
@@ -127,43 +141,12 @@ class LeftSideBar extends Component {
 const mapStateToProps = (state, ownProps) => {
   let productId = Number(ownProps.match.params.sku);
   let foundProduct1 = state.data.products.find(el => el.sku === productId);
-  let foundProduct2 = state.data.computersAndTablets.find(
-    el => el.sku === productId
-  );
-  let foundProduct3 = state.data.cellPhones.find(el => el.sku === productId);
-  let foundProduct4 = state.data.headphones.find(el => el.sku === productId);
-  let foundProduct5 = state.data.appliances.find(el => el.sku === productId);
-
-  // function to determine which array in state to look through
-  function decideWhichArray() {
-    switch (!undefined) {
-      case foundProduct1:
-        return foundProduct1;
-      // break;
-      case foundProduct2:
-        return foundProduct2;
-      // break;
-      case foundProduct3:
-        return foundProduct3;
-      // break;
-      case foundProduct4:
-        return foundProduct4;
-      // break;
-      case foundProduct5:
-        return foundProduct5;
-      // break;
-      default:
-        return "product no where to be found";
-    }
-  }
-
-  console.log("state from mapStateToProps in LeftSideBar");
-  console.log(state);
 
   return {
     // product: state.data.products.find(el => el.sku === productId),
     isLoggedIn: state.user.isLoggedIn,
-    product: decideWhichArray(),
+    // product: decideWhichArray(),
+    product: foundProduct1,
 
     symbol: state.data.symbol
   };
