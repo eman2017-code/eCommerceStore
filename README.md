@@ -2,7 +2,11 @@
 
 ## Technologies
 
-Node.js, Express, Elasticsearch, Logstash, Kibana, React Redux, SASS, Bcrypt
+Back-End:
+Nodejs, MongoDB, Mongoose, Express, Elasticsearch
+
+Front-End:
+React Redux Framework, SASS
 
 ## How to run
 
