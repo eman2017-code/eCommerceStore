@@ -124,7 +124,7 @@ export default function cartReducer(state = initialState, action) {
       if (indexOfProduct !== -1) {
         const productToUpdate = state.cart[indexOfProduct]
 
-        productToUpdate.qty += 1
+        productToUpdate.qty = action.product.qty // quantity already updated in the action
         productToUpdate.sum = productToUpdate.price * productToUpdate.qty
 
       // otherwise if it doenst exist, just add the product to the cart
@@ -150,7 +150,7 @@ export default function cartReducer(state = initialState, action) {
       if (state.cart[indexOfProduct].qty > 1) {
         const productToUpdate = state.cart[indexOfProduct]
 
-        productToUpdate.qty -= 1
+        productToUpdate.qty = action.product.qty // quantity already updated in the action
         productToUpdate.sum = productToUpdate.price * productToUpdate.qty
 
         return {

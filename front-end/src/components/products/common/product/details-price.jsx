@@ -37,23 +37,6 @@ class DetailsWithPrice extends Component {
     this.setState({ quantity: this.state.quantity + 1 });
   };
 
-  // // update cart route
-  // updateQuantityOfItem = async productId => {
-  //   const response = await fetch(
-  //     process.env.REACT_APP_API_URL +
-  //       "/api/v1/cart-items/" +
-  //       {
-  //         method: "PUT",
-  //         credentials: "include",
-  //         body: JSON.stringify(productId),
-  //         headers: {
-  //           "Content-Type": "application/json"
-  //         }
-  //       }
-  //   );
-  //   const parsedResponse = response.json();
-  // };
-
   changeQty = e => {
     this.setState({ quantity: parseInt(e.target.value) });
   };

@@ -18,7 +18,7 @@ class cartComponent extends Component {
   }
 
   render() {
-    const { cartItems, symbol, total } = this.props;
+    const { cartItems, symbol, total, isLoggedIn } = this.props;
     return (
       <div>
         <Helmet>
@@ -101,7 +101,7 @@ class cartComponent extends Component {
                                       type="button"
                                       className="btn quantity-left-minus"
                                       onClick={() =>
-                                        this.props.decrementQty(item)
+                                        this.props.decrementQty(item, isLoggedIn)
                                       }
                                       data-type="minus"
                                       data-field=""
@@ -121,7 +121,7 @@ class cartComponent extends Component {
                                     <button
                                       className="btn quantity-right-plus"
                                       onClick={() =>
-                                        this.props.incrementQty(item, 1)
+                                        this.props.incrementQty(item, isLoggedIn)
                                       }
                                       data-type="plus"
                                       disabled={

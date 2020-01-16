@@ -16,7 +16,6 @@
     "enable_pgo_generate": "false",
     "enable_pgo_use": "false",
     "force_dynamic_crt": 0,
-    "gas_version": "2.27",
     "host_arch": "x64",
     "icu_data_in": "../../deps/icu-small/source/data/in/icudt64l.dat",
     "icu_endianness": "l",
@@ -25,7 +24,7 @@
     "icu_path": "deps/icu-small",
     "icu_small": "true",
     "icu_ver_major": "64",
-    "llvm_version": 0,
+    "llvm_version": "0",
     "node_byteorder": "little",
     "node_debug_lib": "false",
     "node_enable_d8": "false",
@@ -45,7 +44,7 @@
     "node_tag": "",
     "node_target_type": "executable",
     "node_use_bundled_v8": "true",
-    "node_use_dtrace": "false",
+    "node_use_dtrace": "true",
     "node_use_etw": "false",
     "node_use_large_pages": "false",
     "node_use_openssl": "true",
@@ -56,7 +55,7 @@
     "node_without_node_options": "false",
     "openssl_fips": "",
     "openssl_no_asm": 0,
-    "shlib_suffix": "so.64",
+    "shlib_suffix": "64.dylib",
     "target_arch": "x64",
     "v8_enable_gdbjit": 0,
     "v8_enable_i18n_support": 1,
@@ -69,7 +68,12 @@
     "v8_typed_array_max_size_in_heap": 0,
     "v8_use_snapshot": "true",
     "want_separate_host_toolset": 0,
+<<<<<<< HEAD
     "nodedir": "/root/.cache/node-gyp/10.18.0",
+=======
+    "xcode_version": "7.0",
+    "nodedir": "/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3",
+>>>>>>> e276a2453f36d93bc8e1f633bb11a89f61026ca4
     "standalone_static_library": 1
   }
 }
