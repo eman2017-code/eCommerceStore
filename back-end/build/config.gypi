@@ -68,8 +68,12 @@
     "v8_typed_array_max_size_in_heap": 0,
     "v8_use_snapshot": "true",
     "want_separate_host_toolset": 0,
+<<<<<<< HEAD
+    "nodedir": "/root/.cache/node-gyp/10.18.0",
+=======
     "xcode_version": "7.0",
     "nodedir": "/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3",
+>>>>>>> e276a2453f36d93bc8e1f633bb11a89f61026ca4
     "standalone_static_library": 1
   }
 }
