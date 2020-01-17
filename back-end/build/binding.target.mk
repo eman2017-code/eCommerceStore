@@ -7,9 +7,13 @@ DEFS_Debug := \
 	'-DUSING_UV_SHARED=1' \
 	'-DUSING_V8_SHARED=1' \
 	'-DV8_DEPRECATION_WARNINGS=1' \
+	'-DV8_DEPRECATION_WARNINGS' \
+	'-DV8_IMMINENT_DEPRECATION_WARNINGS' \
 	'-D_DARWIN_USE_64_BIT_INODE=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
+	'-DOPENSSL_NO_PINSHARED' \
+	'-DOPENSSL_THREADS' \
 	'-DBUILDING_NODE_EXTENSION' \
 	'-DDEBUG' \
 	'-D_DEBUG' \
@@ -19,7 +23,7 @@ DEFS_Debug := \
 CFLAGS_Debug := \
 	-O0 \
 	-gdwarf-2 \
-	-mmacosx-version-min=10.7 \
+	-mmacosx-version-min=10.10 \
 	-arch x86_64 \
 	-Wall \
 	-Wendif-labels \
@@ -45,29 +49,33 @@ CFLAGS_OBJC_Debug :=
 CFLAGS_OBJCC_Debug :=
 
 INCS_Debug := \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/include/node \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/src \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/deps/openssl/config \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/deps/openssl/openssl/include \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/deps/uv/include \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/deps/zlib \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/deps/v8/include
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/include/node \
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/src \
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/deps/openssl/config \
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/deps/openssl/openssl/include \
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/deps/uv/include \
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/deps/zlib \
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/deps/v8/include
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=binding' \
 	'-DUSING_UV_SHARED=1' \
 	'-DUSING_V8_SHARED=1' \
 	'-DV8_DEPRECATION_WARNINGS=1' \
+	'-DV8_DEPRECATION_WARNINGS' \
+	'-DV8_IMMINENT_DEPRECATION_WARNINGS' \
 	'-D_DARWIN_USE_64_BIT_INODE=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
+	'-DOPENSSL_NO_PINSHARED' \
+	'-DOPENSSL_THREADS' \
 	'-DBUILDING_NODE_EXTENSION'
 
 # Flags passed to all source files.
 CFLAGS_Release := \
 	-Os \
 	-gdwarf-2 \
-	-mmacosx-version-min=10.7 \
+	-mmacosx-version-min=10.10 \
 	-arch x86_64 \
 	-Wall \
 	-Wendif-labels \
@@ -93,13 +101,13 @@ CFLAGS_OBJC_Release :=
 CFLAGS_OBJCC_Release :=
 
 INCS_Release := \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/include/node \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/src \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/deps/openssl/config \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/deps/openssl/openssl/include \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/deps/uv/include \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/deps/zlib \
-	-I/Users/emmanuelmiller/Library/Caches/node-gyp/10.16.3/deps/v8/include
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/include/node \
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/src \
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/deps/openssl/config \
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/deps/openssl/openssl/include \
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/deps/uv/include \
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/deps/zlib \
+	-I/Users/emmanuelmiller/Library/Caches/node-gyp/13.6.0/deps/v8/include
 
 OBJS := \
 	$(obj).target/$(TARGET)/src/binding.o
@@ -134,7 +142,7 @@ LDFLAGS_Debug := \
 	-undefined dynamic_lookup \
 	-Wl,-no_pie \
 	-Wl,-search_paths_first \
-	-mmacosx-version-min=10.7 \
+	-mmacosx-version-min=10.10 \
 	-arch x86_64 \
 	-L$(builddir) \
 	-stdlib=libc++
@@ -148,7 +156,7 @@ LDFLAGS_Release := \
 	-undefined dynamic_lookup \
 	-Wl,-no_pie \
 	-Wl,-search_paths_first \
-	-mmacosx-version-min=10.7 \
+	-mmacosx-version-min=10.10 \
 	-arch x86_64 \
 	-L$(builddir) \
 	-stdlib=libc++
