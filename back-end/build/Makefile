@@ -308,8 +308,8 @@ ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
 endif
 
 quiet_cmd_regen_makefile = ACTION Regenerating $@
-cmd_regen_makefile = cd $(srcdir); /usr/lib/node_modules/node-gyp/gyp/gyp_main.py -fmake --ignore-environment "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/root/.cache/node-gyp/10.18.0" "-Dnode_gyp_dir=/usr/lib/node_modules/node-gyp" "-Dnode_lib_file=/root/.cache/node-gyp/10.18.0/<(target_arch)/node.lib" "-Dmodule_root_dir=/home/project/eCommerceStore/back-end" "-Dnode_engine=v8" "--depth=." -I/home/project/eCommerceStore/back-end/build/config.gypi -I/usr/lib/node_modules/node-gyp/addon.gypi -I/root/.cache/node-gyp/10.18.0/include/node/common.gypi "-Goutput_dir=." "--toplevel-dir=." "--generator-output=build" binding.gyp
-Makefile: $(srcdir)/../../../../usr/lib/node_modules/node-gyp/addon.gypi $(srcdir)/binding.gyp $(srcdir)/../../../../root/.cache/node-gyp/10.18.0/include/node/common.gypi $(srcdir)/build/config.gypi
+cmd_regen_makefile = cd $(srcdir); /usr/lib/node_modules/node-gyp/gyp/gyp_main.py -fmake --ignore-environment "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/root/.cache/node-gyp/10.18.0" "-Dnode_gyp_dir=/usr/lib/node_modules/node-gyp" "-Dnode_lib_file=/root/.cache/node-gyp/10.18.0/<(target_arch)/node.lib" "-Dmodule_root_dir=/home/project/eCommerceStore/back-end" "-Dnode_engine=v8" -I/home/project/eCommerceStore/back-end/build/config.gypi -I/usr/lib/node_modules/node-gyp/addon.gypi -I/root/.cache/node-gyp/10.18.0/include/node/common.gypi "--generator-output=build" "--depth=." "--toplevel-dir=." "-Goutput_dir=." binding.gyp
+Makefile: $(srcdir)/binding.gyp $(srcdir)/../../../../root/.cache/node-gyp/10.18.0/include/node/common.gypi $(srcdir)/build/config.gypi $(srcdir)/../../../../usr/lib/node_modules/node-gyp/addon.gypi
 	$(call do_cmd,regen_makefile)
 
 # "all" is a concatenation of the "all" targets from all the included
