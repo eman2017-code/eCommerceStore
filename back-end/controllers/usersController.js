@@ -90,6 +90,19 @@ router.post('/admin/register/', async (req, res, next) => {
   const clientData = req.body
 
   try {
+    const doesAdminExist = await User.findOne({ isAdmin: true })
+
+    // if there is already an admin
+    if (doesAdminExist !== null) {
+      res.json({
+        data: {},
+        status: {
+          code: 403,
+          message: "An admin already exists"
+        }
+      })
+    }
+
     const doesEmailExist = await User.findOne({ email: clientData.email })
 
     // if the email already exists
