@@ -155,6 +155,54 @@ router.post('/admin/register/', async (req, res, next) => {
 })
 
 
+// this is where the admin or staff user can login
+router.post('/admin/login/', async (req, res, next) => {
+  const clientData = req.body
+
+  try {
+    const foundUser = await User.findOne({ email: clientData.email })
+
+    // if the user trying to login is neither the admin or a staff user
+    if (!foundUser.isAdmin && !foundUser.isStaff) {
+      res.json({
+        data: {},
+        status: {
+          code: 401,
+          message: 'You must be the admin or staff to login here'
+        }
+      })
+    }
+
+    // logs in the user if the email and password match
+    if (foundUser && User.doPasswordsMatch(clientData.password, foundUser.password)) {
+      foundUser.login(req)
+
+      return res.json({
+        data: foundUser.removePassword(),
+        status: {
+          code: 200,
+          message: "Successfully logged in"
+        }
+      })
+
+    } else {
+      return res.json({
+        data: {},
+        status: {
+          code: 401,
+          message: "Incorrect username or password"
+        }
+      })
+    }
+    
+
+
+  } catch (error) {
+    next(error)
+  }
+})
+
+
 // this route is where users logout
 router.post("/logout/", loginRequired, async (req, res, next) => {
   try {
