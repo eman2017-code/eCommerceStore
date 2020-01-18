@@ -45,6 +45,7 @@ const userSchema = new mongoose.Schema({
 userSchema.methods.login = function(req) {
   req.session.isLoggedIn = true
   req.session.isAdmin = this.isAdmin
+  req.sessions.isStaff = this.isStaff
   req.session.userId = this.id
   req.session.email = this.email
 }
