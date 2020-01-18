@@ -84,6 +84,64 @@ router.post("/login/", async (req, res, next) => {
   }
 })
 
+
+// this route is where the admin can initially register
+router.post('/admin/register/', async (req, res, next) => {
+  const clientData = req.body
+
+  try {
+    const doesEmailExist = await User.findOne({ email: clientData.email })
+
+    // if the email already exists
+    if (doesEmailExist !== null) {
+      res.json({
+        data: {},
+        status: {
+          code: 403,
+          message: "Email already exists"
+        }
+      })
+
+    } else {
+      // if the password matches the admins password in the enviroment
+      if (clientData.password == process.env.ADMIN_PASSWORD) {
+
+        // encrypts password, creates new user and logs them in
+        const passwordHash = User.encryptPassword(clientData.password);
+        const newAdmin = await User.create({
+          firstName: clientData.firstName,
+          lastName: clientData.lastName,
+          email: clientData.email,
+          password: passwordHash,
+          isAdmin: true
+        })
+        newAdmin.login(req)
+
+        res.json({
+          data: newAdmin.removePassword(),
+          status: {
+            code: 201,
+            message: "Successfully signed up"
+          }
+        })
+
+      } else {
+        res.json({
+          data: {},
+          status: {
+            code: 401,
+            message: 'Incorrect registration credentials'
+          }
+        })
+      }
+    }
+
+  } catch (error) {
+    next(error)
+  }
+})
+
+
 // this route is where users logout
 router.post("/logout/", loginRequired, async (req, res, next) => {
   try {

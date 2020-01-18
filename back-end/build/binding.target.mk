@@ -7,9 +7,9 @@ DEFS_Debug := \
 	'-DUSING_UV_SHARED=1' \
 	'-DUSING_V8_SHARED=1' \
 	'-DV8_DEPRECATION_WARNINGS=1' \
+	'-D_DARWIN_USE_64_BIT_INODE=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
-	'-DOPENSSL_NO_PINSHARED' \
 	'-DBUILDING_NODE_EXTENSION' \
 	'-DDEBUG' \
 	'-D_DEBUG' \
@@ -17,71 +17,89 @@ DEFS_Debug := \
 
 # Flags passed to all source files.
 CFLAGS_Debug := \
-	-fPIC \
-	-pthread \
+	-O0 \
+	-gdwarf-2 \
+	-mmacosx-version-min=10.7 \
+	-arch x86_64 \
 	-Wall \
-	-Wextra \
-	-Wno-unused-parameter \
-	-m64 \
-	-g \
-	-O0
+	-Wendif-labels \
+	-W \
+	-Wno-unused-parameter
 
 # Flags passed to only C files.
-CFLAGS_C_Debug :=
+CFLAGS_C_Debug := \
+	-fno-strict-aliasing
 
 # Flags passed to only C++ files.
 CFLAGS_CC_Debug := \
+	-std=gnu++1y \
+	-stdlib=libc++ \
 	-fno-rtti \
 	-fno-exceptions \
-	-std=gnu++1y
+	-fno-strict-aliasing
+
+# Flags passed to only ObjC files.
+CFLAGS_OBJC_Debug :=
+
+# Flags passed to only ObjC++ files.
+CFLAGS_OBJCC_Debug :=
 
 INCS_Debug := \
-	-I/root/.cache/node-gyp/10.18.0/include/node \
-	-I/root/.cache/node-gyp/10.18.0/src \
-	-I/root/.cache/node-gyp/10.18.0/deps/openssl/config \
-	-I/root/.cache/node-gyp/10.18.0/deps/openssl/openssl/include \
-	-I/root/.cache/node-gyp/10.18.0/deps/uv/include \
-	-I/root/.cache/node-gyp/10.18.0/deps/zlib \
-	-I/root/.cache/node-gyp/10.18.0/deps/v8/include
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/include/node \
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/src \
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/openssl/config \
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/openssl/openssl/include \
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/uv/include \
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/zlib \
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/v8/include
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=binding' \
 	'-DUSING_UV_SHARED=1' \
 	'-DUSING_V8_SHARED=1' \
 	'-DV8_DEPRECATION_WARNINGS=1' \
+	'-D_DARWIN_USE_64_BIT_INODE=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
-	'-DOPENSSL_NO_PINSHARED' \
 	'-DBUILDING_NODE_EXTENSION'
 
 # Flags passed to all source files.
 CFLAGS_Release := \
-	-fPIC \
-	-pthread \
+	-Os \
+	-gdwarf-2 \
+	-mmacosx-version-min=10.7 \
+	-arch x86_64 \
 	-Wall \
-	-Wextra \
-	-Wno-unused-parameter \
-	-m64 \
-	-O3 \
-	-fno-omit-frame-pointer
+	-Wendif-labels \
+	-W \
+	-Wno-unused-parameter
 
 # Flags passed to only C files.
-CFLAGS_C_Release :=
+CFLAGS_C_Release := \
+	-fno-strict-aliasing
 
 # Flags passed to only C++ files.
 CFLAGS_CC_Release := \
+	-std=gnu++1y \
+	-stdlib=libc++ \
 	-fno-rtti \
 	-fno-exceptions \
-	-std=gnu++1y
+	-fno-strict-aliasing
+
+# Flags passed to only ObjC files.
+CFLAGS_OBJC_Release :=
+
+# Flags passed to only ObjC++ files.
+CFLAGS_OBJCC_Release :=
 
 INCS_Release := \
-	-I/root/.cache/node-gyp/10.18.0/include/node \
-	-I/root/.cache/node-gyp/10.18.0/src \
-	-I/root/.cache/node-gyp/10.18.0/deps/openssl/config \
-	-I/root/.cache/node-gyp/10.18.0/deps/openssl/openssl/include \
-	-I/root/.cache/node-gyp/10.18.0/deps/uv/include \
-	-I/root/.cache/node-gyp/10.18.0/deps/zlib \
-	-I/root/.cache/node-gyp/10.18.0/deps/v8/include
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/include/node \
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/src \
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/openssl/config \
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/openssl/openssl/include \
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/uv/include \
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/zlib \
+	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/v8/include
 
 OBJS := \
 	$(obj).target/$(TARGET)/src/binding.o
@@ -94,6 +112,8 @@ all_deps += $(OBJS)
 $(OBJS): TOOLSET := $(TOOLSET)
 $(OBJS): GYP_CFLAGS := $(DEFS_$(BUILDTYPE)) $(INCS_$(BUILDTYPE))  $(CFLAGS_$(BUILDTYPE)) $(CFLAGS_C_$(BUILDTYPE))
 $(OBJS): GYP_CXXFLAGS := $(DEFS_$(BUILDTYPE)) $(INCS_$(BUILDTYPE))  $(CFLAGS_$(BUILDTYPE)) $(CFLAGS_CC_$(BUILDTYPE))
+$(OBJS): GYP_OBJCFLAGS := $(DEFS_$(BUILDTYPE)) $(INCS_$(BUILDTYPE))  $(CFLAGS_$(BUILDTYPE)) $(CFLAGS_C_$(BUILDTYPE)) $(CFLAGS_OBJC_$(BUILDTYPE))
+$(OBJS): GYP_OBJCXXFLAGS := $(DEFS_$(BUILDTYPE)) $(INCS_$(BUILDTYPE))  $(CFLAGS_$(BUILDTYPE)) $(CFLAGS_CC_$(BUILDTYPE)) $(CFLAGS_OBJCC_$(BUILDTYPE))
 
 # Suffix rules, putting all outputs into $(obj).
 
@@ -111,37 +131,50 @@ $(obj).$(TOOLSET)/$(TARGET)/%.o: $(obj)/%.cc FORCE_DO_CMD
 # End of this set of suffix rules
 ### Rules for final target.
 LDFLAGS_Debug := \
-	-pthread \
-	-rdynamic \
-	-m64
+	-undefined dynamic_lookup \
+	-Wl,-no_pie \
+	-Wl,-search_paths_first \
+	-mmacosx-version-min=10.7 \
+	-arch x86_64 \
+	-L$(builddir) \
+	-stdlib=libc++
+
+LIBTOOLFLAGS_Debug := \
+	-undefined dynamic_lookup \
+	-Wl,-no_pie \
+	-Wl,-search_paths_first
 
 LDFLAGS_Release := \
-	-pthread \
-	-rdynamic \
-	-m64
+	-undefined dynamic_lookup \
+	-Wl,-no_pie \
+	-Wl,-search_paths_first \
+	-mmacosx-version-min=10.7 \
+	-arch x86_64 \
+	-L$(builddir) \
+	-stdlib=libc++
+
+LIBTOOLFLAGS_Release := \
+	-undefined dynamic_lookup \
+	-Wl,-no_pie \
+	-Wl,-search_paths_first
 
 LIBS :=
 
-$(obj).target/binding.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
-$(obj).target/binding.node: LIBS := $(LIBS)
-$(obj).target/binding.node: TOOLSET := $(TOOLSET)
-$(obj).target/binding.node: $(OBJS) FORCE_DO_CMD
+$(builddir)/binding.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
+$(builddir)/binding.node: LIBS := $(LIBS)
+$(builddir)/binding.node: GYP_LIBTOOLFLAGS := $(LIBTOOLFLAGS_$(BUILDTYPE))
+$(builddir)/binding.node: TOOLSET := $(TOOLSET)
+$(builddir)/binding.node: $(OBJS) FORCE_DO_CMD
 	$(call do_cmd,solink_module)
 
-all_deps += $(obj).target/binding.node
+all_deps += $(builddir)/binding.node
 # Add target alias
 .PHONY: binding
 binding: $(builddir)/binding.node
 
-# Copy this to the executable output path.
-$(builddir)/binding.node: TOOLSET := $(TOOLSET)
-$(builddir)/binding.node: $(obj).target/binding.node FORCE_DO_CMD
-	$(call do_cmd,copy)
-
-all_deps += $(builddir)/binding.node
 # Short alias for building this executable.
 .PHONY: binding.node
-binding.node: $(obj).target/binding.node $(builddir)/binding.node
+binding.node: $(builddir)/binding.node
 
 # Add executable to "all" target.
 .PHONY: all
