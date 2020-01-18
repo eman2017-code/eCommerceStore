@@ -8,7 +8,7 @@ export default {
   registerUser: async (registrationInfo, next) => {
     try {
       const response = await fetch(
-        "http://35.222.68.3:8000/api/v1/users/register/",
+        process.env.REACT_APP_API_URL + "/api/v1/users/register/",
         {
           method: "POST",
           body: JSON.stringify(registrationInfo),
@@ -29,7 +29,7 @@ export default {
   loginUser: async (loginInfo, next) => {
     try {
       const response = await fetch(
-        "http://35.222.68.3:8000/api/v1/users/login/",
+        process.env.REACT_APP_API_URL + "/api/v1/users/login/",
         {
           method: "POST",
           body: JSON.stringify(loginInfo),
@@ -68,7 +68,7 @@ export default {
 
   getAllProducts: async callBack => {
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/search/all-products/"
+      process.env.REACT_APP_API_URL + "/api/v1/search/all-products/"
     );
     const parsedResponse = await response.json();
 
@@ -83,7 +83,7 @@ export default {
   // gets products by category
   getProductsByCategory: async category => {
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/search/category/" + category + "/"
+      process.env.REACT_APP_API_URL + "/api/v1/search/category/" + category + "/"
     );
     const parsedResponse = await response.json();
     const products = parsedResponse.data.map(
@@ -94,7 +94,7 @@ export default {
 
   getUsersCart: async userId => {
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/carts/" + userId + "/",
+      process.env.REACT_APP_API_URL + "/api/v1/carts/" + userId + "/",
       {
         credentials: "include"
       }
@@ -113,7 +113,7 @@ export default {
       quantity: quantity
     };
 
-    const response = await fetch("http://35.222.68.3:8000/api/v1/cart-items/", {
+    const response = await fetch(process.env.REACT_APP_API_URL + "/api/v1/cart-items/", {
       method: "POST",
       body: JSON.stringify(dataToSend),
       credentials: "include",
@@ -129,7 +129,7 @@ export default {
   // removes a product from a logged in users cart
   removeFromUsersCart: async productId => {
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/cart-items/" + productId + "/",
+      process.env.REACT_APP_API_URL + "/api/v1/cart-items/" + productId + "/",
       {
         method: "DELETE",
         credentials: "include"
@@ -143,7 +143,7 @@ export default {
   // updates the quantity of a users cart item
   updateProductQuantity: async product => {
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/cart-items/" + product.upc + "/",
+      process.env.REACT_APP_API_URL + "/api/v1/cart-items/" + product.upc + "/",
       {
         method: "PUT",
         credentials: "include",
@@ -159,7 +159,7 @@ export default {
   // makes a fetch call to search for a product via elasticsearch
   fetchSingleProductFromElastic: async productId => {
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/search/product/" + productId + "/"
+      process.env.REACT_APP_API_URL + "/api/v1/search/product/" + productId + "/"
     );
     const parsedResponse = await response.json();
 
