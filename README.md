@@ -1,20 +1,11 @@
 # E-Commerce Site
 
+An interactive e-commerce website which allows you to browse the best buy products api and add items to your cart and simulate a real checkout.
+
 ## Technologies
 
 Back-End:
-Nodejs, MongoDB, Mongoose, Express, Elasticsearch
+Nodejs, MongoDB, Mongoose, Express, Elasticsearch, Kibana, Logstash
 
 Front-End:
-React Redux Framework, SASS
-
-## How to run
-
-contact us for permission, we will give you the .env variables you need
-clone this repo: `git clone`
-
-- go into backend directory and `npm install`
-- start server `nodemon`
-
-- go into front end directory and `npm install`
-- `npm start` to start up project
+React Redux, SASS
