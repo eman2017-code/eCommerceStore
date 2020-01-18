@@ -1,7 +1,7 @@
 const express = require("express");
 const Product = require("../models/product.js");
 const User = require("../models/user.js");
-const adminRequired = require("../middleware/users/adminRequired.js");
+const staffAccountRequired = require("../middleware/users/staffAccountRequired.js");
 
 const router = express.Router();
 
@@ -26,7 +26,7 @@ router.get('/', async (req, res, next) => {
 
 // Create Route
 // this route is where the admin can create a new product
-router.post("/", adminRequired, async (req, res, next) => {
+router.post("/", staffAccountRequired, async (req, res, next) => {
   const clientData = req.body;
 
   try {
@@ -53,3 +53,11 @@ router.post("/", adminRequired, async (req, res, next) => {
 });
 
 module.exports = router;
+
+
+
+
+
+
+
+

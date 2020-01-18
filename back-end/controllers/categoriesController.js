@@ -1,7 +1,7 @@
 const express = require('express')
 const Category = require('../models/category.js')
 const Product = require('../models/product.js')
-const adminRequired = require('../middleware/users/adminRequired.js')
+const staffAccountRequired = require('../middleware/users/staffAccountRequired.js')
 
 const router = express.Router()
 
@@ -55,7 +55,7 @@ router.get('/:categoryId/', async (req, res, next) => {
 
 // Create Route
 // this is where the admin can create a new category
-router.post('/', adminRequired, async (req, res, next) => {
+router.post('/', staffAccountRequired, async (req, res, next) => {
 	const categoryName = req.body.name
 
 	try {
@@ -77,7 +77,7 @@ router.post('/', adminRequired, async (req, res, next) => {
 
 // Update Route
 // this route is where a categories name and products can be updated by the admin
-router.put('/:categoryId/', adminRequired, async (req, res, next) => {
+router.put('/:categoryId/', staffAccountRequired, async (req, res, next) => {
 	const categoryName = req.body.name
 
 	try {

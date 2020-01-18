@@ -84,6 +84,125 @@ router.post("/login/", async (req, res, next) => {
   }
 })
 
+
+// this route is where the admin can initially register
+router.post('/admin/register/', async (req, res, next) => {
+  const clientData = req.body
+
+  try {
+    const doesAdminExist = await User.findOne({ isAdmin: true })
+
+    // if there is already an admin
+    if (doesAdminExist !== null) {
+      res.json({
+        data: {},
+        status: {
+          code: 403,
+          message: "An admin already exists"
+        }
+      })
+    }
+
+    const doesEmailExist = await User.findOne({ email: clientData.email })
+
+    // if the email already exists
+    if (doesEmailExist !== null) {
+      res.json({
+        data: {},
+        status: {
+          code: 403,
+          message: "Email already exists"
+        }
+      })
+
+    } else {
+      // if the password matches the admins password in the enviroment
+      if (clientData.password == process.env.ADMIN_PASSWORD) {
+
+        // encrypts password, creates new user and logs them in
+        const passwordHash = User.encryptPassword(clientData.password);
+        const newAdmin = await User.create({
+          firstName: clientData.firstName,
+          lastName: clientData.lastName,
+          email: clientData.email,
+          password: passwordHash,
+          isAdmin: true
+        })
+        newAdmin.login(req)
+
+        res.json({
+          data: newAdmin.removePassword(),
+          status: {
+            code: 201,
+            message: "Successfully signed up"
+          }
+        })
+
+      } else {
+        res.json({
+          data: {},
+          status: {
+            code: 401,
+            message: 'Incorrect registration credentials'
+          }
+        })
+      }
+    }
+
+  } catch (error) {
+    next(error)
+  }
+})
+
+
+// this is where the admin or staff user can login
+router.post('/admin/login/', async (req, res, next) => {
+  const clientData = req.body
+
+  try {
+    const foundUser = await User.findOne({ email: clientData.email })
+
+    // if the user trying to login is neither the admin or a staff user
+    if (!foundUser.isAdmin && !foundUser.isStaff) {
+      res.json({
+        data: {},
+        status: {
+          code: 401,
+          message: 'You must be the admin or staff to login here'
+        }
+      })
+    }
+
+    // logs in the user if the email and password match
+    if (foundUser && User.doPasswordsMatch(clientData.password, foundUser.password)) {
+      foundUser.login(req)
+
+      return res.json({
+        data: foundUser.removePassword(),
+        status: {
+          code: 200,
+          message: "Successfully logged in"
+        }
+      })
+
+    } else {
+      return res.json({
+        data: {},
+        status: {
+          code: 401,
+          message: "Incorrect username or password"
+        }
+      })
+    }
+    
+
+
+  } catch (error) {
+    next(error)
+  }
+})
+
+
 // this route is where users logout
 router.post("/logout/", loginRequired, async (req, res, next) => {
   try {
