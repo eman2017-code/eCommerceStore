@@ -172,7 +172,7 @@ export class Dashboard extends Component {
                                             <div className="align-self-center text-center"><Navigation className="font-warning" /></div>
                                         </div>
                                         <div className="media-body col-8"><span className="m-0">Earnings</span>
-                                            <h3 className="mb-0">$ <CountUp className="counter" end={6659} /><small> This Month</small></h3>
+                                            <h3 className="mb-0">$ <CountUp className="counter" end={6659} /><small> Sold Overall</small></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -186,48 +186,8 @@ export class Dashboard extends Component {
                                             <div className="align-self-center text-center"><Box className="font-secondary" /></div>
                                         </div>
                                         <div className="media-body col-8"><span className="m-0">Products</span>
-                                            <h3 className="mb-0">$ <CountUp className="counter" end={9856} /><small> This Month</small></h3>
+                                            <h3 className="mb-0">$ <CountUp className="counter" end={9856} /><small> Sold Overall</small></h3>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xl-3 col-md-6 xl-50">
-                            <div className="card o-hidden widget-cards">
-                                <div className="bg-primary card-body">
-                                    <div className="media static-top-widget row">
-                                        <div className="icons-widgets col-4">
-                                            <div className="align-self-center text-center"><MessageSquare className="font-primary" /></div>
-                                        </div>
-                                        <div className="media-body col-8"><span className="m-0">Messages</span>
-                                            <h3 className="mb-0">$ <CountUp className="counter" end={893} /><small> This Month</small></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xl-3 col-md-6 xl-50">
-                            <div className="card o-hidden widget-cards">
-                                <div className="bg-danger card-body">
-                                    <div className="media static-top-widget row">
-                                        <div className="icons-widgets col-4">
-                                            <div className="align-self-center text-center"><Users className="font-danger" /></div>
-                                        </div>
-                                        <div className="media-body col-8"><span className="m-0">New Vendors</span>
-                                            <h3 className="mb-0">$ <CountUp className="counter" end={45631} /><small> This Month</small></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xl-6 xl-100">
-                            <div className="card">
-                                <div className="card-header">
-                                    <h5>Market Value</h5>
-                                </div>
-                                <div className="card-body">
-                                    <div className="market-chart">
-                                        <Bar data={lineData} options={lineOptions} width={778} height={308} />
                                     </div>
                                 </div>
                             </div>
