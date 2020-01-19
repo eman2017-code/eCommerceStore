@@ -21,8 +21,6 @@ import Create_coupons from "./components/coupons/create-coupons";
 
 //Pages
 import ListPages from "./components/pages/list-page";
-import Create_page from "./components/pages/create-page";
-import Media from "./components/media/media";
 import List_menu from "./components/menus/list-menu";
 import Create_menu from "./components/menus/create-menu";
 import List_user from "./components/users/list-user";
@@ -93,15 +91,6 @@ class Root extends Component {
               <Route
                 path={`${process.env.PUBLIC_URL}/pages/list-page`}
                 component={ListPages}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/pages/create-page`}
-                component={Create_page}
-              />
-
-              <Route
-                path={`${process.env.PUBLIC_URL}/media`}
-                component={Media}
               />
 
               <Route

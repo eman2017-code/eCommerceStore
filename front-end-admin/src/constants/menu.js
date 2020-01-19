@@ -58,23 +58,6 @@ export const MENUITEMS = [
     ]
   },
   {
-    title: "Pages",
-    icon: Clipboard,
-    type: "sub",
-    active: false,
-    children: [
-      { path: "/pages/list-page", title: "List Page", type: "link" },
-      { path: "/pages/create-page", title: "Create Page", type: "link" }
-    ]
-  },
-  {
-    title: "Media",
-    path: "/media",
-    icon: Camera,
-    type: "link",
-    active: false
-  },
-  {
     title: "Menus",
     icon: AlignLeft,
     type: "sub",
