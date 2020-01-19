@@ -11,7 +11,7 @@ import {
 } from "react-feather";
 
 //images
-import logo from "../../../assets/images/dashboard/multikart-logo.png";
+import logo from "../../../assets/images/dashboard/logo2.png";
 
 export class Header extends Component {
   constructor(props) {
