@@ -19,8 +19,6 @@ import Create_coupons from "./components/coupons/create-coupons";
 
 //Pages
 import ListPages from "./components/pages/list-page";
-import List_menu from "./components/menus/list-menu";
-import Create_menu from "./components/menus/create-menu";
 import List_user from "./components/users/listCustomers";
 import Create_user from "./components/users/create-user";
 import Profile from "./components/settings/profile";
