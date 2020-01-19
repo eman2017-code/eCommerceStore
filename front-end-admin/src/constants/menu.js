@@ -58,11 +58,11 @@ export const MENUITEMS = [
     ]
   },
   {
-    icon: UserPlus,
-    path: "/users/list-customers",
     title: "Customers",
+    icon: UserPlus,
     type: "link",
-    active: false
+    active: false,
+    path: "/users/list-customers"
   },
   {
     title: "Reports",
@@ -71,12 +71,14 @@ export const MENUITEMS = [
     type: "link",
     active: false
   },
-  {
-    title: "Settings",
-    icon: Settings,
-    type: "sub",
-    children: [{ path: "/settings/profile", title: "Profile", type: "link" }]
-  },
+  //   {
+  //     title: "Settings",
+  //     icon: Settings,
+  //     type: "sub",
+  //     path: "/settings/profile",
+  //     title: "Profile",
+  //     type: "link"
+  //   },
   {
     title: "Invoice",
     path: "/invoice",
