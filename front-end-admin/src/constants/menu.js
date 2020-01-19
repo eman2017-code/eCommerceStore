@@ -65,16 +65,6 @@ export const MENUITEMS = [
     active: false
   },
   {
-    title: "Vendors",
-    icon: Users,
-    type: "sub",
-    active: false,
-    children: [
-      { path: "/vendors/list_vendors", title: "Vendor List", type: "link" },
-      { path: "/vendors/create-vendors", title: "Create Vendor", type: "link" }
-    ]
-  },
-  {
     title: "Localization",
     icon: Chrome,
     type: "sub",

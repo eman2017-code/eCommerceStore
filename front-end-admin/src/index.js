@@ -25,8 +25,6 @@ import List_menu from "./components/menus/list-menu";
 import Create_menu from "./components/menus/create-menu";
 import List_user from "./components/users/listCustomers";
 import Create_user from "./components/users/create-user";
-import List_vendors from "./components/vendors/list-vendors";
-import Create_vendors from "./components/vendors/create.vendors";
 import Translations from "./components/localization/translations";
 import Rates from "./components/localization/rates";
 import Taxes from "./components/localization/taxes";
@@ -100,15 +98,6 @@ class Root extends Component {
               <Route
                 path={`${process.env.PUBLIC_URL}/users/create-user`}
                 component={Create_user}
-              />
-
-              <Route
-                path={`${process.env.PUBLIC_URL}/vendors/list_vendors`}
-                component={List_vendors}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/vendors/create-vendors`}
-                component={Create_vendors}
               />
 
               <Route
