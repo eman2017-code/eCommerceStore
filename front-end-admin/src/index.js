@@ -103,7 +103,7 @@ class Root extends Component {
               />
 
               <Route
-                path={`${process.env.PUBLIC_URL}/settings/profile`}
+                path={`${process.env.PUBLIC_URL}/view/profile`}
                 component={Profile}
               />
 

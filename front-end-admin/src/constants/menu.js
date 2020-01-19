@@ -71,14 +71,6 @@ export const MENUITEMS = [
     type: "link",
     active: false
   },
-  //   {
-  //     title: "Settings",
-  //     icon: Settings,
-  //     type: "sub",
-  //     path: "/settings/profile",
-  //     title: "Profile",
-  //     type: "link"
-  //   },
   {
     title: "Invoice",
     path: "/invoice",
