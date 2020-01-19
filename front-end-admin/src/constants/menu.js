@@ -31,46 +31,20 @@ export const MENUITEMS = [
     active: false,
     children: [
       {
-        title: "Physical",
-        type: "sub",
-        active: false,
-        children: [
-          {
-            path: "/products/physical/category",
-            title: "Category",
-            type: "link"
-          },
-          {
-            path: "/products/physical/sub-category",
-            title: "Sub Category",
-            type: "link"
-          },
-          {
-            path: "/products/physical/product-list",
-            title: "Product List",
-            type: "link"
-          },
-          {
-            path: "/products/physical/product-detail",
-            title: "Product Detail",
-            type: "link"
-          },
-          {
-            path: "/products/physical/add-product",
-            title: "Add Product",
-            type: "link"
-          }
-        ]
+        path: "/products/physical/category",
+        title: "Categories",
+        type: "link"
+      },
+      {
+        path: "/products/physical/product-list",
+        title: "Product List",
+        type: "link"
+      },
+      {
+        path: "/products/physical/add-product",
+        title: "Add Product",
+        type: "link"
       }
-      // ,
-      // {
-      //     title: 'digital', type: 'sub', active: false, children: [
-      //         { path: '/products/digital/digital-category', title: 'Category', type: 'link' },
-      //         { path: '/products/digital/digital-sub-category', title: 'Sub Category', type: 'link' },
-      //         { path: '/products/digital/digital-product-list', title: 'Product List', type: 'link' },
-      //         { path: '/products/digital/digital-add-product', title: 'Add Product', type: 'link' },
-      //     ]
-      // },
     ]
   },
   {
