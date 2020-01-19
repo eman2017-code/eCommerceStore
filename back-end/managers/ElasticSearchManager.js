@@ -37,7 +37,7 @@ class ElasticSearchManager {
     	return products
 	}
 
-	// return products based on whatever category is specified in the parameter
+	// return products based on whatever category is specified in the parameters
 	async getProductsByCategory(size, category) {
 		const response = await this.client.search({
 			index: "store-products-catalog2-cats",
@@ -52,6 +52,26 @@ class ElasticSearchManager {
       		}
 		})
 		const products = this.parseResponse(response)
+    	return products
+	}
+
+	// returns products based on the searchTerm in the parameters
+	async searchForProducts(size, searchTerm) {
+		const results = await client.search({
+      		index: "store-products-catalog2-cats",
+      		body: {
+        		query: {
+          			match_phrase_prefix: {
+            			"message.name": {
+              				query: searchTerm,
+              				slop: 2,
+              				max_expansions: 10
+            			}
+          			}
+        		}
+      		}
+    	})
+    	const products = this.parseResponse(response)
     	return products
 	}
 
