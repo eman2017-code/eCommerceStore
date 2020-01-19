@@ -94,7 +94,7 @@ class Root extends Component {
               />
 
               <Route
-                path={`${process.env.PUBLIC_URL}/users/list-user`}
+                path={`${process.env.PUBLIC_URL}/users/list-customers`}
                 component={List_user}
               />
               <Route

@@ -58,13 +58,11 @@ export const MENUITEMS = [
     ]
   },
   {
-    title: "Customers",
     icon: UserPlus,
-    type: "sub",
-    active: false,
-    children: [
-      { path: "/users/list-user", title: "Customer List", type: "link" }
-    ]
+    path: "/users/list-customers",
+    title: "Customers",
+    type: "link",
+    active: false
   },
   {
     title: "Vendors",
