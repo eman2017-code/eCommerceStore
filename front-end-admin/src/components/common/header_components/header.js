@@ -114,12 +114,6 @@ export class Header extends Component {
                   <span className="dot"></span>
                   <Notification />
                 </li>
-                <li>
-                  <a onClick={this.showRightSidebar}>
-                    <MessageSquare />
-                    <span className="dot"></span>
-                  </a>
-                </li>
                 <User_menu />
               </ul>
               <div
