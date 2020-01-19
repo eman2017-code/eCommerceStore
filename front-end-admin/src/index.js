@@ -12,7 +12,6 @@ import Dashboard from "./components/dashboard";
 import Category from "./components/products/physical/category";
 import Product_list from "./components/products/physical/product-list";
 import Add_product from "./components/products/physical/add-product";
-import Product_detail from "./components/products/physical/product-detail";
 
 //Coupons
 import ListCoupons from "./components/coupons/list-coupons";
@@ -60,10 +59,6 @@ class Root extends Component {
               <Route
                 path={`${process.env.PUBLIC_URL}/products/physical/product-list`}
                 component={Product_list}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/products/physical/product-detail`}
-                component={Product_detail}
               />
               <Route
                 path={`${process.env.PUBLIC_URL}/products/physical/add-product`}
