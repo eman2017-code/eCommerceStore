@@ -26,16 +26,16 @@ export class Datatable extends Component {
     }
   };
 
-  handleRemoveRow = () => {
-    const selectedValues = this.state.checkedValues;
-    const updatedData = this.state.myData.filter(function(el) {
-      return selectedValues.indexOf(el.id) < 0;
-    });
-    this.setState({
-      myData: updatedData
-    });
-    toast.success("Successfully Deleted !");
-  };
+  // handleRemoveRow = () => {
+  //   const selectedValues = this.state.checkedValues;
+  //   const updatedData = this.state.myData.filter(function(el) {
+  //     return selectedValues.indexOf(el.id) < 0;
+  //   });
+  //   this.setState({
+  //     myData: updatedData
+  //   });
+  //   toast.success("Successfully Deleted !");
+  // };
 
   renderEditable = cellInfo => {
     return (

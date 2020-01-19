@@ -170,10 +170,11 @@ export class LoginTabset extends Component {
                         className="checkbox_animated"
                         id="chk-ani2"
                         type="checkbox"
+                        required={true}
                       />
                       I agree all statements in{" "}
                       <span>
-                        <a href="">Terms &amp; Conditions</a>
+                        <a href="#">Terms &amp; Conditions</a>
                       </span>
                     </label>
                   </div>
