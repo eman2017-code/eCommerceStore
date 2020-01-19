@@ -162,23 +162,6 @@ export class Add_product extends Component {
                             </div>
                             <div className="valid-feedback">Looks good!</div>
                           </div>
-                          <div className="form-group mb-3 row">
-                            <label className="col-xl-3 col-sm-4 mb-0">
-                              Product Code :
-                            </label>
-                            <div className="col-xl-8 col-sm-7">
-                              <AvField
-                                className="form-control "
-                                name="product_code"
-                                id="validationCustomUsername"
-                                type="number"
-                                required
-                              />
-                            </div>
-                            <div className="invalid-feedback offset-sm-4 offset-xl-3">
-                              Please choose Valid Code.
-                            </div>
-                          </div>
                         </div>
                         <div className="form">
                           <div className="form-group row">
