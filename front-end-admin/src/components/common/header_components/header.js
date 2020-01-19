@@ -100,12 +100,6 @@ export class Header extends Component {
                 <li>
                   <SearchHeader />
                 </li>
-                <li>
-                  <a onClick={this.goFull} className="text-dark" href="#!">
-                    <Maximize2 />
-                  </a>
-                </li>
-
                 <li className="onhover-dropdown">
                   <Bell />
                   <span className="badge badge-pill badge-primary pull-right notification-badge">
