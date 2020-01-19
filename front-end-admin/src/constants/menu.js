@@ -72,8 +72,8 @@ export const MENUITEMS = [
     active: false
   },
   {
-    title: "Invoice",
-    path: "/invoice",
+    title: "Orders",
+    path: "/all-my-orders",
     icon: Archive,
     type: "link",
     active: false

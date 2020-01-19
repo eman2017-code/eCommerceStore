@@ -3,17 +3,17 @@ import Breadcrumb from "./common/breadcrumb";
 import data from "../assets/data/invoice";
 import Datatable from "./common/datatable";
 
-export class Invoice extends Component {
+export class Orders extends Component {
   render() {
     return (
       <Fragment>
-        <Breadcrumb title="Invoice" parent="Invoice" />
+        <Breadcrumb title="Orders" parent="Orders" />
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
               <div className="card">
                 <div className="card-header">
-                  <h5>Invoice List</h5>
+                  <h5>Orders List</h5>
                 </div>
                 <div className="card-body">
                   <div id="basicScenario" className="product-list">
@@ -35,4 +35,4 @@ export class Invoice extends Component {
   }
 }
 
-export default Invoice;
+export default Orders;

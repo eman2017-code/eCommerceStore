@@ -425,7 +425,7 @@ export class Dashboard extends Component {
                               </tbody>
                             </table>
                             <a
-                              href="/users/list-customers"
+                              href="/all-my-orders"
                               className="btn btn-primary"
                             >
                               View All Orders
