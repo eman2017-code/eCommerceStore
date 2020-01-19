@@ -183,22 +183,6 @@ export class Add_product extends Component {
                         <div className="form">
                           <div className="form-group row">
                             <label className="col-xl-3 col-sm-4 mb-0">
-                              Select Size :
-                            </label>
-                            <div className="col-xl-8 col-sm-7">
-                              <select
-                                className="form-control digits"
-                                id="exampleFormControlSelect1"
-                              >
-                                <option>Small</option>
-                                <option>Medium</option>
-                                <option>Large</option>
-                                <option>Extra Large</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div className="form-group row">
-                            <label className="col-xl-3 col-sm-4 mb-0">
                               Total Products :
                             </label>
                             <fieldset className="qty-box ml-0">
