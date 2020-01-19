@@ -19,6 +19,8 @@ const elasticsearchController = require("./controllers/elasticsearchController.j
 // imports the database connection module
 require("./db/db.js");
 
+require('./managers/ElasticSearchManager.js')
+
 const PORT = process.env.PORT;
 const API_PATH = "/api/v1/";
 const app = express();
