@@ -77,12 +77,5 @@ export const MENUITEMS = [
     icon: Archive,
     type: "link",
     active: false
-  },
-  {
-    title: "Login",
-    path: "/auth/login",
-    icon: LogIn,
-    type: "link",
-    active: false
   }
 ];
