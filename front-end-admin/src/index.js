@@ -15,9 +15,6 @@ import Product_list from "./components/products/physical/product-list";
 import Add_product from "./components/products/physical/add-product";
 import Product_detail from "./components/products/physical/product-detail";
 
-//Sales
-import Orders from "./components/sales/orders";
-import Transactions_sales from "./components/sales/transactions-sales";
 //Coupons
 import ListCoupons from "./components/coupons/list-coupons";
 import Create_coupons from "./components/coupons/create-coupons";
@@ -84,16 +81,6 @@ class Root extends Component {
                 path={`${process.env.PUBLIC_URL}/products/physical/add-product`}
                 component={Add_product}
               />
-
-              <Route
-                path={`${process.env.PUBLIC_URL}/sales/orders`}
-                component={Orders}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/sales/transactions`}
-                component={Transactions_sales}
-              />
-
               <Route
                 path={`${process.env.PUBLIC_URL}/coupons/list-coupons`}
                 component={ListCoupons}
