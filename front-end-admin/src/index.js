@@ -20,7 +20,6 @@ import Create_coupons from "./components/coupons/create-coupons";
 //Pages
 import ListPages from "./components/pages/list-page";
 import List_user from "./components/users/listCustomers";
-import Create_user from "./components/users/create-user";
 import Profile from "./components/settings/profile";
 import Reports from "./components/reports/report";
 import Invoice from "./components/invoice";
@@ -54,18 +53,22 @@ class Root extends Component {
                 path={`${process.env.PUBLIC_URL}/products/physical/category`}
                 component={Category}
               />
+
               <Route
                 path={`${process.env.PUBLIC_URL}/products/physical/product-list`}
                 component={Product_list}
               />
+
               <Route
                 path={`${process.env.PUBLIC_URL}/products/physical/add-product`}
                 component={Add_product}
               />
+
               <Route
                 path={`${process.env.PUBLIC_URL}/coupons/list-coupons`}
                 component={ListCoupons}
               />
+
               <Route
                 path={`${process.env.PUBLIC_URL}/coupons/create-coupons`}
                 component={Create_coupons}
@@ -79,10 +82,6 @@ class Root extends Component {
               <Route
                 path={`${process.env.PUBLIC_URL}/users/list-customers`}
                 component={List_user}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/users/create-user`}
-                component={Create_user}
               />
 
               <Route

@@ -8,7 +8,7 @@ export class List_user extends Component {
   render() {
     return (
       <Fragment>
-        <Breadcrumb title="User List" parent="Users" />
+        <Breadcrumb title="Customer List" parent="Users" />
         <div className="container-fluid">
           <div className="card">
             <div className="card-header">
