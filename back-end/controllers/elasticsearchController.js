@@ -2,19 +2,9 @@ const express = require("express");
 const router = express.Router();
 const ElasticSearchManager = require('../managers/ElasticSearchManager.js')
 
-const Product = require("../models/product.js");
-const Category = require("../models/category.js");
 
-// require elasticsearch
-const { Client } = require("@elastic/elasticsearch");
-
-// connect to elasticsearch port
-const client = new Client({ node: "http://34.68.86.219:9200" });
-
-// handling errors
-const { errors } = require("@elastic/elasticsearch");
-
-
+// instantiation of this class establishes the connection to elasticsearch
+// and now it can perform elasticsearch queries
 const elasticSearchManager = new ElasticSearchManager()
 
 
