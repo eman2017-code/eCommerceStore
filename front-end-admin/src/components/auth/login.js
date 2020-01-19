@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import LoginTabset from "./loginTabset";
 import { ArrowLeft, Sliders } from "react-feather";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
 import stats from "../../assets/images/dashboard/stats.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -26,35 +25,15 @@ export class Login extends Component {
                     <div className="svg-icon">
                       <img src={stats} className="Img-fluid" />
                     </div>
-                    <Slider className="single-item" {...settings}>
+                    <div>
                       <div>
-                        <div>
-                          <h3>Welcome to Our E-Commerce Store</h3>
-                          <p>
-                            We are a great and innovative e-commerce store who
-                            is dedicated to keeping our customers happy.
-                          </p>
-                        </div>
+                        <h3>Welcome to Our E-Commerce Store</h3>
+                        <p>
+                          We are a great and innovative e-commerce store who is
+                          dedicated to keeping our customers happy.
+                        </p>
                       </div>
-                      <div>
-                        <div>
-                          <h3>Welcome to Our E-Commerce Store</h3>
-                          <p>
-                            We are a great and innovative e-commerce store who
-                            is dedicated to keeping our customers happy.
-                          </p>
-                        </div>
-                      </div>
-                      <div>
-                        <div>
-                          <h3>Welcome to Our E-Commerce Store</h3>
-                          <p>
-                            We are a great and innovative e-commerce store who
-                            is dedicated to keeping our customers happy.
-                          </p>
-                        </div>
-                      </div>
-                    </Slider>
+                    </div>
                   </div>
                 </div>
                 <div className="col-md-7 p-0 card-right">
