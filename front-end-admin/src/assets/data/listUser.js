@@ -9,183 +9,123 @@ import user from "../images/dashboard/user.png";
 export const data = [
   {
     id: "1",
-    // avtar: <img src={user5} style={{ width: 50, height: 50 }} />,
-    f_name: "Rowan",
-    l_name: "Torres",
-    email: "Rowan.torres@gmail.com",
-    last_login: "6 Days ago",
-    role: "Customer"
+    First_Name: "Rowan",
+    Last_Name: "Torres",
+    email: "Rowan.torres@gmail.com"
   },
   {
     id: "2",
-    // avtar: <img src={user3} style={{ width: 50, height: 50 }} />,
-    f_name: "Alonzo",
-    l_name: "Perez",
-    email: "Perez.Alonzo@gmail.com",
-    last_login: "2 Days ago",
-    role: "Customer"
+    First_Name: "Alonzo",
+    Last_Name: "Perez",
+    email: "Perez.Alonzo@gmail.com"
   },
   {
     id: "3",
-    // avtar: <img src={user1} style={{ width: 50, height: 50 }} />,
-    f_name: "Skylar",
-    l_name: "Lane",
-    email: "Lane.Skylar@gmail.com",
-    last_login: "1 Days ago",
-    role: "Customer"
+    First_Name: "Skylar",
+    Last_Name: "Lane",
+    email: "Lane.Skylar@gmail.com"
   },
   {
     id: "4",
-    // avtar: <img src={boy2} style={{ width: 50, height: 50 }} />,
-    f_name: "Brody",
-    l_name: "Gray",
-    email: "Gray.Brody@gmail.com",
-    last_login: "3 Days ago",
-    role: "Admin"
+    First_Name: "Brody",
+    Last_Name: "Gray",
+    email: "Gray.Brody@gmail.com"
   },
   {
     id: "5",
-    // avtar: <img src={designer} style={{ width: 50, height: 50 }} />,
-    f_name: "Colton",
-    l_name: "Clay",
-    email: "Colton.Clay@gmail.com",
-    last_login: "1 Days ago",
-    role: "Customer"
+    First_Name: "Colton",
+    Last_Name: "Clay",
+    email: "Colton.Clay@gmail.com"
   },
   {
     id: "6",
-    // avtar: <img src={user} style={{ width: 50, height: 50 }} />,
-    f_name: "Maxine",
-    l_name: "Woters",
-    email: "woters.maxine@gmail.com",
-    last_login: "10 Days ago",
-    role: "Customer"
+    First_Name: "Maxine",
+    Last_Name: "Woters",
+    email: "woters.maxine@gmail.com"
   },
   {
     id: "7",
-    // avtar: <img src={user3} style={{ width: 50, height: 50 }} />,
-    f_name: "Alonzo",
-    l_name: "Perez",
-    email: "Perez.Alonzo@gmail.com",
-    last_login: "2 Days ago",
-    role: "Customer"
+    First_Name: "Alonzo",
+    Last_Name: "Perez",
+    email: "Perez.Alonzo@gmail.com"
   },
   {
     id: "8",
-    // avtar: <img src={user1} style={{ width: 50, height: 50 }} />,
-    f_name: "Skylar",
-    l_name: "Lane",
-    email: "Lane.Skylar@gmail.com",
-    last_login: "1 Days ago",
-    role: "Customer"
+    First_Name: "Skylar",
+    Last_Name: "Lane",
+    email: "Lane.Skylar@gmail.com"
   },
   {
     id: "9",
-    // avtar: <img src={boy2} style={{ width: 50, height: 50 }} />,
-    f_name: "Brody",
-    l_name: "Gray",
-    email: "Gray.Brody@gmail.com",
-    last_login: "3 Days ago",
-    role: "Admin"
+    First_Name: "Brody",
+    Last_Name: "Gray",
+    email: "Gray.Brody@gmail.com"
   },
   {
     id: "10",
-    // avtar: <img src={designer} style={{ width: 50, height: 50 }} />,
-    f_name: "Colton",
-    l_name: "Clay",
-    email: "Colton.Clay@gmail.com",
-    last_login: "1 Days ago",
-    role: "Customer"
+    First_Name: "Colton",
+    Last_Name: "Clay",
+    email: "Colton.Clay@gmail.com"
   },
   {
     id: "11",
-    // avtar: <img src={user} style={{ width: 50, height: 50 }} />,
-    f_name: "Maxine",
-    l_name: "Woters",
-    email: "woters.maxine@gmail.com",
-    last_login: "10 Days ago",
-    role: "Customer"
+    First_Name: "Maxine",
+    Last_Name: "Woters",
+    email: "woters.maxine@gmail.com"
   },
   {
     id: "12",
-    // avtar: <img src={user3} style={{ width: 50, height: 50 }} />,
-    f_name: "Alonzo",
-    l_name: "Perez",
-    email: "Perez.Alonzo@gmail.com",
-    last_login: "2 Days ago",
-    role: "Customer"
+    First_Name: "Alonzo",
+    Last_Name: "Perez",
+    email: "Perez.Alonzo@gmail.com"
   },
   {
     id: "13",
-    // avtar: <img src={user1} style={{ width: 50, height: 50 }} />,
-    f_name: "Skylar",
-    l_name: "Lane",
-    email: "Lane.Skylar@gmail.com",
-    last_login: "1 Days ago",
-    role: "Customer"
+    First_Name: "Skylar",
+    Last_Name: "Lane",
+    email: "Lane.Skylar@gmail.com"
   },
   {
     id: "14",
-    // avtar: <img src={boy2} style={{ width: 50, height: 50 }} />,
-    f_name: "Brody",
-    l_name: "Gray",
-    email: "Gray.Brody@gmail.com",
-    last_login: "3 Days ago",
-    role: "Admin"
+    First_Name: "Brody",
+    Last_Name: "Gray",
+    email: "Gray.Brody@gmail.com"
   },
   {
     id: "15",
-    // avtar: <img src={designer} style={{ width: 50, height: 50 }} />,
-    f_name: "Colton",
-    l_name: "Clay",
-    email: "Colton.Clay@gmail.com",
-    last_login: "1 Days ago",
-    role: "Customer"
+    First_Name: "Colton",
+    Last_Name: "Clay",
+    email: "Colton.Clay@gmail.com"
   },
   {
     id: "16",
-    // avtar: <img src={user5} style={{ width: 50, height: 50 }} />,
-    f_name: "Rowan",
-    l_name: "Torres",
-    email: "Rowan.torres@gmail.com",
-    last_login: "6 Days ago",
-    role: "Customer"
+    First_Name: "Rowan",
+    Last_Name: "Torres",
+    email: "Rowan.torres@gmail.com"
   },
   {
     id: "17",
-    // avtar: <img src={user3} style={{ width: 50, height: 50 }} />,
-    f_name: "Alonzo",
-    l_name: "Perez",
-    email: "Perez.Alonzo@gmail.com",
-    last_login: "2 Days ago",
-    role: "Customer"
+    First_Name: "Alonzo",
+    Last_Name: "Perez",
+    email: "Perez.Alonzo@gmail.com"
   },
   {
     id: "18",
-    // avtar: <img src={user1} style={{ width: 50, height: 50 }} />,
-    f_name: "Skylar",
-    l_name: "Lane",
-    email: "Lane.Skylar@gmail.com",
-    last_login: "1 Days ago",
-    role: "Customer"
+    First_Name: "Skylar",
+    Last_Name: "Lane",
+    email: "Lane.Skylar@gmail.com"
   },
   {
     id: "19",
-    // avtar: <img src={boy2} style={{ width: 50, height: 50 }} />,
-    f_name: "Brody",
-    l_name: "Gray",
-    email: "Gray.Brody@gmail.com",
-    last_login: "3 Days ago",
-    role: "Admin"
+    First_Name: "Brody",
+    Last_Name: "Gray",
+    email: "Gray.Brody@gmail.com"
   },
   {
     id: "20",
-    // avtar: <img src={designer} style={{ width: 50, height: 50 }} />,
-    f_name: "Colton",
-    l_name: "Clay",
-    email: "Colton.Clay@gmail.com",
-    last_login: "1 Days ago",
-    role: "Customer"
+    First_Name: "Colton",
+    Last_Name: "Clay",
+    email: "Colton.Clay@gmail.com"
   }
 ];
 export default data;
