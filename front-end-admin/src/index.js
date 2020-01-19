@@ -22,7 +22,7 @@ import ListPages from "./components/pages/list-page";
 import List_user from "./components/users/listCustomers";
 import Profile from "./components/settings/profile";
 import Reports from "./components/reports/report";
-import Invoice from "./components/invoice";
+import Invoice from "./components/all-my-products";
 import Datatable from "./components/common/datatable";
 import Login from "./components/auth/login";
 
@@ -95,7 +95,7 @@ class Root extends Component {
               />
 
               <Route
-                path={`${process.env.PUBLIC_URL}/invoice`}
+                path={`${process.env.PUBLIC_URL}/all-my-orders`}
                 component={Invoice}
               />
 
