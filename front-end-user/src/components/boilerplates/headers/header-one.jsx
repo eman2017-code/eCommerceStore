@@ -51,10 +51,6 @@ class HeaderOne extends Component {
     }
   };
 
-  changeLanguage(lang) {
-    store.dispatch(IntlActions.setLocale(lang));
-  }
-
   openNav() {
     var openmyslide = document.getElementById("mySidenav");
     if (openmyslide) {
