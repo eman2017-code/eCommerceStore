@@ -37,10 +37,6 @@ export class Tabset_profile extends Component {
                       <td>johndeo@gmail.com</td>
                     </tr>
                     <tr>
-                      <td>Gender:</td>
-                      <td>Male</td>
-                    </tr>
-                    <tr>
                       <td>Mobile Number:</td>
                       <td>212-482-1463</td>
                     </tr>
