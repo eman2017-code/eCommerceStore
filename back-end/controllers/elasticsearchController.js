@@ -40,64 +40,6 @@ router.get("/all-products", async (req, res, next) => {
 });
 
 
-// this route queries elasticsearch for all the product data and imports the products and
-// categories into mongoDB
-router.post("/import/", async (req, res, next) => {
-  try {
-    const results = await client.search({
-      index: "store-products-catalog2-cats",
-      from: 1,
-      size: 10000,
-      body: {}
-    });
-
-    const products = results.body.hits.hits.map(
-      product => product._source.message
-    );
-
-    // iterate through all the products and creates product instances if they dont already exist
-    products.forEach(async product => {
-      const existingProduct = await Product.findOne({ sku: product.sku });
-
-      if (!existingProduct) {
-        // iterates through the products categories and creates new category instances if they dont exist
-        const productsCategories = product.category.map(async category => {
-          const existingCategory = await Category.find({ name: category.name });
-
-          if (!existingCategory) {
-            const newCategory = await Category.create({
-              name: category.name
-            });
-            return newCategory.id;
-          }
-          return existingCategory.id;
-
-          const newProduct = await Product.create({
-            sku: products.sku,
-            name: product.name,
-            type: product.type,
-            upc: product.upc,
-            price: product.price,
-            shipping: product.shipping,
-            manufacturer: product.manufacturer,
-            model: product.model,
-            image: product.image,
-            description: product.description,
-            category: productsCategories
-          });
-        });
-      }
-    });
-
-    res.json({
-      data: products
-    });
-  } catch (error) {
-    next(error);
-  }
-});
-
-
 // filters products by whatever category is specified in the query paramaters
 router.get("/category/:categoryName/", async (req, res, next) => {
   const category = req.params.categoryName;
@@ -112,64 +54,44 @@ router.get("/category/:categoryName/", async (req, res, next) => {
         code: 200,
         message: "Succesfully got products"
       }
-    });
+    })
   } catch (error) {
-    next(error);
+    next(error)
   }
 });
 
+
 // searches for products
 router.post("/products/", async (req, res, next) => {
-  const searchTerm = req.body.searchTerm;
+  const searchTerm = req.body.searchTerm
 
   try {
-    const results = await client.search({
-      index: "store-products-catalog2-cats",
-      body: {
-        query: {
-          match_phrase_prefix: {
-            "message.name": {
-              query: searchTerm,
-              slop: 2,
-              max_expansions: 10
-            }
-          }
-        }
-      }
-    });
+    // queries products by a search term
+    const products = await elasticSearchManager.searchForProducts(searchTerm)
 
     res.json({
-      data: results,
+      data: products,
       status: {
         code: 200,
         message: "Successfully got products"
       }
-    });
+    })
   } catch (error) {
     next(error);
   }
 });
 
+
 // get specific product id route
 router.get("/product/:sku/", async (req, res, next) => {
-  productId = req.params.sku;
-  try {
-    const results = await client.search({
-      index: "store-products-catalog2-cats",
-      body: {
-        query: {
-          term: {
-            "message.sku": {
-              value: productId
-            }
-          }
-        }
-      }
-    });
+  productId = req.params.sku
 
-    // send success
+  try {
+    // queries for a single product by its id
+    const product = await elasticSearchManager.getProductById(productId) 
+
     res.json({
-      data: results.body.hits.hits,
+      data: product,
       status: {
         code: 200,
         message: "Succesfully got products"
@@ -179,5 +101,65 @@ router.get("/product/:sku/", async (req, res, next) => {
     next(err);
   }
 });
+
+
+// // this route queries elasticsearch for all the product data and imports the products and
+// // categories into mongoDB
+// router.post("/import/", async (req, res, next) => {
+//   try {
+//     const results = await client.search({
+//       index: "store-products-catalog2-cats",
+//       from: 1,
+//       size: 10000,
+//       body: {}
+//     });
+
+//     const products = results.body.hits.hits.map(
+//       product => product._source.message
+//     );
+
+//     // iterate through all the products and creates product instances if they dont already exist
+//     products.forEach(async product => {
+//       const existingProduct = await Product.findOne({ sku: product.sku });
+
+//       if (!existingProduct) {
+//         // iterates through the products categories and creates new category instances if they dont exist
+//         const productsCategories = product.category.map(async category => {
+//           const existingCategory = await Category.find({ name: category.name });
+
+//           if (!existingCategory) {
+//             const newCategory = await Category.create({
+//               name: category.name
+//             });
+//             return newCategory.id;
+//           }
+//           return existingCategory.id;
+
+//           const newProduct = await Product.create({
+//             sku: products.sku,
+//             name: product.name,
+//             type: product.type,
+//             upc: product.upc,
+//             price: product.price,
+//             shipping: product.shipping,
+//             manufacturer: product.manufacturer,
+//             model: product.model,
+//             image: product.image,
+//             description: product.description,
+//             category: productsCategories
+//           });
+//         });
+//       }
+//     });
+
+//     res.json({
+//       data: products
+//     });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+
 
 module.exports = router;

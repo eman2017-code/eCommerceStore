@@ -57,7 +57,7 @@ class ElasticSearchManager {
 
 	// returns products based on the searchTerm in the parameters
 	async searchForProducts(size, searchTerm) {
-		const results = await client.search({
+		const results = await this.client.search({
       		index: "store-products-catalog2-cats",
       		body: {
         		query: {
@@ -68,11 +68,31 @@ class ElasticSearchManager {
               				max_expansions: 10
             			}
           			}
-        		}
+        		},
+        		size: size
       		}
     	})
     	const products = this.parseResponse(response)
     	return products
+	}
+
+	// returns a single product by its id
+	async getProductById(productId) {
+		const response = await this.client.search({
+	        index: "store-products-catalog2-cats",
+	        body: {
+	        	query: {
+	            	term: {
+	                	'message.sku': {
+	                		value: productId
+	            		}
+	          		}
+	        	},
+	        	size: 1
+	        }
+	    })
+	    const product = this.parseResponse(response)
+	    return product
 	}
 
 }
