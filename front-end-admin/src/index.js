@@ -23,7 +23,7 @@ import Create_coupons from "./components/coupons/create-coupons";
 import ListPages from "./components/pages/list-page";
 import List_menu from "./components/menus/list-menu";
 import Create_menu from "./components/menus/create-menu";
-import List_user from "./components/users/list-user";
+import List_user from "./components/users/listCustomers";
 import Create_user from "./components/users/create-user";
 import List_vendors from "./components/vendors/list-vendors";
 import Create_vendors from "./components/vendors/create.vendors";
