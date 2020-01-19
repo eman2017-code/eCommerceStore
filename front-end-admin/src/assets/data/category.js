@@ -24,122 +24,102 @@ const data = [
   {
     image: <img src={pro16} style={{ width: 50, height: 50 }} />,
     product_name: "Headphones",
-    price: "$20.00",
-    category: "Electronics"
+    price: "$20.00"
   },
   {
     image: <img src={pro13} style={{ width: 50, height: 50 }} />,
     product_name: "Honor Mobile",
-    price: "$462.00",
-    category: "Electronics"
+    price: "$462.00"
   },
   {
     image: <img src={pro12} style={{ width: 50, height: 50 }} />,
     product_name: "Samsung LED TV",
-    price: "$652.00",
-    category: "Electronics"
+    price: "$652.00"
   },
   {
     image: <img src={pro25} style={{ width: 50, height: 50 }} />,
     product_name: "Motorola Bluetooth",
-    price: "$25.00",
-    category: "Electronics"
+    price: "$25.00"
   },
   {
     image: <img src={pro21} style={{ width: 50, height: 50 }} />,
     product_name: "Apple 6s",
-    price: "$782.00",
-    category: "Electronics"
+    price: "$782.00"
   },
   {
     image: <img src={pro3} style={{ width: 50, height: 50 }} />,
     product_name: "Printer",
-    price: "$4825.00",
-    category: "Electronics"
+    price: "$4825.00"
   },
   {
     image: <img src={pro14} style={{ width: 50, height: 50 }} />,
     product_name: "Canon Camera",
-    price: "$2461.00",
-    category: "Electronics"
+    price: "$2461.00"
   },
   {
     image: <img src={pro20} style={{ width: 50, height: 50 }} />,
     product_name: "High uality Headphones",
-    price: "$761.00",
-    category: "Electronics"
+    price: "$761.00"
   },
   {
     image: <img src={pro19} style={{ width: 50, height: 50 }} />,
     product_name: "Hom Theater Speakers",
-    price: "$672.00",
-    category: "Electronics"
+    price: "$672.00"
   },
   {
     image: <img src={pro18} style={{ width: 50, height: 50 }} />,
     product_name: "Diamond Ring",
-    price: "$237.00",
-    category: "Jewellery"
+    price: "$237.00"
   },
   {
     image: <img src={jwel12} style={{ width: 50, height: 50 }} />,
     product_name: "Diamond Nacklace",
-    price: "$3579.00",
-    category: "Jewellery"
+    price: "$3579.00"
   },
   {
     image: <img src={jwel26} style={{ width: 50, height: 50 }} />,
     product_name: "Diamond Earrings",
-    price: "$3145.00",
-    category: "Jewellery"
+    price: "$3145.00"
   },
   {
     image: <img src={furniture8} style={{ width: 50, height: 50 }} />,
     product_name: "Night lamp",
-    price: "$84.00",
-    category: "furniture"
+    price: "$84.00"
   },
   {
     image: <img src={cat3} style={{ width: 50, height: 50 }} />,
     product_name: "men's shoes",
-    price: "$67.00",
-    category: "shoes"
+    price: "$67.00"
   },
   {
     image: <img src={fashion12} style={{ width: 50, height: 50 }} />,
     product_name: "Ledi's red top",
-    price: "$234.00",
-    category: "clothes"
+    price: "$234.00"
   },
   {
     image: <img src={shoes} style={{ width: 50, height: 50 }} />,
     product_name: "atest ledis shoes",
-    price: "$357.00",
-    category: "shoes"
+    price: "$357.00"
   },
   {
     image: <img src={pro06} style={{ width: 50, height: 50 }} />,
     product_name: "Woman one pis",
-    price: "$682.00",
-    category: "clothes"
+    price: "$682.00"
   },
   {
     image: <img src={pro9} style={{ width: 50, height: 50 }} />,
     product_name: "Mouse",
-    price: "$24.00",
-    category: "electronics"
+    price: "$24.00"
   },
   {
     image: <img src={pro6} style={{ width: 50, height: 50 }} />,
     product_name: "Coffee maker",
-    price: "$9721.00",
-    category: "electronics"
+    price: "$9721.00"
   },
   {
     image: <img src={pro7} style={{ width: 50, height: 50 }} />,
     product_name: "Diamond Nacklace",
-    price: "$3579.00",
-    category: "Jewellery"
+    price: "$3579.00"
   }
 ];
 
