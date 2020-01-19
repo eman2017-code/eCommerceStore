@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const ElasticSearchManager = require('../managers/ElasticSearchManager.js')
+
 const Product = require("../models/product.js");
 const Category = require("../models/category.js");
 
@@ -12,26 +14,29 @@ const client = new Client({ node: "http://34.68.86.219:9200" });
 // handling errors
 const { errors } = require("@elastic/elasticsearch");
 
-// load product listing page route -- index route
+
+const elasticSearchManager = new ElasticSearchManager()
+
+
+// Index Route
+// returns all of the products 
 router.get("/all-products", async (req, res, next) => {
   try {
-    const results = await client.search({
-      index: "store-products-catalog2-cats",
-      from: 1,
-      size: 1000,
-      body: {}
-    });
+
+    // queries for all the products
+    const results = await elasticSearchManager.getAllProducts(10)
 
     // send success if all data is returned
     res.json({
-      data: results.body.hits.hits,
+      data: results,
       status: {
         code: 200,
-        message: "Loaded all products"
+        message: "Successfully got all of the products"
       }
-    });
+    })
+
   } catch (err) {
-    next(err);
+    next(err)
   }
 });
 

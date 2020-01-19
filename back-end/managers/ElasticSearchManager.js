@@ -1,3 +1,7 @@
+/*
+This class establishes the connection to elasticsearch and handles all of the elasticsearch queries
+*/
+
 const { Client, errors } = require("@elastic/elasticsearch")
 
 
@@ -33,20 +37,9 @@ class ElasticSearchManager {
     	return products
 	}
 
-
-
-
 }
 
-
-const elasticSearch = new ElasticSearchManager()
-
-getProducts = async () => {
-	const products = await elasticSearch.getAllProducts(10)
-	console.log('results:', products)
-}
-
-getProducts()
+module.exports = ElasticSearchManager
 
 
 
