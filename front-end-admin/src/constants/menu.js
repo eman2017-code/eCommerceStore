@@ -58,17 +58,7 @@ export const MENUITEMS = [
     ]
   },
   {
-    title: "Menus",
-    icon: AlignLeft,
-    type: "sub",
-    active: false,
-    children: [
-      { path: "/menus/list-menu", title: "List Menu", type: "link" },
-      { path: "/menus/create-menu", title: "Create Menu", type: "link" }
-    ]
-  },
-  {
-    title: "Users",
+    title: "Customers",
     icon: UserPlus,
     type: "sub",
     active: false,
