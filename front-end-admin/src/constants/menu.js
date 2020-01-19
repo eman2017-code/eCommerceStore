@@ -65,24 +65,6 @@ export const MENUITEMS = [
     active: false
   },
   {
-    title: "Localization",
-    icon: Chrome,
-    type: "sub",
-    children: [
-      {
-        path: "/localization/transactions",
-        title: "Translations",
-        type: "link"
-      },
-      {
-        path: "/localization/currency-rates",
-        title: "Currency Rates",
-        type: "link"
-      },
-      { path: "/localization/taxes", title: "Taxes", type: "link" }
-    ]
-  },
-  {
     title: "Reports",
     path: "/reports/report",
     icon: BarChart,

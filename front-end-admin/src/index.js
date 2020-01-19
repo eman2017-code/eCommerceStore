@@ -25,9 +25,6 @@ import List_menu from "./components/menus/list-menu";
 import Create_menu from "./components/menus/create-menu";
 import List_user from "./components/users/listCustomers";
 import Create_user from "./components/users/create-user";
-import Translations from "./components/localization/translations";
-import Rates from "./components/localization/rates";
-import Taxes from "./components/localization/taxes";
 import Profile from "./components/settings/profile";
 import Reports from "./components/reports/report";
 import Invoice from "./components/invoice";
@@ -98,19 +95,6 @@ class Root extends Component {
               <Route
                 path={`${process.env.PUBLIC_URL}/users/create-user`}
                 component={Create_user}
-              />
-
-              <Route
-                path={`${process.env.PUBLIC_URL}/localization/transactions`}
-                component={Translations}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/localization/currency-rates`}
-                component={Rates}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/localization/taxes`}
-                component={Taxes}
               />
 
               <Route
