@@ -19,7 +19,7 @@ import Create_coupons from "./components/coupons/create-coupons";
 
 //Pages
 import ListPages from "./components/pages/list-page";
-import List_user from "./components/users/listCustomers";
+import ListCustomers from "./components/users/listCustomers";
 import Profile from "./components/settings/profile";
 import Reports from "./components/reports/report";
 import Invoice from "./components/all-my-products";
@@ -81,7 +81,7 @@ class Root extends Component {
 
               <Route
                 path={`${process.env.PUBLIC_URL}/users/list-customers`}
-                component={List_user}
+                component={ListCustomers}
               />
 
               <Route
