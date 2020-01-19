@@ -34,31 +34,70 @@ export class Category extends Component {
                   <h5>Products Category</h5>
                 </div>
                 <div className="card-body">
-                  {/* <div className="btn-popup pull-right">
-
-                                        <button type="button" className="btn btn-primary" onClick={this.onOpenModal} data-toggle="modal" data-original-title="test" data-target="#exampleModal">Add Category</button>
-                                        <Modal open={open} onClose={this.onCloseModal} >
-                                            <div className="modal-header">
-                                                <h5 className="modal-title f-w-600" id="exampleModalLabel2">Add Physical Product</h5>
-                                            </div>
-                                            <div className="modal-body">
-                                                <form>
-                                                    <div className="form-group">
-                                                        <label htmlFor="recipient-name" className="col-form-label" >Category Name :</label>
-                                                        <input type="text" className="form-control" />
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label htmlFor="message-text" className="col-form-label">Category Image :</label>
-                                                        <input className="form-control" id="validationCustom02" type="file" />
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div className="modal-footer">
-                                                <button type="button" className="btn btn-primary" onClick={() => this.onCloseModal('VaryingMdo')}>Save</button>
-                                                <button type="button" className="btn btn-secondary" onClick={() => this.onCloseModal('VaryingMdo')}>Close</button>
-                                            </div>
-                                        </Modal>
-                                    </div> */}
+                  <div className="btn-popup pull-right">
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={this.onOpenModal}
+                      data-toggle="modal"
+                      data-original-title="test"
+                      data-target="#exampleModal"
+                    >
+                      Add Category
+                    </button>
+                    <Modal open={open} onClose={this.onCloseModal}>
+                      <div className="modal-header">
+                        <h5
+                          className="modal-title f-w-600"
+                          id="exampleModalLabel2"
+                        >
+                          Add Physical Product
+                        </h5>
+                      </div>
+                      <div className="modal-body">
+                        <form>
+                          <div className="form-group">
+                            <label
+                              htmlFor="recipient-name"
+                              className="col-form-label"
+                            >
+                              Category Name :
+                            </label>
+                            <input type="text" className="form-control" />
+                          </div>
+                          <div className="form-group">
+                            <label
+                              htmlFor="message-text"
+                              className="col-form-label"
+                            >
+                              Category Image :
+                            </label>
+                            <input
+                              className="form-control"
+                              id="validationCustom02"
+                              type="file"
+                            />
+                          </div>
+                        </form>
+                      </div>
+                      <div className="modal-footer">
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          onClick={() => this.onCloseModal("VaryingMdo")}
+                        >
+                          Save
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          onClick={() => this.onCloseModal("VaryingMdo")}
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </Modal>
+                  </div>
                   <div className="clearfix"></div>
                   <div id="basicScenario" className="product-physical">
                     <Datatable

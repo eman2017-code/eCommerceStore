@@ -23,102 +23,102 @@ import pro7 from "../images/dashboard/product/20.jpg";
 const data = [
   {
     image: <img src={pro16} style={{ width: 50, height: 50 }} />,
-    product_name: "Headphones",
+    product_category: "Headphones",
     price: "$20.00"
   },
   {
     image: <img src={pro13} style={{ width: 50, height: 50 }} />,
-    product_name: "Honor Mobile",
+    product_category: "Honor Mobile",
     price: "$462.00"
   },
   {
     image: <img src={pro12} style={{ width: 50, height: 50 }} />,
-    product_name: "Samsung LED TV",
+    product_category: "Samsung LED TV",
     price: "$652.00"
   },
   {
     image: <img src={pro25} style={{ width: 50, height: 50 }} />,
-    product_name: "Motorola Bluetooth",
+    product_category: "Motorola Bluetooth",
     price: "$25.00"
   },
   {
     image: <img src={pro21} style={{ width: 50, height: 50 }} />,
-    product_name: "Apple 6s",
+    product_category: "Apple 6s",
     price: "$782.00"
   },
   {
     image: <img src={pro3} style={{ width: 50, height: 50 }} />,
-    product_name: "Printer",
+    product_category: "Printer",
     price: "$4825.00"
   },
   {
     image: <img src={pro14} style={{ width: 50, height: 50 }} />,
-    product_name: "Canon Camera",
+    product_category: "Canon Camera",
     price: "$2461.00"
   },
   {
     image: <img src={pro20} style={{ width: 50, height: 50 }} />,
-    product_name: "High uality Headphones",
+    product_category: "High uality Headphones",
     price: "$761.00"
   },
   {
     image: <img src={pro19} style={{ width: 50, height: 50 }} />,
-    product_name: "Hom Theater Speakers",
+    product_category: "Hom Theater Speakers",
     price: "$672.00"
   },
   {
     image: <img src={pro18} style={{ width: 50, height: 50 }} />,
-    product_name: "Diamond Ring",
+    product_category: "Diamond Ring",
     price: "$237.00"
   },
   {
     image: <img src={jwel12} style={{ width: 50, height: 50 }} />,
-    product_name: "Diamond Nacklace",
+    product_category: "Diamond Nacklace",
     price: "$3579.00"
   },
   {
     image: <img src={jwel26} style={{ width: 50, height: 50 }} />,
-    product_name: "Diamond Earrings",
+    product_category: "Diamond Earrings",
     price: "$3145.00"
   },
   {
     image: <img src={furniture8} style={{ width: 50, height: 50 }} />,
-    product_name: "Night lamp",
+    product_category: "Night lamp",
     price: "$84.00"
   },
   {
     image: <img src={cat3} style={{ width: 50, height: 50 }} />,
-    product_name: "men's shoes",
+    product_category: "men's shoes",
     price: "$67.00"
   },
   {
     image: <img src={fashion12} style={{ width: 50, height: 50 }} />,
-    product_name: "Ledi's red top",
+    product_category: "Ledi's red top",
     price: "$234.00"
   },
   {
     image: <img src={shoes} style={{ width: 50, height: 50 }} />,
-    product_name: "atest ledis shoes",
+    product_category: "atest ledis shoes",
     price: "$357.00"
   },
   {
     image: <img src={pro06} style={{ width: 50, height: 50 }} />,
-    product_name: "Woman one pis",
+    product_category: "Woman one pis",
     price: "$682.00"
   },
   {
     image: <img src={pro9} style={{ width: 50, height: 50 }} />,
-    product_name: "Mouse",
+    product_category: "Mouse",
     price: "$24.00"
   },
   {
     image: <img src={pro6} style={{ width: 50, height: 50 }} />,
-    product_name: "Coffee maker",
+    product_category: "Coffee maker",
     price: "$9721.00"
   },
   {
     image: <img src={pro7} style={{ width: 50, height: 50 }} />,
-    product_name: "Diamond Nacklace",
+    product_category: "Diamond Nacklace",
     price: "$3579.00"
   }
 ];

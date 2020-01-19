@@ -107,7 +107,7 @@ export class Add_product extends Component {
                             <div className="col-xl-8 col-sm-7">
                               <AvField
                                 className="form-control"
-                                name="product_name"
+                                name="product_category"
                                 id="validationCustom01"
                                 type="text"
                                 required
