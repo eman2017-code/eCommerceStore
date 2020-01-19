@@ -22,7 +22,6 @@ const elasticSearchManager = new ElasticSearchManager()
 // returns all of the products 
 router.get("/all-products", async (req, res, next) => {
   try {
-
     // queries for all the products
     const results = await elasticSearchManager.getAllProducts(10)
 
@@ -39,6 +38,7 @@ router.get("/all-products", async (req, res, next) => {
     next(err)
   }
 });
+
 
 // this route queries elasticsearch for all the product data and imports the products and
 // categories into mongoDB
@@ -97,26 +97,17 @@ router.post("/import/", async (req, res, next) => {
   }
 });
 
+
 // filters products by whatever category is specified in the query paramaters
 router.get("/category/:categoryName/", async (req, res, next) => {
-  const categoryName = req.params.categoryName;
+  const category = req.params.categoryName;
 
   try {
-    const results = await client.search({
-      index: "store-products-catalog2-cats",
-      body: {
-        query: {
-          multi_match: {
-            query: categoryName,
-            fields: ["message.category.name^2", "message.name"]
-          }
-        },
-        size: 8
-      }
-    });
+    // queries for products by category
+    const products = await elasticSearchManager.getProductsByCategory(8, category)
 
     res.json({
-      data: results.body.hits.hits,
+      data: products,
       status: {
         code: 200,
         message: "Succesfully got products"
