@@ -79,6 +79,60 @@ export class LoginTabset extends Component {
                 <div className="form-group">
                   <input
                     required=""
+                    name="login[first_name]"
+                    type="email"
+                    className="form-control"
+                    placeholder="First Name"
+                    id="exampleInputEmail12"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    required=""
+                    name="login[last_name]"
+                    type="email"
+                    className="form-control"
+                    placeholder="Last Name"
+                    id="exampleInputEmail12"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    required=""
+                    name="login[date_of_birth]"
+                    type="date"
+                    className="form-control"
+                    placeholder="Date of Birth"
+                    id="exampleInputEmail12"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    required=""
+                    name="login[phone_number]"
+                    type="tel"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    className="form-control"
+                    placeholder="Phone Number"
+                    id="exampleInputEmail12"
+                  />
+                  <span className="form-control" id="chk-ani2">
+                    ~ Format: 123-123-1234 ~
+                  </span>
+                </div>
+                <div className="form-group">
+                  <input
+                    required=""
+                    name="login[email]"
+                    type="email"
+                    className="form-control"
+                    placeholder="Email"
+                    id="exampleInputEmail12"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    required=""
                     name="login[username]"
                     type="email"
                     className="form-control"
