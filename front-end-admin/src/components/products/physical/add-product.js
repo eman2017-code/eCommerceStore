@@ -86,42 +86,10 @@ export class Add_product extends Component {
                     <div className="col-xl-5">
                       <div className="add-product">
                         <div className="row">
-                          <div className="col-xl-9 xl-50 col-sm-6 col-9">
-                            <img
-                              src={one}
-                              alt=""
-                              className="img-fluid image_zoom_1 blur-up lazyloaded"
-                            />
-                          </div>
-                          <div className="col-xl-3 xl-50 col-sm-6 col-3">
-                            <ul className="file-upload-product">
-                              {this.state.dummyimgs.map((res, i) => {
-                                return (
-                                  <li key={i}>
-                                    <div className="box-input-file">
-                                      <input
-                                        className="upload"
-                                        type="file"
-                                        onChange={e =>
-                                          this._handleImgChange(e, i)
-                                        }
-                                      />
-                                      <img
-                                        src={res.img}
-                                        style={{ width: 50, height: 50 }}
-                                      />
-                                      <a
-                                        id="result1"
-                                        onClick={e =>
-                                          this._handleSubmit(e.target.id)
-                                        }
-                                      ></a>
-                                    </div>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </div>
+                          <label className="col-xl-3 col-sm-4 mb-0">
+                            Select Photo: <input type="file"></input>
+                          </label>
+                          <div className="col-xl-3 xl-50 col-sm-6 col-3"></div>
                         </div>
                       </div>
                     </div>
