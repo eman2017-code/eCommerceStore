@@ -1,5 +1,6 @@
 /*
-This class establishes the connection to elasticsearch and handles all of the elasticsearch queries
+	This class establishes the connection to elasticsearch and 
+	handles all of the elasticsearch queries
 */
 
 const { Client, errors } = require("@elastic/elasticsearch")
@@ -40,7 +41,7 @@ class ElasticSearchManager {
 	// return products based on whatever category is specified in the parameters
 	async getProductsByCategory(size, category) {
 		const response = await this.client.search({
-			index: "store-products-catalog2-cats",
+			index: this.INDEX,
 		    body: {
 	        	query: {
 	          		multi_match: {
@@ -58,7 +59,7 @@ class ElasticSearchManager {
 	// returns products based on the searchTerm in the parameters
 	async searchForProducts(size, searchTerm) {
 		const results = await this.client.search({
-      		index: "store-products-catalog2-cats",
+      		index: this.INDEX,
       		body: {
         		query: {
           			match_phrase_prefix: {
@@ -79,7 +80,7 @@ class ElasticSearchManager {
 	// returns a single product by its id
 	async getProductById(productId) {
 		const response = await this.client.search({
-	        index: "store-products-catalog2-cats",
+	        index: this.INDEX,
 	        body: {
 	        	query: {
 	            	term: {
