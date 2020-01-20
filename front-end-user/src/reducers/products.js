@@ -35,6 +35,7 @@ const productReducer = (state = initialState, action) => {
       const formattedCategoryNameArray = categoryNameArray.map((word, i) => {
         if (i > 0) {
           const wordArray = word.split("");
+
           const firstLetterCapitalized = wordArray[0].toUpperCase();
 
           delete wordArray[0];
@@ -54,19 +55,19 @@ const productReducer = (state = initialState, action) => {
         [formattedCategoryName]: action.products
       };
 
-      // this clears the single product that in the store
-      case CLEAR_SINGLE_PRODUCT:
-        return {
-          ...state,
-          product: {}
-        }
+    // this clears the single product that in the store
+    case CLEAR_SINGLE_PRODUCT:
+      return {
+        ...state,
+        product: {}
+      };
 
-      // sets a singel product in the store
-      case FETCH_SINGLE_PRODUCT:
-        return {
-          ...state,
-          product: action.product
-        }
+    // sets a singel product in the store
+    case FETCH_SINGLE_PRODUCT:
+      return {
+        ...state,
+        product: action.product
+      };
 
     // ** OLD **
     // case FETCH_SINGLE_PRODUCT:

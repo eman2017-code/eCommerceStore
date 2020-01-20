@@ -82,8 +82,19 @@ export default {
 
   // gets products by category
   getProductsByCategory: async category => {
+    // in the products.json, any two words that are joined together to make one object
+    // in the [category] are joined with ---> & <---. No words are joined with "and",
+    // this will return skewed results
+
+    if (category == "computers and tablets") {
+      category = "Computers & Tablets";
+    }
+
     const response = await fetch(
-      process.env.REACT_APP_API_URL + "/api/v1/search/category/" + category + "/"
+      process.env.REACT_APP_API_URL +
+        "/api/v1/search/category/" +
+        category +
+        "/"
     );
     const parsedResponse = await response.json();
     const products = parsedResponse.data.map(
@@ -113,14 +124,17 @@ export default {
       quantity: quantity
     };
 
-    const response = await fetch(process.env.REACT_APP_API_URL + "/api/v1/cart-items/", {
-      method: "POST",
-      body: JSON.stringify(dataToSend),
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json"
+    const response = await fetch(
+      process.env.REACT_APP_API_URL + "/api/v1/cart-items/",
+      {
+        method: "POST",
+        body: JSON.stringify(dataToSend),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        }
       }
-    });
+    );
     const parsedResponse = await response.json();
 
     return parsedResponse;
@@ -159,7 +173,10 @@ export default {
   // makes a fetch call to search for a product via elasticsearch
   fetchSingleProductFromElastic: async productId => {
     const response = await fetch(
-      process.env.REACT_APP_API_URL + "/api/v1/search/product/" + productId + "/"
+      process.env.REACT_APP_API_URL +
+        "/api/v1/search/product/" +
+        productId +
+        "/"
     );
     const parsedResponse = await response.json();
 

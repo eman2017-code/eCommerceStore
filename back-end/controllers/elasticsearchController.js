@@ -1,19 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const ElasticSearchManager = require('../managers/ElasticSearchManager.js')
-
+const ElasticSearchManager = require("../managers/ElasticSearchManager.js");
 
 // instantiation of this class establishes the connection to elasticsearch
 // and now it can perform elasticsearch queries
-const elasticSearchManager = new ElasticSearchManager()
-
+const elasticSearchManager = new ElasticSearchManager();
 
 // Index Route
-// returns all of the products 
+// returns all of the products
 router.get("/all-products", async (req, res, next) => {
   try {
     // queries for all the products
-    const results = await elasticSearchManager.getAllProducts(10)
+    const results = await elasticSearchManager.getAllProducts(10);
 
     // send success if all data is returned
     res.json({
@@ -22,13 +20,11 @@ router.get("/all-products", async (req, res, next) => {
         code: 200,
         message: "Successfully got all of the products"
       }
-    })
-
+    });
   } catch (err) {
-    next(err)
+    next(err);
   }
 });
-
 
 // filters products by whatever category is specified in the query paramaters
 router.get("/category/:categoryName/", async (req, res, next) => {
@@ -36,7 +32,10 @@ router.get("/category/:categoryName/", async (req, res, next) => {
 
   try {
     // queries for products by category
-    const products = await elasticSearchManager.getProductsByCategory(8, category)
+    const products = await elasticSearchManager.getProductsByCategory(
+      8,
+      category
+    );
 
     res.json({
       data: products,
@@ -44,20 +43,19 @@ router.get("/category/:categoryName/", async (req, res, next) => {
         code: 200,
         message: "Succesfully got products"
       }
-    })
+    });
   } catch (error) {
-    next(error)
+    next(error);
   }
 });
 
-
 // searches for products
 router.post("/products/", async (req, res, next) => {
-  const searchTerm = req.body.searchTerm
+  const searchTerm = req.body.searchTerm;
 
   try {
     // queries products by a search term
-    const products = await elasticSearchManager.searchForProducts(searchTerm)
+    const products = await elasticSearchManager.searchForProducts(searchTerm);
 
     res.json({
       data: products,
@@ -65,20 +63,19 @@ router.post("/products/", async (req, res, next) => {
         code: 200,
         message: "Successfully got products"
       }
-    })
+    });
   } catch (error) {
     next(error);
   }
 });
 
-
 // get specific product id route
 router.get("/product/:sku/", async (req, res, next) => {
-  productId = req.params.sku
+  productId = req.params.sku;
 
   try {
     // queries for a single product by its id
-    const product = await elasticSearchManager.getProductById(productId) 
+    const product = await elasticSearchManager.getProductById(productId);
 
     res.json({
       data: product,
@@ -91,7 +88,6 @@ router.get("/product/:sku/", async (req, res, next) => {
     next(err);
   }
 });
-
 
 // // this route queries elasticsearch for all the product data and imports the products and
 // // categories into mongoDB
@@ -149,7 +145,5 @@ router.get("/product/:sku/", async (req, res, next) => {
 //     next(error);
 //   }
 // });
-
-
 
 module.exports = router;
