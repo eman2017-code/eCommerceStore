@@ -17,7 +17,7 @@ const cartItemsController = require("./controllers/cartItemsController.js");
 const categoriesController = require("./controllers/categoriesController.js");
 const elasticsearchController = require("./controllers/elasticsearchController.js");
 
-
+remoteImageChecker()
 
 // imports the database connection module
 require("./db/db.js");
