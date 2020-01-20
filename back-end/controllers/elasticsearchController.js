@@ -11,7 +11,7 @@ const elasticSearchManager = new ElasticSearchManager();
 router.get("/all-products", async (req, res, next) => {
   try {
     // queries for all the products
-    const results = await elasticSearchManager.getAllProducts(10);
+    const results = await elasticSearchManager.getAllProducts();
 
     // send success if all data is returned
     res.json({
