@@ -23,6 +23,12 @@ class SideImageItem extends Component {
     this.setState({ image: img });
   }
 
+  // if a product image doesnt load correctly, this function replaces the image with a default picture
+  addDefaultImage(e) {
+    e.target.onerror = null;
+    e.target.src = `${process.env.PUBLIC_URL}/assets/images/image-not-found.jpg`;
+  }
+
   render() {
     const { product, symbol, fetchSingleProductFromElastic } = this.props;
 
@@ -32,6 +38,7 @@ class SideImageItem extends Component {
           <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.sku}`}
                 onClick={ () => fetchSingleProductFromElastic(product.sku) }>
             <img
+              onError={this.addDefaultImage}
               src={product.image}
               className="img-fluid lazyload bg-img"
               alt={product.name}
