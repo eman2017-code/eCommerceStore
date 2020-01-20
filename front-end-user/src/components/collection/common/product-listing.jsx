@@ -9,6 +9,8 @@ import ProductListItem from "./product-list-item";
 
 class ProductListing extends Component {
   constructor(props) {
+    console.log("props in ProductListing");
+    console.log(props);
     super(props);
 
     this.state = {
@@ -49,6 +51,8 @@ class ProductListing extends Component {
 
       // convert response to json
       const parsedResponse = await response.json();
+      console.log("parsedResponse in product-listing");
+      console.log(parsedResponse);
       // add results to state
       this.setState({
         results: [...parsedResponse.data.body.hits.hits]

@@ -45,9 +45,6 @@ class Trending extends Component {
       symbol
     } = this.props;
 
-    // console.log("this.props in Trending Component");
-    // console.log(this.props);
-
     return (
       <div>
         {/*Paragraph*/}

@@ -69,6 +69,7 @@ export default {
   getAllProducts: async callBack => {
     const response = await fetch(
       "http://35.222.68.3:8000/api/v1/search/all-products/"
+      // "http://localhost:8000/api/v1/search/all-products/"
     );
     const parsedResponse = await response.json();
 
@@ -76,7 +77,8 @@ export default {
     const products = parsedResponse.data.map(
       product => product._source.message
     );
-
+    console.log("products");
+    console.log(products);
     return products;
   },
 
