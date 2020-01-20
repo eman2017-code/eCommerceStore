@@ -83,7 +83,7 @@ export class LoginTabset extends Component {
                     type="email"
                     className="form-control"
                     placeholder="First Name"
-                    id="exampleInputEmail12"
+                    id="uniqueId1"
                   />
                 </div>
                 <div className="form-group">
@@ -93,7 +93,7 @@ export class LoginTabset extends Component {
                     type="email"
                     className="form-control"
                     placeholder="Last Name"
-                    id="exampleInputEmail12"
+                    id="uniqueId2"
                   />
                 </div>
                 <div className="form-group">
@@ -103,7 +103,7 @@ export class LoginTabset extends Component {
                     type="email"
                     className="form-control"
                     placeholder="Email"
-                    id="exampleInputEmail12"
+                    id="uniqueId3"
                   />
                 </div>
                 <div className="form-group">
@@ -113,7 +113,7 @@ export class LoginTabset extends Component {
                     type="email"
                     className="form-control"
                     placeholder="Username"
-                    id="exampleInputEmail12"
+                    id="uniqueId4"
                   />
                 </div>
                 <div className="form-group">
@@ -123,6 +123,7 @@ export class LoginTabset extends Component {
                     type="password"
                     className="form-control"
                     placeholder="Password"
+                    id="uniqueId5"
                   />
                 </div>
                 <div className="form-group">
@@ -132,16 +133,8 @@ export class LoginTabset extends Component {
                     type="password"
                     className="form-control"
                     placeholder="Confirm Password"
+                    id="uniqueId6"
                   />
-                </div>
-                <div className="form-terms">
-                  <div className="custom-control custom-checkbox mr-sm-2">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customControlAutosizing"
-                    />
-                  </div>
                 </div>
                 <div className="form-button">
                   <button
