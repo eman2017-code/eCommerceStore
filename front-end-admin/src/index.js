@@ -111,4 +111,4 @@ class Root extends Component {
   }
 }
 
-ReactDOM.render(<Root />, document.getElementById("root"));
+ReactDOM.render(<Root />, document.getElementById("adminDashboard"));
