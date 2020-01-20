@@ -60,20 +60,7 @@ export const getMinMaxPrice = products => {
 
 
 export const getVisibleproducts = (data, filters) => {
-  return data.products.sort((product1, product2) => {
-
-    switch (filters.sortBy) {
-
-      case 'HighToLow': 
-        console.log('hightolow')
-        return product2.price < product1.price ? -1 : 1;
-
-      case 'LowToHigh':
-        console.log('lowtohigh')
-        return product2.price > product1.price ? -1 : 1;
-    } 
-
-  })
+  return data.products
 }
 
 
