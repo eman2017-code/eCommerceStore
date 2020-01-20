@@ -232,7 +232,7 @@ class ProductListing extends Component {
   }
 }
 const mapStateToProps = state => ({
-  products: getVisibleproducts(state.data, state.filters),
+  products: getVisibleproducts(state.data.products, state.filters),
   symbol: state.data.symbol
 });
 
