@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const session = require("express-session");
 const fileUpload = require("express-fileupload");
-const checkIfApiImageExists = require('./schedules/checkIfApiImageExists.js');
+const RemoteImageChecker = require('./schedules/RemoteImageChecker.js');
 
 // import controllers here
 const usersController = require("./controllers/usersController.js");
@@ -17,7 +17,7 @@ const cartItemsController = require("./controllers/cartItemsController.js");
 const categoriesController = require("./controllers/categoriesController.js");
 const elasticsearchController = require("./controllers/elasticsearchController.js");
 
-checkIfApiImageExists()
+const remoteImageChecker = new RemoteImageChecker()
 
 // imports the database connection module
 require("./db/db.js");
