@@ -1,3 +1,7 @@
+/*
+    This class is responsible for uploading files to the AWS S3 bucket
+*/
+
 const AWS = require('aws-sdk');
 const fs = require('fs');
 
