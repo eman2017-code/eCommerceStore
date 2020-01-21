@@ -1,7 +1,12 @@
 const express = require("express");
 const Product = require("../models/product.js");
 const User = require("../models/user.js");
-const staffAccountRequired = require("../middleware/users/staffAccountRequired.js");
+const adminRequired = require("../middleware/users/adminRequired.js");
+const fileUpload = require('../middleware/fileUpload.js');
+const FileUploadManager = require('../managers/FileUploadManager.js');
+const ElasticSearchManager = require('../managers/ElasticSearchManager.js');
+const fs = require('fs');
+
 
 const router = express.Router();
 
@@ -24,29 +29,62 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+
 // Create Route
 // this route is where the admin can create a new product
-router.post("/", staffAccountRequired, async (req, res, next) => {
-  const clientData = req.body;
+router.post("/", adminRequired, async (req, res, next) => {
+  const productData = req.body;
+  const productImage = req.files.image;
+
+  // establishes the connection to the aws s3 bucket
+  const fileUploadManager = new FileUploadManager();
+
+  // gets the url to the image that was just uploaded to the aws s3 bucket
+  const awsPathToImage = fileUploadManager.getURLToUploadedFile(productImage.name);
+  productData.image = awsPathToImage;
 
   try {
-    const newProduct = await Product.create(clientData);
-    newProduct.postedBy = req.session.userId;
-    await newProduct.save();
+    const newProduct = await Product.create(productData);
 
-    // if the product has any categories added
-    if (clientData.category) {
-      // adds the newly created product to the products array in whatever categories where specified
+    // if any categories were specified for the products
+    if (productData.category) {
       await newProduct.addProductToCategories(clientData.category);
+      await newProduct.save();
     }
 
-    res.send({
-      data: newProduct,
-      status: {
-        code: 201,
-        message: "Successfully added a new product"
-      }
-    });
+    // adds the new product to elasticsearch
+    const elasticSearchManager = new ElasticSearchManager();
+    const elasticSearchResponse = await elasticSearchManager.addNewProduct(newProduct);
+    
+    // if theres was an error adding the product to elasticsearch
+    if (elasticSearchResponse.statusCode !== 201) {
+
+      // product in mongo gets deleted since it couldnt be uploaded to elasticsearch
+      const deletedProduct = await Product.findByIdAndRemove(newProduct.id).exec();
+    
+      res.send({
+        data: {},
+        status: {
+          code: 400,
+          message: 'Error connecting to Elasticsearch'
+        }
+      })
+
+    // otherwise if the product was successfully uploaded to elasticsearch
+    } else {
+      
+      // uploads the image to the aws s3 bucket
+      fileUploadManager.uploadFileToAWS(productImage, res);
+
+      res.send({
+        data: newProduct,
+        status: {
+          code: 201,
+          message: 'Product added successfully'
+        }
+      });
+    }
+
   } catch (error) {
     next(error);
   }
