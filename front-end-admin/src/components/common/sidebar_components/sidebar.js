@@ -7,6 +7,9 @@ import { MENUITEMS } from "../../../constants/menu";
 import logo from "../../../assets/images/dashboard/logo2.png";
 
 export class sidebar extends Component {
+  constructor(props) {
+    super(props);
+  }
   state = { selectedPath: "1", mainmenu: [] };
   onItemSelection = (arg, e) => {
     this.setState({ selectedPath: arg.path });
