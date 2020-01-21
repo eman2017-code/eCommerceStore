@@ -4,6 +4,35 @@ import man from "../../../assets/images/dashboard/man.png";
 import { logoutUser } from "../../../actions";
 
 export class User_menu extends Component {
+  // determines what to show the admin if they are logged in or not
+  decideWhichTabLinks = () => {
+    if (this.props.isLoggedIn) {
+      return (
+        <ul className="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
+          <li>
+            <Link to={`${process.env.PUBLIC_URL}/view/profile`}>
+              <i data-feather="user"></i>View Profile
+            </Link>
+          </li>
+          <li>
+            {/* <Link to={`${process.env.PUBLIC_URL}/`}> */}
+            <i data-feather="log-out" onClick={logoutUser}></i>Logout
+            {/* </Link> */}
+          </li>
+        </ul>
+      );
+    } else {
+      return (
+        <ul className="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
+          <li>
+            <Link to={`${process.env.PUBLIC_URL}/auth/login`}>
+              <i data-feather="log-out"></i>Login
+            </Link>
+          </li>
+        </ul>
+      );
+    }
+  };
   render() {
     const { logoutUser } = this.props;
     return (
@@ -27,9 +56,9 @@ export class User_menu extends Component {
               </Link>
             </li>
             <li>
-              <Link to={`${process.env.PUBLIC_URL}/`}>
-                <i data-feather="log-out"></i>Logout
-              </Link>
+              {/* <Link to={`${process.env.PUBLIC_URL}/`}> */}
+              <i data-feather="log-out" onClick={logoutUser}></i>Logout
+              {/* </Link> */}
             </li>
           </ul>
         </li>
