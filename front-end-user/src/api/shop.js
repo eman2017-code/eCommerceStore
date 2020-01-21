@@ -5,7 +5,7 @@
 
 export default {
   // makes call to the api to register a new user
-  registerUser: async (registrationInfo, next) => {
+  registerUser: async registrationInfo => {
     try {
       const response = await fetch(
         "http://35.222.68.3:5000/api/v1/users/register/",
@@ -20,13 +20,11 @@ export default {
       );
       const parsedResponse = await response.json();
       return parsedResponse;
-    } catch (error) {
-      next(error);
-    }
+    } catch (error) {}
   },
 
   // makes call to the api to attempt to login the user
-  loginUser: async (loginInfo, next) => {
+  loginUser: async loginInfo => {
     try {
       const response = await fetch(
         "http://35.222.68.3:5000/api/v1/users/login/",
@@ -41,13 +39,11 @@ export default {
       );
       const parsedResponse = await response.json();
       return parsedResponse;
-    } catch (error) {
-      next(error);
-    }
+    } catch (error) {}
   },
 
   // makes call to teh api to logout the user
-  logoutUser: async next => {
+  logoutUser: async () => {
     try {
       const response = await fetch(
         "http://35.222.68.3:8000/api/v1/users/logout/",
@@ -61,9 +57,7 @@ export default {
       );
       const parsedResponse = await response.json();
       return parsedResponse;
-    } catch (error) {
-      next(error);
-    }
+    } catch (error) {}
   },
 
   getAllProducts: async callBack => {
