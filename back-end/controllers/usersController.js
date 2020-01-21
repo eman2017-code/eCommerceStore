@@ -6,6 +6,19 @@ const loginRequired = require("../middleware/users/loginRequired.js")
 const router = express.Router()
 
 
+router.get('/', async (req, res, next) => {
+  try {
+    const users = await User.find({});
+
+    res.json({
+      data: users
+    })
+  } catch (error) {
+    next(error)
+  }
+})
+
+
 // this route is where new users signup
 router.post("/register/", async (req, res, next) => {
   const clientData = req.body
@@ -161,9 +174,10 @@ router.post('/admin/login/', async (req, res, next) => {
 
   try {
     const foundUser = await User.findOne({ email: clientData.email })
+    console.log('foundUser:', foundUser)
 
-    // if the user trying to login is neither the admin or a staff user
-    if (!foundUser.isAdmin && !foundUser.isStaff) {
+    // if the user trying to login is not the admin
+    if (foundUser.isAdmin === false) {
       res.json({
         data: {},
         status: {
@@ -177,7 +191,7 @@ router.post('/admin/login/', async (req, res, next) => {
     if (foundUser && User.doPasswordsMatch(clientData.password, foundUser.password)) {
       foundUser.login(req)
 
-      return res.json({
+      res.json({
         data: foundUser.removePassword(),
         status: {
           code: 200,
@@ -186,7 +200,7 @@ router.post('/admin/login/', async (req, res, next) => {
       })
 
     } else {
-      return res.json({
+      res.json({
         data: {},
         status: {
           code: 401,
