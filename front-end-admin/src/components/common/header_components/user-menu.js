@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-//images import
 import man from "../../../assets/images/dashboard/man.png";
+import { logoutUser } from "../../../actions";
+
 export class User_menu extends Component {
   render() {
+    const { logoutUser } = this.props;
     return (
       <Fragment>
         <li className="onhover-dropdown">
