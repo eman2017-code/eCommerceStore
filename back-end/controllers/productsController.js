@@ -36,9 +36,8 @@ router.post("/", async (req, res, next) => {
   const productData = req.body;
   const productImage = req.files.image;
 
-  // uploads the file to the aws s3 bucket
+  // establishes the connection to the aws s3 bucket
   const fileUploadManager = new FileUploadManager();
-  fileUploadManager.uploadFileToAWS(productImage, res);
 
   // gets the url to the image that was just uploaded to the aws s3 bucket
   const awsPathToImage = fileUploadManager.getURLToUploadedFile(productImage.name);
@@ -56,16 +55,13 @@ router.post("/", async (req, res, next) => {
     // adds the new product to elasticsearch
     const elasticSearchManager = new ElasticSearchManager();
     const elasticSearchResponse = await elasticSearchManager.addNewProduct(newProduct);
-    console.log('elasticsearch response:', elasticSearchResponse);
     
-    // if theres was an error adding the prodicts to elastic search
-    if (elasticSearchResponse.statusCode !== 200) {
-      console.log('elastic error');
+    // if theres was an error adding the product to elasticsearch
+    if (elasticSearchResponse.statusCode !== 201) {
 
       // product in mongo gets deleted since it couldnt be uploaded to elasticsearch
       const deletedProduct = await Product.findByIdAndRemove(newProduct.id).exec();
-      console.log('deleted product:', deletedProduct);
-
+    
       res.send({
         data: {},
         status: {
@@ -74,7 +70,12 @@ router.post("/", async (req, res, next) => {
         }
       })
 
+    // otherwise if the product was successfully uploaded to elasticsearch
     } else {
+      
+      // uploads the image to the aws s3 bucket
+      fileUploadManager.uploadFileToAWS(productImage, res);
+
       res.send({
         data: newProduct,
         status: {
