@@ -34,7 +34,7 @@ class FileUploadManager {
     }
 
     // uploads a file to the aws s3 bucket
-    uploadFileToAWS(file) {
+    uploadFileToAWS(file, response) {
         const fileName = file.name;
 
         // gets the path to where the file will be temperarily uploaded
@@ -52,7 +52,13 @@ class FileUploadManager {
             // uploads the file to the aws s3 bucket
             this.s3.putObject(awsData, (error, data) => {
                 if (error) {
-                    console.log('error ocurred:', error);
+                    response.send({
+                        data: {},
+                        status: {
+                            code: 400,
+                            message: 'Error uploading file, please try again later.'
+                        }
+                    });
 
                 } else {
                     console.log('successfully uploaded file');

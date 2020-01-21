@@ -36,7 +36,7 @@ router.post("/", async (req, res, next) => {
 
   // uploads the file to the aws s3 bucket
   const fileUploadManager = new FileUploadManager();
-  fileUploadManager.uploadFileToAWS(productImage);
+  fileUploadManager.uploadFileToAWS(productImage, res);
 
   // gets the url to the image that was just uploaded to the aws s3 bucket
   const awsPathToImage = fileUploadManager.getURLToUploadedFile(productImage.name);
