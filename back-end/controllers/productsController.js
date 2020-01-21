@@ -34,20 +34,8 @@ router.post("/", async (req, res, next) => {
   const productData = req.body;
   const productImage = req.files.image;
 
-  const uploadPath = `${__dirname}/../public/images/products/${productImage.name}`;
-
-  productImage.mv(uploadPath, (error) => {
-    if (error) {
-      console.log('error uploading file:', error);
-    }
-  })
-
-  // const productImageContent = fs.readFileSync(productImage);
-  // console.log('productImageContent:', productsImageContent);
-
   const fileUploadManager = new FileUploadManager();
-
-  fileUploadManager.uploadFile(uploadPath, productImage.name);
+  fileUploadManager.uploadFileToAWS(productImage);
 
   res.send({
     data: 'response'
