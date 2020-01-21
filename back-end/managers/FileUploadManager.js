@@ -29,13 +29,12 @@ class FileUploadManager {
         return new AWS.S3()
     }
 
+    // uploads a file to aws
     uploadFileToAWS(filePath, fileName) {
         fs.readFile(filePath, (error, fileData) => {
-            const awsData = {
-                Bucket: this.BUCKET_NAME,
-                Key: fileName,
-                Body: fileData
-            }
+            
+            // gets object which contains data to tell aws where to upload the file
+            const awsData = this.formatAWSData(fileName, fileData);
 
             this.s3.putObject(awsData, (error, data) => {
                 if (error) {
@@ -46,18 +45,27 @@ class FileUploadManager {
                     
                 }
             });
-        })
+        });            
+    }
 
-    uploadTemperaryFile() {
-        productImage.mv(uploadPath, (error) => {
+    // returns an object which tells aws to upload a file
+    formatAWSData(fileName, fileData) {
+        const awsData = {
+            Bucket: this.BUCKET_NAME,
+            Key: fileName,
+            Body: fileData
+        }
+        return awsData;
+    }
+
+    // uploads a file temperarely to the file system, so it can be read with fs.readFile()
+    // this file is later delete after the file is uploaded to aws 
+    uploadTemperaryImage(file) {
+        file.mv(uploadPath, (error) => {
             if (error) {
               console.log('error uploading file:', error);
             }
         });
-    }
-    
-            
-        
     }
 
 }
