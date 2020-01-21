@@ -6,6 +6,7 @@
 const { Client, errors } = require("@elastic/elasticsearch");
 
 class ElasticSearchManager {
+
   constructor() {
     this.CLIENT_URL = "http://34.68.86.219:9200";
     this.INDEX = "store-products-catalog2-cats";
@@ -34,6 +35,26 @@ class ElasticSearchManager {
     });
     const products = this.parseResponse(response);
     return products;
+  }
+
+  // adds a new product to elasticsearch
+  async addNewProduct(productInfo) {
+    const response = await this.client.index({
+      index: this.INDEX,
+      body: {
+        name: productInfo.name,
+        description: productInfo.description,
+        image: productInfo.image,
+        upc: productInfo.upc,
+        sku: productInfo.sku,
+        price: productInfo.price,
+        manufacturer: productInfo.manufacturer,
+        model: productInfo.model,
+        lastUpdated: productInfo.lastUpdated,
+        timestamp: productInfo.timestamp
+      }
+    });
+    return response;
   }
 
   // return products based on whatever category is specified in the parameters
@@ -82,9 +103,7 @@ class ElasticSearchManager {
       body: {
         query: {
           term: {
-            "message.sku": {
-              value: productId
-            }
+            "message.sku":  productId
           }
         },
         size: 1

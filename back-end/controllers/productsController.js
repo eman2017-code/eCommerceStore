@@ -4,6 +4,7 @@ const User = require("../models/user.js");
 const adminRequired = require("../middleware/users/adminRequired.js");
 const fileUpload = require('../middleware/fileUpload.js');
 const FileUploadManager = require('../managers/FileUploadManager.js');
+const ElasticSearchManager = require('../managers/ElasticSearchManager.js');
 const fs = require('fs');
 
 
@@ -28,6 +29,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+
 // Create Route
 // this route is where the admin can create a new product
 router.post("/", async (req, res, next) => {
@@ -50,6 +52,12 @@ router.post("/", async (req, res, next) => {
     if (productData.category) {
       await newProduct.addProductToCategories(clientData.category);
     }
+    console.log('newProduct:', newProduct);
+
+    // adds the new product to elasticsearch
+    const elasticSearchManager = new ElasticSearchManager();
+    const elasticSearchResponse = await elasticSearchManager.addNewProduct(newProduct);
+    console.log('elasticSearchResponse:', elasticSearchResponse);
 
     res.send({
       data: newProduct,
