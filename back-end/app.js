@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const session = require("express-session");
 const fileUpload = require("express-fileupload");
+const FileUploadManager = require('./managers/FileUploadManager.js');
 
 // import controllers here
 const usersController = require("./controllers/usersController.js");
@@ -16,6 +17,7 @@ const cartItemsController = require("./controllers/cartItemsController.js");
 const categoriesController = require("./controllers/categoriesController.js");
 const elasticsearchController = require("./controllers/elasticsearchController.js");
 
+const fileUploadManager = new FileUploadManager();
 
 // imports the database connection module
 require("./db/db.js");
@@ -23,6 +25,7 @@ require("./db/db.js");
 const PORT = process.env.PORT;
 const API_PATH = "/api/v1/";
 const app = express();
+
 
 // setup middleware here
 app.use(
