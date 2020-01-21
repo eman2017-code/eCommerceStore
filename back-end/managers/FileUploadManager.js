@@ -29,12 +29,8 @@ class FileUploadManager {
         return new AWS.S3()
     }
 
-    uploadFile(filePath, fileName) {
-        console.log('preparing upload');
-
-
+    uploadFileToAWS(filePath, fileName) {
         fs.readFile(filePath, (error, fileData) => {
-
             const awsData = {
                 Bucket: this.BUCKET_NAME,
                 Key: fileName,
@@ -42,15 +38,23 @@ class FileUploadManager {
             }
 
             this.s3.putObject(awsData, (error, data) => {
-                console.log('in putObject')
                 if (error) {
                     console.log('error ocurred:', error);
                 } else {
                     console.log('successfully upload file')
+                    fs.unlink(filePath); // deletes the file in the local file system
+                    
                 }
-            })
-
+            });
         })
+
+    uploadTemperaryFile() {
+        productImage.mv(uploadPath, (error) => {
+            if (error) {
+              console.log('error uploading file:', error);
+            }
+        });
+    }
     
             
         
