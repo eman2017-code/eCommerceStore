@@ -128,6 +128,7 @@ router.post('/admin/register/', async (req, res, next) => {
           password: passwordHash,
           isAdmin: true
         })
+        console.log("newAdmin:", newAdmin);
         newAdmin.login(req)
 
         res.json({
@@ -154,39 +155,30 @@ router.post('/admin/register/', async (req, res, next) => {
   }
 })
 
-
-// this is where the admin or staff user can login
 router.post('/admin/login/', async (req, res, next) => {
   const clientData = req.body
 
   try {
-    const foundUser = await User.findOne({ email: clientData.email })
-
-    // if the user trying to login is neither the admin or a staff user
-    if (!foundUser.isAdmin && !foundUser.isStaff) {
+    const foundUser = await User.findOne({email: clientData.email})
+    console.log("foundUser: ", foundUser);
+    if (!foundUser.isAdmin) {
       res.json({
         data: {},
         status: {
           code: 401,
-          message: 'You must be the admin or staff to login here'
+          message: "You are not admin"
         }
       })
-    }
-
-    // logs in the user if the email and password match
-    if (foundUser && User.doPasswordsMatch(clientData.password, foundUser.password)) {
-      foundUser.login(req)
-
-      return res.json({
+    } else if (foundUser.isAdmin) {
+      res.json({
         data: foundUser.removePassword(),
         status: {
-          code: 200,
+          code: 201,
           message: "Successfully logged in"
         }
       })
-
     } else {
-      return res.json({
+      res.json({
         data: {},
         status: {
           code: 401,
@@ -194,11 +186,9 @@ router.post('/admin/login/', async (req, res, next) => {
         }
       })
     }
-    
-
-
-  } catch (error) {
-    next(error)
+  }
+  catch(err) {
+    next(err)
   }
 })
 

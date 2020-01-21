@@ -117,6 +117,21 @@ export class Add_product extends Component {
                           </div>
                           <div className="form-group mb-3 row">
                             <label className="col-xl-3 col-sm-4 mb-0">
+                              Product Category :
+                            </label>
+                            <div className="col-xl-8 col-sm-7">
+                              <AvField
+                                className="form-control"
+                                name="product_category"
+                                id="validationCustom01"
+                                type="text"
+                                required
+                              />
+                            </div>
+                            <div className="valid-feedback">Looks good!</div>
+                          </div>
+                          <div className="form-group mb-3 row">
+                            <label className="col-xl-3 col-sm-4 mb-0">
                               Price :
                             </label>
                             <div className="col-xl-8 col-sm-7">
