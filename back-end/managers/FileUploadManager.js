@@ -1,28 +1,31 @@
 const AWS = require('aws-sdk');
 const fs = require('fs');
 
+
 class FileUploadManager {
 
     constructor() {
         this.AWS_KEY_ID = process.env.AWS_KEY_ID;
         this.AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
+        this.REGION = 'us-east-1';
         this.BUCKET_NAME = 'weblinktech';
-     
+
+        // this path is where files are temperarily upload to before getting upload to aws
+        this.TEMPERARY_UPLOAD_PATH = `${__dirname}/../public/images/products/`;
 
         // sets the credentials for the aws bucket
-        // this.setAWSCredentials()
-
-        AWS.config.update({
-            accessKeyId: this.AWS_KEY_ID,
-            secretAccessKey: this.AWS_ACCESS_KEY,
-            region: 'us-east-1',
-        });
+        this.setAWSCredentials()
 
         this.s3 = new AWS.S3();
     }
 
+    // sets aws credentials so the application has access to the s3 bucket
     setAWSCredentials() {
-        
+        AWS.config.update({
+            accessKeyId: this.AWS_KEY_ID,
+            secretAccessKey: this.AWS_ACCESS_KEY,
+            region: this.REGION
+        });
     }
 
     createS3Instance() {
