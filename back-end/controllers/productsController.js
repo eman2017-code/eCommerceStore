@@ -32,7 +32,7 @@ router.get('/', async (req, res, next) => {
 
 // Create Route
 // this route is where the admin can create a new product
-router.post("/", async (req, res, next) => {
+router.post("/", adminRequired, async (req, res, next) => {
   const productData = req.body;
   const productImage = req.files.image;
 
