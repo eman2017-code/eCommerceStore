@@ -42,30 +42,47 @@ router.post("/", async (req, res, next) => {
 
   // gets the url to the image that was just uploaded to the aws s3 bucket
   const awsPathToImage = fileUploadManager.getURLToUploadedFile(productImage.name);
+  productData.image = awsPathToImage;
 
   try {
     const newProduct = await Product.create(productData);
-    newProduct.image = awsPathToImage;
-    await newProduct.save();
 
     // if any categories were specified for the products
     if (productData.category) {
       await newProduct.addProductToCategories(clientData.category);
+      await newProduct.save();
     }
-    console.log('newProduct:', newProduct);
 
     // adds the new product to elasticsearch
     const elasticSearchManager = new ElasticSearchManager();
     const elasticSearchResponse = await elasticSearchManager.addNewProduct(newProduct);
-    console.log('elasticSearchResponse:', elasticSearchResponse);
+    console.log('elasticsearch response:', elasticSearchResponse);
+    
+    // if theres was an error adding the prodicts to elastic search
+    if (elasticSearchResponse.statusCode !== 200) {
+      console.log('elastic error');
 
-    res.send({
-      data: newProduct,
-      status: {
-        code: 201,
-        message: 'Product added successfully'
-      }
-    });
+      // product in mongo gets deleted since it couldnt be uploaded to elasticsearch
+      const deletedProduct = await Product.findByIdAndRemove(newProduct.id).exec();
+      console.log('deleted product:', deletedProduct);
+
+      res.send({
+        data: {},
+        status: {
+          code: 400,
+          message: 'Error connecting to Elasticsearch'
+        }
+      })
+
+    } else {
+      res.send({
+        data: newProduct,
+        status: {
+          code: 201,
+          message: 'Product added successfully'
+        }
+      });
+    }
 
   } catch (error) {
     next(error);
