@@ -19,14 +19,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  isAdmin: {
-    type: Boolean,
-    default: false
-  },
-  isStaff: {
-    type: Boolean,
-    default: false
-  },
+  // isAdmin: {
+  //   type: Boolean,
+  //   default: false
+  // },
+  // isStaff: {
+  //   type: Boolean,
+  //   default: false
+  // },
   active: {
     type: Boolean,
     default: true
@@ -44,8 +44,8 @@ const userSchema = new mongoose.Schema({
 // logs in the user
 userSchema.methods.login = function(req) {
   req.session.isLoggedIn = true
-  req.session.isAdmin = this.isAdmin
-  req.sessions.isStaff = this.isStaff
+  // req.session.isAdmin = this.isAdmin
+  // req.sessions.isStaff = this.isStaff
   req.session.userId = this.id
   req.session.email = this.email
 }

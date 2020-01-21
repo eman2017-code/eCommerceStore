@@ -1,7 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { Tabs, TabList, TabPanel, Tab } from "react-tabs";
 import { User, Unlock } from "react-feather";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { registerUser, loginUser } from "../../actions";
 
 export class LoginTabset extends Component {
   constructor(props) {
@@ -10,25 +13,42 @@ export class LoginTabset extends Component {
     super(props);
     this.state = {
       activeShow: true,
-      startDate: new Date()
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: ""
     };
-    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange = (e, date) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+      startDate: date
+    });
+  };
+
+  handleSubmitLogin = e => {
+    e.preventDefault();
+
+    this.props.loginUser(this.state);
+  };
+
+  handleSubmitRegister = e => {
+    e.preventDefault();
+
+    this.props.registerUser(this.state);
+  };
 
   clickActive = event => {
     document.querySelector(".nav-link").classList.remove("show");
     event.target.classList.add("show");
   };
-  handleChange(date) {
-    this.setState({
-      startDate: date
-    });
-  }
 
-  routeChange = () => {
-    this.props.history.push(`${process.env.PUBLIC_URL}/dashboard`);
-  };
   render() {
+    // if the admin is logged in
+    if (this.props.isLoggedIn) {
+      return <Redirect to={{ pathname: "/dashboard" }} />;
+    }
     return (
       <div>
         <Fragment>
@@ -45,105 +65,89 @@ export class LoginTabset extends Component {
             </TabList>
 
             <TabPanel>
-              <form className="form-horizontal auth-form">
+              <form
+                className="form-horizontal auth-form"
+                onSubmit={this.handleSubmitLogin}
+              >
                 <div className="form-group">
                   <input
-                    required=""
-                    name="login[username]"
-                    type="email"
+                    name="email"
+                    type="text"
                     className="form-control"
-                    placeholder="Username"
+                    placeholder="email"
                     id="exampleInputEmail1"
+                    value={this.state.email}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <div className="form-group">
                   <input
-                    required=""
-                    name="login[password]"
+                    name="password"
                     type="password"
                     className="form-control"
                     placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <div className="form-button">
-                  <button
-                    className="btn btn-primary"
-                    type="submit"
-                    onClick={() => this.routeChange()}
-                  >
+                  <button className="btn btn-primary" type="submit">
                     Login
                   </button>
                 </div>
               </form>
             </TabPanel>
             <TabPanel>
-              <form className="form-horizontal auth-form">
+              <form
+                className="form-horizontal auth-form"
+                onSubmit={this.handleSubmitRegister}
+              >
                 <div className="form-group">
                   <input
-                    required=""
-                    name="login[first_name]"
-                    type="email"
+                    name="firstName"
+                    type="text"
                     className="form-control"
                     placeholder="First Name"
                     id="uniqueId1"
+                    value={this.state.firstName}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <div className="form-group">
                   <input
-                    required=""
-                    name="login[last_name]"
-                    type="email"
+                    name="lastName"
+                    type="text"
                     className="form-control"
                     placeholder="Last Name"
                     id="uniqueId2"
+                    value={this.state.lastName}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <div className="form-group">
                   <input
-                    required=""
-                    name="login[email]"
+                    name="email"
                     type="email"
                     className="form-control"
                     placeholder="Email"
                     id="uniqueId3"
+                    value={this.state.email}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <div className="form-group">
                   <input
-                    required=""
-                    name="login[username]"
-                    type="email"
-                    className="form-control"
-                    placeholder="Username"
-                    id="uniqueId4"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    required=""
-                    name="login[password]"
+                    name="password"
                     type="password"
                     className="form-control"
                     placeholder="Password"
                     id="uniqueId5"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    required=""
-                    name="login[password]"
-                    type="password"
-                    className="form-control"
-                    placeholder="Confirm Password"
-                    id="uniqueId6"
+                    value={this.state.password}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <div className="form-button">
-                  <button
-                    className="btn btn-primary"
-                    type="submit"
-                    onClick={() => this.routeChange()}
-                  >
+                  <button className="btn btn-primary" type="submit">
                     Register
                   </button>
                 </div>
@@ -156,4 +160,17 @@ export class LoginTabset extends Component {
   }
 }
 
-export default withRouter(LoginTabset);
+LoginTabset.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  loginUser: PropTypes.func.isRequired,
+  registerUser: PropTypes.func
+};
+
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn
+});
+
+// export default withRouter(LoginTabset);
+export default connect(mapStateToProps, { loginUser, registerUser })(
+  LoginTabset
+);

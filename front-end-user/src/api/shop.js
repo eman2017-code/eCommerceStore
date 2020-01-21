@@ -29,7 +29,7 @@ export default {
   loginUser: async (loginInfo, next) => {
     try {
       const response = await fetch(
-        "http://35.222.68.3:5000//api/v1/users/login/",
+        "http://35.222.68.3:5000/api/v1/users/login/",
         {
           method: "POST",
           body: JSON.stringify(loginInfo),

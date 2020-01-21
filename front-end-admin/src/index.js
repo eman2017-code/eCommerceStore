@@ -5,9 +5,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./index.scss";
 import App from "./components/app";
 import { ScrollContext } from "react-router-scroll-4";
-// import store from "./store";
 import { createStore } from "redux";
-import reducers from "./reducers";
+import store from "./store";
 
 // Components
 import Dashboard from "./components/dashboard";
@@ -33,8 +32,7 @@ import Login from "./components/auth/login";
 class Root extends Component {
   render() {
     return (
-      // provider makes state available for all components listed below
-      <Provider store={createStore(reducers)}>
+      <Provider store={store}>
         <BrowserRouter basename={"/"}>
           <ScrollContext>
             <Switch>
