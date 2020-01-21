@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Tabs, TabList, TabPanel, Tab } from "react-tabs";
 import { User, Settings } from "react-feather";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 export class Tabset_profile extends Component {
   render() {
+    const { userInfo } = this.props;
     return (
       <div>
         <Tabs>
@@ -26,27 +29,15 @@ export class Tabset_profile extends Component {
                   <tbody>
                     <tr>
                       <td>First Name:</td>
-                      <td>John</td>
+                      <td>{userInfo.firstName}</td>
                     </tr>
                     <tr>
                       <td>Last Name:</td>
-                      <td>Deo</td>
+                      <td>{userInfo.lastName}</td>
                     </tr>
                     <tr>
                       <td>Email:</td>
-                      <td>johndeo@gmail.com</td>
-                    </tr>
-                    <tr>
-                      <td>Mobile Number:</td>
-                      <td>212-482-1463</td>
-                    </tr>
-                    <tr>
-                      <td>DOB:</td>
-                      <td>Dec, 15 1993</td>
-                    </tr>
-                    <tr>
-                      <td>Location:</td>
-                      <td>USA</td>
+                      <td>{userInfo.email}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -139,4 +130,12 @@ export class Tabset_profile extends Component {
   }
 }
 
-export default Tabset_profile;
+Tabset_profile.propTypes = {
+  userInfo: PropTypes.object
+};
+
+const mapStateToProps = state => ({
+  userInfo: state.user.userInfo
+});
+
+export default connect(mapStateToProps, {})(Tabset_profile);

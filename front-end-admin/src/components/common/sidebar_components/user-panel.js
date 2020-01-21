@@ -6,8 +6,6 @@ import { connect } from "react-redux";
 export class User_panel extends Component {
   render() {
     const { userInfo } = this.props;
-    console.log("this.props in User_panel");
-    console.log(this.props);
     return (
       <div>
         <div className="sidebar-user text-center">
@@ -26,7 +24,6 @@ export class User_panel extends Component {
   }
 }
 
-// export default User_panel;
 User_panel.propTypes = {
   userInfo: PropTypes.object
 };
@@ -35,5 +32,4 @@ const mapStateToProps = state => ({
   userInfo: state.user.userInfo
 });
 
-// export default User_menu;
 export default connect(mapStateToProps, {})(User_panel);

@@ -171,7 +171,6 @@ const mapStateToProps = state => ({
   loggedInUser: state
 });
 
-// export default withRouter(LoginTabset);
 export default connect(mapStateToProps, { loginUser, registerUser })(
   LoginTabset
 );

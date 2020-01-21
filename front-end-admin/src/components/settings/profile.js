@@ -4,8 +4,12 @@ import designer from "../../assets/images/dashboard/designer.jpg";
 import Tabset_profile from "./tabset-profile";
 import Breadcrumb from "../common/breadcrumb";
 
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
 export class Profile extends Component {
   render() {
+    const { userInfo } = this.props;
     return (
       <Fragment>
         <Breadcrumb title="Profile" parent="Settings" />
@@ -20,8 +24,8 @@ export class Profile extends Component {
                       alt=""
                       className="img-fluid img-90 rounded-circle blur-up lazyloaded"
                     />
-                    <h5 className="f-w-600 f-16 mb-0">John deo</h5>
-                    <span>johndeo@gmail.com</span>
+                    <h5 className="f-w-600 f-16 mb-0">{userInfo.firstName}</h5>
+                    <span>{userInfo.email}</span>
                     <div className="social">
                       <div className="form-group btn-showcase">
                         <button className="btn social-btn btn-fb d-inline-block">
@@ -55,4 +59,12 @@ export class Profile extends Component {
   }
 }
 
-export default Profile;
+Profile.propTypes = {
+  userInfo: PropTypes.object
+};
+
+const mapStateToProps = state => ({
+  userInfo: state.user.userInfo
+});
+
+export default connect(mapStateToProps, {})(Profile);
