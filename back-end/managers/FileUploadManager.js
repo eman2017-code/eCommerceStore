@@ -1,5 +1,6 @@
 const multer  = require('multer');
 const AWS = require('aws-sdk');
+const fs = require('fs');
 
 
 class FileUploadManager {
@@ -37,6 +38,12 @@ class FileUploadManager {
     createS3Instance() {
         console.log('created s3 instance')
         return new AWS.S3()
+    }
+
+    uploadFile() {
+        console.log('preparing upload');
+
+
     }
 
 }
