@@ -1,4 +1,3 @@
-const multer  = require('multer');
 const AWS = require('aws-sdk');
 const fs = require('fs');
 
@@ -8,23 +7,13 @@ class FileUploadManager {
     constructor() {
         this.AWS_KEY_ID = process.env.AWS_KEY_ID;
         this.AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
-        this.storage = this.configureDiskStorage();
+        this.BUCKET_NAME = 'weblinktech';
+     
 
         // sets the credentials for the aws bucket
         this.setAWSCredentials()
 
         this.s3 = this.createS3Instance()
-        console.log('s3:', this.s3)
-    }
-
-    configureDiskStorage() {
-        const storage = multer.diskStorage({
-            destination : 'uploads/',
-            filename: function (req, file, cb) {
-                cb(null, file.originalname);
-            }
-        });
-        return storage;
     }
 
     setAWSCredentials() {
@@ -36,14 +25,30 @@ class FileUploadManager {
     }
 
     createS3Instance() {
-        console.log('created s3 instance')
         return new AWS.S3()
     }
 
-    uploadFile() {
+    uploadFile(file) {
         console.log('preparing upload');
 
+        fs.readFile(file.path, (fileData, error) => {
+            if (!error) {
+                const awsData = {
+                    Bucket: this.BUCKET_NAME,
+                    Key: file.name,
+                    Body: fileData
+                }
 
+                this.s3.putObject(awsData, (data, error) => {
+                    if (error) {
+                        console.log('error ocurred:', error);
+                    } else {
+                        console.log('successfully upload file')
+                    }
+                })
+            }
+            
+        })
     }
 
 }

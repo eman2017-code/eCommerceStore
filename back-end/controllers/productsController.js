@@ -2,6 +2,7 @@ const express = require("express");
 const Product = require("../models/product.js");
 const User = require("../models/user.js");
 const adminRequired = require("../middleware/users/adminRequired.js");
+const FileUploadManager = require('../managers/FileUploadManager.js');
 
 const router = express.Router();
 
@@ -26,30 +27,42 @@ router.get('/', async (req, res, next) => {
 
 // Create Route
 // this route is where the admin can create a new product
-router.post("/", adminRequired, async (req, res, next) => {
-  const clientData = req.body;
+router.post("/", async (req, res, next) => {
+  const productData = req.body;
+  const productImage = req.files.image;
 
-  try {
-    const newProduct = await Product.create(clientData);
-    newProduct.postedBy = req.session.userId;
-    await newProduct.save();
+  console.log('clientData:', productData);
+  console.log('file:', productImage);
 
-    // if the product has any categories added
-    if (clientData.category) {
-      // adds the newly created product to the products array in whatever categories where specified
-      await newProduct.addProductToCategories(clientData.category);
-    }
+  const fileUploadManager = new FileUploadManager();
 
-    res.send({
-      data: newProduct,
-      status: {
-        code: 201,
-        message: "Successfully added a new product"
-      }
-    });
-  } catch (error) {
-    next(error);
-  }
+  fileUploadManager.uploadFile(productImage);
+
+  res.send({
+    data: 'response'
+  })
+
+  // try {
+  //   const newProduct = await Product.create(clientData);
+  //   newProduct.postedBy = req.session.userId;
+  //   await newProduct.save();
+
+  //   // if the product has any categories added
+  //   if (clientData.category) {
+  //     // adds the newly created product to the products array in whatever categories where specified
+  //     await newProduct.addProductToCategories(clientData.category);
+  //   }
+
+  //   res.send({
+  //     data: newProduct,
+  //     status: {
+  //       code: 201,
+  //       message: "Successfully added a new product"
+  //     }
+  //   });
+  // } catch (error) {
+  //   next(error);
+  // }
 });
 
 module.exports = router;
