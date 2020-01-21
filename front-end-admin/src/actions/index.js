@@ -50,5 +50,6 @@ export const logoutUser = () => async dispatch => {
     type: types.LOGOUT
   });
 
-  toast.success(logoutResponse.status.message);
+  // toast.success(logoutResponse.status.message);
+  console.log("user is logged out");
 };

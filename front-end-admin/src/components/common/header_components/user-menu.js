@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import man from "../../../assets/images/dashboard/man.png";
+import PropTypes from "prop-types";
 import { logoutUser } from "../../../actions";
+import { connect } from "react-redux";
 
 export class User_menu extends Component {
   // determines what to show the admin if they are logged in or not
@@ -15,9 +17,9 @@ export class User_menu extends Component {
             </Link>
           </li>
           <li>
-            {/* <Link to={`${process.env.PUBLIC_URL}/`}> */}
-            <i data-feather="log-out" onClick={logoutUser}></i>Logout
-            {/* </Link> */}
+            <Link>
+              <i data-feather="log-out" onClick={logoutUser}></i>Logout
+            </Link>
           </li>
         </ul>
       );
@@ -26,7 +28,7 @@ export class User_menu extends Component {
         <ul className="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
           <li>
             <Link to={`${process.env.PUBLIC_URL}/auth/login`}>
-              <i data-feather="log-out"></i>Login
+              <i data-feather="log-in"></i>Login
             </Link>
           </li>
         </ul>
@@ -34,7 +36,9 @@ export class User_menu extends Component {
     }
   };
   render() {
-    const { logoutUser } = this.props;
+    const { logoutUser, isLoggedIn, userInfo } = this.props;
+    console.log("this.props in user-menu.js");
+    console.log(this.props);
     return (
       <Fragment>
         <li className="onhover-dropdown">
@@ -56,9 +60,7 @@ export class User_menu extends Component {
               </Link>
             </li>
             <li>
-              {/* <Link to={`${process.env.PUBLIC_URL}/`}> */}
               <i data-feather="log-out" onClick={logoutUser}></i>Logout
-              {/* </Link> */}
             </li>
           </ul>
         </li>
@@ -67,4 +69,15 @@ export class User_menu extends Component {
   }
 }
 
-export default User_menu;
+User_menu.propTypes = {
+  logoutUser: PropTypes.func,
+  isLoggedIn: PropTypes.bool.isRequired,
+  userInfo: PropTypes.object
+};
+
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn,
+  userInfo: state.user.userInfo
+});
+
+export default connect(mapStateToProps, { logoutUser })(User_menu);
