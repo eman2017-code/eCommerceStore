@@ -1,8 +1,8 @@
 
 
 // requires the user to be either the admin or a staff account
-const staffAccountRequired = (req, res, next) => {
-	if (!req.session.isAdmin && !req.session.isStaff) {
+const adminRequired = (req, res, next) => {
+	if (!req.session.isAdmin) {
 		res.json({
 			data: {},
 			status: {
@@ -15,7 +15,7 @@ const staffAccountRequired = (req, res, next) => {
 	}
 }
 
-module.exports = staffAccountRequired
+module.exports = adminRequired;
 
 
 
