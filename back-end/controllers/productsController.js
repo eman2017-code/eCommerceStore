@@ -34,34 +34,34 @@ router.post("/", async (req, res, next) => {
   const productData = req.body;
   const productImage = req.files.image;
 
+  // uploads the file to the aws s3 bucket
   const fileUploadManager = new FileUploadManager();
   fileUploadManager.uploadFileToAWS(productImage);
 
-  res.send({
-    data: 'response'
-  })
+  // gets the url to the image that was just uploaded to the aws s3 bucket
+  const awsPathToImage = fileUploadManager.getURLToUploadedFile(productImage.name);
 
-  // try {
-  //   const newProduct = await Product.create(clientData);
-  //   newProduct.postedBy = req.session.userId;
-  //   await newProduct.save();
+  try {
+    const newProduct = await Product.create(productData);
+    newProduct.image = awsPathToImage;
+    await newProduct.save();
 
-  //   // if the product has any categories added
-  //   if (clientData.category) {
-  //     // adds the newly created product to the products array in whatever categories where specified
-  //     await newProduct.addProductToCategories(clientData.category);
-  //   }
+    // if any categories were specified for the products
+    if (productData.category) {
+      await newProduct.addProductToCategories(clientData.category);
+    }
 
-  //   res.send({
-  //     data: newProduct,
-  //     status: {
-  //       code: 201,
-  //       message: "Successfully added a new product"
-  //     }
-  //   });
-  // } catch (error) {
-  //   next(error);
-  // }
+    res.send({
+      data: newProduct,
+      status: {
+        code: 201,
+        message: 'Product added successfully'
+      }
+    });
+
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
