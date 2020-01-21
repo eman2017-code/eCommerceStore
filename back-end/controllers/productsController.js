@@ -2,7 +2,10 @@ const express = require("express");
 const Product = require("../models/product.js");
 const User = require("../models/user.js");
 const adminRequired = require("../middleware/users/adminRequired.js");
+const fileUpload = require('../middleware/fileUpload.js');
 const FileUploadManager = require('../managers/FileUploadManager.js');
+const fs = require('fs');
+
 
 const router = express.Router();
 
@@ -31,12 +34,20 @@ router.post("/", async (req, res, next) => {
   const productData = req.body;
   const productImage = req.files.image;
 
-  console.log('clientData:', productData);
-  console.log('file:', productImage);
+  const uploadPath = `${__dirname}/../public/images/products/${productImage.name}`;
+
+  productImage.mv(uploadPath, (error) => {
+    if (error) {
+      console.log('error uploading file:', error);
+    }
+  })
+
+  // const productImageContent = fs.readFileSync(productImage);
+  // console.log('productImageContent:', productsImageContent);
 
   const fileUploadManager = new FileUploadManager();
 
-  fileUploadManager.uploadFile(productImage);
+  fileUploadManager.uploadFile(uploadPath, productImage.name);
 
   res.send({
     data: 'response'
