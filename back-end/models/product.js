@@ -4,10 +4,6 @@ const Category = require('./category.js')
 
 // this schema represents a Products
 const productSchema = new mongoose.Schema({
-	postedBy: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User'
-	},
 	sku: Number,
 	upc: String,
 	manufacturer: String,
