@@ -2,7 +2,7 @@
 
 // requires the user to be either the admin or a staff account
 const adminRequired = (req, res, next) => {
-	if (!req.session.isAdmin) {
+	if (req.session.isAdmin === false) {
 		res.json({
 			data: {},
 			status: {

@@ -174,7 +174,6 @@ router.post('/admin/login/', async (req, res, next) => {
 
   try {
     const foundUser = await User.findOne({ email: clientData.email })
-    console.log('foundUser:', foundUser)
 
     // if the user trying to login is not the admin
     if (foundUser.isAdmin === false) {
