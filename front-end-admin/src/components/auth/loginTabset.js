@@ -167,7 +167,8 @@ LoginTabset.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.user.isLoggedIn
+  isLoggedIn: state.user.isLoggedIn,
+  loggedInUser: state
 });
 
 // export default withRouter(LoginTabset);
