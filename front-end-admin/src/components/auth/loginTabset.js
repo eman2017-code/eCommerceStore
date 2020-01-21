@@ -5,6 +5,8 @@ import { withRouter } from "react-router-dom";
 
 export class LoginTabset extends Component {
   constructor(props) {
+    console.log("props");
+    console.log(props);
     super(props);
     this.state = {
       activeShow: true,

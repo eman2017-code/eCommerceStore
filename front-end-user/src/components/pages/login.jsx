@@ -8,6 +8,8 @@ import { loginUser } from "../../actions";
 
 class Login extends Component {
   constructor(props) {
+    console.log("props");
+    console.log(props);
     super(props);
 
     this.state = {

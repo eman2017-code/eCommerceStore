@@ -36,6 +36,7 @@
     "react-tabs": "^3.0.0",
     "react-toastify": "^5.5.0",
     "reactstrap": "^8.0.1",
+    "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1"
   },
   "scripts": {

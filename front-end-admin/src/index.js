@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./index.scss";
 import App from "./components/app";
 import { ScrollContext } from "react-router-scroll-4";
+// import store from "./store";
+import { createStore } from "redux";
+import reducers from "./reducers";
 
 // Components
 import Dashboard from "./components/dashboard";
@@ -29,84 +33,87 @@ import Login from "./components/auth/login";
 class Root extends Component {
   render() {
     return (
-      <BrowserRouter basename={"/"}>
-        <ScrollContext>
-          <Switch>
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/`}
-              component={Login}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/auth/login`}
-              component={Login}
-            />
-
-            <App>
+      // provider makes state available for all components listed below
+      <Provider store={createStore(reducers)}>
+        <BrowserRouter basename={"/"}>
+          <ScrollContext>
+            <Switch>
               <Route
-                path={`${process.env.PUBLIC_URL}/dashboard`}
-                component={Dashboard}
+                exact
+                path={`${process.env.PUBLIC_URL}/`}
+                component={Login}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/auth/login`}
+                component={Login}
               />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/products/physical/category`}
-                component={Category}
-              />
+              <App>
+                <Route
+                  path={`${process.env.PUBLIC_URL}/dashboard`}
+                  component={Dashboard}
+                />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/products/physical/product-list`}
-                component={Product_list}
-              />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/products/physical/category`}
+                  component={Category}
+                />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/products/physical/add-product`}
-                component={Add_product}
-              />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/products/physical/product-list`}
+                  component={Product_list}
+                />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/coupons/list-coupons`}
-                component={ListCoupons}
-              />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/products/physical/add-product`}
+                  component={Add_product}
+                />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/coupons/create-coupons`}
-                component={Create_coupons}
-              />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/coupons/list-coupons`}
+                  component={ListCoupons}
+                />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/pages/list-page`}
-                component={ListPages}
-              />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/coupons/create-coupons`}
+                  component={Create_coupons}
+                />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/users/list-customers`}
-                component={ListCustomers}
-              />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/pages/list-page`}
+                  component={ListPages}
+                />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/reports/report`}
-                component={Reports}
-              />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/users/list-customers`}
+                  component={ListCustomers}
+                />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/view/profile`}
-                component={Profile}
-              />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/reports/report`}
+                  component={Reports}
+                />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/all-my-orders`}
-                component={Orders}
-              />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/view/profile`}
+                  component={Profile}
+                />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/data-table`}
-                component={Datatable}
-              />
-            </App>
-          </Switch>
-        </ScrollContext>
-      </BrowserRouter>
+                <Route
+                  path={`${process.env.PUBLIC_URL}/all-my-orders`}
+                  component={Orders}
+                />
+
+                <Route
+                  path={`${process.env.PUBLIC_URL}/data-table`}
+                  component={Datatable}
+                />
+              </App>
+            </Switch>
+          </ScrollContext>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
