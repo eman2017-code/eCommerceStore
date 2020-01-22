@@ -55,11 +55,11 @@ export const logoutUser = () => async dispatch => {
 // route to list all admin-created products
 export const listProductsAdmin = () => async dispatch => {
   // makes api call to index product route for admin
-  const allProducts = await shop.listProductsAdmin();
+  const products = await shop.listProductsAdmin();
 
   dispatch({
     type: types.LIST_PRODUCTS_ADMIN
   });
 
-  toast.success(allProducts.status.message);
+  toast.success(products.status.message);
 };

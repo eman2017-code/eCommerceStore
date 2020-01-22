@@ -1,3 +1,5 @@
+import { listProductsAdmin } from "../actions";
+
 export default {
   // makes call to the api to register a new user
   registerUser: async registrationInfo => {
@@ -39,7 +41,7 @@ export default {
     } catch (error) {}
   },
 
-  // makes call to teh api to logout the user
+  // makes call to the api to logout the user
   logoutUser: async () => {
     try {
       const response = await fetch(
@@ -56,5 +58,19 @@ export default {
       const parsedResponse = await response.json();
       return parsedResponse;
     } catch (error) {}
+  },
+
+  listProductsAdmin: async callBack => {
+    const response = await fetch("http://localhost:8000/api/v1/products/");
+
+    const parsedResponse = await response.json();
+    console.log("parsedResponse");
+    console.log(parsedResponse);
+
+    const products = parsedResponse.data;
+    console.log("products");
+    console.log(products);
+
+    return products;
   }
 };
