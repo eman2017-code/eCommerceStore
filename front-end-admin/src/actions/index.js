@@ -67,3 +67,7 @@ export const listProductsAdmin = () => async dispatch => {
   dispatch(receiveProducts(products));
   return products;
 };
+
+// method to create a product
+
+export const createProduct = () => async dispatch => {};

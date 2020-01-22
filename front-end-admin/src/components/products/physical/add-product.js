@@ -10,15 +10,6 @@ export class Add_product extends Component {
     super(props);
     this.state = {
       quantity: 1,
-      file: "",
-      dummyimgs: [
-        { img: user },
-        { img: user },
-        { img: user },
-        { img: user },
-        { img: user },
-        { img: user }
-      ],
       name: "",
       category: "",
       isOnSale: false,
@@ -73,27 +64,46 @@ export class Add_product extends Component {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  //image upload
-  _handleSubmit(e) {
-    e.preventDefault();
-  }
+  // //image upload
+  // _handleSubmit(e) {
+  //   e.preventDefault();
+  // }
 
-  _handleImgChange(e, i) {
-    e.preventDefault();
-
-    let reader = new FileReader();
-    let file = e.target.files[0];
-    const { dummyimgs } = this.state;
-
-    reader.onloadend = () => {
-      dummyimgs[i].img = reader.result;
-      this.setState({
-        file: file,
-        dummyimgs
+  // route to search for products
+  addProduct = async () => {
+    try {
+      const response = await fetch("http://35.222.68.3:8000/api/v1/products/", {
+        method: "POST",
+        body: JSON.stringify({ searchTerm: this.state.searchTerm }),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        }
       });
-    };
-    reader.readAsDataURL(file);
-  }
+
+      // convert response to json
+      const parsedResponse = await response.json();
+      console.log("parsedResponse");
+      console.log(parsedResponse);
+    } catch (err) {}
+  };
+
+  // _handleImgChange(e, i) {
+  //   e.preventDefault();
+
+  //   let reader = new FileReader();
+  //   let file = e.target.files[0];
+  //   const { dummyimgs } = this.state;
+
+  //   reader.onloadend = () => {
+  //     dummyimgs[i].img = reader.result;
+  //     this.setState({
+  //       file: file,
+  //       dummyimgs
+  //     });
+  //   };
+  //   reader.readAsDataURL(file);
+  // }
 
   render() {
     return (
@@ -113,7 +123,12 @@ export class Add_product extends Component {
                       <div className="add-product">
                         <div className="row">
                           <label className="col-xl-3 col-sm-4 mb-0">
-                            Select Photo: <input type="file"></input>
+                            Select Photo:{" "}
+                            <input
+                              type="file"
+                              value={this.state.file}
+                              onChange={this.handleChange}
+                            ></input>
                           </label>
                           <div className="col-xl-3 xl-50 col-sm-6 col-3"></div>
                         </div>
@@ -132,6 +147,8 @@ export class Add_product extends Component {
                             </label>
                             <div className="col-xl-8 col-sm-7">
                               <AvField
+                                value={this.state.name}
+                                onChange={this.handleChange}
                                 className="form-control"
                                 name="product_category"
                                 id="validationCustom01"
@@ -141,27 +158,14 @@ export class Add_product extends Component {
                             </div>
                             <div className="valid-feedback">Looks good!</div>
                           </div>
-                          {/* <div className="form-group mb-3 row">
-                            <label className="col-xl-3 col-sm-4 mb-0">
-                              On Sale? :
-                            </label>
-                            <div className="col-xl-8 col-sm-7 ">
-                              <AvField
-                                className="form-control"
-                                name="product_category"
-                                id="validationCustom05"
-                                type="checkbox"
-                                required
-                              />
-                            </div>
-                            <div className="valid-feedback">Looks good!</div>
-                          </div> */}
                           <div className="form-group mb-3 row">
                             <label className="col-xl-3 col-sm-4 mb-0">
                               Model :
                             </label>
                             <div className="col-xl-8 col-sm-7">
                               <AvField
+                                value={this.state.model}
+                                onChange={this.handleChange}
                                 className="form-control mb-0"
                                 name="product_category"
                                 id="validationCustom02"
@@ -177,6 +181,8 @@ export class Add_product extends Component {
                             </label>
                             <div className="col-xl-8 col-sm-7">
                               <AvField
+                                value={this.state.price}
+                                onChange={this.handleChange}
                                 className="form-control mb-0"
                                 name="price"
                                 id="validationCustom03"
@@ -233,6 +239,8 @@ export class Add_product extends Component {
                             </label>
                             <div className="col-xl-8 col-sm-7">
                               <AvField
+                                value={this.state.manufacturer}
+                                onChange={this.handleChange}
                                 className="form-control"
                                 name="product_category"
                                 id="validationCustom04"
@@ -248,6 +256,8 @@ export class Add_product extends Component {
                             </label>
                             <div className="col-xl-8 col-sm-7 description-sm">
                               <CKEditors
+                                value={this.state.description}
+                                onChange={this.handleChange}
                                 activeclassName="p10"
                                 content={this.state.content}
                                 events={{
