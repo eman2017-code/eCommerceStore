@@ -102,12 +102,11 @@ router.put('/:productId/', adminRequired, async (req, res, next) => {
   try {
     const foundProduct = await Product.findOne({ 'upc': productId });
     await foundProduct.updateFields(productData);
-    console.log('foundProduct:', foundProduct);
 
     // updates the products categories
     await foundProduct.addCategories(productData);
 
-    // deletes the existing products image from aws                     
+    // deletes the existing products image from aws     
     // fileUploadManager.deleteFileFromAWS(productImage.image, res);
       
 

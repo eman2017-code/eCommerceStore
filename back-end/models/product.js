@@ -70,6 +70,13 @@ productSchema.methods.updateFields = async function(productData) {
 	await this.save();
 }
 
+// parses the products image url to get just the name of the image
+productSchema.methods.getImageName = function() {
+	const urlArray = this.image.split('/');
+	const imageName = urlArray[urlArray.length-1];
+	return imageName;
+}
+
 // uploads a product image 
 productSchema.statics.uploadProductImage = function(imageFile) {
 	imageFile.mv(`${__dirname}/../public/images/products/${imageFile.name}`, function(error) {
