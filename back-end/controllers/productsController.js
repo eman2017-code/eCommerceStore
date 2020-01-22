@@ -95,10 +95,6 @@ router.put('/:productId/', adminRequired, async (req, res, next) => {
   const productData = req.body;
   const productImage = req.files;
 
-  
-  // establishes the connection to the aws s3 bucket
-  const fileUploadManager = new FileUploadManager();
-
   try {
     const foundProduct = await Product.findOne({ 'upc': productId });
     await foundProduct.updateFields(productData);
@@ -106,9 +102,15 @@ router.put('/:productId/', adminRequired, async (req, res, next) => {
     // updates the products categories
     await foundProduct.addCategories(productData);
 
-    // deletes the existing products image from aws     
-    // fileUploadManager.deleteFileFromAWS(productImage.image, res);
-      
+    // establishes the connection to the aws s3 bucket
+    const fileUploadManager = new FileUploadManager();
+
+    // the image field contains the url to the image, and aws just needs the images name
+    // so this calls a function to parse the images url to get just the name
+    const existingImageName = foundProduct.getImageName();
+
+    // updates the products imag in aws
+    fileUploadManager.updateFileInAWS(existingImageName, productImage.image);
 
     res.json({
       data: foundProduct,

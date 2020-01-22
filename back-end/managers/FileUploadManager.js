@@ -71,9 +71,15 @@ class FileUploadManager {
         });            
     }
 
+    // removes a existing file from aws and adds a new one
+    updateFileInAWS(existingFileName, newFile) {
+        this.deleteFileFromAWS(existingFileName);
+        this.uploadFileToAWS(newFile);
+    }
+
     // deletes a file from the aws s3 bucket
-    deleteFileFromAWS(file, response) {
-        const awsData = this.formatAWSDataToRemove(file.name);
+    deleteFileFromAWS(fileName, response) {
+        const awsData = this.formatAWSDataToRemove(fileName);
 
         this.s3.deleteObject(awsData, (error, data) => {
             if (error) {
@@ -106,7 +112,7 @@ class FileUploadManager {
     }
 
     // returns an object which tells aws which file to remove
-    formatAWSDateToRemove() {
+    formatAWSDataToRemove(fileName) {
         const awsData = {
             Bucket: this.BUCKET_NAME,
             Key: fileName
