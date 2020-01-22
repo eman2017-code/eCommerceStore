@@ -18,9 +18,30 @@ export class Add_product extends Component {
         { img: user },
         { img: user },
         { img: user }
-      ]
+      ],
+      name: "",
+      category: "",
+      isOnSale: false,
+      upc: this.randomUpcGenerator(),
+      sku: this.randomSkuGenerator(),
+      description: "",
+      price: "",
+      model: "",
+      manufacturer: ""
     };
   }
+
+  // componentDidMount() {
+  //   this.randomSkuGenerator();
+  //   this.randomUpcGenerator();
+  // }
+
+  // method to randomly generate sku number
+  randomSkuGenerator = () => {
+    const randomSku = Math.floor(1000000 + Math.random() * 900000);
+    console.log("randomSku", randomSku);
+    return randomSku;
+  };
 
   // method to randomly generate upc number
   randomUpcGenerator = () => {
@@ -244,11 +265,7 @@ export class Add_product extends Component {
                           </div>
                         </div>
                         <div className="offset-xl-3 offset-sm-4">
-                          <button
-                            type="submit"
-                            className="btn btn-primary"
-                            onClick={this.randomUpcGenerator}
-                          >
+                          <button type="submit" className="btn btn-primary">
                             Add
                           </button>
                           <button type="button" className="btn btn-light">
