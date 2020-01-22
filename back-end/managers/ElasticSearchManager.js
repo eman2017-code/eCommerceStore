@@ -67,10 +67,9 @@ class ElasticSearchManager {
     const response = await this.client.update({
       index: this.INDEX,
       id: productId,
-      body: newProductInfo
+      body: { doc: newProductInfo } 
     })
-    console.log('response:', response);
-    // return response;
+    return response;
   }
 
   // return products based on whatever category is specified in the parameters
