@@ -117,7 +117,10 @@ router.put('/:productId/', adminRequired, async (req, res, next) => {
     foundProduct.image = awsPathToImage;
     await foundProduct.save()
 
-      
+    // updates an existing product in elasticsearch
+    const elasticSearchManager = new ElasticSearchManager();
+    await elasticSearchManager.updateExistingProduct(productData);
+    // console.log('elasticsearch response:', elasticSearchResponse);
 
     res.json({
       data: foundProduct,
