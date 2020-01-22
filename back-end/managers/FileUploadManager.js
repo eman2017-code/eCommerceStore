@@ -51,7 +51,7 @@ class FileUploadManager {
         fs.readFile(filePath, (error, fileData) => {
             
             // gets object which contains data to tell aws where to upload the file
-            const awsData = this.formatAWSData(fileName, fileData);
+            const awsData = this.formatAWSDataToUpload(fileName, fileData);
 
             // uploads the file to the aws s3 bucket
             this.s3.putObject(awsData, (error, data) => {
@@ -71,19 +71,47 @@ class FileUploadManager {
         });            
     }
 
+    // deletes a file from the aws s3 bucket
+    deleteFileFromAWS(file, response) {
+        const awsData = this.formatAWSDataToRemove(file.name);
+
+        this.s3.deleteObject(awsData, (error, data) => {
+            if (error) {
+                response.json({
+                    data: {},
+                    status: {
+                        code: 400,
+                        message: 'Error updating product image, please try again later.'
+                    }
+                })
+            } else {
+                console.log('successfully removed file');
+            }
+        })
+    }
+
     // creates the temperary file path to where the uploaded file is
     formatTemperaryFilePath(fileName) {
         return this.TEMPERARY_UPLOAD_PATH + fileName;
     }
 
     // returns an object which tells aws to upload a file
-    formatAWSData(fileName, fileData) {
+    formatAWSDataToUpload(fileName, fileData) {
         const awsData = {
             Bucket: this.BUCKET_NAME,
             Key: fileName,
             Body: fileData
         }
         return awsData;
+    }
+
+    // returns an object which tells aws which file to remove
+    formatAWSDateToRemove() {
+        const awsData = {
+            Bucket: this.BUCKET_NAME,
+            Key: fileName
+        }
+        return awsData
     }
 
     // uploads a file temperarely to the file system, so it can be read with fs.readFile()

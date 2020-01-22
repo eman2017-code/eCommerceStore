@@ -90,6 +90,36 @@ router.post("/", adminRequired, async (req, res, next) => {
   }
 });
 
+
+// Update Route
+// this route is where the admin can update an existing product
+router.put('/:productId/', adminRequired, async (req, res, next) => {
+  const productId = req.params.productId;
+  const productData = req.body;
+  const productImage = req.files;
+
+  // establishes the connection to the aws s3 bucket
+  const fileUploadManager = new FileUploadManager();
+  
+  try {
+    const updatedProduct = await Product.updateOne({ 'upc': productId }, productData);
+
+    if (productImage) {
+      console.log('new products image sent');
+    }
+
+    res.json({
+      data: updatedProduct,
+      status: {
+        code: 200,
+        message: 'Successfully updated the product.'
+      }
+    })
+  } catch (error) {
+
+  }
+});
+
 module.exports = router;
 
 
