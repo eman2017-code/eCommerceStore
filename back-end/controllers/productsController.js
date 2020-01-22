@@ -119,8 +119,7 @@ router.put('/:productId/', adminRequired, async (req, res, next) => {
 
     // updates an existing product in elasticsearch
     const elasticSearchManager = new ElasticSearchManager();
-    await elasticSearchManager.updateExistingProduct(productData);
-    // console.log('elasticsearch response:', elasticSearchResponse);
+    const elasticSearchResponse = await elasticSearchManager.updateExistingProduct(productData);
 
     res.json({
       data: foundProduct,
