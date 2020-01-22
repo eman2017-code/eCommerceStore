@@ -47,10 +47,8 @@ router.post("/", adminRequired, async (req, res, next) => {
     const newProduct = await Product.create(productData);
 
     // if any categories were specified for the products
-    if (productData.category) {
-      await newProduct.addProductToCategories(clientData.category);
-      await newProduct.save();
-    }
+    await newProduct.addProductToCategories(productData);
+    
 
     // adds the new product to elasticsearch
     const elasticSearchManager = new ElasticSearchManager();
@@ -98,25 +96,29 @@ router.put('/:productId/', adminRequired, async (req, res, next) => {
   const productData = req.body;
   const productImage = req.files;
 
-  // establishes the connection to the aws s3 bucket
-  const fileUploadManager = new FileUploadManager();
   
-  try {
-    const updatedProduct = await Product.updateOne({ 'upc': productId }, productData);
+  // establishes the connection to the aws s3 bucket
+  // const fileUploadManager = new FileUploadManager();
 
-    if (productImage) {
-      console.log('new products image sent');
-    }
+  try {
+    const foundProduct = await Product.findOne({ 'upc': productId });
+    await foundProduct.updateFields(productData);
+    console.log('foundProduct:', foundProduct);
+  
+
+    // deletes the existing products image from aws                     
+    // fileUploadManager.deleteFileFromAWS(productImage.image, res);
+      
 
     res.json({
-      data: updatedProduct,
+      data: foundProduct,
       status: {
         code: 200,
         message: 'Successfully updated the product.'
       }
     })
   } catch (error) {
-
+    next(error);
   }
 });
 
