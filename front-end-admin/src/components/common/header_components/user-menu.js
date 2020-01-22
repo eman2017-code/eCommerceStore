@@ -37,6 +37,8 @@ export class User_menu extends Component {
   };
   render() {
     const { logoutUser, isLoggedIn, userInfo } = this.props;
+    console.log("userInfo");
+    console.log(userInfo);
     return (
       <Fragment>
         <li className="onhover-dropdown">

@@ -4,7 +4,7 @@ export default {
     try {
       const response = await fetch(
         // "http://35.222.68.3:5000/api/v1/users/register/",
-        "http://localhost:8000/api/v1/users/register/",
+        "http://localhost:8000/api/v1/users/admin/register/",
         {
           method: "POST",
           body: JSON.stringify(registrationInfo),
@@ -24,7 +24,7 @@ export default {
     try {
       const response = await fetch(
         // "http://35.222.68.3:5000/api/v1/users/login/",
-        "http://localhost:8000/api/v1/users/login/",
+        "http://localhost:8000/api/v1/users/admin/login/",
         {
           method: "POST",
           body: JSON.stringify(loginInfo),
@@ -54,7 +54,6 @@ export default {
         }
       );
       const parsedResponse = await response.json();
-      console.log("parsedResponse:" + parsedResponse);
       return parsedResponse;
     } catch (error) {}
   }
