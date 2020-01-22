@@ -31,11 +31,6 @@ export class Add_product extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.randomSkuGenerator();
-  //   this.randomUpcGenerator();
-  // }
-
   // method to randomly generate sku number
   randomSkuGenerator = () => {
     const randomSku = Math.floor(1000000 + Math.random() * 900000);
@@ -74,8 +69,8 @@ export class Add_product extends Component {
     });
   };
 
-  handleChange = event => {
-    this.setState({ quantity: event.target.value });
+  handleChange = e => {
+    this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
 
   //image upload
