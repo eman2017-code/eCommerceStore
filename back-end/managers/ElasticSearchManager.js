@@ -57,6 +57,21 @@ class ElasticSearchManager {
     return response;
   }
 
+  // updates a product in elasticsearch
+  async updateExistingProduct(newProductInfo) {
+
+    // gets the id of the product to update
+    const productId = await this.getProductIdByUPC(newProductInfo.upc);
+
+    // sends a request to update the product
+    const response = await this.client.update({
+      index: this.INDEX,
+      id: productId,
+      body: { doc: newProductInfo } 
+    })
+    return response;
+  }
+
   // return products based on whatever category is specified in the parameters
   async getProductsByCategory(size, category) {
     const response = await this.client.search({
@@ -111,6 +126,25 @@ class ElasticSearchManager {
     });
     const product = this.parseResponse(response);
     return product;
+  }
+
+  // queries for a product by its upc value and returns the elasticsearch id of the product
+  async getProductIdByUPC(productUPC) {
+    const response = await this.client.search({
+      index: this.INDEX,
+      body: {
+        query: {
+          bool: {
+            filter: {
+              term: {
+                upc: productUPC
+              }
+            }
+          }
+        }
+      }
+    })
+    return this.parseResponse(response)[0]._id;
   }
 }
 
