@@ -115,6 +115,36 @@ export class Add_product extends Component {
                             </div>
                             <div className="valid-feedback">Looks good!</div>
                           </div>
+                          {/* <div className="form-group mb-3 row">
+                            <label className="col-xl-3 col-sm-4 mb-0">
+                              On Sale? :
+                            </label>
+                            <div className="col-xl-8 col-sm-7 ">
+                              <AvField
+                                className="form-control"
+                                name="product_category"
+                                id="validationCustom05"
+                                type="checkbox"
+                                required
+                              />
+                            </div>
+                            <div className="valid-feedback">Looks good!</div>
+                          </div> */}
+                          <div className="form-group mb-3 row">
+                            <label className="col-xl-3 col-sm-4 mb-0">
+                              Model :
+                            </label>
+                            <div className="col-xl-8 col-sm-7">
+                              <AvField
+                                className="form-control mb-0"
+                                name="product_category"
+                                id="validationCustom02"
+                                type="text"
+                                required
+                              />
+                            </div>
+                            <div className="valid-feedback">Looks good!</div>
+                          </div>
                           <div className="form-group mb-3 row">
                             <label className="col-xl-3 col-sm-4 mb-0">
                               Price :
@@ -123,7 +153,7 @@ export class Add_product extends Component {
                               <AvField
                                 className="form-control mb-0"
                                 name="price"
-                                id="validationCustom02"
+                                id="validationCustom03"
                                 type="number"
                                 required
                               />
@@ -170,6 +200,21 @@ export class Add_product extends Component {
                                 </div>
                               </div>
                             </fieldset>
+                          </div>
+                          <div className="form-group mb-3 row">
+                            <label className="col-xl-3 col-sm-4 mb-0">
+                              Manufacturer :
+                            </label>
+                            <div className="col-xl-8 col-sm-7">
+                              <AvField
+                                className="form-control"
+                                name="product_category"
+                                id="validationCustom04"
+                                type="text"
+                                required
+                              />
+                            </div>
+                            <div className="valid-feedback">Looks good!</div>
                           </div>
                           <div className="form-group row">
                             <label className="col-xl-3 col-sm-4">
