@@ -17,7 +17,8 @@ const productSchema = new mongoose.Schema({
 	description: String,
 	category: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Category' 
+		ref: 'Category',
+		default: undefined
 	}],
 	isOnSale: {
 		type: Boolean,
@@ -36,13 +37,15 @@ const productSchema = new mongoose.Schema({
 	}
 })
 
-// adds a product model instance to the products array of whatever categories the product was added to
-productSchema.methods.addProductToCategories = function(categoryIds) {
-	categoryIds.forEach(async (id) => {
-		const foundCategory = await Category.findById(id)
-		foundCategory.products.push(id)
-		await foundCategory.save()
-	})
+// add category ids to a product document. if there are no categories it is left empty
+productSchema.methods.addCategories = function(productData) {
+	if (productData.category) {
+		productData.category.forEach(async (categoryId) => {
+			const foundCategory = await Category.findById(categoryId)
+			foundCategory.products.push(id)
+			await foundCategory.save()
+		});
+	} 
 }
 
 // returns either the price or sale price of the product depending on if its on sale
@@ -52,6 +55,26 @@ productSchema.methods.getProductPrice = function() {
 		price = this.salePrice + this.shipping
 	} 
 	return price
+}
+
+// updates the products fields except for image and category
+productSchema.methods.updateFields = async function(productData) {
+	this.name = productData.name;
+	this.description = productData.description;
+	this.upc = productData.upc;
+	this.sku = productData.sku;
+	this.price = productData.price;
+	this.model = productData.model;
+	this.manufacturer = productData.manufacturer;
+
+	await this.save();
+}
+
+// parses the products image url to get just the name of the image
+productSchema.methods.getImageName = function() {
+	const urlArray = this.image.split('/');
+	const imageName = urlArray[urlArray.length-1];
+	return imageName;
 }
 
 // uploads a product image 

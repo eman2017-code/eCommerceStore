@@ -101,10 +101,8 @@ router.post("/login/", async (req, res, next) => {
 // this route is where the admin can initially register
 router.post('/admin/register/', async (req, res, next) => {
   const clientData = req.body
-
   try {
     const doesAdminExist = await User.findOne({ isAdmin: true })
-
     // if there is already an admin
     if (doesAdminExist !== null) {
       res.json({
@@ -115,9 +113,7 @@ router.post('/admin/register/', async (req, res, next) => {
         }
       })
     }
-
     const doesEmailExist = await User.findOne({ email: clientData.email })
-
     // if the email already exists
     if (doesEmailExist !== null) {
       res.json({
@@ -127,11 +123,9 @@ router.post('/admin/register/', async (req, res, next) => {
           message: "Email already exists"
         }
       })
-
     } else {
       // if the password matches the admins password in the enviroment
       if (clientData.password == process.env.ADMIN_PASSWORD) {
-
         // encrypts password, creates new user and logs them in
         const passwordHash = User.encryptPassword(clientData.password);
         const newAdmin = await User.create({
@@ -142,7 +136,6 @@ router.post('/admin/register/', async (req, res, next) => {
           isAdmin: true
         })
         newAdmin.login(req)
-
         res.json({
           data: newAdmin.removePassword(),
           status: {
@@ -150,7 +143,6 @@ router.post('/admin/register/', async (req, res, next) => {
             message: "Successfully signed up"
           }
         })
-
       } else {
         res.json({
           data: {},
@@ -161,20 +153,16 @@ router.post('/admin/register/', async (req, res, next) => {
         })
       }
     }
-
   } catch (error) {
     next(error)
   }
 })
 
-
 // this is where the admin or staff user can login
 router.post('/admin/login/', async (req, res, next) => {
   const clientData = req.body
-
   try {
     const foundUser = await User.findOne({ email: clientData.email })
-
     // if the user trying to login is not the admin
     if (foundUser.isAdmin === false) {
       res.json({
@@ -185,11 +173,9 @@ router.post('/admin/login/', async (req, res, next) => {
         }
       })
     }
-
     // logs in the user if the email and password match
     if (foundUser && User.doPasswordsMatch(clientData.password, foundUser.password)) {
       foundUser.login(req)
-
       res.json({
         data: foundUser.removePassword(),
         status: {
@@ -197,7 +183,6 @@ router.post('/admin/login/', async (req, res, next) => {
           message: "Successfully logged in"
         }
       })
-
     } else {
       res.json({
         data: {},
@@ -207,9 +192,6 @@ router.post('/admin/login/', async (req, res, next) => {
         }
       })
     }
-    
-
-
   } catch (error) {
     next(error)
   }

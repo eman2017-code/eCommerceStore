@@ -24,8 +24,7 @@ export const registerUser = registrationInfo => async dispatch => {
 export const loginUser = loginInfo => async dispatch => {
   // makes the api call to login
   const loginResponse = await shop.loginUser(loginInfo);
-  console.log("loginResponse");
-  console.log(loginResponse);
+  console.log("loginResponse:", loginResponse);
   const userInfo = loginResponse.data;
 
   // if the user successfully logged in
@@ -52,3 +51,23 @@ export const logoutUser = () => async dispatch => {
 
   toast.success(logoutResponse.status.message);
 };
+
+export const fetchProductsBegin = () => ({
+  type: types.FETCH_PRODUCTS_BEGIN
+});
+
+export const receiveProducts = products => ({
+  type: types.RECEIVE_PRODUCTS,
+  products: products
+});
+
+export const listProductsAdmin = () => async dispatch => {
+  dispatch(fetchProductsBegin());
+  const products = await shop.listProductsAdmin();
+  dispatch(receiveProducts(products));
+  return products;
+};
+
+// method to create a product
+
+export const createProduct = () => async dispatch => {};

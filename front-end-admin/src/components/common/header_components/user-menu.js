@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import man from "../../../assets/images/dashboard/man.png";
 import PropTypes from "prop-types";
-import { logoutUser } from "../../../actions";
 import { connect } from "react-redux";
+import { logoutUser } from "../../../actions";
 
 export class User_menu extends Component {
   // determines what to show the admin if they are logged in or not
@@ -51,16 +51,22 @@ export class User_menu extends Component {
               <span className="main-circle"></span>
             </div>
           </div>
-          <ul className="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
-            <li>
-              <Link to={`${process.env.PUBLIC_URL}/view/profile`}>
-                <i data-feather="user"></i>View Profile
-              </Link>
-            </li>
-            <li>
-              <i data-feather="log-out" onClick={logoutUser}></i>Logout
-            </li>
-          </ul>
+          {isLoggedIn ? (
+            <ul className="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
+              <li>
+                <Link to={`${process.env.PUBLIC_URL}/view/profile`}>
+                  <i data-feather="user">View Profile</i>
+                </Link>
+              </li>
+              <li>
+                <i data-feather="log-out" onClick={logoutUser}>
+                  Logout
+                </i>
+              </li>
+            </ul>
+          ) : (
+            <Redirect to={{ pathname: "/auth/login" }} />
+          )}
         </li>
       </Fragment>
     );
