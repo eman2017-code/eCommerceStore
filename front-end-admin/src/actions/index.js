@@ -52,14 +52,18 @@ export const logoutUser = () => async dispatch => {
   toast.success(logoutResponse.status.message);
 };
 
-// route to list all admin-created products
+export const fetchProductsBegin = () => ({
+  type: types.FETCH_PRODUCTS_BEGIN
+});
+
+export const receiveProducts = products => ({
+  type: types.RECEIVE_PRODUCTS,
+  products: products
+});
+
 export const listProductsAdmin = () => async dispatch => {
-  // makes api call to index product route for admin
+  dispatch(fetchProductsBegin());
   const products = await shop.listProductsAdmin();
-
-  dispatch({
-    type: types.LIST_PRODUCTS_ADMIN
-  });
-
-  toast.success(products.status.message);
+  dispatch(receiveProducts(products));
+  return products;
 };

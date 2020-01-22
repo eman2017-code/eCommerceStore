@@ -1,17 +1,17 @@
-import { LIST_PRODUCTS_ADMIN } from "../constants/ActionTypes";
+import {
+  LIST_PRODUCTS_ADMIN,
+  RECEIVE_PRODUCTS
+} from "../constants/ActionTypes";
 
 const initialState = {
-  adminProducts: [],
+  products: [],
   symbol: "$"
 };
 
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LIST_PRODUCTS_ADMIN:
-      return {
-        ...state,
-        adminProducts: action.products
-      };
+    case RECEIVE_PRODUCTS:
+      return { ...state, products: action.products };
     default:
       return state;
   }

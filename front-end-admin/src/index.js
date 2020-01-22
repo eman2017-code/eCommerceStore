@@ -6,7 +6,10 @@ import "./index.scss";
 import App from "./components/app";
 import { ScrollContext } from "react-router-scroll-4";
 import { createStore } from "redux";
+
+// handling store
 import store from "./store";
+import { listProductsAdmin } from "./actions";
 
 // Components
 import Dashboard from "./components/dashboard";
@@ -31,6 +34,7 @@ import Login from "./components/auth/login";
 
 class Root extends Component {
   render() {
+    store.dispatch(listProductsAdmin());
     return (
       <Provider store={store}>
         <BrowserRouter basename={"/"}>

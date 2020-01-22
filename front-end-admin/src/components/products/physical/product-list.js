@@ -1,17 +1,14 @@
 import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
-// import data from "../../../assets/data/physical_list";
 import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
+import { getAdminProducts } from "../../../services";
 
 export class Product_list extends Component {
   constructor(props) {
     console.log("props in Product_list Component");
     console.log(props);
     super(props);
-    this.state = {
-      //   data
-    };
   }
   render() {
     const { products, symbol } = this.props;
@@ -98,8 +95,8 @@ export class Product_list extends Component {
 
 // export default Product_list;
 const mapStateToProps = state => ({
-  //   products: getVisibleproducts(state.data, state.filters),
-  symbol: "$"
+  products: getAdminProducts(state.products),
+  symbol: state.products.symbol
 });
 
 export default connect(mapStateToProps, {})(Product_list);

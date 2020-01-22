@@ -64,8 +64,6 @@ export default {
     const response = await fetch("http://localhost:8000/api/v1/products/");
 
     const parsedResponse = await response.json();
-    console.log("parsedResponse");
-    console.log(parsedResponse);
 
     const products = parsedResponse.data;
     console.log("products");
