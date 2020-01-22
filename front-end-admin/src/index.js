@@ -1,3 +1,11 @@
+/* 
+
+    THIS IS THE REALEASE_OFFICAL BRANCH
+
+    ONLY WORKING CODE SHOULD BE PLAECD IN THERE
+
+*/
+
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
