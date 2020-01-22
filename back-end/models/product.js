@@ -38,7 +38,7 @@ const productSchema = new mongoose.Schema({
 })
 
 // add category ids to a product document. if there are no categories it is left empty
-productSchema.methods.addProductToCategories = function(productData) {
+productSchema.methods.addCategories = function(productData) {
 	if (productData.category) {
 		productData.category.forEach(async (categoryId) => {
 			const foundCategory = await Category.findById(categoryId)
@@ -57,7 +57,7 @@ productSchema.methods.getProductPrice = function() {
 	return price
 }
 
-
+// updates the products fields except for image and category
 productSchema.methods.updateFields = async function(productData) {
 	this.name = productData.name;
 	this.description = productData.description;
@@ -66,7 +66,6 @@ productSchema.methods.updateFields = async function(productData) {
 	this.price = productData.price;
 	this.model = productData.model;
 	this.manufacturer = productData.manufacturer;
-	this.category = category;
 
 	await this.save();
 }
