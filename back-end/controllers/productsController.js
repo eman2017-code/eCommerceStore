@@ -109,8 +109,15 @@ router.put('/:productId/', adminRequired, async (req, res, next) => {
     // so this calls a function to parse the images url to get just the name
     const existingImageName = foundProduct.getImageName();
 
-    // updates the products imag in aws
+    // updates the products image in aws - deletes existing, uploads new 
     fileUploadManager.updateFileInAWS(existingImageName, productImage.image);
+
+    // gets the path the updated product image in aws and store it in the product image field
+    const awsPathToImage = fileUploadManager.getURLToUploadedFile(productImage.image.name);
+    foundProduct.image = awsPathToImage;
+    await foundProduct.save()
+
+      
 
     res.json({
       data: foundProduct,
