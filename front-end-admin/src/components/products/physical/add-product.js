@@ -21,6 +21,14 @@ export class Add_product extends Component {
       ]
     };
   }
+
+  // method to randomly generate upc number
+  randomUpcGenerator = () => {
+    const randomUpc = parseInt(Math.random() * 1000000000, 10);
+    console.log("randomUpc", randomUpc);
+    return randomUpc;
+  };
+
   IncrementItem = () => {
     this.setState(prevState => {
       if (prevState.quantity < 9) {
@@ -32,6 +40,7 @@ export class Add_product extends Component {
       }
     });
   };
+
   DecreaseItem = () => {
     this.setState(prevState => {
       if (prevState.quantity > 0) {
@@ -43,6 +52,7 @@ export class Add_product extends Component {
       }
     });
   };
+
   handleChange = event => {
     this.setState({ quantity: event.target.value });
   };
@@ -234,7 +244,11 @@ export class Add_product extends Component {
                           </div>
                         </div>
                         <div className="offset-xl-3 offset-sm-4">
-                          <button type="submit" className="btn btn-primary">
+                          <button
+                            type="submit"
+                            className="btn btn-primary"
+                            onClick={this.randomUpcGenerator}
+                          >
                             Add
                           </button>
                           <button type="button" className="btn btn-light">
