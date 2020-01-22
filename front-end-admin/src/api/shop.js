@@ -62,13 +62,8 @@ export default {
 
   listProductsAdmin: async callBack => {
     const response = await fetch("http://localhost:8000/api/v1/products/");
-
     const parsedResponse = await response.json();
-
     const products = parsedResponse.data;
-    console.log("products");
-    console.log(products);
-
     return products;
   }
 };
