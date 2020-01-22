@@ -7,9 +7,39 @@ import { getAdminProducts } from "../../../services";
 export class Product_list extends Component {
   constructor(props) {
     super(props);
+    // this.state = {
+    //   count: 0
+    // };
+    // console.log(this.state, "this.state");
   }
+
+  // get the total number of products that the admin currently has for sale
+  getTotalProducts = () => {
+    let count = 0;
+    let notAProduct = [];
+    const products = this.props.products;
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].name === undefined) {
+        notAProduct.push(products[i]);
+      } else {
+        count += 1;
+        // this.setState({
+        //   count: 1
+        // });
+      }
+    }
+    console.log(count);
+    return count;
+  };
+
+  componentDidMount() {
+    this.getTotalProducts();
+  }
+
   render() {
     const { products, symbol } = this.props;
+    console.log("products:", products);
+
     return (
       <Fragment>
         <Breadcrumb title="Current Inventory" parent="Physical" />
@@ -72,7 +102,6 @@ export class Product_list extends Component {
                           <h4>
                             {symbol}
                             {product.price}
-                            {/* <del>{myData.discount_price}</del> */}
                           </h4>
                           <br />
                           <span className="lable4">{product.description}</span>
