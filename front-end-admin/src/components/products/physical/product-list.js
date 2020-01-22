@@ -7,10 +7,6 @@ import { getAdminProducts } from "../../../services";
 export class Product_list extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   count: 0
-    // };
-    // console.log(this.state, "this.state");
   }
 
   // get the total number of products that the admin currently has for sale
@@ -23,9 +19,6 @@ export class Product_list extends Component {
         notAProduct.push(products[i]);
       } else {
         count += 1;
-        // this.setState({
-        //   count: 1
-        // });
       }
     }
     console.log(count);
