@@ -24,6 +24,7 @@ export const registerUser = registrationInfo => async dispatch => {
 export const loginUser = loginInfo => async dispatch => {
   // makes the api call to login
   const loginResponse = await shop.loginUser(loginInfo);
+  console.log("loginResponse:", loginResponse);
   const userInfo = loginResponse.data;
 
   // if the user successfully logged in
