@@ -47,10 +47,7 @@ router.post("/", adminRequired, async (req, res, next) => {
     const newProduct = await Product.create(productData);
 
     // if any categories were specified for the products
-    if (productData.category) {
-      await newProduct.addProductToCategories(clientData.category);
-      await newProduct.save();
-    }
+    await newProduct.addCategories(productData);
 
     // adds the new product to elasticsearch
     const elasticSearchManager = new ElasticSearchManager();
@@ -85,6 +82,52 @@ router.post("/", adminRequired, async (req, res, next) => {
       });
     }
 
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+// Update Route
+// this route is where the admin can update an existing product
+router.put('/:productId/', adminRequired, async (req, res, next) => {
+  const productId = req.params.productId;
+  const productData = req.body;
+  const productImage = req.files;
+
+  try {
+    const foundProduct = await Product.findOne({ 'upc': productId });
+    await foundProduct.updateFields(productData);
+
+    // updates the products categories
+    await foundProduct.addCategories(productData);
+
+    // establishes the connection to the aws s3 bucket
+    const fileUploadManager = new FileUploadManager();
+
+    // the image field contains the url to the image, and aws just needs the images name
+    // so this calls a function to parse the images url to get just the name
+    const existingImageName = foundProduct.getImageName();
+
+    // updates the products image in aws - deletes existing, uploads new 
+    fileUploadManager.updateFileInAWS(existingImageName, productImage.image);
+
+    // gets the path the updated product image in aws and store it in the product image field
+    const awsPathToImage = fileUploadManager.getURLToUploadedFile(productImage.image.name);
+    foundProduct.image = awsPathToImage;
+    await foundProduct.save()
+
+    // updates an existing product in elasticsearch
+    const elasticSearchManager = new ElasticSearchManager();
+    const elasticSearchResponse = await elasticSearchManager.updateExistingProduct(productData);
+
+    res.json({
+      data: foundProduct,
+      status: {
+        code: 200,
+        message: 'Successfully updated the product.'
+      }
+    })
   } catch (error) {
     next(error);
   }
