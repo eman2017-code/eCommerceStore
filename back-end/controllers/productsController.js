@@ -6,8 +6,6 @@ const loginRequired = require("../middleware/users/loginRequired.js");
 const fileUpload = require("../middleware/fileUpload.js");
 const FileUploadManager = require("../managers/FileUploadManager.js");
 const ElasticSearchManager = require("../managers/ElasticSearchManager.js");
-const fs = require("fs");
-
 const router = express.Router();
 
 // Index Route
@@ -15,7 +13,6 @@ const router = express.Router();
 router.get("/", async (req, res, next) => {
   try {
     const allProducts = await Product.find({}).sort("-timestamp");
-    console.log("allProducts:", allProducts);
     res.json({
       data: allProducts,
       status: {
@@ -33,9 +30,8 @@ router.get("/productsByAdmin", loginRequired, async (req, res, next) => {
   try {
     // find the user
     const foundUser = await User.findOne({ _id: req.session.userId });
-    console.log("foundUser:", foundUser);
     // find all the products that belong to the admin
-    // const productsByAdmin = await Product.find({foundUser:})
+    const productsByAdmin = await Product.find({});
   } catch (err) {
     next(err);
   }
@@ -48,7 +44,7 @@ router.post("/", adminRequired, async (req, res, next) => {
   const productImage = req.files.image;
 
   // grabbing the user
-  const foundUser = req.session.userId;
+  const foundUser = req.session;
 
   // establishes the connection to the aws s3 bucket
   const fileUploadManager = new FileUploadManager();
