@@ -6,7 +6,6 @@
 const { Client, errors } = require("@elastic/elasticsearch");
 
 class ElasticSearchManager {
-
   constructor() {
     this.CLIENT_URL = "http://34.68.86.219:9200";
     this.INDEX = "store-products-catalog2-cats";
@@ -59,7 +58,6 @@ class ElasticSearchManager {
 
   // updates a product in elasticsearch
   async updateExistingProduct(newProductInfo) {
-
     // gets the id of the product to update
     const productId = await this.getProductIdByUPC(newProductInfo.upc);
 
@@ -67,8 +65,8 @@ class ElasticSearchManager {
     const response = await this.client.update({
       index: this.INDEX,
       id: productId,
-      body: { doc: newProductInfo } 
-    })
+      body: { doc: newProductInfo }
+    });
     return response;
   }
 
@@ -118,7 +116,7 @@ class ElasticSearchManager {
       body: {
         query: {
           term: {
-            "message.sku":  productId
+            "message.sku": productId
           }
         },
         size: 1
@@ -143,7 +141,7 @@ class ElasticSearchManager {
           }
         }
       }
-    })
+    });
     return this.parseResponse(response)[0]._id;
   }
 }
