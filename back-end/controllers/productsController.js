@@ -2,6 +2,7 @@ const express = require("express");
 const Product = require("../models/product.js");
 const User = require("../models/user.js");
 const adminRequired = require("../middleware/users/adminRequired.js");
+const loginRequired = require("../middleware/users/loginRequired.js");
 const fileUpload = require("../middleware/fileUpload.js");
 const FileUploadManager = require("../managers/FileUploadManager.js");
 const ElasticSearchManager = require("../managers/ElasticSearchManager.js");
@@ -13,8 +14,8 @@ const router = express.Router();
 // returns all of the products the database
 router.get("/", async (req, res, next) => {
   try {
-    const allProducts = await Product.find({}).sort('-timestamp');
-
+    const allProducts = await Product.find({}).sort("-timestamp");
+    console.log("allProducts:", allProducts);
     res.json({
       data: allProducts,
       status: {
@@ -27,7 +28,18 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// get total products
+// this route lists all of the products that the admin specifically has created
+router.get("/productsByAdmin", loginRequired, async (req, res, next) => {
+  try {
+    // find the user
+    const foundUser = await User.findOne({ _id: req.session.userId });
+    console.log("foundUser:", foundUser);
+    // find all the products that belong to the admin
+    // const productsByAdmin = await Product.find({foundUser:})
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Create Route
 // this route is where the admin can create a new product
@@ -112,14 +124,16 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
     // gets the path the updated product image in aws and store it in the product image field
     const awsPathToImage = fileUploadManager.getURLToUploadedFile(
       productImage.image.name
-    )
+    );
     foundProduct.image = awsPathToImage;
     await foundProduct.save();
 
     // updates the product in elasticsearch
     const elasticSearchManager = new ElasticSearchManager();
     productData.image = awsPathToImage;
-    const elasticSearchResponse = await elasticSearchManager.updateExistingProduct(productData);
+    const elasticSearchResponse = await elasticSearchManager.updateExistingProduct(
+      productData
+    );
 
     res.json({
       data: foundProduct,
@@ -133,10 +147,9 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
   }
 });
 
-
 // DELETE ROUTE
 // this route is where the admin can delete a product
-router.delete('/:productId/', adminRequired, async (req, res, next) => {
+router.delete("/:productId/", adminRequired, async (req, res, next) => {
   const productId = req.params.productId;
 
   try {
@@ -160,7 +173,7 @@ router.delete('/:productId/', adminRequired, async (req, res, next) => {
       data: {},
       status: {
         code: 204,
-        message: 'Product successfully deleted'
+        message: "Product successfully deleted"
       }
     });
   } catch (error) {
