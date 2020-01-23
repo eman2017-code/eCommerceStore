@@ -71,7 +71,6 @@ class FileUploadManager {
         return fileNameArray.join('');
     }
 
-
     // uploads a file to the aws s3 bucket
     uploadFileToAWS(file, response) {
         const fileName = file.name;

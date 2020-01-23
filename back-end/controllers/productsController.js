@@ -37,6 +37,9 @@ router.post("/", adminRequired, async (req, res, next) => {
 
   const fileUploadManager = new FileUploadManager();
   const fileName = await fileUploadManager.validateFileNameIsUnique(productImage.name);
+  productImage.name = fileName; 
+  console.log('productImage:', productImage);
+
   console.log('fileName in router:', fileName);
 
   // gets the url to the image that was just uploaded to the aws s3 bucket
@@ -62,7 +65,7 @@ router.post("/", adminRequired, async (req, res, next) => {
       const deletedProduct = await Product.findByIdAndRemove(newProduct.id).exec();
 
       res.send({
-        data: {},
+        data: newProduct,
         status: {
           code: 400,
           message: "Error connecting to Elasticsearch"
