@@ -55,6 +55,7 @@ class TopBarDark extends Component {
                     <ul className="onhover-show-div">
                       <li>Hey, {userInfo.firstName}</li>
                       <li onClick={logoutUser}>Log out</li>
+                      <h6>Delete Account</h6>
                     </ul>
                   ) : (
                     <ul className="onhover-show-div">
