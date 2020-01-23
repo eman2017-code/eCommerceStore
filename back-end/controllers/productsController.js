@@ -36,15 +36,11 @@ router.post("/", adminRequired, async (req, res, next) => {
   const productImage = req.files.image;
 
   const fileUploadManager = new FileUploadManager();
-  const fileName = await fileUploadManager.validateFileNameIsUnique(productImage.name);
-  productImage.name = fileName; 
-  console.log('productImage:', productImage);
-
-  console.log('fileName in router:', fileName);
+  productImage.name = await fileUploadManager.validateFileNameIsUnique(productImage.name);
 
   // gets the url to the image that was just uploaded to the aws s3 bucket
   const awsPathToImage = fileUploadManager.getURLToUploadedFile(
-    fileName
+    productImage.name
   );
   productData.image = awsPathToImage;
 
@@ -60,12 +56,10 @@ router.post("/", adminRequired, async (req, res, next) => {
 
     // if theres was an error adding the product to elasticsearch
     if (elasticSearchResponse.statusCode !== 201) {
-
-      // product in mongo gets deleted since it couldnt be uploaded to elasticsearch
       const deletedProduct = await Product.findByIdAndRemove(newProduct.id).exec();
 
       res.send({
-        data: newProduct,
+        data: {},
         status: {
           code: 400,
           message: "Error connecting to Elasticsearch"
@@ -80,7 +74,7 @@ router.post("/", adminRequired, async (req, res, next) => {
       fileUploadManager.uploadFileToAWS(productImage, res);
 
       res.send({
-        data: {},
+        data: newProduct,
         status: {
           code: 201,
           message: "Product added successfully"

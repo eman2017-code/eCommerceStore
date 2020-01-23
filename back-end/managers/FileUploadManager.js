@@ -64,11 +64,23 @@ class FileUploadManager {
         return fileNames;
     }
 
-    // changes the file name in the params 
+    // changes the file name by adding ('some number') to the end
     changeFileName(fileName, i) {
-        const fileNameArray = fileName.split('.');
-        fileNameArray.splice(1, 0, '(' + i + ')') 
-        return fileNameArray.join('');
+        let newFileName = fileName.repeat(1);
+        if (i > 1) {
+            newFileName = newFileName.split('');
+
+            const firstIndex = newFileName.findIndex(element => element === '(');
+            const lastIndex = newFileName.findIndex(element => element === ')');
+
+            for (let i=firstIndex; i <= lastIndex; i++) {
+                delete newFileName[i];
+            }
+            newFileName = newFileName.join('');
+        }
+        newFileName = newFileName.split('.');
+        newFileName.splice(1, 0, '(' + i + ').'); 
+        return newFileName.join('');
     }
 
     // uploads a file to the aws s3 bucket
