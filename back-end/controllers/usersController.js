@@ -214,12 +214,20 @@ router.post("/logout/", loginRequired, async (req, res, next) => {
 });
 
 // this routes deletes a users account
-router.post("/deleteAccount/", loginRequired, async (req, res, next) => {
+router.delete("/deleteAccount/", loginRequired, async (req, res, next) => {
   try {
-    const foundUser = await User.findOne({ _id: req.session.userId });
-    // const currentSession = req.session;
-    console.log("foundUser:", foundUser);
-  } catch (err) {}
+    const foundUser = await User.deleteOne({ _id: req.session.userId });
+    // console.log("foundUser:", foundUser);
+    res.json({
+      data: {},
+      status: {
+        code: 200,
+        message: "You have successfully deleted your profile"
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
 });
 
 // this routes updates the users password
