@@ -1,10 +1,17 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../../actions";
+import { toast } from "react-toastify";
 
 class TopBarDark extends Component {
+  constructor() {
+    super();
+    this.state = {
+      hasAnAccount: true
+    };
+  }
   // determines what links to show under the 'My Account' dropdown
   renderMyAccountLinks = () => {
     if (this.props.isLoggedIn) {
@@ -26,6 +33,22 @@ class TopBarDark extends Component {
           </li>
         </ul>
       );
+    }
+  };
+
+  // route to delete account
+  deleteAccount = async () => {
+    const response = await fetch(
+      "http://localhost:8000/api/v1/users/deleteAccount/",
+      {
+        credentials: "include",
+        method: "DELETE"
+      }
+    );
+    const deletedAccountResponse = await response.json();
+    if (deletedAccountResponse.status.code === 200) {
+      this.setState({ hasAnAccount: false });
+      toast.error(deletedAccountResponse.status.message);
     }
   };
 
@@ -55,7 +78,7 @@ class TopBarDark extends Component {
                     <ul className="onhover-show-div">
                       <li>Hey, {userInfo.firstName}</li>
                       <li onClick={logoutUser}>Log out</li>
-                      <h6>Delete Account</h6>
+                      <h6 onClick={this.deleteAccount}>Delete Account</h6>
                     </ul>
                   ) : (
                     <ul className="onhover-show-div">
