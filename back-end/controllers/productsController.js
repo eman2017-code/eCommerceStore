@@ -32,6 +32,14 @@ router.get("/productsByAdmin", loginRequired, async (req, res, next) => {
     const foundUser = await User.findOne({ _id: req.session.userId });
     // find all the products that belong to the admin
     const productsByAdmin = await Product.find({});
+    // console.log(p)
+    res.json({
+      data: productsByAdmin,
+      status: {
+        code: 200,
+        message: "Successfully loaded all products you have created"
+      }
+    });
   } catch (err) {
     next(err);
   }
@@ -45,6 +53,7 @@ router.post("/", adminRequired, async (req, res, next) => {
 
   // grabbing the user
   const foundUser = req.session;
+  console.log("foundUser:", foundUser);
 
   // establishes the connection to the aws s3 bucket
   const fileUploadManager = new FileUploadManager();
@@ -57,6 +66,8 @@ router.post("/", adminRequired, async (req, res, next) => {
 
   try {
     const newProduct = await Product.create(productData);
+    console.log("newProduct:", newProduct);
+    // putting the products in possession of the admin creating them
     newProduct.owner.push(foundUser);
 
     // if any categories were specified for the products
