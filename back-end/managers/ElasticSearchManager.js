@@ -63,11 +63,29 @@ class ElasticSearchManager {
     // gets the id of the product to update
     const productId = await this.getProductIdByUPC(newProductInfo.upc);
 
-    // sends a request to update the product
     const response = await this.client.update({
       index: this.INDEX,
       id: productId,
       body: { doc: newProductInfo } 
+    })
+    return response;
+  }
+
+  // deletes a product from elastic search
+  async deleteProduct(productUPC) {
+    const response = await this.client.deleteByQuery({
+      index: this.INDEX,
+      body: {
+        query: {
+          bool: {
+            filter: {
+              term: {
+                upc: productUPC
+              }
+            }
+          }
+        }
+      }
     })
     return response;
   }

@@ -116,7 +116,7 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
     // gets the path the updated product image in aws and store it in the product image field
     const awsPathToImage = fileUploadManager.getURLToUploadedFile(
       productImage.image.name
-    );
+    )
     foundProduct.image = awsPathToImage;
     await foundProduct.save();
 
@@ -151,8 +151,16 @@ router.delete('/:productId/', adminRequired, async (req, res, next) => {
     // gets the images name so it can be removed from aws
     const imageName = foundProduct.getImageName();
 
-    // removes product form mongo
+    // deletes product from mongo
     foundProduct.remove();
+
+    // deletes the image from aws
+    const fileUploadManager = new FileUploadManager();
+    fileUploadManager.deleteFileFromAWS(imageName, res);
+
+    // deletes the product from elasticsearch
+    const elasticSearchManager = new ElasticSearchManager();
+    const elasticSearchResponse = elasticSearchManager.deleteProduct(productId);
 
     res.json({
       data: {},
@@ -165,6 +173,5 @@ router.delete('/:productId/', adminRequired, async (req, res, next) => {
     next(error);
   }
 });
-
 
 module.exports = router;
