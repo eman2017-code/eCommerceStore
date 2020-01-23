@@ -13,7 +13,7 @@ const router = express.Router();
 // returns all of the products the database
 router.get("/", async (req, res, next) => {
   try {
-    const allProducts = await Product.find({});
+    const allProducts = await Product.find({}).sort('-timestamp');
 
     res.json({
       data: allProducts,
@@ -97,40 +97,70 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
   const productImage = req.files;
 
   try {
+    // updates the product in mongo
     const foundProduct = await Product.findOne({ upc: productId });
     await foundProduct.updateFields(productData);
 
     // updates the products categories
     await foundProduct.addCategories(productData);
 
-    // establishes the connection to the aws s3 bucket
-    const fileUploadManager = new FileUploadManager();
-
-    // the image field contains the url to the image, and aws just needs the images name
-    // so this calls a function to parse the images url to get just the name
-    const existingImageName = foundProduct.getImageName();
-
     // updates the products image in aws - deletes existing, uploads new
+    const fileUploadManager = new FileUploadManager();
+    const existingImageName = foundProduct.getImageName();
     fileUploadManager.updateFileInAWS(existingImageName, productImage.image);
 
     // gets the path the updated product image in aws and store it in the product image field
     const awsPathToImage = fileUploadManager.getURLToUploadedFile(
       productImage.image.name
-    );
+    )
     foundProduct.image = awsPathToImage;
     await foundProduct.save();
 
-    // updates an existing product in elasticsearch
+    // updates the product in elasticsearch
     const elasticSearchManager = new ElasticSearchManager();
-    const elasticSearchResponse = await elasticSearchManager.updateExistingProduct(
-      productData
-    );
+    productData.image = awsPathToImage;
+    const elasticSearchResponse = await elasticSearchManager.updateExistingProduct(productData);
 
     res.json({
       data: foundProduct,
       status: {
         code: 200,
         message: "Successfully updated the product."
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+// DELETE ROUTE
+// this route is where the admin can delete a product
+router.delete('/:productId/', adminRequired, async (req, res, next) => {
+  const productId = req.params.productId;
+
+  try {
+    const foundProduct = await Product.findOne({ upc: productId });
+
+    // gets the images name so it can be removed from aws
+    const imageName = foundProduct.getImageName();
+
+    // deletes product from mongo
+    foundProduct.remove();
+
+    // deletes the image from aws
+    const fileUploadManager = new FileUploadManager();
+    fileUploadManager.deleteFileFromAWS(imageName, res);
+
+    // deletes the product from elasticsearch
+    const elasticSearchManager = new ElasticSearchManager();
+    const elasticSearchResponse = elasticSearchManager.deleteProduct(productId);
+
+    res.json({
+      data: {},
+      status: {
+        code: 204,
+        message: 'Product successfully deleted'
       }
     });
   } catch (error) {
