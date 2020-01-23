@@ -16,15 +16,36 @@
 //   return uniqueBrands;
 // };
 
-// Get Unique Brands from Json Data
+// // Get Unique Brands from Json Data
+// export const getBrands = products => {
+//   console.log(products, ":products");
+//   var uniqueBrands = [];
+//   const doubleBrand = [];
+//   products.map(product => {
+//     let tag = product.manufacturer;
+//     console.log("tag:", tag);
+//     if (tag == tag) {
+//       console.log(tag + " and " + tag + " are the same manufacturer");
+//     }
+//     if (tag) {
+//       uniqueBrands.push(tag);
+//     }
+//   });
+//   return uniqueBrands;
+// };
+
 export const getBrands = products => {
-  var uniqueBrands = [];
+  const allCategories = [];
+  // looping over all products
   products.map(product => {
-    let tag = product.manufacturer;
-    if (tag) {
-      uniqueBrands.push(tag);
-    }
+    const tag = product.category;
+    tag.map(category => {
+      // get each category name
+      allCategories.push(category.name);
+    });
   });
+  // create new array that does not hold any duplicates
+  const uniqueBrands = [...new Set(allCategories)];
   return uniqueBrands;
 };
 
@@ -58,11 +79,9 @@ export const getMinMaxPrice = products => {
   return { min: min, max: max };
 };
 
-
 export const getVisibleproducts = (data, filters) => {
-  return data.products
-}
-
+  return data.products;
+};
 
 // export const getVisibleproducts = (
 //   data,
@@ -109,11 +128,9 @@ export const getVisibleproducts = (data, filters) => {
 export const getCartTotal = cartItems => {
   var total = 0;
   for (var i = 0; i < cartItems.length; i++) {
-
     if (cartItems[i] !== null) {
       total += cartItems[i].qty * cartItems[i].price;
     }
-    
   }
   return total;
 };

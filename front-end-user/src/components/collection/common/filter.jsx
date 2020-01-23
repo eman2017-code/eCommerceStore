@@ -9,6 +9,7 @@ import { filterBrand, filterColor, filterPrice } from "../../../actions";
 
 class Filter extends Component {
   constructor(props) {
+    console.log("props in Filter", props);
     super(props);
 
     this.state = {
@@ -79,7 +80,7 @@ class Filter extends Component {
           {({ onToggle, setCollapsibleElement }) => (
             <div className="collection-collapse-block">
               <h3 className="collapse-block-title" onClick={onToggle}>
-                manufacturer
+                Category
               </h3>
               <div
                 className="collection-collapse-block-content"
