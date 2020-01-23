@@ -37,13 +37,19 @@ class FileUploadManager {
         return new AWS.S3()
     }
 
+    // gets a list of all the file names is the bucket
+    async getAllFileNames() {
+        const response = await this.s3.listObjects(
+            { Bucket: this.BUCKET_NAME }
+        ).promise()
+
+        const fileNames = response.Contents.map(object => object.Key);
+        return fileNames;
+    }
+
     // uploads a file to the aws s3 bucket
     uploadFileToAWS(file, response) {
         const fileName = file.name;
-
-        if (this.checkIfFileNameExists(fileName)) {
-            console.log('inside file exists condition');
-        }
 
         // gets the path to where the file will be temperarily uploaded
         const filePath = this.formatTemperaryFilePath(fileName);
@@ -98,26 +104,6 @@ class FileUploadManager {
                 console.log('successfully removed file');
             }
         })
-    }
-
-    // checks if there is alredy a file in aws with the same name
-    checkIfFileNameExists(fileName) {
-        console.log('in checkIfFileNameExists')
-
-        const awsData = {
-            Bucket: this.BUCKET_NAME,
-            Key: fileName
-        }
-
-        this.s3.getObject(awsData).on('success', (response) => {
-            console.log('file exists')
-            console.log('getObject response:', response)
-            return true;
-        }).on('error', (response) => {
-            console.log('file exists')
-            console.log('getObject response:', response)
-            return false;
-        }).send();
     }
 
     // creates the temperary file path to where the uploaded file is
