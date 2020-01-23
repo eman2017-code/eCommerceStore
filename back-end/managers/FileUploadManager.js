@@ -37,15 +37,40 @@ class FileUploadManager {
         return new AWS.S3()
     }
 
+    // checks if the file names already exists in the bucket
+    async validateFileNameIsUnique(newFileName) {
+        let validatedFileName = newFileName.repeat(1);
+        const fileNames = await this.getAllFileNames();
+
+        let i = 0;
+        let fileNameExists = true;
+        while(fileNameExists) {
+            if (fileNames.includes(validatedFileName) ) {
+                i++;
+                validatedFileName = this.changeFileName(validatedFileName, i);
+            } else {
+                fileNameExists = false;
+            }
+        }
+        return validatedFileName;
+    }
+
     // gets a list of all the file names is the bucket
     async getAllFileNames() {
         const response = await this.s3.listObjects(
             { Bucket: this.BUCKET_NAME }
         ).promise()
-
         const fileNames = response.Contents.map(object => object.Key);
         return fileNames;
     }
+
+    // changes the file name in the params 
+    changeFileName(fileName, i) {
+        const fileNameArray = fileName.split('.');
+        fileNameArray.splice(1, 0, '(' + i + ')') 
+        return fileNameArray.join('');
+    }
+
 
     // uploads a file to the aws s3 bucket
     uploadFileToAWS(file, response) {
