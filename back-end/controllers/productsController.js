@@ -13,7 +13,7 @@ const router = express.Router();
 // returns all of the products the database
 router.get("/", async (req, res, next) => {
   try {
-    const allProducts = await Product.find({});
+    const allProducts = await Product.find({}).sort('-timestamp');
 
     res.json({
       data: allProducts,
@@ -138,5 +138,33 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
     next(error);
   }
 });
+
+
+// DELETE ROUTE
+// this route is where the admin can delete a product
+router.delete('/:productId/', adminRequired, async (req, res, next) => {
+  const productId = req.params.productId;
+
+  try {
+    const foundProduct = await Product.findOne({ upc: productId });
+
+    // gets the images name so it can be removed from aws
+    const imageName = foundProduct.getImageName();
+
+    // removes product form mongo
+    foundProduct.remove();
+
+    res.json({
+      data: {},
+      status: {
+        code: 204,
+        message: 'Product successfully deleted'
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 module.exports = router;
