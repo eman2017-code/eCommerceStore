@@ -47,6 +47,9 @@ router.post("/", adminRequired, async (req, res, next) => {
   const productData = req.body;
   const productImage = req.files.image;
 
+  // grabbing the user
+  const foundUser = req.session.userId;
+
   // establishes the connection to the aws s3 bucket
   const fileUploadManager = new FileUploadManager();
 
@@ -58,6 +61,7 @@ router.post("/", adminRequired, async (req, res, next) => {
 
   try {
     const newProduct = await Product.create(productData);
+    newProduct.owner.push(foundUser);
 
     // if any categories were specified for the products
     await newProduct.addCategories(productData);
