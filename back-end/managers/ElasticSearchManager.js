@@ -41,6 +41,7 @@ class ElasticSearchManager {
     const response = await this.client.index({
       index: this.INDEX,
       body: {
+        owner: productInfo.owner,
         name: productInfo.name,
         description: productInfo.description,
         image: productInfo.image,
