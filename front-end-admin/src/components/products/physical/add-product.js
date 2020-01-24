@@ -33,32 +33,20 @@ export class Add_product extends Component {
     return randomUpc;
   };
 
-  // IncrementItem = () => {
-  //   this.setState(prevState => {
-  //     if (prevState.quantity < 9) {
-  //       return {
-  //         quantity: prevState.quantity + 1
-  //       };
-  //     } else {
-  //       return null;
-  //     }
-  //   });
-  // };
-
-  // DecreaseItem = () => {
-  //   this.setState(prevState => {
-  //     if (prevState.quantity > 0) {
-  //       return {
-  //         quantity: prevState.quantity - 1
-  //       };
-  //     } else {
-  //       return null;
-  //     }
-  //   });
-  // };
-
   handleChange = e => {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
+  };
+
+  // method to clear all fields
+  discardFields = () => {
+    this.setState({
+      image: "",
+      name: "",
+      model: "",
+      price: "",
+      manufacturer: "",
+      description: ""
+    });
   };
 
   // method to create a product
@@ -203,7 +191,11 @@ export class Add_product extends Component {
                           <button type="submit" className="btn btn-primary">
                             Add
                           </button>
-                          <button type="button" className="btn btn-light">
+                          <button
+                            type="button"
+                            className="btn btn-light"
+                            onClick={this.discardFields}
+                          >
                             Discard
                           </button>
                         </div>
