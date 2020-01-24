@@ -41,6 +41,7 @@ class ElasticSearchManager {
     const response = await this.client.index({
       index: this.INDEX,
       body: {
+        owner: productInfo.owner,
         name: productInfo.name,
         description: productInfo.description,
         image: productInfo.image,
@@ -68,6 +69,20 @@ class ElasticSearchManager {
       body: { doc: newProductInfo }
     });
     return response;
+  }
+
+  // deletes a product from elasticsearch
+  async deleteProduct(productId) {
+    const response = this.client.deleteByQuery({
+      index: this.INDEX,
+      body: {
+        query: {
+          match: {
+            "upc": productId
+          }
+        }
+      }  
+    })
   }
 
   // return products based on whatever category is specified in the parameters

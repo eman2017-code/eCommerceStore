@@ -37,13 +37,58 @@ class FileUploadManager {
         return new AWS.S3()
     }
 
+    // checks if the file names already exists in the bucket
+    async validateFileNameIsUnique(newFileName) {
+        let validatedFileName = newFileName.repeat(1);
+        const fileNames = await this.getAllFileNames();
+
+        let i = 0;
+        let fileNameExists = true;
+        while(fileNameExists) {
+            if (fileNames.includes(validatedFileName) ) {
+                i++;
+                validatedFileName = this.changeFileName(validatedFileName, i);
+            } else {
+                fileNameExists = false;
+            }
+        }
+        return validatedFileName;
+    }
+
+    // gets a list of all the file names is the bucket
+    async getAllFileNames() {
+        const response = await this.s3.listObjects(
+            { Bucket: this.BUCKET_NAME }
+        ).promise()
+        const fileNames = response.Contents.map(object => object.Key);
+        return fileNames;
+    }
+
+    // changes the file name by adding ('some number') to the end
+    changeFileName(fileName, i) {
+        let newFileName = fileName.repeat(1);
+        if (i > 1) {
+            newFileName = newFileName.split('');
+
+            const firstIndex = newFileName.findIndex(element => element === '(');
+            const lastIndex = newFileName.findIndex(element => element === ')');
+
+            for (let i=firstIndex; i <= lastIndex; i++) {
+                delete newFileName[i];
+            }
+            newFileName = newFileName.join('');
+        }
+        newFileName = newFileName.split('.');
+        newFileName.splice(1, 0, '(' + i + ').'); 
+        return newFileName.join('');
+    }
+
     // uploads a file to the aws s3 bucket
     uploadFileToAWS(file, response) {
         const fileName = file.name;
 
         // gets the path to where the file will be temperarily uploaded
         const filePath = this.formatTemperaryFilePath(fileName);
-
         this.uploadTemperaryFile(file, filePath);
 
         // reads the file in the temperary location, converting it to data that can 
@@ -56,7 +101,7 @@ class FileUploadManager {
             // uploads the file to the aws s3 bucket
             this.s3.putObject(awsData, (error, data) => {
                 if (error) {
-                    response.send({
+                    response.json({
                         data: {},
                         status: {
                             code: 400,
@@ -65,6 +110,7 @@ class FileUploadManager {
                     });
 
                 } else {
+                    console.log('aws upload data:', data);
                     console.log('successfully uploaded file');
                 }
             });
@@ -72,9 +118,9 @@ class FileUploadManager {
     }
 
     // removes a existing file from aws and adds a new one
-    updateFileInAWS(existingFileName, newFile) {
-        this.deleteFileFromAWS(existingFileName);
-        this.uploadFileToAWS(newFile);
+    updateFileInAWS(existingFileName, newFile, response) {
+        this.deleteFileFromAWS(existingFileName, response);
+        this.uploadFileToAWS(newFile, response);
     }
 
     // deletes a file from the aws s3 bucket
