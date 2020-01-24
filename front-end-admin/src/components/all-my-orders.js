@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import Breadcrumb from "./common/breadcrumb";
-import data from "../assets/data/invoice";
 import Datatable from "./common/datatable";
 
 export class Orders extends Component {
@@ -19,7 +18,6 @@ export class Orders extends Component {
                   <div id="basicScenario" className="product-list">
                     <Datatable
                       multiSelectOption={false}
-                      myData={data}
                       pageSize={10}
                       pagination={true}
                       class="-striped -highlight"
