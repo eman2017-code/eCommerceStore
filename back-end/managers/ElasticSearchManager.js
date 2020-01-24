@@ -78,11 +78,11 @@ class ElasticSearchManager {
       body: {
         query: {
           match: {
-            "upc": productId
+            upc: productId
           }
         }
-      }  
-    })
+      }
+    });
   }
 
   // return products based on whatever category is specified in the parameters
@@ -104,7 +104,7 @@ class ElasticSearchManager {
   }
 
   // returns products based on the searchTerm in the parameters
-  async searchForProducts(size, searchTerm) {
+  async searchForProducts(searchTerm) {
     const results = await this.client.search({
       index: this.INDEX,
       body: {
@@ -116,11 +116,11 @@ class ElasticSearchManager {
               max_expansions: 10
             }
           }
-        },
-        size: size
+        }
       }
     });
-    const products = this.parseResponse(response);
+    const products = this.parseResponse(results);
+    console.log("products:", products);
     return products;
   }
 
