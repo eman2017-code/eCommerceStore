@@ -25,17 +25,20 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// user_cart_instances = (models.Cart.select().where(models.Cart.user_id == current_user.id))
+// ------- THIS IS THE ROUTE THAT SHOWS ALL THE PRODUCTS THAT AN ADNIN HAS CREATED ------- //
 
 // this route lists all of the products that the admin specifically has created
 router.get("/productsByAdmin", loginRequired, async (req, res, next) => {
   try {
+    // array to list all of the products that the admin has created
     // find the user
     const foundUser = await User.findOne({ _id: req.session.userId });
+    console.log("foundUser._id:", foundUser._id);
     // find all the products that belong to the admin
-    // const productsByAdmin = await Product.find({});
-    const productsByAdmin = await Product.find({});
-    console.log("productsByAdmin:", productsByAdmin);
+    const productsByAdmin = await Product.find({
+      owners: { $in: foundUser._id }
+    });
+    console.log("foundProducts:", foundProducts);
     res.json({
       data: productsByAdmin,
       status: {
@@ -47,6 +50,8 @@ router.get("/productsByAdmin", loginRequired, async (req, res, next) => {
     next(err);
   }
 });
+
+// ------- THIS IS THE ROUTE THAT SHOWS ALL THE PRODUCTS THAT AN ADNIN HAS CREATED ------- //
 
 // Create Route
 // this route is where the admin can create a new product
