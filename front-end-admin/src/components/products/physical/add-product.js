@@ -114,7 +114,10 @@ export class Add_product extends Component {
                       </div>
                     </div>
                     <div className="col-xl-7">
-                      <form className="needs-validation add-product-form">
+                      <form
+                        className="needs-validation add-product-form"
+                        onSubmit={this.addProduct}
+                      >
                         <div className="form form-label-center">
                           <div className="form-group mb-3 row">
                             <label className="col-xl-3 col-sm-4 mb-0">
@@ -207,11 +210,7 @@ export class Add_product extends Component {
                           </div>
                         </div>
                         <div className="offset-xl-3 offset-sm-4">
-                          <button
-                            type="submit"
-                            className="btn btn-primary"
-                            onClick={this.addProduct}
-                          >
+                          <button type="submit" className="btn btn-primary">
                             Add
                           </button>
                           <button type="button" className="btn btn-light">
