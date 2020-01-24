@@ -36,8 +36,8 @@ class ProductListing extends Component {
   queryProduct = async () => {
     try {
       const response = await fetch(
-        // "http://localhost:8000/api/v1/search/products/",
-        "http://35.222.68.3:8000/api/v1/search/products/",
+        "http://localhost:8000/api/v1/search/products/",
+        // "http://35.222.68.3:8000/api/v1/search/products/",
         {
           method: "POST",
           body: JSON.stringify({ searchTerm: this.state.searchTerm }),
