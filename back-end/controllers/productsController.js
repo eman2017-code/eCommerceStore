@@ -2,19 +2,17 @@ const express = require("express");
 const Product = require("../models/product.js");
 const User = require("../models/user.js");
 const adminRequired = require("../middleware/users/adminRequired.js");
+const loginRequired = require("../middleware/users/loginRequired.js");
 const fileUpload = require("../middleware/fileUpload.js");
 const FileUploadManager = require("../managers/FileUploadManager.js");
 const ElasticSearchManager = require("../managers/ElasticSearchManager.js");
-const fs = require("fs");
-
 const router = express.Router();
 
 // Index Route
 // returns all of the products the database
 router.get("/", async (req, res, next) => {
   try {
-    const allProducts = await Product.find({}).sort('-timestamp');
-
+    const allProducts = await Product.find({}).sort("-timestamp");
     res.json({
       data: allProducts,
       status: {
@@ -27,13 +25,42 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// get total products
+// ------- THIS IS THE ROUTE THAT SHOWS ALL THE PRODUCTS THAT AN ADNIN HAS CREATED ------- //
+
+// this route lists all of the products that the admin specifically has created
+router.get("/productsByAdmin", loginRequired, async (req, res, next) => {
+  try {
+    // array to list all of the products that the admin has created
+    // find the user
+    const foundUser = await User.findOne({ _id: req.session.userId });
+    console.log("foundUser._id:", foundUser._id);
+    // find all the products that belong to the admin
+    const productsByAdmin = await Product.find({
+      owners: { $in: foundUser._id }
+    });
+    console.log("foundProducts:", foundProducts);
+    res.json({
+      data: productsByAdmin,
+      status: {
+        code: 200,
+        message: "Successfully loaded all products you have created"
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// ------- THIS IS THE ROUTE THAT SHOWS ALL THE PRODUCTS THAT AN ADNIN HAS CREATED ------- //
 
 // Create Route
 // this route is where the admin can create a new product
 router.post("/", adminRequired, async (req, res, next) => {
   const productData = req.body;
   const productImage = req.files.image;
+
+  const foundUser = req.session;
+  console.log("foundUser:", foundUser);
 
   // establishes the connection to the aws s3 bucket
   const fileUploadManager = new FileUploadManager();
@@ -45,9 +72,12 @@ router.post("/", adminRequired, async (req, res, next) => {
   productData.image = awsPathToImage;
 
   try {
-    const newProduct = await Product.create(productData);
+    const newProduct = await Product.create(productData); // if any categories were specified for the products
+    newProduct.owner.push(foundUser.userId);
+    // because we are mutating the document
+    newProduct.save();
+    console.log("newProduct:", newProduct);
 
-    // if any categories were specified for the products
     await newProduct.addCategories(productData);
 
     // adds the new product to elasticsearch
@@ -112,14 +142,16 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
     // gets the path the updated product image in aws and store it in the product image field
     const awsPathToImage = fileUploadManager.getURLToUploadedFile(
       productImage.image.name
-    )
+    );
     foundProduct.image = awsPathToImage;
     await foundProduct.save();
 
     // updates the product in elasticsearch
     const elasticSearchManager = new ElasticSearchManager();
     productData.image = awsPathToImage;
-    const elasticSearchResponse = await elasticSearchManager.updateExistingProduct(productData);
+    const elasticSearchResponse = await elasticSearchManager.updateExistingProduct(
+      productData
+    );
 
     res.json({
       data: foundProduct,
@@ -133,10 +165,9 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
   }
 });
 
-
 // DELETE ROUTE
 // this route is where the admin can delete a product
-router.delete('/:productId/', adminRequired, async (req, res, next) => {
+router.delete("/:productId/", adminRequired, async (req, res, next) => {
   const productId = req.params.productId;
 
   try {
@@ -160,7 +191,7 @@ router.delete('/:productId/', adminRequired, async (req, res, next) => {
       data: {},
       status: {
         code: 204,
-        message: 'Product successfully deleted'
+        message: "Product successfully deleted"
       }
     });
   } catch (error) {
