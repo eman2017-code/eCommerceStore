@@ -33,48 +33,53 @@ export class Add_product extends Component {
     return randomUpc;
   };
 
-  IncrementItem = () => {
-    this.setState(prevState => {
-      if (prevState.quantity < 9) {
-        return {
-          quantity: prevState.quantity + 1
-        };
-      } else {
-        return null;
-      }
-    });
-  };
+  // IncrementItem = () => {
+  //   this.setState(prevState => {
+  //     if (prevState.quantity < 9) {
+  //       return {
+  //         quantity: prevState.quantity + 1
+  //       };
+  //     } else {
+  //       return null;
+  //     }
+  //   });
+  // };
 
-  DecreaseItem = () => {
-    this.setState(prevState => {
-      if (prevState.quantity > 0) {
-        return {
-          quantity: prevState.quantity - 1
-        };
-      } else {
-        return null;
-      }
-    });
-  };
+  // DecreaseItem = () => {
+  //   this.setState(prevState => {
+  //     if (prevState.quantity > 0) {
+  //       return {
+  //         quantity: prevState.quantity - 1
+  //       };
+  //     } else {
+  //       return null;
+  //     }
+  //   });
+  // };
 
   handleChange = e => {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  // route to search for products
-  addProduct = async () => {
+  // method to create a product
+  addProduct = async (e, productFromForm) => {
+    //prevents the browser from reloading when an event is called...
+    e.preventDefault();
     try {
-      const response = await fetch("http://35.222.68.3:8000/api/v1/products/", {
-        method: "POST",
-        body: JSON.stringify({ searchTerm: this.state.searchTerm }),
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
+      //Call the array of all of the courses in the DB.
+      const createdProductResponse = await fetch(
+        "http://localhost:8000/api/v1/products/",
+        {
+          method: "POST",
+          credentials: "include",
+          body: JSON.stringify(productFromForm),
+          headers: {
+            "Content-Type": "application/json"
+          }
         }
-      });
-      const parsedResponse = await response.json();
-      console.log("parsedResponse");
-      console.log(parsedResponse);
+      );
+      const parsedResponse = await createdProductResponse.json();
+      console.log("parsedResponse:", parsedResponse);
     } catch (err) {}
   };
 
@@ -202,7 +207,11 @@ export class Add_product extends Component {
                           </div>
                         </div>
                         <div className="offset-xl-3 offset-sm-4">
-                          <button type="submit" className="btn btn-primary">
+                          <button
+                            type="submit"
+                            className="btn btn-primary"
+                            onClick={this.addProduct}
+                          >
                             Add
                           </button>
                           <button type="button" className="btn btn-light">
