@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
 import Breadcrumb from "../common/breadcrumb";
-import data from "../../assets/data/listCustomers";
 import Datatable from "../common/datatable";
 
 export class List_user extends Component {
@@ -22,7 +20,6 @@ export class List_user extends Component {
               >
                 <Datatable
                   multiSelectOption={true}
-                  myData={data}
                   pageSize={10}
                   pagination={true}
                   class="-striped -highlight"

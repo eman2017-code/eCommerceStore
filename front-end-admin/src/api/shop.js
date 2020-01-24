@@ -1,5 +1,3 @@
-import { listProductsAdmin } from "../actions";
-
 export default {
   // makes call to the api to register a new user
   registerUser: async registrationInfo => {
@@ -61,9 +59,7 @@ export default {
   },
 
   listProductsAdmin: async callBack => {
-    const response = await fetch(
-      "http://localhost:8000/api/v1/products/productsByAdmin/"
-    );
+    const response = await fetch("http://localhost:8000/api/v1/products/");
     const parsedResponse = await response.json();
     const products = parsedResponse.data;
     return products;
