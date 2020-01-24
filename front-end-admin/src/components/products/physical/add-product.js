@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
-import CKEditors from "react-ckeditor-component";
+// import CKEditors from "react-ckeditor-component";
 import one from "../../../assets/images/pro3/1.jpg";
 import user from "../../../assets/images/user.png";
 
@@ -178,7 +178,7 @@ export class Add_product extends Component {
                               <input
                                 value={this.state.manufacturer}
                                 onChange={this.handleChange}
-                                name="Manufacturer"
+                                name="manufacturer"
                                 className="form-control"
                                 id="validationCustom04"
                                 type="text"
@@ -191,18 +191,11 @@ export class Add_product extends Component {
                               Add Description :
                             </label>
                             <div className="col-xl-8 col-sm-7 description-sm">
-                              <CKEditors
+                              <textarea
                                 value={this.state.description}
                                 onChange={this.handleChange}
                                 name="description"
-                                activeclassName="p10"
-                                content={this.state.content}
-                                events={{
-                                  blur: this.onBlur,
-                                  afterPaste: this.afterPaste,
-                                  change: this.onChange
-                                }}
-                              />
+                              ></textarea>
                             </div>
                           </div>
                         </div>
