@@ -22,13 +22,10 @@ const productSchema = new mongoose.Schema({
       default: undefined
     }
   ],
-  // for the user to have possession of product
-  owner: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-    }
-  ],
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
   isOnSale: {
     type: Boolean,
     default: false
@@ -68,6 +65,7 @@ productSchema.methods.getProductPrice = function() {
 
 // updates the products fields except for image and category
 productSchema.methods.updateFields = async function(productData) {
+  this.owner = productData.owner;
   this.name = productData.name;
   this.description = productData.description;
   this.upc = productData.upc;
