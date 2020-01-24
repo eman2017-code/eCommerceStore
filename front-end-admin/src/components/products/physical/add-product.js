@@ -15,21 +15,20 @@ export class Add_product extends Component {
       manufacturer: "",
       description: "",
       sku: this.randomSkuGenerator(),
-      upc: this.randomUpcGenerator()
+      upc: this.randomUpcGenerator(),
+      products: []
     };
   }
 
   // method to randomly generate sku number
   randomSkuGenerator = () => {
     const randomSku = Math.floor(1000000 + Math.random() * 900000);
-    console.log("randomSku", randomSku);
     return randomSku;
   };
 
   // method to randomly generate upc number
   randomUpcGenerator = () => {
     const randomUpc = parseInt(Math.random() * 1000000000, 10);
-    console.log("randomUpc", randomUpc);
     return randomUpc;
   };
 
@@ -53,6 +52,7 @@ export class Add_product extends Component {
   addProduct = async (e, productFromForm) => {
     //prevents the browser from reloading when an event is called...
     e.preventDefault();
+    console.log("productFromForm:", productFromForm);
     try {
       //Call the array of all of the courses in the DB.
       const createdProductResponse = await fetch(
@@ -68,14 +68,18 @@ export class Add_product extends Component {
       );
       const parsedResponse = await createdProductResponse.json();
       console.log("parsedResponse:", parsedResponse);
-    } catch (err) {}
+      this.setState({
+        products: [...this.state.products, parsedResponse.data]
+      });
+    } catch (err) {
+      console.log("err:", err);
+    }
   };
 
   render() {
     return (
       <Fragment>
         <Breadcrumb title="Add Product" parent="Physical" />
-
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12">
@@ -85,7 +89,7 @@ export class Add_product extends Component {
                 </div>
                 <form
                   className="needs-validation add-product-form"
-                  onSubmit={this.addProduct}
+                  onSubmit={e => this.addProduct(e, this.state)}
                 >
                   <div className="card-body">
                     <div className="row product-adding">
@@ -101,7 +105,6 @@ export class Add_product extends Component {
                                 onChange={this.handleChange}
                               ></input>
                             </label>
-                            <div className="col-xl-3 xl-50 col-sm-6 col-3"></div>
                           </div>
                         </div>
                       </div>
