@@ -22,13 +22,10 @@ const productSchema = new mongoose.Schema({
       default: undefined
     }
   ],
-  // for the user to have possession of product
-  owner: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-    }
-  ],
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
   isOnSale: {
     type: Boolean,
     default: false
