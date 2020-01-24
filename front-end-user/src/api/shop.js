@@ -9,7 +9,6 @@ export default {
     try {
       const response = await fetch(
         "http://35.222.68.3:5000/api/v1/users/register/",
-        // "http://localhost:8000/api/v1/users/register/",
         {
           method: "POST",
           body: JSON.stringify(registrationInfo),
@@ -29,7 +28,6 @@ export default {
     try {
       const response = await fetch(
         "http://35.222.68.3:5000/api/v1/users/login/",
-        // "http://localhost:8000/api/v1/users/login/",
         {
           method: "POST",
           body: JSON.stringify(loginInfo),
@@ -49,7 +47,6 @@ export default {
     try {
       const response = await fetch(
         "http://35.222.68.3:8000/api/v1/users/logout/",
-        // "http://localhost:8000/api/v1/users/logout/",
         {
           method: "POST",
           credentials: "include",
@@ -66,7 +63,6 @@ export default {
   getAllProducts: async callBack => {
     const response = await fetch(
       "http://35.222.68.3:8000/api/v1/search/all-products/"
-      // "http://localhost:8000/api/v1/search/all-products/"
     );
     const parsedResponse = await response.json();
 
@@ -90,7 +86,6 @@ export default {
 
     const response = await fetch(
       "http://35.222.68.3:8000/api/v1/search/category/" + category + "/"
-      // "http://localhost:8000/api/v1/search/category/" + category + "/"
     );
     const parsedResponse = await response.json();
     const products = parsedResponse.data.map(
@@ -102,7 +97,6 @@ export default {
   getUsersCart: async userId => {
     const response = await fetch(
       "http://35.222.68.3:8000/api/v1/carts/" + userId + "/",
-      // "http://localhost:8000/api/v1/carts/" + userId + "/",
       {
         credentials: "include"
       }
@@ -121,18 +115,14 @@ export default {
       quantity: quantity
     };
 
-    const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/cart-items/",
-      // "http://localhost:8000/api/v1/cart-items/",
-      {
-        method: "POST",
-        body: JSON.stringify(dataToSend),
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
-        }
+    const response = await fetch("http://35.222.68.3:8000/api/v1/cart-items/", {
+      method: "POST",
+      body: JSON.stringify(dataToSend),
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
       }
-    );
+    });
     const parsedResponse = await response.json();
 
     return parsedResponse;
@@ -142,7 +132,6 @@ export default {
   removeFromUsersCart: async productId => {
     const response = await fetch(
       "http://35.222.68.3:8000/api/v1/cart-items/" + productId + "/",
-      // "http://localhost:8000/api/v1/cart-items/" + productId + "/",
       {
         method: "DELETE",
         credentials: "include"
@@ -157,7 +146,6 @@ export default {
   updateProductQuantity: async product => {
     const response = await fetch(
       "http://35.222.68.3:8000/api/v1/cart-items/" + product.upc + "/",
-      // "http://localhost:8000/api/v1/cart-items/" + product.upc + "/",
       {
         method: "PUT",
         credentials: "include",
@@ -174,7 +162,6 @@ export default {
   fetchSingleProductFromElastic: async productId => {
     const response = await fetch(
       "http://35.222.68.3:8000/api/v1/search/product/" + productId + "/"
-      // "http://localhost:8000/api/v1/search/product/" + productId + "/"
     );
     const parsedResponse = await response.json();
 

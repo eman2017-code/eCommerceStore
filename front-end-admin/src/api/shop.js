@@ -3,8 +3,7 @@ export default {
   registerUser: async registrationInfo => {
     try {
       const response = await fetch(
-        // "http://35.222.68.3:5000/api/v1/users/register/",
-        "http://localhost:8000/api/v1/users/admin/register/",
+        "http://35.222.68.3:5000/api/v1/users/register/",
         {
           method: "POST",
           body: JSON.stringify(registrationInfo),
@@ -23,8 +22,7 @@ export default {
   loginUser: async loginInfo => {
     try {
       const response = await fetch(
-        // "http://35.222.68.3:5000/api/v1/users/login/",
-        "http://localhost:8000/api/v1/users/admin/login/",
+        "http://35.222.68.3:5000/api/v1/users/login/",
         {
           method: "POST",
           body: JSON.stringify(loginInfo),
@@ -43,8 +41,7 @@ export default {
   logoutUser: async () => {
     try {
       const response = await fetch(
-        // "http://35.222.68.3:8000/api/v1/users/logout/",
-        "http://localhost:8000/api/v1/users/logout/",
+        "http://35.222.68.3:8000/api/v1/users/logout/",
         {
           method: "POST",
           credentials: "include",
@@ -59,7 +56,7 @@ export default {
   },
 
   listProductsAdmin: async callBack => {
-    const response = await fetch("http://localhost:8000/api/v1/products/");
+    const response = await fetch("http://35.222.68.3:8000/api/v1/products/");
     const parsedResponse = await response.json();
     const products = parsedResponse.data;
     return products;
