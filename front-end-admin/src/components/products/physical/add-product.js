@@ -95,29 +95,29 @@ export class Add_product extends Component {
                 <div className="card-header">
                   <h5>Add Product</h5>
                 </div>
-                <div className="card-body">
-                  <div className="row product-adding">
-                    <div className="col-xl-5">
-                      <div className="add-product">
-                        <div className="row">
-                          <label className="col-xl-3 col-sm-4 mb-0">
-                            Select Photo:{" "}
-                            <input
-                              type="file"
-                              value={this.state.file}
-                              name="file"
-                              onChange={this.handleChange}
-                            ></input>
-                          </label>
-                          <div className="col-xl-3 xl-50 col-sm-6 col-3"></div>
+                <form
+                  className="needs-validation add-product-form"
+                  onSubmit={this.addProduct}
+                >
+                  <div className="card-body">
+                    <div className="row product-adding">
+                      <div className="col-xl-5">
+                        <div className="add-product">
+                          <div className="row">
+                            <label className="col-xl-3 col-sm-4 mb-0">
+                              Select Photo:{" "}
+                              <input
+                                type="file"
+                                name="image"
+                                value={this.state.image}
+                                onChange={this.handleChange}
+                              ></input>
+                            </label>
+                            <div className="col-xl-3 xl-50 col-sm-6 col-3"></div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="col-xl-7">
-                      <form
-                        className="needs-validation add-product-form"
-                        onSubmit={this.addProduct}
-                      >
+                      <div className="col-xl-7">
                         <div className="form form-label-center">
                           <div className="form-group mb-3 row">
                             <label className="col-xl-3 col-sm-4 mb-0">
@@ -217,10 +217,10 @@ export class Add_product extends Component {
                             Discard
                           </button>
                         </div>
-                      </form>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
