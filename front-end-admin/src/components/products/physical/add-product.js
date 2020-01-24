@@ -215,15 +215,11 @@ export class Add_product extends Component {
   }
 }
 
-// export default Add_product;
-
 Add_product.propTypes = {
   addProduct: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-  // isLoggedIn: state.user.isLoggedIn,
-  // loggedInUser: state
   products: state.products
 });
 
