@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
 import CKEditors from "react-ckeditor-component";
-import { AvField, AvForm } from "availity-reactstrap-validation";
+// import { AvField, AvForm } from "availity-reactstrap-validation";
 import one from "../../../assets/images/pro3/1.jpg";
 import user from "../../../assets/images/user.png";
 
@@ -11,14 +11,16 @@ export class Add_product extends Component {
     this.state = {
       quantity: 1,
       name: "",
-      category: "",
       isOnSale: false,
+      // randomly generates each number
       upc: this.randomUpcGenerator(),
       sku: this.randomSkuGenerator(),
       description: "",
       price: "",
       model: "",
-      manufacturer: ""
+      manufacturer: "",
+      // for the image
+      file: ""
     };
   }
 
@@ -64,11 +66,6 @@ export class Add_product extends Component {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  // //image upload
-  // _handleSubmit(e) {
-  //   e.preventDefault();
-  // }
-
   // route to search for products
   addProduct = async () => {
     try {
@@ -87,23 +84,6 @@ export class Add_product extends Component {
       console.log(parsedResponse);
     } catch (err) {}
   };
-
-  // _handleImgChange(e, i) {
-  //   e.preventDefault();
-
-  //   let reader = new FileReader();
-  //   let file = e.target.files[0];
-  //   const { dummyimgs } = this.state;
-
-  //   reader.onloadend = () => {
-  //     dummyimgs[i].img = reader.result;
-  //     this.setState({
-  //       file: file,
-  //       dummyimgs
-  //     });
-  //   };
-  //   reader.readAsDataURL(file);
-  // }
 
   render() {
     return (
@@ -135,18 +115,20 @@ export class Add_product extends Component {
                       </div>
                     </div>
                     <div className="col-xl-7">
-                      <AvForm
+                      {/* <AvForm
                         className="needs-validation add-product-form"
                         onValidSubmit={this.handleValidSubmit}
                         onInvalidSubmit={this.handleInvalidSubmit}
-                      >
+                      > */}
+                      <form className="needs-validation add-product-form">
                         <div className="form form-label-center">
                           <div className="form-group mb-3 row">
                             <label className="col-xl-3 col-sm-4 mb-0">
                               Product Name :
                             </label>
                             <div className="col-xl-8 col-sm-7">
-                              <AvField
+                              {/* <AvField */}
+                              <input
                                 value={this.state.name}
                                 onChange={this.handleChange}
                                 className="form-control"
@@ -154,7 +136,9 @@ export class Add_product extends Component {
                                 id="validationCustom01"
                                 type="text"
                                 required
-                              />
+                              >
+                                {/* /> */}
+                              </input>
                             </div>
                             <div className="valid-feedback">Looks good!</div>
                           </div>
@@ -163,7 +147,8 @@ export class Add_product extends Component {
                               Model :
                             </label>
                             <div className="col-xl-8 col-sm-7">
-                              <AvField
+                              {/* <AvField */}
+                              <input
                                 value={this.state.model}
                                 onChange={this.handleChange}
                                 className="form-control mb-0"
@@ -171,7 +156,8 @@ export class Add_product extends Component {
                                 id="validationCustom02"
                                 type="text"
                                 required
-                              />
+                              ></input>
+                              {/* /> */}
                             </div>
                             <div className="valid-feedback">Looks good!</div>
                           </div>
@@ -180,7 +166,8 @@ export class Add_product extends Component {
                               Price :
                             </label>
                             <div className="col-xl-8 col-sm-7">
-                              <AvField
+                              {/* <AvField */}
+                              <input
                                 value={this.state.price}
                                 onChange={this.handleChange}
                                 className="form-control mb-0"
@@ -188,7 +175,8 @@ export class Add_product extends Component {
                                 id="validationCustom03"
                                 type="number"
                                 required
-                              />
+                              ></input>
+                              {/* /> */}
                             </div>
                             <div className="valid-feedback">Looks good!</div>
                           </div>
@@ -238,7 +226,8 @@ export class Add_product extends Component {
                               Manufacturer :
                             </label>
                             <div className="col-xl-8 col-sm-7">
-                              <AvField
+                              {/* <AvField */}
+                              <input
                                 value={this.state.manufacturer}
                                 onChange={this.handleChange}
                                 className="form-control"
@@ -246,7 +235,8 @@ export class Add_product extends Component {
                                 id="validationCustom04"
                                 type="text"
                                 required
-                              />
+                              ></input>
+                              {/* /> */}
                             </div>
                             <div className="valid-feedback">Looks good!</div>
                           </div>
@@ -277,7 +267,8 @@ export class Add_product extends Component {
                             Discard
                           </button>
                         </div>
-                      </AvForm>
+                      </form>
+                      {/* </AvForm> */}
                     </div>
                   </div>
                 </div>
