@@ -29,11 +29,10 @@ router.post("/", loginRequired, async (req, res, next) => {
 
     // if the product already exists as a cart item in the users cart
     if (foundCart.doesProductExist(productId)) {
-
       // gets the existing cart item and increases the quantity
       const existingCartItem = foundCart.getExistingCartItem(productId);
 
-      existingCartItem.quantity = quantity;
+      existingCartItem.quantity = existingCartItem.quantity + quantity;
       await existingCartItem.save();
 
       res.json({
@@ -46,6 +45,7 @@ router.post("/", loginRequired, async (req, res, next) => {
 
     // otherwise, a new cart item is created and added to the cart
     } else {
+      console.log('cart item does not already exist')
       let foundProduct = await Product.findOne({ 'upc': productId });
 
       // if the product does not exists in mongoDB, it is queried from elasticsearch to 
