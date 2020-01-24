@@ -13,7 +13,9 @@ export class Add_product extends Component {
       model: "",
       price: "",
       manufacturer: "",
-      description: ""
+      description: "",
+      sku: this.randomSkuGenerator(),
+      upc: this.randomUpcGenerator()
     };
   }
 
