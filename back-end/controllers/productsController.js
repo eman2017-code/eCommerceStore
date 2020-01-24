@@ -25,14 +25,17 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// user_cart_instances = (models.Cart.select().where(models.Cart.user_id == current_user.id))
+
 // this route lists all of the products that the admin specifically has created
 router.get("/productsByAdmin", loginRequired, async (req, res, next) => {
   try {
     // find the user
     const foundUser = await User.findOne({ _id: req.session.userId });
     // find all the products that belong to the admin
+    // const productsByAdmin = await Product.find({});
     const productsByAdmin = await Product.find({});
-    // console.log(p)
+    console.log("productsByAdmin:", productsByAdmin);
     res.json({
       data: productsByAdmin,
       status: {
@@ -51,7 +54,6 @@ router.post("/", adminRequired, async (req, res, next) => {
   const productData = req.body;
   const productImage = req.files.image;
 
-  // grabbing the user
   const foundUser = req.session;
   console.log("foundUser:", foundUser);
 
@@ -65,12 +67,12 @@ router.post("/", adminRequired, async (req, res, next) => {
   productData.image = awsPathToImage;
 
   try {
-    const newProduct = await Product.create(productData);
+    const newProduct = await Product.create(productData); // if any categories were specified for the products
+    newProduct.owner.push(foundUser.userId);
+    // because we are mutating the document
+    newProduct.save();
     console.log("newProduct:", newProduct);
-    // putting the products in possession of the admin creating them
-    newProduct.owner.push(foundUser);
 
-    // if any categories were specified for the products
     await newProduct.addCategories(productData);
 
     // adds the new product to elasticsearch
