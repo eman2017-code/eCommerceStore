@@ -68,9 +68,6 @@ router.post("/", adminRequired, async (req, res, next) => {
 
       // otherwise if the product was successfully uploaded to elasticsearch
     } else {
-      // checks if 
-
-      // uploads the image to the aws s3 bucket
       fileUploadManager.uploadFileToAWS(productImage, res);
 
       res.send({
@@ -91,24 +88,26 @@ router.post("/", adminRequired, async (req, res, next) => {
 router.put("/:productId/", adminRequired, async (req, res, next) => {
   const productId = req.params.productId;
   const productData = req.body;
-  const productImage = req.files;
+  const productImage = req.files.image;
 
   try {
     // updates the product in mongo
     const foundProduct = await Product.findOne({ upc: productId });
     await foundProduct.updateFields(productData);
-
-    // updates the products categories
     await foundProduct.addCategories(productData);
 
-    // updates the products image in aws - deletes existing, uploads new
     const fileUploadManager = new FileUploadManager();
+
+    // validates the new images name is unique, then updates the image in aws
     const existingImageName = foundProduct.getImageName();
-    fileUploadManager.updateFileInAWS(existingImageName, productImage.image);
+    if (existingImageName !== productImage.name) {
+      productImage.name = await fileUploadManager.validateFileNameIsUnique(productImage.name);
+    }
+    fileUploadManager.updateFileInAWS(existingImageName, productImage, res);
 
     // gets the path the updated product image in aws and store it in the product image field
     const awsPathToImage = fileUploadManager.getURLToUploadedFile(
-      productImage.image.name
+      productImage.name
     )
     foundProduct.image = awsPathToImage;
     await foundProduct.save();
@@ -137,7 +136,7 @@ router.delete('/:productId/', adminRequired, async (req, res, next) => {
   const productId = req.params.productId;
 
   try {
-    const foundProduct = await Product.findOne({ upc: productId });
+    const foundProduct = await Product.find({ upc: productId });
 
     // gets the images name so it can be removed from aws
     const imageName = foundProduct.getImageName();

@@ -101,7 +101,7 @@ class FileUploadManager {
             // uploads the file to the aws s3 bucket
             this.s3.putObject(awsData, (error, data) => {
                 if (error) {
-                    response.send({
+                    response.json({
                         data: {},
                         status: {
                             code: 400,
@@ -118,9 +118,9 @@ class FileUploadManager {
     }
 
     // removes a existing file from aws and adds a new one
-    updateFileInAWS(existingFileName, newFile) {
-        this.deleteFileFromAWS(existingFileName);
-        this.uploadFileToAWS(newFile);
+    updateFileInAWS(existingFileName, newFile, response) {
+        this.deleteFileFromAWS(existingFileName, response);
+        this.uploadFileToAWS(newFile, response);
     }
 
     // deletes a file from the aws s3 bucket
