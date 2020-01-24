@@ -3,6 +3,7 @@ const CartItem = require("../models/cartItem.js");
 const Cart = require("../models/cart.js");
 const Product = require("../models/product.js");
 const loginRequired = require("../middleware/users/loginRequired.js");
+const ElasticSearchManager = require("../managers/ElasticSearchManager.js");
 
 const router = express.Router();
 
@@ -28,11 +29,10 @@ router.post("/", loginRequired, async (req, res, next) => {
 
     // if the product already exists as a cart item in the users cart
     if (foundCart.doesProductExist(productId)) {
-
       // gets the existing cart item and increases the quantity
       const existingCartItem = foundCart.getExistingCartItem(productId);
 
-      existingCartItem.quantity = quantity;
+      existingCartItem.quantity = existingCartItem.quantity + quantity;
       await existingCartItem.save();
 
       res.json({
@@ -45,9 +45,17 @@ router.post("/", loginRequired, async (req, res, next) => {
 
     // otherwise, a new cart item is created and added to the cart
     } else {
+      console.log('cart item does not already exist')
+      let foundProduct = await Product.findOne({ 'upc': productId });
 
-      // need to query the whole product so the getProductPrice method is accessible
-      const foundProduct = await Product.findOne({ 'upc': productId });
+      // if the product does not exists in mongoDB, it is queried from elasticsearch to 
+      // get the product data, then its added to mongoDB
+      if (foundProduct === null) {
+        const elasticSearchManager = new ElasticSearchManager();
+        const productData = await elasticSearchManager.getProductByUPC(productId);
+        productData.category = undefined;
+        foundProduct = await Product.create(productData);
+      }
 
       const newCartItem = await CartItem.create({ 
         product: foundProduct._id,
