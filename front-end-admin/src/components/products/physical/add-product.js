@@ -3,9 +3,12 @@ import Breadcrumb from "../../common/breadcrumb";
 // import CKEditors from "react-ckeditor-component";
 import one from "../../../assets/images/pro3/1.jpg";
 import user from "../../../assets/images/user.png";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 export class Add_product extends Component {
   constructor(props) {
+    console.log("props in Add_product Component:", props);
     super(props);
     this.state = {
       image: "",
@@ -15,8 +18,7 @@ export class Add_product extends Component {
       manufacturer: "",
       description: "",
       sku: this.randomSkuGenerator(),
-      upc: this.randomUpcGenerator(),
-      products: []
+      upc: this.randomUpcGenerator()
     };
   }
 
@@ -68,9 +70,6 @@ export class Add_product extends Component {
       );
       const parsedResponse = await createdProductResponse.json();
       console.log("parsedResponse:", parsedResponse);
-      this.setState({
-        products: [...this.state.products, parsedResponse.data]
-      });
     } catch (err) {
       console.log("err:", err);
     }
@@ -215,4 +214,16 @@ export class Add_product extends Component {
   }
 }
 
-export default Add_product;
+// export default Add_product;
+
+Add_product.propTypes = {
+  addProduct: PropTypes.func
+};
+
+const mapStateToProps = state => ({
+  // isLoggedIn: state.user.isLoggedIn,
+  // loggedInUser: state
+  products: state.products
+});
+
+export default connect(mapStateToProps)(Add_product);
