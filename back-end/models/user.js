@@ -31,7 +31,8 @@ const userSchema = new mongoose.Schema({
   timestamp: {
     type: Date,
     default: Date.now
-  }
+  },
+  
 });
 
 // logs in the user

@@ -9,6 +9,7 @@ export default {
     try {
       const response = await fetch(
         "http://35.222.68.3:8000/api/v1/users/register/",
+        // "http://localhost:8000/api/v1/users/register/",
         {
           method: "POST",
           body: JSON.stringify(registrationInfo),
