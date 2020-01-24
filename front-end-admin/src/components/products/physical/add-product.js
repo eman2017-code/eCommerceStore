@@ -129,7 +129,6 @@ export class Add_product extends Component {
                                 onChange={this.handleChange}
                                 name="name"
                                 className="form-control"
-                                name="product_category"
                                 id="validationCustom01"
                                 type="text"
                                 required
@@ -146,7 +145,6 @@ export class Add_product extends Component {
                                 onChange={this.handleChange}
                                 name="model"
                                 className="form-control mb-0"
-                                name="product_category"
                                 id="validationCustom02"
                                 type="text"
                                 required
@@ -182,7 +180,6 @@ export class Add_product extends Component {
                                 onChange={this.handleChange}
                                 name="Manufacturer"
                                 className="form-control"
-                                name="product_category"
                                 id="validationCustom04"
                                 type="text"
                                 required
