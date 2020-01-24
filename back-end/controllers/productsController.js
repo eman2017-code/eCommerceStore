@@ -109,6 +109,7 @@ router.post("/", adminRequired, async (req, res, next) => {
 router.put("/:productId/", adminRequired, async (req, res, next) => {
   const productId = req.params.productId;
   const productData = req.body;
+  productData.owner = req.session.userId;
   const productImage = req.files.image;
 
   try {

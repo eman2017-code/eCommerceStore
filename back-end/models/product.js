@@ -65,6 +65,7 @@ productSchema.methods.getProductPrice = function() {
 
 // updates the products fields except for image and category
 productSchema.methods.updateFields = async function(productData) {
+  this.owner = productData.owner;
   this.name = productData.name;
   this.description = productData.description;
   this.upc = productData.upc;
