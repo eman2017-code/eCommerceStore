@@ -70,6 +70,7 @@ export class Add_product extends Component {
       );
       const parsedResponse = await createdProductResponse.json();
       console.log("parsedResponse:", parsedResponse);
+      console.log("this.props:", this.props);
     } catch (err) {
       console.log("err:", err);
     }
