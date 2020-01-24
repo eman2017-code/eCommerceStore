@@ -8,7 +8,9 @@
     "bootstrap": "^4.4.1",
     "chalk": "^2.4.2",
     "chart.js": "^2.9.3",
+    "css-loader": "^3.4.2",
     "node-sass": "^4.13.1",
+    "postcss-loader": "^3.0.0",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-chartjs": "^1.2.0",
@@ -37,6 +39,7 @@
     "react-toastify": "^5.5.0",
     "reactstrap": "^8.0.1",
     "redux-thunk": "^2.3.0",
+    "sass-loader": "^8.0.2",
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
