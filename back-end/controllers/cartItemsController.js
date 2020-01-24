@@ -48,12 +48,13 @@ router.post("/", loginRequired, async (req, res, next) => {
     } else {
       let foundProduct = await Product.findOne({ 'upc': productId });
 
+      // if the product does not exists in mongoDB, it is queried from elasticsearch to 
+      // get the product data, then its added to mongoDB
       if (foundProduct === null) {
         const elasticSearchManager = new ElasticSearchManager();
-        const productData = await elasticSearchManager.getProductIdByUPC(productId);
-        console.log('products data from elasticsearch:', productData);
-
-        // foundProduct = await Product.create(productData);
+        const productData = await elasticSearchManager.getProductByUPC(productId);
+        productData.category = undefined;
+        foundProduct = await Product.create(productData);
       }
 
       const newCartItem = await CartItem.create({ 

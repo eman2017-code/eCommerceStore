@@ -122,6 +122,7 @@ export default {
       productId: productId,
       quantity: quantity
     };
+    console.log('productId:', productId)
 
     const response = await fetch(
       // "http://35.222.68.3:8000/api/v1/cart-items/",

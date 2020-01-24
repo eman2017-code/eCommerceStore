@@ -149,14 +149,14 @@ class ElasticSearchManager {
           bool: {
             filter: {
               term: {
-                upc: productUPC
+                "message.upc": productUPC
               }
             }
           }
         }
       }
     });
-    return this.parseResponse(response)
+    return this.parseResponse(response).map(product => product._source.message)[0];
   }
 
   // queries for a product by its upc value and returns the elasticsearch id of the product
@@ -168,7 +168,7 @@ class ElasticSearchManager {
           bool: {
             filter: {
               term: {
-                upc: productUPC
+                "message.upc": productUPC
               }
             }
           }
