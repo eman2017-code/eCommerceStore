@@ -1,5 +1,3 @@
-import { listProductsAdmin } from "../actions";
-
 export default {
   // makes call to the api to register a new user
   registerUser: async registrationInfo => {
