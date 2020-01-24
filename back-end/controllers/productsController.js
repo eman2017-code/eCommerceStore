@@ -136,7 +136,7 @@ router.delete('/:productId/', adminRequired, async (req, res, next) => {
   const productId = req.params.productId;
 
   try {
-    const foundProduct = await Product.find({ upc: productId });
+    const foundProduct = await Product.findOne({ upc: productId });
 
     // gets the images name so it can be removed from aws
     const imageName = foundProduct.getImageName();

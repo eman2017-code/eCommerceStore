@@ -70,6 +70,20 @@ class ElasticSearchManager {
     return response;
   }
 
+  // deletes a product from elasticsearch
+  async deleteProduct(productId) {
+    const response = this.client.deleteByQuery({
+      index: this.INDEX,
+      body: {
+        query: {
+          match: {
+            "upc": productId
+          }
+        }
+      }  
+    })
+  }
+
   // return products based on whatever category is specified in the parameters
   async getProductsByCategory(size, category) {
     const response = await this.client.search({
