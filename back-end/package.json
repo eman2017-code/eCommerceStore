@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@elastic/elasticsearch": "^7.5.0",
-    "aws-sdk": "^2.607.0",
+    "aws-sdk": "^2.610.0",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "build": "^0.1.4",
