@@ -28,8 +28,8 @@ export default {
   loginUser: async loginInfo => {
     try {
       const response = await fetch(
-        "http://35.222.68.3:5000/api/v1/users/login/",
-        // "http://localhost:8000/api/v1/users/login/",
+        // "http://35.222.68.3:5000/api/v1/users/login/",
+        "http://localhost:8000/api/v1/users/login/",
         {
           method: "POST",
           body: JSON.stringify(loginInfo),
@@ -40,6 +40,8 @@ export default {
         }
       );
       const parsedResponse = await response.json();
+      console.log('login response:', parsedResponse);
+
       return parsedResponse;
     } catch (error) {}
   },
@@ -48,8 +50,8 @@ export default {
   logoutUser: async () => {
     try {
       const response = await fetch(
-        "http://35.222.68.3:8000/api/v1/users/logout/",
-        // "http://localhost:8000/api/v1/users/logout/",
+        // "http://35.222.68.3:8000/api/v1/users/logout/",
+        "http://localhost:8000/api/v1/users/logout/",
         {
           method: "POST",
           credentials: "include",
@@ -65,8 +67,8 @@ export default {
 
   getAllProducts: async callBack => {
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/search/all-products/"
-      // "http://localhost:8000/api/v1/search/all-products/"
+      // "http://35.222.68.3:8000/api/v1/search/all-products/"
+      "http://localhost:8000/api/v1/search/all-products/"
     );
     const parsedResponse = await response.json();
 
@@ -89,8 +91,8 @@ export default {
     }
 
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/search/category/" + category + "/"
-      // "http://localhost:8000/api/v1/search/category/" + category + "/"
+      // "http://35.222.68.3:8000/api/v1/search/category/" + category + "/"
+      "http://localhost:8000/api/v1/search/category/" + category + "/"
     );
     const parsedResponse = await response.json();
     const products = parsedResponse.data.map(
@@ -101,8 +103,8 @@ export default {
 
   getUsersCart: async userId => {
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/carts/" + userId + "/",
-      // "http://localhost:8000/api/v1/carts/" + userId + "/",
+      // "http://35.222.68.3:8000/api/v1/carts/" + userId + "/",
+      "http://localhost:8000/api/v1/carts/" + userId + "/",
       {
         credentials: "include"
       }
@@ -122,8 +124,8 @@ export default {
     };
 
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/cart-items/",
-      // "http://localhost:8000/api/v1/cart-items/",
+      // "http://35.222.68.3:8000/api/v1/cart-items/",
+      "http://localhost:8000/api/v1/cart-items/",
       {
         method: "POST",
         body: JSON.stringify(dataToSend),
@@ -141,8 +143,8 @@ export default {
   // removes a product from a logged in users cart
   removeFromUsersCart: async productId => {
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/cart-items/" + productId + "/",
-      // "http://localhost:8000/api/v1/cart-items/" + productId + "/",
+      // "http://35.222.68.3:8000/api/v1/cart-items/" + productId + "/",
+      "http://localhost:8000/api/v1/cart-items/" + productId + "/",
       {
         method: "DELETE",
         credentials: "include"
@@ -156,8 +158,8 @@ export default {
   // updates the quantity of a users cart item
   updateProductQuantity: async product => {
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/cart-items/" + product.upc + "/",
-      // "http://localhost:8000/api/v1/cart-items/" + product.upc + "/",
+      // "http://35.222.68.3:8000/api/v1/cart-items/" + product.upc + "/",
+      "http://localhost:8000/api/v1/cart-items/" + product.upc + "/",
       {
         method: "PUT",
         credentials: "include",
@@ -173,8 +175,8 @@ export default {
   // makes a fetch call to search for a product via elasticsearch
   fetchSingleProductFromElastic: async productId => {
     const response = await fetch(
-      "http://35.222.68.3:8000/api/v1/search/product/" + productId + "/"
-      // "http://localhost:8000/api/v1/search/product/" + productId + "/"
+      // "http://35.222.68.3:8000/api/v1/search/product/" + productId + "/"
+      "http://localhost:8000/api/v1/search/product/" + productId + "/"
     );
     const parsedResponse = await response.json();
 

@@ -3,6 +3,7 @@ const CartItem = require("../models/cartItem.js");
 const Cart = require("../models/cart.js");
 const Product = require("../models/product.js");
 const loginRequired = require("../middleware/users/loginRequired.js");
+const ElasticSearchManager = require("../managers/ElasticSearchManager.js");
 
 const router = express.Router();
 
@@ -45,9 +46,15 @@ router.post("/", loginRequired, async (req, res, next) => {
 
     // otherwise, a new cart item is created and added to the cart
     } else {
+      let foundProduct = await Product.findOne({ 'upc': productId });
 
-      // need to query the whole product so the getProductPrice method is accessible
-      const foundProduct = await Product.findOne({ 'upc': productId });
+      if (foundProduct === null) {
+        const elasticSearchManager = new ElasticSearchManager();
+        const productData = await elasticSearchManager.getProductIdByUPC(productId);
+        console.log('products data from elasticsearch:', productData);
+
+        // foundProduct = await Product.create(productData);
+      }
 
       const newCartItem = await CartItem.create({ 
         product: foundProduct._id,
