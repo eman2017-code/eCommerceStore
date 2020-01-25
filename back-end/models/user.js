@@ -47,7 +47,6 @@ userSchema.methods.login = function(req) {
   req.session.userId = this.id;
   req.session.email = this.email;
   req.session.isAdmin = this.isAdmin;
-  req.session.isStaff = this.isStaff;
 };
 
 // coverts the user instance to an object and removes the password hash

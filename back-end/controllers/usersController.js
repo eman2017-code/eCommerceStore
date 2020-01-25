@@ -40,7 +40,8 @@ router.post("/register/", async (req, res, next) => {
         firstName: clientData.firstName,
         lastName: clientData.lastName,
         email: clientData.email,
-        password: passwordHash
+        password: passwordHash,
+        isAdmin: false
       });
       newUser.login(req);
 
