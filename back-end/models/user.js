@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-
   active: {
     type: Boolean,
     default: true
@@ -32,7 +31,14 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  
+  isStaff: {
+    type: Boolean,
+    default: false
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false
+  }
 });
 
 // logs in the user
@@ -40,6 +46,8 @@ userSchema.methods.login = function(req) {
   req.session.isLoggedIn = true;
   req.session.userId = this.id;
   req.session.email = this.email;
+  req.session.isAdmin = this.isAdmin;
+  req.session.isStaff = this.isStaff;
 };
 
 // coverts the user instance to an object and removes the password hash
