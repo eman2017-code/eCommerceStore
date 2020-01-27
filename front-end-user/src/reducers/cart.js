@@ -147,7 +147,7 @@ export default function cartReducer(state = initialState, action) {
       indexOfProduct = state.cart.findIndex(product => product.upc === action.product.upc)
 
       // if the quantity of the product is atleast two
-      if (state.cart[indexOfProduct].qty > 1) {
+      if (state.cart[indexOfProduct].qty >= 1) {
         const productToUpdate = state.cart[indexOfProduct]
 
         productToUpdate.qty = action.product.qty // quantity already updated in the action

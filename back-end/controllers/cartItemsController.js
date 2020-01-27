@@ -61,6 +61,7 @@ router.post("/", loginRequired, async (req, res, next) => {
         product: foundProduct._id,
         quantity: quantity
       });
+      console.log('new cart item created:', newCartItem);
 
       foundCart.cartItems.push(newCartItem);
       await foundCart.save();
@@ -137,6 +138,7 @@ router.delete("/:productId/", loginRequired, async (req, res, next) => {
     next(error)
   }
 });
+
 
 module.exports = router;
 
