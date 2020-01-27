@@ -5,6 +5,19 @@ const loginRequired = require("../middleware/users/loginRequired.js");
 
 const router = express.Router();
 
+
+// for testing
+router.get('/test/', async (req, res, next) => {
+  res.json({
+    data: {},
+    status: {
+      code: 200,
+      message: 'Users controller is working.'
+    }
+  })
+});
+
+
 router.get("/", async (req, res, next) => {
   try {
     const users = await User.find({});
@@ -40,7 +53,7 @@ router.post("/register/", async (req, res, next) => {
         firstName: clientData.firstName,
         lastName: clientData.lastName,
         email: clientData.email,
-        password: passwordHash
+        password: passwordHash,
       });
       newUser.login(req);
 
