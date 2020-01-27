@@ -5,7 +5,7 @@
 
 // this code allows us to easily change between production api url and 
 // the development api url, by changing debug to true or false 
-const debug = false; 
+const debug = true; 
 let apiURL;
 if (debug) {
   apiURL = 'http://localhost:8000/api/v1/';
@@ -180,6 +180,7 @@ export default {
       }
     );
     const parsedResponse = await response.json();
+    console.log('response from updating quantity:', parsedResponse);
   },
 
   // makes a fetch call to search for a product via elasticsearch

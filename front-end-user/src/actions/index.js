@@ -52,6 +52,7 @@ export const loginUser = loginInfo => async dispatch => {
     // gets the user cart
     const getUsersCartResponse = await shop.getUsersCart(userInfo._id);
     const usersCart = getUsersCartResponse.data;
+    console.log('users cart:', usersCart);
 
     // sets the users cart in the store
     dispatch({
@@ -159,6 +160,7 @@ export const addToCart = (product, qty) => dispatch => {
 
 // action for when logged in users add a product to their cart
 export const addToUsersCart = (product, quantity) => async dispatch => {
+  console.log('addToUsersCart action');
   const productId = product.upc;
   const addToCartResponse = await shop.addToUsersCart(productId, quantity);
   dispatch({
@@ -203,6 +205,7 @@ export const incrementQty = (product, isLoggedIn) => async dispatch => {
 
   // updates cart item quantity in the back if user is logged in
   if (isLoggedIn) {
+    console.log('before updated cart item quantity fetch call');
     await shop.updateProductQuantity(product)
   }
 
