@@ -141,6 +141,24 @@ class ElasticSearchManager {
     return product;
   }
 
+  async getProductByUPC(productUPC) {
+    const response = await this.client.search({
+      index: this.INDEX,
+      body: {
+        query: {
+          bool: {
+            filter: {
+              term: {
+                "message.upc": productUPC
+              }
+            }
+          }
+        }
+      }
+    });
+    return this.parseResponse(response).map(product => product._source.message)[0];
+  }
+
   // queries for a product by its upc value and returns the elasticsearch id of the product
   async getProductIdByUPC(productUPC) {
     const response = await this.client.search({
@@ -150,7 +168,7 @@ class ElasticSearchManager {
           bool: {
             filter: {
               term: {
-                upc: productUPC
+                "message.upc": productUPC
               }
             }
           }
