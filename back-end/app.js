@@ -16,14 +16,12 @@ const cartItemsController = require("./controllers/cartItemsController.js");
 const categoriesController = require("./controllers/categoriesController.js");
 const elasticsearchController = require("./controllers/elasticsearchController.js");
 
-
 // imports the database connection module
 require("./db/db.js");
 
 const PORT = process.env.PORT;
 const API_PATH = "/api/v1/";
 const app = express();
-
 
 // setup middleware here
 app.use(
@@ -46,9 +44,12 @@ app.use(
 
 app.use(
   cors({
-    origin: ["http://35.222.68.3:5000",
-             "http://localhost:3000",
-             "http://localhost:3001"],
+    origin: [
+      "http://35.222.68.3:5000",
+      "http://34.67.79.176:5000",
+      "http://localhost:3000",
+      "http://localhost:3001"
+    ],
     credentials: true
   })
 );
