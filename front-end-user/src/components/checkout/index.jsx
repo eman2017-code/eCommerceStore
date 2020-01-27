@@ -33,8 +33,31 @@ class checkOut extends Component {
         });
     }
 
-    render() {
 
+    // executes when the paypal payment is successful
+    paypalSuccess = (data) => {
+        console.log('paypal success');
+    }
+
+    // executes when the paypal payment is canceled
+    paypalCancel = (data) => {
+        console.log('paypal cancel');
+    }
+
+    // executes when theres an error in a paypal payment
+    paypalError = (data) => {
+        console.log('paypal error');
+    }
+
+    render() {
+        const { cartItems, symbol, total } = this.props;
+
+        const client = {
+            sandbox:
+              "AZ4S98zFa01vym7NVeo_qthZyOnBhtNvQDsjhaZSMH-2_Y9IAJFbSD3HPueErYqN8Sa8WYRbjP7wWtd_",
+            production:
+              "AZ4S98zFa01vym7NVeo_qthZyOnBhtNvQDsjhaZSMH-2_Y9IAJFbSD3HPueErYqN8Sa8WYRbjP7wWtd_"
+          };
 
         return (
             <div>
@@ -143,8 +166,47 @@ class checkOut extends Component {
                                                     />
                                                 </div>
                                             </div>
-
                                         </div>
+
+                                        <div className="col-lg-6 col-sm-12 col-xs-12">
+                                            <div className="checkout-details">
+                                                <div className="order-box">
+                                                    <div className="title-box">
+                                                        <div> Product <span> Total</span></div>
+
+                                                        <ul className="qty">
+                                                        {cartItems.map((item, index) => {
+                                                            return (
+                                                                <li key={index}>
+                                                                    {item.name} × {item.qty}{" "}
+                                                                    <span>
+                                                                        {symbol} {total}
+                                                                    </span>
+                                                                </li>
+                                                            );
+                                                        })}
+                                                        </ul>
+                                                    </div>
+                                                    <div className="d-flex justify-content-between">
+                                                        <button
+                                                            type="button"
+                                                            className="btn-solid btn">
+                                                            Pay With Card
+                                                        </button>
+                                                        <PaypalExpressBtn
+                                                            env={"sandbox"}
+                                                            client={client}
+                                                            currency={"USD"}
+                                                            total={total}
+                                                            onError={this.paypalError}
+                                                            onSuccess={this.paypalSuccess}
+                                                            onCancel={this.paypalCancel}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </form>
                             </div>
