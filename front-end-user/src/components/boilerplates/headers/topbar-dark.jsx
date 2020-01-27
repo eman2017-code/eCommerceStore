@@ -39,7 +39,7 @@ class TopBarDark extends Component {
   // route to delete account
   deleteAccount = async () => {
     const response = await fetch(
-      "http://localhost:8000/api/v1/users/deleteAccount/",
+      "http://35.222.68.3:8000/api/v1/users/deleteAccount/",
       {
         credentials: "include",
         method: "DELETE"
