@@ -2,7 +2,7 @@
   "name": "multikart-backend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://react.pixelstrap.com/multikart-admin/",
+  "homepage": "http://34.67.79.176",
   "dependencies": {
     "availity-reactstrap-validation": "^2.6.0",
     "bootstrap": "^4.3.1",
