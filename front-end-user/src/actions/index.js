@@ -32,9 +32,13 @@ export const registerUser = registrationInfo => async dispatch => {
       type: types.LOGIN,
       userInfo: userInfo
     });
-    toast.success(registrationResponse.status.message);
+    toast.success(registrationResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    });
   } else {
-    toast.error(registrationResponse.status.message);
+    toast.error(registrationResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    });
   }
 };
 
@@ -52,7 +56,6 @@ export const loginUser = loginInfo => async dispatch => {
     // gets the user cart
     const getUsersCartResponse = await shop.getUsersCart(userInfo._id);
     const usersCart = getUsersCartResponse.data;
-    console.log('users cart:', usersCart);
 
     // sets the users cart in the store
     dispatch({
@@ -63,9 +66,13 @@ export const loginUser = loginInfo => async dispatch => {
       type: types.LOGIN,
       userInfo: userInfo
     });
-    toast.success(loginResponse.status.message);
+    toast.success(loginResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    });
   } else {
-    toast.error(loginResponse.status.message);
+    toast.error(loginResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    });
   }
 };
 
@@ -86,7 +93,9 @@ export const logoutUser = () => async dispatch => {
     type: types.LOGOUT
   });
 
-  toast.success(logoutResponse.status.message);
+  toast.success(logoutResponse.status.message, {
+    position: toast.POSITION.TOP_CENTER
+  });
 };
 
 
@@ -154,13 +163,14 @@ export const fetchSingleProductFromElastic = productId => async dispatch => {
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => dispatch => {
   dispatch(addToCartUnsafe(product, qty));
-  toast.success("Item added to cart");
+  toast.success("Item added to cart", {
+    position: toast.POSITION.TOP_CENTER
+  });
 };
 
 
 // action for when logged in users add a product to their cart
 export const addToUsersCart = (product, quantity) => async dispatch => {
-  console.log('addToUsersCart action');
   const productId = product.upc;
   const addToCartResponse = await shop.addToUsersCart(productId, quantity);
   dispatch({
@@ -168,7 +178,9 @@ export const addToUsersCart = (product, quantity) => async dispatch => {
     product: product,
     quantity: quantity
   });
-  toast.success("Item added to cart");
+  toast.success("Item added to cart", {
+    position: toast.POSITION.TOP_CENTER
+  });
 };
 
 
@@ -179,7 +191,9 @@ export const removeFromUsersCart = productId => async dispatch => {
     type: types.REMOVE_FROM_USERS_CART,
     productId: productId
   });
-  toast.success("Item removed from cart");
+  toast.success("Item removed from cart", {
+    position: toast.POSITION.TOP_CENTER
+  });
 };
 
 
@@ -191,10 +205,12 @@ export const addToCartUnsafe = (product, qty) => ({
 
 
 export const removeFromCart = productId => dispatch => {
-  toast.success("Item Removed from Cart");
   dispatch({
     type: types.REMOVE_FROM_CART,
     productId: productId
+  });
+  toast.success("Item Removed from Cart", {
+    position: toast.POSITION.TOP_CENTER
   });
 };
 
@@ -205,7 +221,6 @@ export const incrementQty = (product, isLoggedIn) => async dispatch => {
 
   // updates cart item quantity in the back if user is logged in
   if (isLoggedIn) {
-    console.log('before updated cart item quantity fetch call');
     await shop.updateProductQuantity(product)
   }
 
@@ -213,7 +228,9 @@ export const incrementQty = (product, isLoggedIn) => async dispatch => {
     type: types.INCREMENT_QTY,
     product: product 
   })
-  toast.success("Item Added to Cart")
+  toast.success("Item Added to Cart", {
+    position: toast.POSITION.TOP_CENTER
+  })
 };
 
 
@@ -230,14 +247,18 @@ export const decrementQty = (product, isLoggedIn) => async dispatch => {
     type: types.DECREMENT_QTY,
     product: product
   });
-  toast.success("Item removed from cart");
+  toast.success("Item removed from cart", {
+    position: toast.POSITION.TOP_CENTER
+  });
 };
 
 
 //Compare Products
 export const addToCompare = product => dispatch => {
-  toast.success("Item Added to Compare");
   dispatch(addToCompareUnsafe(product));
+  toast.success("Item Added to Compare", {
+    position: toast.POSITION.TOP_CENTER
+  });
 };
 
 
