@@ -80,7 +80,7 @@ export class Header extends Component {
           <div className="main-header-right row">
             <div className="main-header-left d-lg-none">
               <div className="logo-wrapper">
-                <a href="index.html">
+                <a href="/">
                   <img className="blur-up lazyloaded" src={logo} alt="" />
                 </a>
               </div>
