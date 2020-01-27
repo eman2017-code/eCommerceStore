@@ -58,7 +58,7 @@ export class Add_product extends Component {
     try {
       //Call the array of all of the courses in the DB.
       const createdProductResponse = await fetch(
-        "http://localhost:8000/api/v1/products/",
+        "http://35.222.68.3:8000/api/v1/products/",
         {
           method: "POST",
           credentials: "include",
