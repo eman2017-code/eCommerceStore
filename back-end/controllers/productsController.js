@@ -27,40 +27,25 @@ router.get("/", async (req, res, next) => {
 });
 
 
+// returns all of the products where the currently logged in admin is the owner
+router.get('/admin/', adminRequired, async (req, res, next) => {
+  const userId = req.session.userId;
 
-router.get('/admin/', async (req, res, next) => {
   try {
+    const allProducts = await Product.find({ 'owner': userId });
 
+    res.json({
+      data: allProducts,
+      status: {
+        code: 200,
+        message: 'Successfully got all the products.'
+      }
+    })
   } catch (error) {
     next(error);
   }
 });
 
-// ------- THIS IS THE ROUTE THAT SHOWS ALL THE PRODUCTS THAT AN ADNIN HAS CREATED ------- //
-
-// this route lists all of the products that the admin specifically has created
-router.get("/productsByAdmin", loginRequired, async (req, res, next) => {
-  try {
-    // array to list all of the products that the admin has created
-    // find the user
-    const foundUser = await User.findOne({ _id: req.session.userId });
-    console.log("foundUser._id:", foundUser._id);
-    // find all the products that belong to the admin
-    const productsByAdmin = await Product.find({
-      owners: { $in: foundUser._id }
-    });
-    console.log("foundProducts:", foundProducts);
-    res.json({
-      data: productsByAdmin,
-      status: {
-        code: 200,
-        message: "Successfully loaded all products you have created"
-      }
-    });
-  } catch (err) {
-    next(err);
-  }
-});
 
 // Create Route
 // this route is where the admin can create a new product
@@ -115,6 +100,7 @@ router.post("/", adminRequired, async (req, res, next) => {
     next(error);
   }
 });
+
 
 // Update Route
 // this route is where the admin can update an existing product
