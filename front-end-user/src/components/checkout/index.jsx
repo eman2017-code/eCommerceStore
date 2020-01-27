@@ -75,6 +75,73 @@ class checkOut extends Component {
                                                         onChange={this.handleInputChange}
                                                     />
                                                 </div>
+                                                <div className="form-group col-md-6 col-sm-6 col-xs-12">
+                                                    <div className="field-label">Phone</div>
+                                                    <input
+                                                        type="text"
+                                                        name="phone"
+                                                        value={this.state.phone}
+                                                        onChange={this.handleInputChange}
+                                                    />
+                                                </div>
+                                                <div className="form-group col-md-6 col-sm-6 col-xs-12">
+                                                    <div className="field-label">Email</div>
+                                                    <input
+                                                        type="email"
+                                                        name="email"
+                                                        value={this.state.email}
+                                                        onChange={this.handleInputChange}
+                                                    />
+                                                </div>
+                                                <div className="form-group col-md-12 col-sm-12 col-xs-12">
+                                                    <div className="field-label">Country</div>
+                                                    <select
+                                                        name="country"
+                                                        value={this.state.country}
+                                                        onChange={this.handleInputChange}
+                                                    >
+                                                        <option>India</option>
+                                                        <option>South Africa</option>
+                                                        <option>United States</option>
+                                                        <option>Australia</option>
+                                                    </select>    
+                                                </div>
+                                                <div className="form-group col-md-12 col-sm-12 col-xs-12">
+                                                    <div className="field-label">Address</div>
+                                                    <input
+                                                        type="text"
+                                                        name="address"
+                                                        value={this.state.address}
+                                                        onChange={this.handleInputChange}
+                                                    />   
+                                                </div>
+                                                <div className="form-group col-md-12 col-sm-12 col-xs-12">
+                                                    <div className="field-label">Town/City</div>
+                                                    <input
+                                                        type="text"
+                                                        name="city"
+                                                        value={this.state.city}
+                                                        onChange={this.handleInputChange}
+                                                    />   
+                                                </div>
+                                                <div className="form-group col-md-12 col-sm-6 col-xs-12">
+                                                    <div className="field-label">State</div>
+                                                    <input
+                                                        type="text"
+                                                        name="state"
+                                                        value={this.state.state}
+                                                        onChange={this.handleInputChange}
+                                                    />    
+                                                </div>
+                                                <div className="form-group col-md-12 col-sm-6 col-xs-12">
+                                                    <div className="field-label">Postal Code</div>
+                                                    <input
+                                                        type="text"
+                                                        name="pincode"
+                                                        value={this.state.spincode}
+                                                        onChange={this.handleInputChange}
+                                                    />
+                                                </div>
                                             </div>
 
                                         </div>

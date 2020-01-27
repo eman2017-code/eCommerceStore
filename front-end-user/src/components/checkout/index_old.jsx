@@ -211,7 +211,7 @@ class checkOut extends Component {
                           >
                             <option>India</option>
                             <option>South Africa</option>
-                            <option>United State</option>
+                            <option>United States</option>
                             <option>Australia</option>
                           </select>
                           {this.validator.message(
