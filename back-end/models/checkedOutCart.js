@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const checkedOutCart = new mongoose.Schema({
+const checkedOutCartSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -16,5 +16,8 @@ const checkedOutCart = new mongoose.Schema({
     }
 })
 
+const CheckedOutCart = new mongoose.model('CheckedOutCart', checkedOutCartSchema);
+
+module.exports = CheckedOutCart;
 
 
