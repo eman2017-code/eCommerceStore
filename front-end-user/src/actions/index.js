@@ -205,6 +205,7 @@ export const incrementQty = (product, isLoggedIn) => async dispatch => {
 
   // updates cart item quantity in the back if user is logged in
   if (isLoggedIn) {
+    console.log('before updated cart item quantity fetch call');
     await shop.updateProductQuantity(product)
   }
 

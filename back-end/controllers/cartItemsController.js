@@ -7,6 +7,7 @@ const ElasticSearchManager = require("../managers/ElasticSearchManager.js");
 
 const router = express.Router();
 
+
 // Create Route
 // this route create a new cart item and adds it to the users cart
 router.post("/", loginRequired, async (req, res, next) => {
@@ -45,7 +46,6 @@ router.post("/", loginRequired, async (req, res, next) => {
 
     // otherwise, a new cart item is created and added to the cart
     } else {
-      console.log('cart item does not already exist')
       let foundProduct = await Product.findOne({ 'upc': productId });
 
       // if the product does not exists in mongoDB, it is queried from elasticsearch to 
@@ -61,7 +61,6 @@ router.post("/", loginRequired, async (req, res, next) => {
         product: foundProduct._id,
         quantity: quantity
       });
-      console.log('new cart item created:', newCartItem);
 
       foundCart.cartItems.push(newCartItem);
       await foundCart.save();
@@ -78,6 +77,7 @@ router.post("/", loginRequired, async (req, res, next) => {
     next(error);
   }
 });
+
 
 // Update Route
 // this route is where users can update the quantity of a cart item
@@ -97,26 +97,40 @@ router.put("/:productId/", loginRequired, async (req, res, next) => {
         }
       }]
     )
-    console.log('foundCart:', foundCart)
 
     // finds the cart item that needs to be updated
     const foundCartItem = foundCart.getExistingCartItem(productId)
-    console.log('foundCartItem:', foundCartItem)
 
-    foundCartItem.quantity = newQuantity
-    await foundCartItem.save()
+    // removes the cart item from the users cart if the quantity is gonna be less than 1
+    if (newQuantity < 1) {
+      const deletedCartItem = await CartItem.findByIdAndDelete(foundCartItem.id).exec();
 
-    res.json({
-      data: foundCartItem.product,
-      status: {
-        code: 200,
-        message: "Product quantity successfully increased"
-      }
-    });
+      res.json({
+        data: {},
+        status: {
+          code: 204,
+          status: 'Product removed from cart'
+        }
+      })
+
+    } else {
+
+      foundCartItem.quantity = newQuantity
+      await foundCartItem.save()
+
+      res.json({
+        data: foundCartItem,
+        status: {
+          code: 200,
+          message: "Product quantity successfully increased"
+        }
+      });
+    }
   } catch (error) {
     next(error);
   }
 });
+
 
 // Delete Route
 // this route is where cart items are removed from their cart
@@ -130,7 +144,7 @@ router.delete("/:productId/", loginRequired, async (req, res, next) => {
       data: {},
       status: {
         code: 204,
-        mesage: "Product removed form cart"
+        mesage: "Product removed from cart"
       }
     })
 

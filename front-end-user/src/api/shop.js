@@ -180,6 +180,7 @@ export default {
       }
     );
     const parsedResponse = await response.json();
+    console.log('response from updating quantity:', parsedResponse);
   },
 
   // makes a fetch call to search for a product via elasticsearch
