@@ -8,6 +8,7 @@ const FileUploadManager = require("../managers/FileUploadManager.js");
 const ElasticSearchManager = require("../managers/ElasticSearchManager.js");
 const router = express.Router();
 
+
 // Index Route
 // returns all of the products the database
 router.get("/", async (req, res, next) => {
@@ -20,6 +21,16 @@ router.get("/", async (req, res, next) => {
         message: "Successfully got all products"
       }
     });
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+
+router.get('/admin/', async (req, res, next) => {
+  try {
+
   } catch (error) {
     next(error);
   }
@@ -68,6 +79,7 @@ router.post("/", adminRequired, async (req, res, next) => {
   try {
     // create the new product in mongoose
     const newProduct = await Product.create(productData);
+    newProduct.owner = req.session.userId;
     await newProduct.addCategories(productData);
     await newProduct.save();
 
