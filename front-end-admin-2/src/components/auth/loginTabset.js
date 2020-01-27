@@ -1,112 +1,176 @@
-import React, { Component, Fragment } from 'react';
-import { Tabs, TabList, TabPanel, Tab } from 'react-tabs';
-import { User, Unlock } from 'react-feather';
-import { withRouter } from 'react-router-dom';
+import React, { Component, Fragment } from "react";
+import { Tabs, TabList, TabPanel, Tab } from "react-tabs";
+import { User, Unlock } from "react-feather";
+import { withRouter, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { registerUser, loginUser } from "../../actions";
 
 export class LoginTabset extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeShow: true,
-            startDate: new Date()
-        }
-        this.handleChange = this.handleChange.bind(this)
-    }
+  constructor(props) {
+    console.log("props");
+    console.log(props);
+    super(props);
+    this.state = {
+      activeShow: true,
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: ""
+    };
+  }
 
-    clickActive = (event) => {
-        document.querySelector(".nav-link").classList.remove('show');
-        event.target.classList.add('show');
-    }
-    handleChange(date) {
-        this.setState({
-            startDate: date
-        });
-    }
+  handleChange = (e, date) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+      startDate: date
+    });
+  };
 
-    routeChange = () => {
-        this.props.history.push(`${process.env.PUBLIC_URL}/dashboard`);
-      }
-    render() {
-        return (
-            <div>
-                <Fragment>
-                    <Tabs>
-                        <TabList className="nav nav-tabs tab-coupon" >
-                            <Tab className="nav-link" onClick={(e) => this.clickActive(e)}><User />Login</Tab>
-                            <Tab className="nav-link" onClick={(e) => this.clickActive(e)}><Unlock />Register</Tab>
-                        </TabList>
+  handleSubmitLogin = e => {
+    e.preventDefault();
 
-                        <TabPanel>
-                            <form className="form-horizontal auth-form">
-                                <div className="form-group">
-                                    <input required="" name="login[username]" type="email" className="form-control" placeholder="Username" id="exampleInputEmail1" />
-                                </div>
-                                <div className="form-group">
-                                    <input required="" name="login[password]" type="password" className="form-control" placeholder="Password" />
-                                </div>
-                                <div className="form-terms">
-                                    <div className="custom-control custom-checkbox mr-sm-2">
-                                        <input type="checkbox" className="custom-control-input" id="customControlAutosizing" />
-                                        <label className="d-block">
-                                                    <input className="checkbox_animated" id="chk-ani2" type="checkbox" />
-                                                        Reminder Me <span className="pull-right"> <a href="#" className="btn btn-default forgot-pass p-0">lost your password</a></span>
-                                                </label>
-                                    </div>
-                                </div>
-                                <div className="form-button">
-                                    <button className="btn btn-primary" type="submit"  onClick={() => this.routeChange()}>Login</button>
-                                </div>
-                                <div className="form-footer">
-                                    <span>Or Login up with social platforms</span>
-                                    <ul className="social">
-                                        <li><a className="fa fa-facebook" href=""></a></li>
-                                        <li><a className="fa fa-twitter" href=""></a></li>
-                                        <li><a className="fa fa-instagram" href=""></a></li>
-                                        <li><a className="fa fa-pinterest" href=""></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </TabPanel>
-                        <TabPanel>
-                            <form className="form-horizontal auth-form">
-                                <div className="form-group">
-                                    <input required="" name="login[username]" type="email" className="form-control" placeholder="Username" id="exampleInputEmail12" />
-                                </div>
-                                <div className="form-group">
-                                    <input required="" name="login[password]" type="password" className="form-control" placeholder="Password" />
-                                </div>
-                                <div className="form-group">
-                                    <input required="" name="login[password]" type="password" className="form-control" placeholder="Confirm Password" />
-                                </div>
-                                <div className="form-terms">
-                                    <div className="custom-control custom-checkbox mr-sm-2">
-                                        <input type="checkbox" className="custom-control-input" id="customControlAutosizing" />
-                                        <label className="d-block">
-                                            <input className="checkbox_animated" id="chk-ani2" type="checkbox" />
-                                            I agree all statements in <span><a href="">Terms &amp; Conditions</a></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="form-button">
-                                    <button className="btn btn-primary" type="submit" onClick={() => this.routeChange()}>Register</button>
-                                </div>
-                                <div className="form-footer">
-                                    <span>Or Sign up with social platforms</span>
-                                    <ul className="social">
-                                        <li><a className="fa fa-facebook" href=""></a></li>
-                                        <li><a className="fa fa-twitter" href=""></a></li>
-                                        <li><a className="fa fa-instagram" href=""></a></li>
-                                        <li><a className="fa fa-pinterest" href=""></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </TabPanel>
-                    </Tabs>
-                </Fragment>
-            </div>
-        )
+    this.props.loginUser(this.state);
+  };
+
+  handleSubmitRegister = e => {
+    e.preventDefault();
+
+    this.props.registerUser(this.state);
+  };
+
+  clickActive = event => {
+    document.querySelector(".nav-link").classList.remove("show");
+    event.target.classList.add("show");
+  };
+
+  render() {
+    // if the admin is logged in
+    if (this.props.isLoggedIn) {
+      return <Redirect to={{ pathname: "/dashboard" }} />;
     }
+    return (
+      <div>
+        <Fragment>
+          <Tabs>
+            <TabList className="nav nav-tabs tab-coupon">
+              <Tab className="nav-link" onClick={e => this.clickActive(e)}>
+                <User />
+                Login
+              </Tab>
+              <Tab className="nav-link" onClick={e => this.clickActive(e)}>
+                <Unlock />
+                Register
+              </Tab>
+            </TabList>
+
+            <TabPanel>
+              <form
+                className="form-horizontal auth-form"
+                onSubmit={this.handleSubmitLogin}
+              >
+                <div className="form-group">
+                  <input
+                    name="email"
+                    type="text"
+                    className="form-control"
+                    placeholder="email"
+                    id="exampleInputEmail1"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    name="password"
+                    type="password"
+                    className="form-control"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="form-button">
+                  <button className="btn btn-primary" type="submit">
+                    Login
+                  </button>
+                </div>
+              </form>
+            </TabPanel>
+            <TabPanel>
+              <form
+                className="form-horizontal auth-form"
+                onSubmit={this.handleSubmitRegister}
+              >
+                <div className="form-group">
+                  <input
+                    name="firstName"
+                    type="text"
+                    className="form-control"
+                    placeholder="First Name"
+                    id="uniqueId1"
+                    value={this.state.firstName}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    name="lastName"
+                    type="text"
+                    className="form-control"
+                    placeholder="Last Name"
+                    id="uniqueId2"
+                    value={this.state.lastName}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    name="email"
+                    type="email"
+                    className="form-control"
+                    placeholder="Email"
+                    id="uniqueId3"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    name="password"
+                    type="password"
+                    className="form-control"
+                    placeholder="Password"
+                    id="uniqueId5"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="form-button">
+                  <button className="btn btn-primary" type="submit">
+                    Register
+                  </button>
+                </div>
+              </form>
+            </TabPanel>
+          </Tabs>
+        </Fragment>
+      </div>
+    );
+  }
 }
 
-export default withRouter(LoginTabset)
+LoginTabset.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  loginUser: PropTypes.func.isRequired,
+  registerUser: PropTypes.func
+};
 
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.isLoggedIn,
+  loggedInUser: state
+});
+
+export default connect(mapStateToProps, { loginUser, registerUser })(
+  LoginTabset
+);
