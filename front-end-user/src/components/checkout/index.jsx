@@ -67,8 +67,6 @@ class checkOut extends Component {
 
   StripeClick = () => {
     if (this.validator.allValid()) {
-      alert("You submitted the form and stuff!");
-
       var handler = window.StripeCheckout.configure({
         key: "pk_test_glxk17KhP7poKIawsaSgKtsL",
         locale: "auto",
