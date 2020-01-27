@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/multikart-admin/static/css/main.98d2308a.chunk.css",
-    "main.js": "/multikart-admin/static/js/main.0baa25f6.chunk.js",
-    "main.js.map": "/multikart-admin/static/js/main.0baa25f6.chunk.js.map",
-    "runtime~main.js": "/multikart-admin/static/js/runtime~main.9bf31454.js",
-    "runtime~main.js.map": "/multikart-admin/static/js/runtime~main.9bf31454.js.map",
-    "static/css/2.11e190d1.chunk.css": "/multikart-admin/static/css/2.11e190d1.chunk.css",
-    "static/js/2.e2542650.chunk.js": "/multikart-admin/static/js/2.e2542650.chunk.js",
-    "static/js/2.e2542650.chunk.js.map": "/multikart-admin/static/js/2.e2542650.chunk.js.map",
-    "index.html": "/multikart-admin/index.html",
-    "precache-manifest.e841c2f50ccf43d595b1c5eb11674353.js": "/multikart-admin/precache-manifest.e841c2f50ccf43d595b1c5eb11674353.js",
-    "service-worker.js": "/multikart-admin/service-worker.js",
-    "static/css/2.11e190d1.chunk.css.map": "/multikart-admin/static/css/2.11e190d1.chunk.css.map",
-    "static/css/main.98d2308a.chunk.css.map": "/multikart-admin/static/css/main.98d2308a.chunk.css.map",
-    "static/media/1.jpg": "/multikart-admin/static/media/1.269f2427.jpg",
-    "static/media/index.scss": "/multikart-admin/static/media/zw.98a0162e.svg",
-    "static/media/slick-theme.css": "/multikart-admin/static/media/slick.f97e3bbf.svg",
-    "static/media/stats.png": "/multikart-admin/static/media/stats.74470331.png"
+    "main.css": "/static/css/main.800baa8c.chunk.css",
+    "main.js": "/static/js/main.4ddadac9.chunk.js",
+    "main.js.map": "/static/js/main.4ddadac9.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.0cecfa12.chunk.css": "/static/css/2.0cecfa12.chunk.css",
+    "static/js/2.ed509d50.chunk.js": "/static/js/2.ed509d50.chunk.js",
+    "static/js/2.ed509d50.chunk.js.map": "/static/js/2.ed509d50.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.cea096a7a1c88b516135a02df13e8fc1.js": "/precache-manifest.cea096a7a1c88b516135a02df13e8fc1.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.0cecfa12.chunk.css.map": "/static/css/2.0cecfa12.chunk.css.map",
+    "static/css/main.800baa8c.chunk.css.map": "/static/css/main.800baa8c.chunk.css.map",
+    "static/media/1.jpg": "/static/media/1.269f2427.jpg",
+    "static/media/index.scss": "/static/media/zw.98a0162e.svg",
+    "static/media/slick-theme.css": "/static/media/slick.f97e3bbf.svg",
+    "static/media/stats.png": "/static/media/stats.74470331.png"
   }
 }
