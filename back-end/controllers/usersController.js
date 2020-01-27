@@ -112,17 +112,6 @@ router.post("/login/", async (req, res, next) => {
 router.post("/admin/register/", async (req, res, next) => {
   const clientData = req.body;
   try {
-    const doesAdminExist = await User.findOne({ isAdmin: true });
-    // if there is already an admin
-    if (doesAdminExist !== null) {
-      res.json({
-        data: {},
-        status: {
-          code: 403,
-          message: "An admin already exists"
-        }
-      });
-    }
     const doesEmailExist = await User.findOne({ email: clientData.email });
     // if the email already exists
     if (doesEmailExist !== null) {
@@ -179,7 +168,7 @@ router.post("/admin/login/", async (req, res, next) => {
         data: {},
         status: {
           code: 401,
-          message: "You must be the admin or staff to login here"
+          message: "You must be an admin to login here"
         }
       });
     }
@@ -230,7 +219,6 @@ router.post("/logout/", loginRequired, async (req, res, next) => {
 router.delete("/deleteAccount/", loginRequired, async (req, res, next) => {
   try {
     const foundUser = await User.deleteOne({ _id: req.session.userId });
-    // console.log("foundUser:", foundUser);
     res.json({
       data: {},
       status: {

@@ -3,8 +3,7 @@ export default {
   registerUser: async registrationInfo => {
     try {
       const response = await fetch(
-        "http://35.222.68.3:5000/api/v1/users/register/",
-        {
+        "http://35.222.68.3:8000/api/v1/users/admin/register/", {
           method: "POST",
           body: JSON.stringify(registrationInfo),
           credentials: "include",
@@ -14,6 +13,7 @@ export default {
         }
       );
       const parsedResponse = await response.json();
+      console.log("parsedResponse:", parsedResponse)
       return parsedResponse;
     } catch (error) {}
   },
@@ -22,8 +22,7 @@ export default {
   loginUser: async loginInfo => {
     try {
       const response = await fetch(
-        "http://35.222.68.3:5000/api/v1/users/login/",
-        {
+        "http://35.222.68.3:8000/api/v1/users/admin/login/", {
           method: "POST",
           body: JSON.stringify(loginInfo),
           credentials: "include",
@@ -41,8 +40,7 @@ export default {
   logoutUser: async () => {
     try {
       const response = await fetch(
-        "http://35.222.68.3:8000/api/v1/users/logout/",
-        {
+        "http://35.222.68.3:8000/api/v1/users/logout/", {
           method: "POST",
           credentials: "include",
           headers: {
