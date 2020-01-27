@@ -89,7 +89,7 @@ class TopBarDark extends Component {
                         <Link to="/pages/register">Register</Link>
                       </li>
                       <li>
-                        <a href="http://localhost:3001">Admin</a>
+                        <a href="http://34.67.79.176:5000">Admin</a>
                       </li>
                     </ul>
                   )}
