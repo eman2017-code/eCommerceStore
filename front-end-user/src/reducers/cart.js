@@ -11,7 +11,8 @@ import {
 
 
 const initialState = {
-  cart: []
+  cart: [],
+  recentOrder: null
 }
 
 

@@ -253,6 +253,11 @@ export const decrementQty = (product, isLoggedIn) => async dispatch => {
 };
 
 
+// export const checkOut = (products, isLoggedIn) => async dispatch => {
+  
+// }
+
+
 //Compare Products
 export const addToCompare = product => dispatch => {
   dispatch(addToCompareUnsafe(product));
