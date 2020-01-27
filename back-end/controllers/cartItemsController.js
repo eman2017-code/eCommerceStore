@@ -15,6 +15,7 @@ router.post("/", loginRequired, async (req, res, next) => {
   const quantity = req.body.quantity
 
   try {
+    console.log('userId:', req.session.userId);
     const foundCart = await Cart.findOne({ user: req.session.userId }).populate(
       [
         {

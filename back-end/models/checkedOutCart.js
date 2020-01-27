@@ -3,8 +3,20 @@ const mongoose = require('mongoose');
 const checkedOutCartSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: false
     },
+
+    // if the user does not have an account, they checkout as a guest,
+    // and all of the guest information below will be filled out
+    isGuest: {
+        type: Boolean,
+        default: false
+    },
+    guestFirstName: String,
+    guestLastName: String,
+    guestEmail: String,
+    
     products: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product' 
