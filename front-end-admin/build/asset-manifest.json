@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/multikart-admin/static/css/main.98d2308a.chunk.css",
+    "main.js": "/multikart-admin/static/js/main.0baa25f6.chunk.js",
+    "main.js.map": "/multikart-admin/static/js/main.0baa25f6.chunk.js.map",
+    "runtime~main.js": "/multikart-admin/static/js/runtime~main.9bf31454.js",
+    "runtime~main.js.map": "/multikart-admin/static/js/runtime~main.9bf31454.js.map",
+    "static/css/2.11e190d1.chunk.css": "/multikart-admin/static/css/2.11e190d1.chunk.css",
+    "static/js/2.e2542650.chunk.js": "/multikart-admin/static/js/2.e2542650.chunk.js",
+    "static/js/2.e2542650.chunk.js.map": "/multikart-admin/static/js/2.e2542650.chunk.js.map",
+    "index.html": "/multikart-admin/index.html",
+    "precache-manifest.e841c2f50ccf43d595b1c5eb11674353.js": "/multikart-admin/precache-manifest.e841c2f50ccf43d595b1c5eb11674353.js",
+    "service-worker.js": "/multikart-admin/service-worker.js",
+    "static/css/2.11e190d1.chunk.css.map": "/multikart-admin/static/css/2.11e190d1.chunk.css.map",
+    "static/css/main.98d2308a.chunk.css.map": "/multikart-admin/static/css/main.98d2308a.chunk.css.map",
+    "static/media/1.jpg": "/multikart-admin/static/media/1.269f2427.jpg",
+    "static/media/index.scss": "/multikart-admin/static/media/zw.98a0162e.svg",
+    "static/media/slick-theme.css": "/multikart-admin/static/media/slick.f97e3bbf.svg",
+    "static/media/stats.png": "/multikart-admin/static/media/stats.74470331.png"
+  }
+}
