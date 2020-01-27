@@ -41,15 +41,8 @@ router.post("/register/", async (req, res, next) => {
         lastName: clientData.lastName,
         email: clientData.email,
         password: passwordHash,
-        isAdmin: false
       });
-
-      // logs in the user
-      req.session.isLoggedIn = true;
-      req.session.userId = newUser.id;
-      req.session.email = newUser.email;
-      req.session.isAdmin = newUser.isAdmin;
-      req.session.isStaff = false;
+      newUser.login(req);
 
       // creates a cart for the new user
       await Cart.createNewCart(newUser.id);
@@ -79,13 +72,7 @@ router.post("/login/", async (req, res, next) => {
       foundUser &&
       User.doPasswordsMatch(clientData.password, foundUser.password)
     ) {
-
-      // logs in the user
-      req.session.isLoggedIn = true;
-      req.session.userId = newUser.id;
-      req.session.email = newUser.email;
-      req.session.isAdmin = newUser.isAdmin;
-      req.session.isStaff = false;
+      foundUser.login(req);
 
       return res.json({
         data: foundUser.removePassword(),
