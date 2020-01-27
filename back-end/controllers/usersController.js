@@ -219,7 +219,6 @@ router.post("/logout/", loginRequired, async (req, res, next) => {
 router.delete("/deleteAccount/", loginRequired, async (req, res, next) => {
   try {
     const foundUser = await User.deleteOne({ _id: req.session.userId });
-    // console.log("foundUser:", foundUser);
     res.json({
       data: {},
       status: {
