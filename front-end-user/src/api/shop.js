@@ -1,24 +1,19 @@
-/**
- * Mocking client-server processing
- */
-// import _products from "./data.json";
-
-// this code allows us to easily change between production api url and 
-// the development api url, by changing debug to true or false 
-const debug = true; 
+// this code allows us to easily change between production api url and
+// the development api url, by changing debug to true or false
+const debug = true;
 let apiURL;
 if (debug) {
-  apiURL = 'http://localhost:8000/api/v1/';
+  apiURL = "http://localhost:8000/api/v1/";
 } else {
-  apiURL = 'http://35.222.68.3:8000/api/v1/';
+  apiURL = "http://35.222.68.3:8000/api/v1/";
 }
 
-console.log('the api url is:', apiURL);
+console.log("the api url is:", apiURL);
 
 export default {
   // makes call to the api to register a new user
   registerUser: async registrationInfo => {
-    console.log('the api url is:', apiURL);
+    console.log("the api url is:", apiURL);
     try {
       const response = await fetch(
         apiURL + "users/register/",
@@ -33,14 +28,14 @@ export default {
         }
       );
       const parsedResponse = await response.json();
-      console.log('response:', parsedResponse);
+      console.log("response:", parsedResponse);
       return parsedResponse;
     } catch (error) {}
   },
 
   // makes call to the api to attempt to login the user
   loginUser: async loginInfo => {
-    console.log('the api url is:', apiURL);
+    console.log("the api url is:", apiURL);
     try {
       const response = await fetch(
         apiURL + "users/login/",
@@ -146,7 +141,8 @@ export default {
         headers: {
           "Content-Type": "application/json"
         }
-      });
+      }
+    );
     const parsedResponse = await response.json();
     return parsedResponse;
   },
@@ -180,7 +176,7 @@ export default {
       }
     );
     const parsedResponse = await response.json();
-    console.log('response from updating quantity:', parsedResponse);
+    console.log("response from updating quantity:", parsedResponse);
   },
 
   // makes a fetch call to search for a product via elasticsearch
@@ -203,28 +199,28 @@ export default {
   checkout: async (products, isLoggedIn, userInfo) => {
     const dataToSend = {
       userInfo: userInfo
-    }
+    };
 
     const productsToSend = [];
     if (!isLoggedIn) {
       products.forEach(product => {
         for (let i = 0; i < product.qty; i++) {
           productsToSend.push(product);
-        }  
-      })
-      console.log('products sent in fetch:', productsToSend);
+        }
+      });
+      console.log("products sent in fetch:", productsToSend);
 
       dataToSend.products = productsToSend;
     }
 
-    const response = await fetch(apiURL + 'checkout/', {
+    const response = await fetch(apiURL + "checkout/", {
       method: "POST",
       credentials: "include",
       body: JSON.stringify({ data: dataToSend }),
       headers: {
         "Content-Type": "application/json"
-      }  
-    })
+      }
+    });
     const parsedResponse = await response.json();
     return parsedResponse;
   }
