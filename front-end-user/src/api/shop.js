@@ -199,12 +199,27 @@ export default {
     return foundProduct;
   },
 
-  checkout: async isLoggedIn => {
-    const response = await fetch(
-      apiURL + 'checkout/'
-    )
+  // makes fetch call to checkout a guest user or logged in user
+  checkout: async (products, isLoggedIn) => {
+
+    // if the user isnt logged in the products they checked out gets 
+    // sent along with the request since their cart isnt saved in mongodb
+    let dataToSend;
+    if (!isLoggedIn) {
+      dataToSend = products;
+    }
+
+    const response = await fetch(apiURL + 'checkout/', {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify({ products: dataToSend }),
+      headers: {
+        "Content-Type": "application/json"
+      }  
+    })
     const parsedResponse = await response.json();
     console.log('checkout response:', parsedResponse);
+
     return parsedResponse;
   }
 };

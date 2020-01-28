@@ -253,9 +253,11 @@ export const decrementQty = (product, isLoggedIn) => async dispatch => {
 };
 
 
-// export const checkOut = (products, isLoggedIn) => async dispatch => {
+export const checkOut = (products, isLoggedIn) => async dispatch => {
+  const checkoutReponse = await shop.checkout(products, isLoggedIn);
+
   
-// }
+}
 
 
 //Compare Products

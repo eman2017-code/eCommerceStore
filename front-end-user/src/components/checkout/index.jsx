@@ -6,7 +6,7 @@ import SimpleReactValidator from "simple-react-validator";
 
 import Breadcrumb from "../boilerplates/breadcrumb";
 
-import 
+
 import { getCartTotal } from "../../services";
 
 
