@@ -51,6 +51,7 @@ router.post('/', async (req, res, next) => {
         // if the user that checked out is a guest
         } else {
             const productsToAdd = clientData.products.map(product => product.upc);
+            console.log('productsToAdd:', productsToAdd);
 
             // connects to elasticsearch
             const elasticSearchManager = new ElasticSearchManager();

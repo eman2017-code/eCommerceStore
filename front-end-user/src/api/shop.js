@@ -204,8 +204,17 @@ export default {
     const dataToSend = {
       userInfo: userInfo
     }
+
+    const productsToSend = [];
     if (!isLoggedIn) {
-      dataToSend.products = products;
+      products.forEach(product => {
+        for (let i = 0; i < product.qty; i++) {
+          productsToSend.push(product);
+        }  
+      })
+      console.log('products sent in fetch:', productsToSend);
+
+      dataToSend.products = productsToSend;
     }
 
     const response = await fetch(apiURL + 'checkout/', {
