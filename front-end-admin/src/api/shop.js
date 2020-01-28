@@ -71,7 +71,7 @@ export default {
 
   listProductsAdmin: async callBack => {
     // const response = await fetch("http://35.222.68.3:8000/api/v1/products/");
-    const response = await fetch (apiURL + "products/");
+    const response = await fetch (apiURL + "products/admin/");
     
     const parsedResponse = await response.json();
     const products = parsedResponse.data;
