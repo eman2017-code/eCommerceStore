@@ -5,7 +5,7 @@ export class SearchHeader extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            searchbar: false
+            searchbar: true
         }
     }
     handleSearchClick = () => {

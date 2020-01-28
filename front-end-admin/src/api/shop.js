@@ -1,3 +1,5 @@
+import { createProduct } from "../actions";
+
 // this code allows us to easily change between production api url and
 // the development api url, by changing debug to true or false
 const debug = true;
@@ -72,5 +74,11 @@ export default {
     const parsedResponse = await response.json();
     const products = parsedResponse.data;
     return products;
+  },
+
+  createProduct: async (productData, userId) => {
+    const response = await fetch(
+         
+    )
   }
 };

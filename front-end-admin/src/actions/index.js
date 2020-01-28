@@ -61,6 +61,7 @@ export const receiveProducts = products => ({
   products: products
 });
 
+
 export const listProductsAdmin = () => async dispatch => {
   dispatch(fetchProductsBegin());
   const products = await shop.listProductsAdmin();
@@ -68,6 +69,6 @@ export const listProductsAdmin = () => async dispatch => {
   return products;
 };
 
-// method to create a product
-
-export const createProduct = () => async dispatch => {};
+// export const createProduct = (productData, userId) => async dispatch => {
+//   shop.create
+// }
