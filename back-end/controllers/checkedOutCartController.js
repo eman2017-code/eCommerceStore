@@ -10,7 +10,8 @@ const router = express.Router();
 // Create Route
 // this route is where a users cart gets turned into a checkedOutCart
 router.post('/', async (req, res, next) => {
-    const clientData = req.body.data
+    const clientData = req.body.data;
+    const userInfo = clientData.userInfo;
 
     try {
         // if the user that checked out is logged in
@@ -30,8 +31,10 @@ router.post('/', async (req, res, next) => {
 
             const newCheckedOutCart = await CheckedOutCart.create({
                 user: userId,
-                products: [...productsToAdd]
+                products: [...productsToAdd],
+                ...userInfo
             })
+            console.log("order:", newCheckedOutCart);
 
             // removes the cart items from the users cart since they just checked out
             foundCart.cartItems = [];
@@ -69,11 +72,9 @@ router.post('/', async (req, res, next) => {
 
             const newCheckedOutCart = await CheckedOutCart.create({
                 isGuest: true,
-                guestFirstName: clientData.userInfo.firstName,
-                guestLastName: clientData.userInfo.lastName,
-                guestEmail: clientData.userInfo.email,
-                products: [...productsOrdered]
-            })
+                products: [...productsOrdered],
+                ...userInfo
+            });
 
             res.json({
                 data: newCheckedOutCart,

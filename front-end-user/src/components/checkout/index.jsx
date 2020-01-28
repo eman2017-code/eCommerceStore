@@ -51,8 +51,8 @@ class checkOut extends Component {
                 city: response.address.city,
                 zipCode: response.address.postal_code,
                 payerId: response.payerID,
-                paymentId: response.paymentId,
-                paymentToken: response.payentToken,
+                paymentId: response.paymentID,
+                paymentToken: response.paymentToken,
 
             }
             // calls the checkout action which creates an order in the database and clears
