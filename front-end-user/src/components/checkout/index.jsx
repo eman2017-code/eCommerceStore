@@ -6,8 +6,8 @@ import SimpleReactValidator from "simple-react-validator";
 
 import Breadcrumb from "../boilerplates/breadcrumb";
 
-
 import { getCartTotal } from "../../services";
+import { checkout } from '../../actions';
 
 
 class checkOut extends Component {
@@ -43,6 +43,20 @@ class checkOut extends Component {
 
         if (response.paid) {
             console.log('payment successful');
+
+            const userInfo = {
+                email: this.state.email,
+                firstName: this.state.first_name,
+                lastName: this.state.last_name,
+                address: this.state.address,
+                state: this.state.state,
+                city: this.state.city,
+                zipCode: this.state.zipCode
+            }
+
+            // checkout action to create the order and and clear the cart in the state + in mongdo
+            // if the user is logged in.
+            this.props.checkout(this.props.cartItems, this.props.isLoggedIn, userInfo);
 
             // redirects to the order success page
             this.props.history.push({
@@ -92,12 +106,9 @@ class checkOut extends Component {
                 <section className="section-b-space">
                     <div className="container padding-cls">
                         <div className="checkout-page">
-
                             <div className="checkout-form">
                                 <form>
                                     <div className="checkout row">
-                                        
-
                                         <div className="col-lg-12 col-sm-12 col-xs-12">
                                             <div className="checkout-details">
                                                 <div className="order-box">
@@ -135,24 +146,18 @@ class checkOut extends Component {
                                                             Pay With Card
                                                         </button>
                                                     </div>
-                                                    
-                                                    
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </section>    
-            </div> 
-            
+            </div>  
         )
     }
-    
 }
 
 const mapStateToProps = state => ({
@@ -163,5 +168,5 @@ const mapStateToProps = state => ({
     userInfo: state.user.userInfo
 });
 
-export default connect(mapStateToProps)(checkOut);
+export default connect(mapStateToProps, { checkout })(checkOut);
 

@@ -11,12 +11,16 @@ const router = express.Router();
 // Create Route
 // this route is where a users cart gets turned into a checkedOutCart
 router.post('/', async (req, res, next) => {
-    const clientData = req.body;
+    const clientData = req.body.data;
+    console.log('clientData:', clientData);
+
     const userId = req.session.userId;
+    console.log('userId:', userId);
 
     try {
         // if the user that checked out is logged in
         if (req.session.isLoggedIn) {
+            console.log('user is logged in');
             const foundCart = await Cart.findOne({ 'user': userId }).populate([{
                 path: 'cartItems',
                 model: CartItem,
@@ -48,17 +52,19 @@ router.post('/', async (req, res, next) => {
 
         // if the user that checked out is a guest
         } else {
-            const productsToAdd = clientData.products;
+            console.log('user is not logged in');
+            const productsToAdd = clientData.products.map(product => product.upc);
+            console.log('productsToAdd:', productsToAdd);
 
-            // iterates through each product in the guest users cart
-            productsToAdd.forEach(async (productId) => {
+            // connects to elasticsearch
+            const elasticSearchManager = new ElasticSearchManager();
+
+            await productsToAdd.forEach(async productId => {
                 let foundProduct = await Product.findOne({ 'upc': productId });
+                console.log('foundProduct:', foundProduct); 
 
-                // if the product does not exists in mongodb
                 if (foundProduct === null) {
-
                     // gets the product from elasticsearch
-                    const elasticSearchManager = new ElasticSearchManager();
                     const productData = await elasticSearchManager.getProductByUPC(productId);
                     productData.category = undefined;
 
@@ -69,11 +75,12 @@ router.post('/', async (req, res, next) => {
 
             const newCheckedOutCart = await CheckedOutCart.create({
                 isGuess: true,
-                guestFirstName: clientData.firstName,
-                guestLastName: clientData.lastName,
-                guestEmail: clientData.email,
-                products: [...clientData.products]
+                guestFirstName: clientData.userInfo.firstName,
+                guestLastName: clientData.userInfo.lastName,
+                guestEmail: clientData.userInfo.email,
+                products: [...productsToAdd]
             })
+            console.log('newCheckedOutCart:', newCheckedOutCart);
 
             res.json({
                 data: newCheckedOutCart,

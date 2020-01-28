@@ -250,11 +250,13 @@ export const decrementQty = (product, isLoggedIn) => async dispatch => {
   toast.success("Item removed from cart", {
     position: toast.POSITION.TOP_CENTER
   });
-};
+}
 
 
-export const checkOut = (products, isLoggedIn) => async dispatch => {
-  const checkoutResponse = await shop.checkout(products, isLoggedIn);
+// create and order from the users cart, clears there cart in the state + in mongodb
+// if they are logged in
+export const checkout = (products, isLoggedIn, userInfo) => async dispatch => {
+  const checkoutResponse = await shop.checkout(products, isLoggedIn, userInfo);
 
   if (checkoutResponse.status.code === 201) {
     console.log('checkout successful');
@@ -267,7 +269,11 @@ export const checkOut = (products, isLoggedIn) => async dispatch => {
     toast.success('Purchase Successfully', {
       position: toast.POSITION.TOP_CENTER
     });
-  }  
+  }  else {
+    toast.error('An Error Occurred While Completing Your Purchase', {
+      position: toast.POSITION.TOP_CENTER
+    })
+  }
 }
 
 
