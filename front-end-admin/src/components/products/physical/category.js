@@ -34,7 +34,7 @@ export class Category extends Component {
                   <h5>Products Category</h5>
                 </div>
                 <div className="card-body">
-                  {/* <div className="btn-popup pull-right">
+                  <div className="btn-popup pull-right">
                     <button
                       type="button"
                       className="btn btn-primary"
@@ -97,7 +97,7 @@ export class Category extends Component {
                         </button>
                       </div>
                     </Modal>
-                  </div> */}
+                  </div>
                   <div className="clearfix"></div>
                   <div id="basicScenario" className="product-physical">
                     <Datatable
