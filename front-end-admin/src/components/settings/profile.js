@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 
 import designer from "../../assets/images/dashboard/designer.jpg";
-import Tabset_profile from "./tabset-profile";
+import TabsetProfile from "./tabset-profile";
 import Breadcrumb from "../common/breadcrumb";
 
 import PropTypes from "prop-types";
@@ -48,7 +48,7 @@ export class Profile extends Component {
             <div className="col-xl-8">
               <div className="card profile-card">
                 <div className="card-body">
-                  <Tabset_profile />
+                  <TabsetProfile />
                 </div>
               </div>
             </div>

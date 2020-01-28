@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import Breadcrumb from '../common/breadcrumb';
-import { Chart } from "react-google-charts";
 import {
     Line, Bar
 } from 'react-chartjs-2';
 import { lineChart, chartOptions, areaChart, areaOptions, barOptions, barChart, sellOption, sellData, salesOption, salesData } from '../../constants/chartData'
-import Report_table from './report-table';
+import ReportTable from './report-table';
 
 export class Reports extends Component {
 
@@ -45,7 +44,7 @@ export class Reports extends Component {
                                 </div>
                                 <div className="card-body">
                                     <div id="basicScenario" className="report-table">
-                                        <Report_table />
+                                        <ReportTable />
                                     </div>
                                 </div>
                             </div>

@@ -1,18 +1,10 @@
 import {
   Home,
   Box,
-  DollarSign,
   Tag,
-  Clipboard,
-  Camera,
-  AlignLeft,
   UserPlus,
-  Users,
-  Chrome,
   BarChart,
-  Settings,
   Archive,
-  LogIn
 } from "react-feather";
 
 export const MENUITEMS = [

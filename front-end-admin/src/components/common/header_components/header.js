@@ -1,12 +1,10 @@
 import React, { Component, Fragment } from "react";
 import SearchHeader from "./searchHeader";
 import Notification from "./notification";
-import User_menu from "./user-menu";
+import UserMenu from "./user-menu";
 import {
   AlignLeft,
-  Maximize2,
   Bell,
-  MessageSquare,
   MoreHorizontal
 } from "react-feather";
 
@@ -87,9 +85,9 @@ export class Header extends Component {
             <div className="mobile-sidebar">
               <div className="media-body text-right switch-sm">
                 <label className="switch">
-                  <a onClick={this.openCloseSidebar}>
+                  <li onClick={this.openCloseSidebar}>
                     <AlignLeft />
-                  </a>
+                  </li>
                 </label>
               </div>
             </div>
@@ -100,19 +98,13 @@ export class Header extends Component {
                 <li>
                   <SearchHeader />
                 </li>
-                <li className="onhover-dropdown">
-                  <a className="txt-dark" href="#">
-                    <h6>EN</h6>
-                  </a>
-                  {/* <Language /> */}
-                </li>
 
                 <li className="onhover-dropdown">
                   <Bell />
                   <span className="dot"></span>
                   <Notification />
                 </li>
-                <User_menu />
+                <UserMenu />
               </ul>
               <div
                 className="d-lg-none mobile-toggle pull-right"

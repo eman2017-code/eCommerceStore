@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../../actions";
 
-export class User_menu extends Component {
+export class UserMenu extends Component {
   // determines what to show the admin if they are logged in or not
   decideWhichTabLinks = () => {
     if (this.props.isLoggedIn) {
@@ -36,7 +36,7 @@ export class User_menu extends Component {
     }
   };
   render() {
-    const { logoutUser, isLoggedIn, userInfo } = this.props;
+    const { logoutUser, isLoggedIn } = this.props;
     return (
       <Fragment>
         <li className="onhover-dropdown">
@@ -73,7 +73,7 @@ export class User_menu extends Component {
   }
 }
 
-User_menu.propTypes = {
+UserMenu.propTypes = {
   logoutUser: PropTypes.func,
   isLoggedIn: PropTypes.bool.isRequired,
   userInfo: PropTypes.object
@@ -84,4 +84,4 @@ const mapStateToProps = state => ({
   userInfo: state.user.userInfo
 });
 
-export default connect(mapStateToProps, { logoutUser })(User_menu);
+export default connect(mapStateToProps, { logoutUser })(UserMenu);

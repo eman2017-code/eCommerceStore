@@ -4,7 +4,7 @@ import { User, Settings } from "react-feather";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-export class Tabset_profile extends Component {
+export class TabsetProfile extends Component {
   constructor() {
     super();
     this.state = {
@@ -122,7 +122,7 @@ export class Tabset_profile extends Component {
   }
 }
 
-Tabset_profile.propTypes = {
+TabsetProfile.propTypes = {
   userInfo: PropTypes.object
 };
 
@@ -130,4 +130,4 @@ const mapStateToProps = state => ({
   userInfo: state.user.userInfo
 });
 
-export default connect(mapStateToProps, {})(Tabset_profile);
+export default connect(mapStateToProps, {})(TabsetProfile);

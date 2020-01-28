@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import data from '../../assets/data/reports';
 import Datatable from '../common/datatable'
 
-export class Report_table extends Component {
+export class ReportTable extends Component {
     render() {
         return (
             <Fragment>
@@ -20,4 +20,4 @@ export class Report_table extends Component {
     }
 }
 
-export default Report_table
+export default ReportTable

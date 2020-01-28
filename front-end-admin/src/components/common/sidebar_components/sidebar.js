@@ -45,26 +45,29 @@ export class sidebar extends Component {
     setNavActive(item) {
 
         MENUITEMS.filter(menuItem => {
-            if (menuItem != item)
+            if (menuItem !== item)
                 menuItem.active = false
             if (menuItem.children && menuItem.children.includes(item))
                 menuItem.active = true
             if (menuItem.children) {
                 menuItem.children.filter(submenuItems => {
-                    if (submenuItems != item) {
+                    if (submenuItems !== item) {
                         submenuItems.active = false
                     }
                     if (submenuItems.children) {
                         submenuItems.children.map(childItem => {
                             childItem.active = false;
+                            return childItem;
                         })
                         if (submenuItems.children.includes(item)) {
                             submenuItems.active = true
                             menuItem.active = true
                         }
                     }
+                    return submenuItems
                 })
             }
+            return menuItem
         })
         item.active = !item.active
 
@@ -76,9 +79,6 @@ export class sidebar extends Component {
     }
 
     render() {
-        const theme = {
-            selectionColor: "#C51162"
-        };
 
         const mainmenu = this.state.mainmenu.map((menuItem, i) =>
             <li className={`${menuItem.active ? 'active' : ''}`} key={i}>

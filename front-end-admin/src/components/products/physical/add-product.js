@@ -1,8 +1,5 @@
 import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
-// import CKEditors from "react-ckeditor-component";
-import one from "../../../assets/images/pro3/1.jpg";
-import user from "../../../assets/images/user.png";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -152,7 +149,6 @@ export class Add_product extends Component {
                                 onChange={this.handleChange}
                                 name="price"
                                 className="form-control mb-0"
-                                name="price"
                                 id="validationCustom03"
                                 type="number"
                                 required

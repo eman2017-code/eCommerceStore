@@ -3,34 +3,16 @@ import Breadcrumb from "./common/breadcrumb";
 import {
   Navigation,
   Box,
-  MessageSquare,
-  Users,
-  Briefcase,
-  CreditCard,
-  ShoppingCart,
-  Calendar
 } from "react-feather";
 import CountUp from "react-countup";
 import { Chart } from "react-google-charts";
 import CanvasJSReact from "../assets/canvas/canvasjs.react";
 
-import { Pie, Doughnut, Bar, Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import {
-  pieOptions,
-  doughnutOption,
-  lineOptions,
-  buyOption,
   employeeData,
   employeeOptions
 } from "../constants/chartData";
-// image impoer
-import user2 from "../assets/images/dashboard/user2.jpg";
-import user1 from "../assets/images/dashboard/user1.jpg";
-import man from "../assets/images/dashboard/man.png";
-import user from "../assets/images/dashboard/user.png";
-import designer from "../assets/images/dashboard/designer.jpg";
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export class Dashboard extends Component {
   render() {
