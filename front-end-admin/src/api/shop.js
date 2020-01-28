@@ -7,13 +7,14 @@ if (debug) {
 } else {
   apiURL = "http://35.222.68.3:8000/api/v1/";
 }
+console.log('Current API URL:', apiURL);
 
 export default {
   // makes call to the api to register a new user
   registerUser: async registrationInfo => {
     try {
       const response = await fetch(
-        "http://35.222.68.3:8000/api/v1/users/admin/register/",
+        apiURL + "users/admin/register/",
         {
           method: "POST",
           body: JSON.stringify(registrationInfo),
@@ -33,7 +34,7 @@ export default {
   loginUser: async loginInfo => {
     try {
       const response = await fetch(
-        "http://35.222.68.3:8000/api/v1/users/admin/login/",
+        apiURL + "users/admin/login/",
         {
           method: "POST",
           body: JSON.stringify(loginInfo),
@@ -52,7 +53,7 @@ export default {
   logoutUser: async () => {
     try {
       const response = await fetch(
-        "http://35.222.68.3:8000/api/v1/users/logout/",
+        apiURL + "users/logout/",
         {
           method: "POST",
           credentials: "include",
@@ -67,7 +68,7 @@ export default {
   },
 
   listProductsAdmin: async callBack => {
-    const response = await fetch("http://35.222.68.3:8000/api/v1/products/");
+    const response = await fetch(apiURL + "products/");
     const parsedResponse = await response.json();
     const products = parsedResponse.data;
     return products;
