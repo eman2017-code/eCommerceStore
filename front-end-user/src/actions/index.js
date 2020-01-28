@@ -253,6 +253,28 @@ export const decrementQty = (product, isLoggedIn) => async dispatch => {
 };
 
 
+// create and order from the users cart, clears there cart in the state + in mongodb
+// if they are logged in
+export const checkout = (products, isLoggedIn, userInfo) => async dispatch => {
+  const checkoutResponse = await shop.checkout(products, isLoggedIn, userInfo);
+
+  if (checkoutResponse.status.code === 201) {
+    // deletes products in user cart in the state
+    dispatch({
+      type: types.CLEAR_CART
+    })
+
+    toast.success('Purchase Successfully', {
+      position: toast.POSITION.TOP_CENTER
+    });
+  }  else {
+    toast.error('An Error Occurred While Completing Your Purchase', {
+      position: toast.POSITION.TOP_CENTER
+    })
+  }
+}
+
+
 //Compare Products
 export const addToCompare = product => dispatch => {
   dispatch(addToCompareUnsafe(product));
