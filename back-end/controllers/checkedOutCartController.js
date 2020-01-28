@@ -26,15 +26,21 @@ router.post('/', async (req, res, next) => {
                 }
             }]);
 
-            // gets all the products that are in the cart that was checked out
-            const productsToAdd = foundCart.cartItems.map(cartItem => cartItem.product._id);
+            // iterates through all the users cart items, making sure that if 
+            // a cart items quantity is greater than 1 then the products are 
+            // added has many time as there is quantity.
+            const productsToAdd = [];
+            foundCart.cartItems.forEach(cartItem => {
+                for (let i = 0; i < cartItem.quantity; i++) {
+                    productsToAdd.push(cartItem.product._id);
+                }
+            })
 
             const newCheckedOutCart = await CheckedOutCart.create({
                 user: userId,
                 products: [...productsToAdd],
                 ...userInfo
             })
-            console.log("order:", newCheckedOutCart);
 
             // removes the cart items from the users cart since they just checked out
             foundCart.cartItems = [];
