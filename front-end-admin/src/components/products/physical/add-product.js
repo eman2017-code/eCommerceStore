@@ -61,6 +61,7 @@ export class Add_product extends Component {
   handleCreateProduct = async (e) => {
     e.preventDefault();
 
+    // create the FormData object for sending the form data to express
     const productData = new FormData();
     productData.append('file', this.state.image, this.state.image.name);
     productData.append('name', this.state.name);
@@ -71,13 +72,7 @@ export class Add_product extends Component {
     productData.append('upc', this.state.upc);
     productData.append('sku', this.state.sku);
 
-    const response = await fetch("http://localhost:8000/api/v1/products/test/", {
-      method: 'POST',
-      body: productData,
-      credentials: 'include'
-    })
-    const parsedResponse = await response.json();
-    console.log('response:', parsedResponse);
+    
   }
 
   render() {

@@ -76,9 +76,14 @@ export default {
     return products;
   },
 
-  createProduct: async (productData, userId) => {
-    const response = await fetch(
-         
-    )
+  // makes api call to create a new product
+  createProduct: async (productData) => {
+    const response = await fetch("http://localhost:8000/api/v1/products/test/", {
+      method: 'POST',
+      body: productData,
+      credentials: 'include'
+    });
+    const parsedResponse = await response.json();
+    return parsedResponse;
   }
 };

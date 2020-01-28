@@ -69,6 +69,9 @@ export const listProductsAdmin = () => async dispatch => {
   return products;
 };
 
-// export const createProduct = (productData, userId) => async dispatch => {
-//   shop.create
-// }
+// creates a new product
+export const createProduct = (productData) => async dispatch => {
+  const createProductResponse = await shop.createProduct(productData);
+
+  
+}
