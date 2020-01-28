@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 class orderSuccess extends Component {
+
+  
+
   render() {
     const { payment, items, symbol, orderTotal } = this.props.location.state;
     var options = {
@@ -47,11 +50,7 @@ class orderSuccess extends Component {
                       <div className="row product-order-detail" key={index}>
                         <div className="col-3">
                           <img
-                            src={
-                              item.variants
-                                ? item.variants[0].images
-                                : item.pictures[0]
-                            }
+                            src={item.image}
                             alt=""
                             className="img-fluid"
                           />
