@@ -43,19 +43,21 @@ class checkOut extends Component {
 
         if (response.paid) {
             console.log('payment successful');
-
             const userInfo = {
-                email: this.state.email,
-                firstName: this.state.first_name,
-                lastName: this.state.last_name,
-                address: this.state.address,
-                state: this.state.state,
-                city: this.state.city,
-                zipCode: this.state.zipCode
-            }
+                email: response.email,
+                firstName: response.address.recipient_name.split(' ')[0],
+                lastName: response.address.recipient_name.split(' ')[0],
+                address: response.address.line1,
+                state: response.address.state,
+                city: response.address.city,
+                zipCode: response.address.postal_code,
+                payerI: response.payerID,
+                paymentId: response.paymentId,
+                paymentToken: response.payentToken,
 
-            // checkout action to create the order and and clear the cart in the state + in mongdo
-            // if the user is logged in.
+            }
+            // calls the checkout action which creates an order in the database and clears
+            // all the cart items in the state + cart items in mongodb if the user is logged in
             this.props.checkout(this.props.cartItems, this.props.isLoggedIn, userInfo);
 
             // redirects to the order success page
@@ -68,9 +70,7 @@ class checkOut extends Component {
                     symbol: this.props.symbol,
                 }
             });
-
         }
-
     }
 
     // executes when the paypal payment is canceled

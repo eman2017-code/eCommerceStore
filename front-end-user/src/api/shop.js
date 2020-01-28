@@ -217,8 +217,6 @@ export default {
       }  
     })
     const parsedResponse = await response.json();
-    console.log('checkout response:', parsedResponse);
-
     return parsedResponse;
   }
 };

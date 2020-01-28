@@ -7,7 +7,6 @@ const ElasticSearchManager = require("../managers/ElasticSearchManager.js");
 
 const router = express.Router();
 
-
 // Create Route
 // this route is where a users cart gets turned into a checkedOutCart
 router.post('/', async (req, res, next) => {
