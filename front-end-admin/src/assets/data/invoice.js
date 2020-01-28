@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const data=[
         {
             no: "1",

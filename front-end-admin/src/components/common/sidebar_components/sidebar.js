@@ -34,8 +34,11 @@ export class sidebar extends Component {
                 subItems.children.filter(subSubItems => {
                     if (subSubItems.path === currentUrl)
                         this.setNavActive(subSubItems)
+                    return subItems;
                 })
+            return subItems;
             })
+            return items;
         })
     }
 

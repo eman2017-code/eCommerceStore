@@ -33,7 +33,7 @@ export class Notification extends Component {
                                     </div>
                                 </div>
                             </li>
-                            <li className="txt-dark"><a href="#">All</a> notification</li>
+                            <li className="txt-dark">All notification</li>
                         </ul>
             </Fragment>
         )
