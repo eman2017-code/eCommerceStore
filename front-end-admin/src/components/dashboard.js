@@ -192,34 +192,6 @@ export class Dashboard extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xl-3 col-md-6 xl-50">
-                            <div className="card o-hidden widget-cards">
-                                <div className="bg-primary card-body">
-                                    <div className="media static-top-widget row">
-                                        <div className="icons-widgets col-4">
-                                            <div className="align-self-center text-center"><MessageSquare className="font-primary" /></div>
-                                        </div>
-                                        <div className="media-body col-8"><span className="m-0">Messages</span>
-                                            <h3 className="mb-0">$ <CountUp className="counter" end={893} /><small> This Month</small></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xl-3 col-md-6 xl-50">
-                            <div className="card o-hidden widget-cards">
-                                <div className="bg-danger card-body">
-                                    <div className="media static-top-widget row">
-                                        <div className="icons-widgets col-4">
-                                            <div className="align-self-center text-center"><Users className="font-danger" /></div>
-                                        </div>
-                                        <div className="media-body col-8"><span className="m-0">New Vendors</span>
-                                            <h3 className="mb-0">$ <CountUp className="counter" end={45631} /><small> This Month</small></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div className="col-xl-6 xl-100">
                             <div className="card">
                                 <div className="card-header">
