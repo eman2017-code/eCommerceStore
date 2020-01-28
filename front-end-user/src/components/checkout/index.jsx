@@ -37,9 +37,26 @@ class checkOut extends Component {
 
 
     // executes when the paypal payment is successful
-    paypalSuccess = (data) => {
+    paypalSuccess = (response) => {
         console.log('paypal success');
-        console.log('response:', data);
+        console.log('response:', response);
+
+        if (response.paid) {
+            console.log('payment successful');
+
+            // redirects to the order success page
+            this.props.history.push({
+                pathname: "/order-success",
+                state: {
+                    payment: response,
+                    cartItems: this.props.cartItems,
+                    orderTotal: this.props.total,
+                    symbol: this.props.symbol
+                }
+            });
+
+        }
+
     }
 
     // executes when the paypal payment is canceled
@@ -67,7 +84,7 @@ class checkOut extends Component {
         return (
             <div>
                 <Helmet>
-                <title>E-Commerce | Store</title>
+                    <title>E-Commerce | Store</title>
                 </Helmet>
 
                 <Breadcrumb title={"Checkout"} />
