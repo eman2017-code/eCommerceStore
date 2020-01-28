@@ -197,5 +197,14 @@ export default {
     )[0];
 
     return foundProduct;
+  },
+
+  checkout: async isLoggedIn => {
+    const response = await fetch(
+      apiURL + 'checkout/'
+    )
+    const parsedResponse = await response.json();
+    console.log('checkout response:', parsedResponse);
+    return parsedResponse;
   }
 };

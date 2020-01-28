@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import PaypalExpressBtn from "react-paypal-express-checkout";
-import {Elements, StripeProvider} from 'react-stripe-elements';
-import {CardElement, injectStripe} from 'react-stripe-elements';
 import SimpleReactValidator from "simple-react-validator";
 
 import Breadcrumb from "../boilerplates/breadcrumb";
+
+import 
 import { getCartTotal } from "../../services";
 
 
