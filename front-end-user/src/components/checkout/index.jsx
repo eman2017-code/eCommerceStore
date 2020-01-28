@@ -39,16 +39,19 @@ class checkOut extends Component {
     // executes when the paypal payment is successful
     paypalSuccess = (data) => {
         console.log('paypal success');
+        console.log('response:', data);
     }
 
     // executes when the paypal payment is canceled
     paypalCancel = (data) => {
         console.log('paypal cancel');
+        console.log('response:', data);
     }
 
     // executes when theres an error in a paypal payment
     paypalError = (data) => {
         console.log('paypal error');
+        console.log('response:', data);
     }
 
     render() {
