@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import SearchHeader from "./searchHeader";
 import Notification from "./notification";
 import User_menu from "./user-menu";
-// import Language from './language';
 import {
   AlignLeft,
   Maximize2,
@@ -101,11 +100,6 @@ export class Header extends Component {
                 <li>
                   <SearchHeader />
                 </li>
-                <li>
-                  <a onClick={this.goFull} className="text-dark" href="#!">
-                    <Maximize2 />
-                  </a>
-                </li>
                 <li className="onhover-dropdown">
                   <a className="txt-dark" href="#">
                     <h6>EN</h6>
@@ -115,17 +109,8 @@ export class Header extends Component {
 
                 <li className="onhover-dropdown">
                   <Bell />
-                  <span className="badge badge-pill badge-primary pull-right notification-badge">
-                    3
-                  </span>
                   <span className="dot"></span>
                   <Notification />
-                </li>
-                <li>
-                  <a onClick={this.showRightSidebar}>
-                    <MessageSquare />
-                    <span className="dot"></span>
-                  </a>
                 </li>
                 <User_menu />
               </ul>

@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 import Breadcrumb from "../common/breadcrumb";
+import data from "../../assets/data/listUser";
 import Datatable from "../common/datatable";
 
 export class List_user extends Component {
   render() {
     return (
       <Fragment>
-        <Breadcrumb title="Customer List" parent="Users" />
+        <Breadcrumb title="User List" parent="Users" />
         <div className="container-fluid">
           <div className="card">
             <div className="card-header">
@@ -20,6 +22,7 @@ export class List_user extends Component {
               >
                 <Datatable
                   multiSelectOption={true}
+                  myData={data}
                   pageSize={10}
                   pagination={true}
                   class="-striped -highlight"

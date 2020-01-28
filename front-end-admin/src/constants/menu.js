@@ -31,11 +31,6 @@ export const MENUITEMS = [
     active: false,
     children: [
       {
-        path: "/products/physical/category",
-        title: "Categories",
-        type: "link"
-      },
-      {
         path: "/products/physical/product-list",
         title: "Product List",
         type: "link"
