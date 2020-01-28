@@ -49,9 +49,9 @@ class checkOut extends Component {
                 pathname: "/order-success",
                 state: {
                     payment: response,
-                    cartItems: this.props.cartItems,
+                    items: this.props.cartItems,
                     orderTotal: this.props.total,
-                    symbol: this.props.symbol
+                    symbol: this.props.symbol,
                 }
             });
 
