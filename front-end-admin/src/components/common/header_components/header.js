@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import SearchHeader from "./searchHeader";
 import Notification from "./notification";
 import User_menu from "./user-menu";
-// import Language from './language';
 import {
   AlignLeft,
   Maximize2,

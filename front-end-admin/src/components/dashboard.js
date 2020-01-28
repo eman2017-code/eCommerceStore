@@ -262,7 +262,7 @@ export class Dashboard extends Component {
                         </tr>
                       </tbody>
                     </table>
-                    <a href="javascript:void(0)" className="btn btn-primary">
+                    <a href="/all-my-orders" className="btn btn-primary">
                       View All Orders
                     </a>
                   </div>
