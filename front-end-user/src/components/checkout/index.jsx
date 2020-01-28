@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import PaypalExpressBtn from "react-paypal-express-checkout";
+import {Elements, StripeProvider} from 'react-stripe-elements';
+import {CardElement, injectStripe} from 'react-stripe-elements';
 import SimpleReactValidator from "simple-react-validator";
 
 import Breadcrumb from "../boilerplates/breadcrumb";
@@ -54,9 +56,9 @@ class checkOut extends Component {
 
         const client = {
             sandbox:
-              "AZ4S98zFa01vym7NVeo_qthZyOnBhtNvQDsjhaZSMH-2_Y9IAJFbSD3HPueErYqN8Sa8WYRbjP7wWtd_",
+              process.env.PAYPAL_SECRET_KEY,
             production:
-              "AZ4S98zFa01vym7NVeo_qthZyOnBhtNvQDsjhaZSMH-2_Y9IAJFbSD3HPueErYqN8Sa8WYRbjP7wWtd_"
+              process.env.PAYPAL_SECRET_KEY
           };
 
         return (
@@ -187,7 +189,9 @@ class checkOut extends Component {
                                                         })}
                                                         </ul>
                                                     </div>
+
                                                     <div className="d-flex justify-content-between">
+                                                        
                                                         <button
                                                             type="button"
                                                             className="btn-solid btn">
@@ -203,6 +207,8 @@ class checkOut extends Component {
                                                             onCancel={this.paypalCancel}
                                                         />
                                                     </div>
+                                                    
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -215,6 +221,7 @@ class checkOut extends Component {
                     </div>
                 </section>    
             </div> 
+            
         )
     }
     
