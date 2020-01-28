@@ -11,16 +11,12 @@ const router = express.Router();
 // Create Route
 // this route is where a users cart gets turned into a checkedOutCart
 router.post('/', async (req, res, next) => {
-    const clientData = req.body.data;
-    console.log('clientData:', clientData);
-
-    const userId = req.session.userId;
-    console.log('userId:', userId);
+    const clientData = req.body.data
 
     try {
         // if the user that checked out is logged in
         if (req.session.isLoggedIn) {
-            console.log('user is logged in');
+            const userId = req.session.userId;
             const foundCart = await Cart.findOne({ 'user': userId }).populate([{
                 path: 'cartItems',
                 model: CartItem,
@@ -52,35 +48,33 @@ router.post('/', async (req, res, next) => {
 
         // if the user that checked out is a guest
         } else {
-            console.log('user is not logged in');
             const productsToAdd = clientData.products.map(product => product.upc);
-            console.log('productsToAdd:', productsToAdd);
 
             // connects to elasticsearch
             const elasticSearchManager = new ElasticSearchManager();
 
-            await productsToAdd.forEach(async productId => {
-                let foundProduct = await Product.findOne({ 'upc': productId });
-                console.log('foundProduct:', foundProduct); 
+            const productsOrdered = [];
+            for (let i = 0; i < productsToAdd.length; i++) {
+                let foundProduct = await Product.findOne({ 'upc': productsToAdd[i] }); 
 
                 if (foundProduct === null) {
                     // gets the product from elasticsearch
-                    const productData = await elasticSearchManager.getProductByUPC(productId);
+                    const productData = await elasticSearchManager.getProductByUPC(productsToAdd[i]);
                     productData.category = undefined;
 
                     // create the product so now its in mongodb
                     foundProduct = await Product.create(productData);
                 }
-            })
+                productsOrdered.push(foundProduct._id);
+            }
 
             const newCheckedOutCart = await CheckedOutCart.create({
-                isGuess: true,
+                isGuest: true,
                 guestFirstName: clientData.userInfo.firstName,
                 guestLastName: clientData.userInfo.lastName,
                 guestEmail: clientData.userInfo.email,
-                products: [...productsToAdd]
+                products: [...productsOrdered]
             })
-            console.log('newCheckedOutCart:', newCheckedOutCart);
 
             res.json({
                 data: newCheckedOutCart,
