@@ -13,7 +13,6 @@ export default {
   registerUser: async registrationInfo => {
     try {
       const response = await fetch(
-        // "http://35.222.68.3:8000/api/v1/users/admin/register/",
         apiURL + "users/admin/register/",
         {
           method: "POST",
@@ -34,7 +33,6 @@ export default {
   loginUser: async loginInfo => {
     try {
       const response = await fetch(
-        // "http://35.222.68.3:8000/api/v1/users/admin/login/",
         apiURL + "users/admin/login/",
         {
           method: "POST",
@@ -54,7 +52,6 @@ export default {
   logoutUser: async () => {
     try {
       const response = await fetch(
-        // "http://35.222.68.3:8000/api/v1/users/logout/",
         apiURL + "users/logout",
         {
           method: "POST",
@@ -70,11 +67,11 @@ export default {
   },
 
   listProductsAdmin: async callBack => {
-    // const response = await fetch("http://35.222.68.3:8000/api/v1/products/");
     const response = await fetch (apiURL + "products/admin/");
     
     const parsedResponse = await response.json();
     const products = parsedResponse.data;
+    console.log("products:", products);
     return products;
   }
 };

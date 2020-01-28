@@ -6,6 +6,7 @@ import { getAdminProducts } from "../../../services";
 
 export class Product_list extends Component {
   constructor(props) {
+    console.log("props in Product_list:", props);
     super(props);
   }
 
