@@ -5,6 +5,27 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 export class Tabset_profile extends Component {
+  constructor() {
+    super();
+    this.state = {
+      hasAnAccount: true
+    };
+  }
+  // route to delete account
+  deleteAccount = async () => {
+    const response = await fetch(
+      "http://35.222.68.3:8000/api/v1/users/deleteAccount/",
+      {
+        credentials: "include",
+        method: "DELETE"
+      }
+    );
+    const deletedAccountResponse = await response.json();
+    if (deletedAccountResponse.status.code === 200) {
+      this.setState({ hasAnAccount: false });
+    }
+  };
+
   render() {
     const { userInfo } = this.props;
     return (
@@ -86,40 +107,11 @@ export class Tabset_profile extends Component {
             </div>
             <div className="account-setting deactivate-account">
               <h5 className="f-w-600 f-16">Delete Account</h5>
-              <div className="row">
-                <div className="col">
-                  <label className="d-block">
-                    <input
-                      className="radio_animated"
-                      id="edo-ani3"
-                      type="radio"
-                      name="rdo-ani1"
-                      defaultChecked
-                    />
-                    No longer usable
-                  </label>
-                  <label className="d-block">
-                    <input
-                      className="radio_animated"
-                      id="edo-ani4"
-                      type="radio"
-                      name="rdo-ani1"
-                    />
-                    Want to switch on other account
-                  </label>
-                  <label className="d-block mb-0">
-                    <input
-                      className="radio_animated"
-                      id="edo-ani5"
-                      type="radio"
-                      name="rdo-ani1"
-                      defaultChecked
-                    />
-                    Other
-                  </label>
-                </div>
-              </div>
-              <button type="button" className="btn btn-primary">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={this.deleteAccount}
+              >
                 Delete Account
               </button>
             </div>
