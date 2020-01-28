@@ -38,7 +38,6 @@ class checkOut extends Component {
 
     // executes when the paypal payment is successful
     paypalSuccess = (response) => {
-        console.log('paypal success');
         console.log('response:', response);
 
         if (response.paid) {
@@ -51,7 +50,7 @@ class checkOut extends Component {
                 state: response.address.state,
                 city: response.address.city,
                 zipCode: response.address.postal_code,
-                payerI: response.payerID,
+                payerId: response.payerID,
                 paymentId: response.paymentId,
                 paymentToken: response.payentToken,
 

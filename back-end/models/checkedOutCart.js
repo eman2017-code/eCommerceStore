@@ -13,10 +13,6 @@ const checkedOutCartSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    guestFirstName: String,
-    guestLastName: String,
-    guestEmail: String,
-    
     products: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product' 
@@ -25,7 +21,18 @@ const checkedOutCartSchema = new mongoose.Schema({
     timestamp: {
         type: Date,
         default: Date.now()
-    }
+    },
+    /* PayPal Payment Information */
+    email: String,
+    firstName: String,
+    lastName: String,
+    address: String,
+    state: String,
+    city: String,
+    zipcode: Number,
+    payerId: String,
+    paymentId: String,
+    paymentToken: String,
 })
 
 const CheckedOutCart = new mongoose.model('CheckedOutCart', checkedOutCartSchema);
