@@ -19,6 +19,7 @@ export const SORT_BY = "SORT_BY";
 export const CHANGE_CURRENCY = "CHANGE_CURRENCY";
 
 // Cart
+export const CLEAR_CART = "CLEAR_CART";
 export const SET_USERS_CART = "SET_USERS_CART";
 export const REMOVE_USERS_CART = "REMOVE_USERS_CART";
 export const ADD_TO_USERS_CART = "ADD_TO_USERS_CART";

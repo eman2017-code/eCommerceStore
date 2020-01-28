@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 class orderSuccess extends Component {
+
+  
+
   render() {
     const { payment, items, symbol, orderTotal } = this.props.location.state;
     var options = {

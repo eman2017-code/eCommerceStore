@@ -254,9 +254,20 @@ export const decrementQty = (product, isLoggedIn) => async dispatch => {
 
 
 export const checkOut = (products, isLoggedIn) => async dispatch => {
-  const checkoutReponse = await shop.checkout(products, isLoggedIn);
+  const checkoutResponse = await shop.checkout(products, isLoggedIn);
 
-  
+  if (checkoutResponse.status.code === 201) {
+    console.log('checkout successful');
+
+    // deletes products in user cart in the state
+    dispatch({
+      type: types.CLEAR_CART
+    })
+
+    toast.success('Purchase Successfully', {
+      position: toast.POSITION.TOP_CENTER
+    });
+  }  
 }
 
 
