@@ -1,4 +1,5 @@
 import {
+  CLEAR_CART,
   SET_USERS_CART,
   REMOVE_USERS_CART,
   ADD_TO_USERS_CART,
@@ -11,14 +12,15 @@ import {
 
 
 const initialState = {
-  cart: []
+  cart: [],
+  recentOrder: null
 }
 
 
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
 
-    case 'CLEAR_CART':
+    case CLEAR_CART:
       return {
         ...state,
         cart: []

@@ -5,7 +5,7 @@
 
 // this code allows us to easily change between production api url and 
 // the development api url, by changing debug to true or false 
-const debug = false; 
+const debug = true; 
 let apiURL;
 if (debug) {
   apiURL = 'http://localhost:8000/api/v1/';
@@ -197,5 +197,35 @@ export default {
     )[0];
 
     return foundProduct;
+  },
+
+  // makes fetch call to checkout a guest user or logged in user
+  checkout: async (products, isLoggedIn, userInfo) => {
+    const dataToSend = {
+      userInfo: userInfo
+    }
+
+    const productsToSend = [];
+    if (!isLoggedIn) {
+      products.forEach(product => {
+        for (let i = 0; i < product.qty; i++) {
+          productsToSend.push(product);
+        }  
+      })
+      console.log('products sent in fetch:', productsToSend);
+
+      dataToSend.products = productsToSend;
+    }
+
+    const response = await fetch(apiURL + 'checkout/', {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify({ data: dataToSend }),
+      headers: {
+        "Content-Type": "application/json"
+      }  
+    })
+    const parsedResponse = await response.json();
+    return parsedResponse;
   }
 };
