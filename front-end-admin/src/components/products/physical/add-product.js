@@ -9,7 +9,6 @@ import { createProduct } from "../../../actions";
 
 export class Add_product extends Component {
   constructor(props) {
-    console.log("props in Add_product Component:", props);
     super(props);
     this.state = {
       image: null,
@@ -40,7 +39,6 @@ export class Add_product extends Component {
   }
 
   handleFileChange = e => {
-    console.log('handle file change')
     this.setState({
       image: e.target.files[0]
     })
