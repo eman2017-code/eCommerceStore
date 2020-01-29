@@ -4,6 +4,7 @@
 
 const AWS = require('aws-sdk');
 const fs = require('fs');
+const path = require('path');
 
 
 class FileUploadManager {
@@ -16,7 +17,7 @@ class FileUploadManager {
         this.URL_TO_BUCKET = 'https://weblinktech.s3.us-east-2.amazonaws.com/';
 
         // this path is where files are temperarily upload to before getting upload to aws
-        this.TEMPERARY_UPLOAD_PATH = `${__dirname}/../public/images/products/`;
+        this.TEMPERARY_UPLOAD_PATH = `${__dirname}/../uploads/`;
 
         // sets the credentials for the aws bucket
         this.setAWSCredentials()
@@ -86,6 +87,7 @@ class FileUploadManager {
     // uploads a file to the aws s3 bucket
     uploadFileToAWS(file, response) {
         const fileName = file.name;
+        console.log('file name:', fileName);
 
         // gets the path to where the file will be temperarily uploaded
         const filePath = this.formatTemperaryFilePath(fileName);
