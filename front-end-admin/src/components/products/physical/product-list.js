@@ -3,6 +3,8 @@ import Breadcrumb from "../../common/breadcrumb";
 import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
 import { getVisibleproducts } from "../../../services";
+import store from "../../../store";
+import { getAllProducts } from "../../../actions";
 
 export class Product_list extends Component {
   constructor(props) {
@@ -27,9 +29,14 @@ export class Product_list extends Component {
 
   componentDidMount() {
     this.getTotalProducts();
+    store.dispatch(getAllProducts());
   }
 
   render() {
+    // this will get all products once the admin is logged in
+    // and the they hit the product-list component
+    // store.dispatch(getAllProducts());
+
     const { products, symbol } = this.props;
 
     return (

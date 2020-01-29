@@ -33,7 +33,7 @@ import Login from "./components/auth/login";
 
 class Root extends Component {
   render() {
-    store.dispatch(getAllProducts());
+    // store.dispatch(getAllProducts());
     return (
       <Provider store={store}>
         <BrowserRouter basename={"/"}>
