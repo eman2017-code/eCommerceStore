@@ -9,7 +9,7 @@ import { ScrollContext } from "react-router-scroll-4";
 
 // handling store
 import store from "./store";
-import { getAllProducts } from "./actions";
+// import { getAllProducts } from "./actions";
 
 // Components
 import Dashboard from "./components/dashboard";
@@ -33,7 +33,6 @@ import Login from "./components/auth/login";
 
 class Root extends Component {
   render() {
-    // store.dispatch(getAllProducts());
     return (
       <Provider store={store}>
         <BrowserRouter basename={"/"}>
