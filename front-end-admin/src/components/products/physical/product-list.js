@@ -6,7 +6,6 @@ import { getAdminProducts } from "../../../services";
 
 export class Product_list extends Component {
   constructor(props) {
-    console.log("props in Product_list:", props);
     super(props);
   }
 
@@ -22,7 +21,6 @@ export class Product_list extends Component {
         count += 1;
       }
     }
-    console.log(count);
     return count;
   };
 
@@ -32,7 +30,6 @@ export class Product_list extends Component {
 
   render() {
     const { products, symbol } = this.props;
-    console.log("products:", products);
 
     return (
       <Fragment>
