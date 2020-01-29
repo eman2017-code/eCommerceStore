@@ -17,7 +17,6 @@ export default {
     try {
       const response = await fetch(
         apiURL + "users/register/",
-        // "http://localhost:8000/api/v1/users/register/",
         {
           method: "POST",
           body: JSON.stringify(registrationInfo),
@@ -39,8 +38,6 @@ export default {
     try {
       const response = await fetch(
         apiURL + "users/login/",
-        // "http://localhost:8000/api/v1/users/login/",
-
         {
           method: "POST",
           body: JSON.stringify(loginInfo),
@@ -61,8 +58,6 @@ export default {
     try {
       const response = await fetch(
         apiURL + "users/logout/",
-        // "http://localhost:8000/api/v1/users/logout/",
-
         {
           method: "POST",
           credentials: "include",
@@ -79,7 +74,6 @@ export default {
   getAllProducts: async callBack => {
     const response = await fetch(
       apiURL + "search/all-products/"
-      // "http://localhost:8000/api/v1/search/all-products/"
     );
     const parsedResponse = await response.json();
 
@@ -115,7 +109,6 @@ export default {
   getUsersCart: async userId => {
     const response = await fetch(
       apiURL + "carts/" + userId + "/",
-      // "http://localhost:8000/api/v1/carts/" + userId + "/",
       {
         credentials: "include"
       }
@@ -133,7 +126,6 @@ export default {
 
     const response = await fetch(
       apiURL + "cart-items/",
-      // "http://localhost:8000/api/v1/cart-items/",
       {
         method: "POST",
         body: JSON.stringify(dataToSend),
@@ -151,7 +143,6 @@ export default {
   removeFromUsersCart: async productId => {
     const response = await fetch(
       apiURL + "cart-items/" + productId + "/",
-      // "http://localhost:8000/api/v1/cart-items/" + productId + "/",
       {
         method: "DELETE",
         credentials: "include"
@@ -165,7 +156,6 @@ export default {
   updateProductQuantity: async product => {
     const response = await fetch(
       apiURL + "cart-items/" + product.upc + "/",
-      // "http://localhost:8000/api/v1/cart-items/" + product.upc + "/",
       {
         method: "PUT",
         credentials: "include",
@@ -183,7 +173,6 @@ export default {
   fetchSingleProductFromElastic: async productId => {
     const response = await fetch(
       apiURL + "search/product/" + productId + "/"
-      // "http://localhost:8000/api/v1/search/product/" + productId + "/"
     );
     const parsedResponse = await response.json();
 

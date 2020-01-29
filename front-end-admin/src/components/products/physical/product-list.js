@@ -33,10 +33,6 @@ export class Product_list extends Component {
   }
 
   render() {
-    // this will get all products once the admin is logged in
-    // and the they hit the product-list component
-    // store.dispatch(getAllProducts());
-
     const { products, symbol } = this.props;
 
     return (
