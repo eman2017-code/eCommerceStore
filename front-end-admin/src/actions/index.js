@@ -75,21 +75,19 @@ export const createProduct = productData => async dispatch => {
   
   // if the product was created successfully
   if (createdProductResponse.status.code === 201) {
-    console.log('successful response');
-
     const newProduct = createdProductResponse.data;
 
     dispatch({
       type: types.CREATE_PRODUCT,
       product: newProduct
     })
-    toast.success(createdProductResponse.state.message, {
+    toast.success(createdProductResponse.status.message, {
       postion: toast.POSITION.TOP_CENTER  
     });
 
   // if an error occured  
   } else {
-    toast.error(createdProductResponse.state.message, {
+    toast.error(createdProductResponse.status.message, {
       postion: toast.POSITION.TOP_CENTER  
     });
   }
