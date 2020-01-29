@@ -15,17 +15,14 @@ export default {
   registerUser: async registrationInfo => {
     console.log("the api url is:", apiURL);
     try {
-      const response = await fetch(
-        apiURL + "users/register/",
-        {
-          method: "POST",
-          body: JSON.stringify(registrationInfo),
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json"
-          }
+      const response = await fetch(apiURL + "users/register/", {
+        method: "POST",
+        body: JSON.stringify(registrationInfo),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
         }
-      );
+      });
       const parsedResponse = await response.json();
       console.log("response:", parsedResponse);
       return parsedResponse;
@@ -36,17 +33,14 @@ export default {
   loginUser: async loginInfo => {
     console.log("the api url is:", apiURL);
     try {
-      const response = await fetch(
-        apiURL + "users/login/",
-        {
-          method: "POST",
-          body: JSON.stringify(loginInfo),
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json"
-          }
+      const response = await fetch(apiURL + "users/login/", {
+        method: "POST",
+        body: JSON.stringify(loginInfo),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
         }
-      );
+      });
       const parsedResponse = await response.json();
 
       return parsedResponse;
@@ -56,25 +50,20 @@ export default {
   // makes call to teh api to logout the user
   logoutUser: async () => {
     try {
-      const response = await fetch(
-        apiURL + "users/logout/",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json"
-          }
+      const response = await fetch(apiURL + "users/logout/", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
         }
-      );
+      });
       const parsedResponse = await response.json();
       return parsedResponse;
     } catch (error) {}
   },
 
   getAllProducts: async callBack => {
-    const response = await fetch(
-      apiURL + "search/all-products/"
-    );
+    const response = await fetch(apiURL + "search/all-products/");
     const parsedResponse = await response.json();
 
     // creates a new array including only information about the product
@@ -107,12 +96,9 @@ export default {
   },
 
   getUsersCart: async userId => {
-    const response = await fetch(
-      apiURL + "carts/" + userId + "/",
-      {
-        credentials: "include"
-      }
-    );
+    const response = await fetch(apiURL + "carts/" + userId + "/", {
+      credentials: "include"
+    });
     const parsedResponse = await response.json();
     return parsedResponse;
   },
@@ -124,56 +110,45 @@ export default {
       quantity: quantity
     };
 
-    const response = await fetch(
-      apiURL + "cart-items/",
-      {
-        method: "POST",
-        body: JSON.stringify(dataToSend),
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
-        }
+    const response = await fetch(apiURL + "cart-items/", {
+      method: "POST",
+      body: JSON.stringify(dataToSend),
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
       }
-    );
+    });
     const parsedResponse = await response.json();
     return parsedResponse;
   },
 
   // removes a product from a logged in users cart
   removeFromUsersCart: async productId => {
-    const response = await fetch(
-      apiURL + "cart-items/" + productId + "/",
-      {
-        method: "DELETE",
-        credentials: "include"
-      }
-    );
+    const response = await fetch(apiURL + "cart-items/" + productId + "/", {
+      method: "DELETE",
+      credentials: "include"
+    });
     const parsedResponse = await response.json();
     return parsedResponse;
   },
 
   // updates the quantity of a users cart item
   updateProductQuantity: async product => {
-    const response = await fetch(
-      apiURL + "cart-items/" + product.upc + "/",
-      {
-        method: "PUT",
-        credentials: "include",
-        body: JSON.stringify({ quantity: product.qty }),
-        headers: {
-          "Content-Type": "application/json"
-        }
+    const response = await fetch(apiURL + "cart-items/" + product.upc + "/", {
+      method: "PUT",
+      credentials: "include",
+      body: JSON.stringify({ quantity: product.qty }),
+      headers: {
+        "Content-Type": "application/json"
       }
-    );
+    });
     const parsedResponse = await response.json();
     console.log("response from updating quantity:", parsedResponse);
   },
 
   // makes a fetch call to search for a product via elasticsearch
   fetchSingleProductFromElastic: async productId => {
-    const response = await fetch(
-      apiURL + "search/product/" + productId + "/"
-    );
+    const response = await fetch(apiURL + "search/product/" + productId + "/");
     const parsedResponse = await response.json();
 
     // maps the response to get just the needed products information

@@ -7,6 +7,14 @@ import { addToCart } from "../../../actions";
 import { getVisibleproducts } from "../../../services";
 import ProductListItem from "./product-list-item";
 
+const debug = true;
+let apiURL;
+if (debug) {
+  apiURL = "http://localhost:8000/api/v1/";
+} else {
+  apiURL = "http://35.222.68.3:8000/api/v1/";
+}
+
 class ProductListing extends Component {
   constructor(props) {
     super(props);
@@ -35,20 +43,18 @@ class ProductListing extends Component {
   // route to search for products
   queryProduct = async () => {
     try {
-      const response = await fetch(
-        "http://35.222.68.3:8000/api/v1/search/products/",
-        {
-          method: "POST",
-          body: JSON.stringify({ searchTerm: this.state.searchTerm }),
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json"
-          }
+      const response = await fetch(apiURL + "search/products/", {
+        method: "POST",
+        body: JSON.stringify({ searchTerm: this.state.searchTerm }),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
         }
-      );
+      });
 
       // convert response to json
       const parsedResponse = await response.json();
+      console.log("parsedResponse:", parsedResponse.data);
       // add results to state
       this.setState({
         results: [...parsedResponse.data.body.hits.hits]
