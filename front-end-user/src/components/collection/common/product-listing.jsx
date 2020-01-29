@@ -43,22 +43,32 @@ class ProductListing extends Component {
   // route to search for products
   queryProduct = async () => {
     try {
-      const response = await fetch(apiURL + "search/products/", {
-        method: "POST",
-        body: JSON.stringify({ searchTerm: this.state.searchTerm }),
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
+      const response = await fetch(
+        "http://35.222.68.3:8000/api/v1/search/products/",
+
+        {
+          method: "POST",
+          body: JSON.stringify({ searchTerm: this.state.searchTerm }),
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          }
         }
-      });
+      );
 
       // convert response to json
       const parsedResponse = await response.json();
-      console.log("parsedResponse:", parsedResponse.data);
+      const parsedResponseData = parsedResponse.data;
+      console.log("parsedResponseData:", parsedResponseData);
+      // const searchResults = parsedResponseData.map(product => {
+      //   console.log("product:", product);
+      //   return product;
+      // });
       // add results to state
       this.setState({
-        results: [...parsedResponse.data.body.hits.hits]
+        results: parsedResponseData
       });
+      // console.log("this.state when the user is searching:", this.state);
     } catch (err) {}
   };
 
