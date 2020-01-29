@@ -61,10 +61,9 @@ export const receiveProducts = products => ({
   products: products
 });
 
-
-export const listProductsAdmin = () => async dispatch => {
+export const getAllProducts = () => async dispatch => {
   dispatch(fetchProductsBegin());
-  const products = await shop.listProductsAdmin();
+  const products = await shop.getAllProducts();
   dispatch(receiveProducts(products));
   return products;
 };
@@ -72,7 +71,7 @@ export const listProductsAdmin = () => async dispatch => {
 // creates a new product
 export const createProduct = productData => async dispatch => {
   const createdProductResponse = await shop.createProduct(productData);
-  
+
   // if the product was created successfully
   if (createdProductResponse.status.code === 201) {
     const newProduct = createdProductResponse.data;
@@ -80,15 +79,15 @@ export const createProduct = productData => async dispatch => {
     dispatch({
       type: types.CREATE_PRODUCT,
       product: newProduct
-    })
+    });
     toast.success(createdProductResponse.status.message, {
-      postion: toast.POSITION.TOP_CENTER  
+      postion: toast.POSITION.TOP_CENTER
     });
 
-  // if an error occured  
+    // if an error occured
   } else {
     toast.error(createdProductResponse.status.message, {
-      postion: toast.POSITION.TOP_CENTER  
+      postion: toast.POSITION.TOP_CENTER
     });
   }
-}
+};

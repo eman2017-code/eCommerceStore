@@ -9,7 +9,8 @@ if (debug) {
 } else {
   apiURL = "http://35.222.68.3:8000/api/v1/";
 }
-console.log("Current API URL:", apiURL);
+
+console.log("the api url is:", apiURL);
 
 export default {
   // makes call to the api to register a new user
@@ -60,11 +61,14 @@ export default {
     } catch (error) {}
   },
 
-  listProductsAdmin: async callBack => {
+  getAllProducts: async callBack => {
     const response = await fetch(apiURL + "products/admin/");
+
     const parsedResponse = await response.json();
+    console.log("parsedResponse:", parsedResponse);
+
     const products = parsedResponse.data;
-    console.log("products:", products);
+
     return products;
   },
 
