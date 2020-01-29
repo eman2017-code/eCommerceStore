@@ -61,13 +61,9 @@ export const receiveProducts = products => ({
   products: products
 });
 
-export const listProductsAdmin = () => async dispatch => {
+export const getAllProducts = () => async dispatch => {
   dispatch(fetchProductsBegin());
-  const products = await shop.listProductsAdmin();
+  const products = await shop.getAllProducts();
   dispatch(receiveProducts(products));
   return products;
 };
-
-// method to create a product
-
-export const createProduct = () => async dispatch => {};

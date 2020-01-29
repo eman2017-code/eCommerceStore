@@ -1,5 +1,9 @@
 import {
-  RECEIVE_PRODUCTS
+  FETCH_SINGLE_PRODUCT,
+  CLEAR_SINGLE_PRODUCT,
+  CHANGE_CURRENCY,
+  RECEIVE_PRODUCTS,
+  RECEIVE_CATEGORY_PRODUCTS
 } from "../constants/ActionTypes";
 
 const initialState = {

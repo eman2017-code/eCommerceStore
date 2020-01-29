@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
 import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
-import { getAdminProducts } from "../../../services";
+import { getVisibleproducts } from "../../../services";
 
 export class Product_list extends Component {
   constructor(props) {
@@ -21,6 +21,7 @@ export class Product_list extends Component {
         count += 1;
       }
     }
+    console.log("count:", count);
     return count;
   };
 
@@ -30,6 +31,7 @@ export class Product_list extends Component {
 
   render() {
     const { products, symbol } = this.props;
+    console.log("this.props in product_list:", this.props);
 
     return (
       <Fragment>
@@ -112,7 +114,7 @@ export class Product_list extends Component {
 
 // export default Product_list;
 const mapStateToProps = state => ({
-  products: getAdminProducts(state.products),
+  products: getVisibleproducts(state.products),
   symbol: state.products.symbol
 });
 
