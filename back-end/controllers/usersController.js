@@ -162,20 +162,12 @@ router.post("/admin/login/", async (req, res, next) => {
   const clientData = req.body;
   try {
     const foundUser = await User.findOne({ email: clientData.email });
-    // if the user trying to login is not the admin
-    if (foundUser.isAdmin === false) {
-      res.json({
-        data: {},
-        status: {
-          code: 401,
-          message: "You must be an admin to login here"
-        }
-      });
-    }
+
     // logs in the user if the email and password match
     if (
       foundUser &&
-      User.doPasswordsMatch(clientData.password, foundUser.password)
+      User.doPasswordsMatch(clientData.password, foundUser.password) && 
+      foundUser.isAdmin
     ) {
       foundUser.login(req);
       res.json({
@@ -185,6 +177,7 @@ router.post("/admin/login/", async (req, res, next) => {
           message: "Successfully logged in"
         }
       });
+
     } else {
       res.json({
         data: {},

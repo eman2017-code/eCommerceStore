@@ -2,13 +2,13 @@ import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { createProduct } from "../../../actions";
 
 export class Add_product extends Component {
   constructor(props) {
-    console.log("props in Add_product Component:", props);
     super(props);
     this.state = {
-      image: "",
+      image: null,
       name: "",
       model: "",
       price: "",
@@ -33,7 +33,13 @@ export class Add_product extends Component {
 
   handleChange = e => {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
-  };
+  }
+
+  handleFileChange = e => {
+    this.setState({
+      image: e.target.files[0]
+    })
+  }
 
   // method to clear all fields
   discardFields = () => {
@@ -47,31 +53,24 @@ export class Add_product extends Component {
     });
   };
 
-  // method to create a product
-  addProduct = async (e, productFromForm) => {
-    //prevents the browser from reloading when an event is called...
+  // listens for the create product form to be submitted
+  handleCreateProduct = async (e) => {
     e.preventDefault();
-    console.log("productFromForm:", productFromForm);
-    try {
-      //Call the array of all of the courses in the DB.
-      const createdProductResponse = await fetch(
-        "http://35.222.68.3:8000/api/v1/products/",
-        {
-          method: "POST",
-          credentials: "include",
-          body: JSON.stringify(productFromForm),
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
-      );
-      const parsedResponse = await createdProductResponse.json();
-      console.log("parsedResponse:", parsedResponse);
-      console.log("this.props:", this.props);
-    } catch (err) {
-      console.log("err:", err);
-    }
-  };
+
+    // create the FormData object for sending the form data to express
+    const productData = new FormData();
+    productData.append('file', this.state.image, this.state.image.name);
+    productData.append('name', this.state.name);
+    productData.append('model', this.state.model);
+    productData.append('price', this.state.price);
+    productData.append('manufacturer', this.state.manufacturer);
+    productData.append('description', this.state.description);
+    productData.append('upc', this.state.upc);
+    productData.append('sku', this.state.sku);
+
+    // creates a product
+    await this.props.createProduct(productData);
+  }
 
   render() {
     return (
@@ -86,7 +85,7 @@ export class Add_product extends Component {
                 </div>
                 <form
                   className="needs-validation add-product-form"
-                  onSubmit={e => this.addProduct(e, this.state)}
+                  onSubmit={e => this.handleCreateProduct(e)}
                 >
                   <div className="card-body">
                     <div className="row product-adding">
@@ -98,8 +97,7 @@ export class Add_product extends Component {
                               <input
                                 type="file"
                                 name="image"
-                                value={this.state.image}
-                                onChange={this.handleChange}
+                                onChange={e => this.handleFileChange(e)}
                               ></input>
                             </label>
                           </div>
@@ -214,13 +212,11 @@ export class Add_product extends Component {
 // export default Add_product;
 
 Add_product.propTypes = {
-  addProduct: PropTypes.func
+  createProduct: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-  // isLoggedIn: state.user.isLoggedIn,
-  // loggedInUser: state
   products: state.products
 });
 
-export default connect(mapStateToProps)(Add_product);
+export default connect(mapStateToProps, { createProduct })(Add_product);
