@@ -45,13 +45,13 @@ CFLAGS_OBJC_Debug :=
 CFLAGS_OBJCC_Debug :=
 
 INCS_Debug := \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/include/node \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/src \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/openssl/config \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/openssl/openssl/include \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/uv/include \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/zlib \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/v8/include
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/include/node \
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/src \
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/deps/openssl/config \
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/deps/openssl/openssl/include \
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/deps/uv/include \
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/deps/zlib \
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/deps/v8/include
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=binding' \
@@ -93,13 +93,13 @@ CFLAGS_OBJC_Release :=
 CFLAGS_OBJCC_Release :=
 
 INCS_Release := \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/include/node \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/src \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/openssl/config \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/openssl/openssl/include \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/uv/include \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/zlib \
-	-I/Users/mitchellpottratz/.node-gyp/10.16.3/deps/v8/include
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/include/node \
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/src \
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/deps/openssl/config \
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/deps/openssl/openssl/include \
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/deps/uv/include \
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/deps/zlib \
+	-I/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3/deps/v8/include
 
 OBJS := \
 	$(obj).target/$(TARGET)/src/binding.o
