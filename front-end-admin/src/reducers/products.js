@@ -16,6 +16,7 @@ const productsReducer = (state = initialState, action) => {
       return { ...state, products: action.products };
 
     case CREATE_PRODUCT:
+      console.log("in create product reducer");
       state.products.push(action.product);
       return {
         ...state, 

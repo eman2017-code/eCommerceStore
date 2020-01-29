@@ -70,8 +70,27 @@ export const listProductsAdmin = () => async dispatch => {
 };
 
 // creates a new product
-export const createProduct = (productData) => async dispatch => {
-  const createProductResponse = await shop.createProduct(productData);
-
+export const createProduct = productData => async dispatch => {
+  const createdProductResponse = await shop.createProduct(productData);
   
+  // if the product was created successfully
+  if (createdProductResponse.status.code === 201) {
+    console.log('successful response');
+
+    const newProduct = createdProductResponse.data;
+
+    dispatch({
+      type: types.CREATE_PRODUCT,
+      product: newProduct
+    })
+    toast.success(createdProductResponse.state.message, {
+      postion: toast.POSITION.TOP_CENTER  
+    });
+
+  // if an error occured  
+  } else {
+    toast.error(createdProductResponse.state.message, {
+      postion: toast.POSITION.TOP_CENTER  
+    });
+  }
 }

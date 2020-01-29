@@ -5,6 +5,7 @@ import one from "../../../assets/images/pro3/1.jpg";
 import user from "../../../assets/images/user.png";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { createProduct } from "../../../actions";
 
 export class Add_product extends Component {
   constructor(props) {
@@ -65,14 +66,15 @@ export class Add_product extends Component {
     const productData = new FormData();
     productData.append('file', this.state.image, this.state.image.name);
     productData.append('name', this.state.name);
-    productData.append('name', this.state.model);
+    productData.append('model', this.state.model);
     productData.append('price', this.state.price);
     productData.append('manufacturer', this.state.manufacturer);
     productData.append('description', this.state.description);
     productData.append('upc', this.state.upc);
     productData.append('sku', this.state.sku);
 
-    
+    // creates a product
+    await this.props.createProduct(productData);
   }
 
   render() {
@@ -216,13 +218,11 @@ export class Add_product extends Component {
 // export default Add_product;
 
 Add_product.propTypes = {
-  addProduct: PropTypes.func
+  createProduct: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-  // isLoggedIn: state.user.isLoggedIn,
-  // loggedInUser: state
   products: state.products
 });
 
-export default connect(mapStateToProps)(Add_product);
+export default connect(mapStateToProps, { createProduct })(Add_product);
