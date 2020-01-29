@@ -1,6 +1,6 @@
 // this code allows us to easily change between production api url and
 // the development api url, by changing debug to true or false
-const debug = true;
+const debug = false;
 let apiURL;
 if (debug) {
   apiURL = "http://localhost:8000/api/v1/";
