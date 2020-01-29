@@ -1,7 +1,6 @@
 import {
   RECEIVE_PRODUCTS,
   LIST_PRODUCTS_ADMIN,
-  RECEIVE_PRODUCTS,
   CREATE_PRODUCT
 } from "../constants/ActionTypes";
 
