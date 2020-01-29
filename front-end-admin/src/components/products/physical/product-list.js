@@ -2,11 +2,12 @@ import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
 import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
-import { getAdminProducts } from "../../../services";
+import { getVisibleproducts } from "../../../services";
+import store from "../../../store";
+import { getAllProducts } from "../../../actions";
 
 export class Product_list extends Component {
   constructor(props) {
-    console.log("props in Product_list:", props);
     super(props);
   }
 
@@ -22,17 +23,17 @@ export class Product_list extends Component {
         count += 1;
       }
     }
-    console.log(count);
+    console.log("count:", count);
     return count;
   };
 
   componentDidMount() {
     this.getTotalProducts();
+    store.dispatch(getAllProducts());
   }
 
   render() {
     const { products, symbol } = this.props;
-    console.log("products:", products);
 
     return (
       <Fragment>
@@ -115,8 +116,8 @@ export class Product_list extends Component {
 
 // export default Product_list;
 const mapStateToProps = state => ({
-  products: getAdminProducts(state.products),
-  symbol: state.products.symbol
+  products: getVisibleproducts(state.data),
+  symbol: state.data.symbol
 });
 
 export default connect(mapStateToProps, {})(Product_list);

@@ -8,7 +8,6 @@ const FileUploadManager = require("../managers/FileUploadManager.js");
 const ElasticSearchManager = require("../managers/ElasticSearchManager.js");
 const router = express.Router();
 
-
 // Index Route
 // returns all of the products the database
 router.get("/", async (req, res, next) => {
@@ -26,39 +25,40 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-
 // returns all of the products where the currently logged in admin is the owner
-router.get('/admin/', adminRequired, async (req, res, next) => {
+router.get("/admin/", loginRequired, async (req, res, next) => {
   const userId = req.session.userId;
- 
+
   try {
-    const allProducts = await Product.find({ 'owner': userId });
+    const allProducts = await Product.find({ owner: userId });
 
     res.json({
       data: allProducts,
       status: {
         code: 200,
-        message: 'Successfully got all the products.'
+        message: "Successfully got all the products."
       }
-    })
+    });
   } catch (error) {
     next(error);
   }
 });
 
-
 // Create Route
 // this route is where the admin can create a new product
 router.post("/", adminRequired, async (req, res, next) => {
   const productData = req.body;
-  productData.owner = req.session.userId;
-  const productImage = req.files.image;
+  const productImage = req.files.file;
 
   const fileUploadManager = new FileUploadManager();
-  productImage.name = await fileUploadManager.validateFileNameIsUnique(productImage.name);
+  productImage.name = await fileUploadManager.validateFileNameIsUnique(
+    productImage.name
+  );
 
   // gets the url to the image that was just uploaded to the aws s3 bucket
-  const awsPathToImage = fileUploadManager.getURLToUploadedFile(productImage.name);
+  const awsPathToImage = fileUploadManager.getURLToUploadedFile(
+    productImage.name
+  );
   productData.image = awsPathToImage;
 
   try {
@@ -70,11 +70,15 @@ router.post("/", adminRequired, async (req, res, next) => {
 
     // adds the new product to elasticsearch
     const elasticSearchManager = new ElasticSearchManager();
-    const elasticSearchResponse = await elasticSearchManager.addNewProduct(newProduct);
+    const elasticSearchResponse = await elasticSearchManager.addNewProduct(
+      newProduct
+    );
 
     // if theres was an error adding the product to elasticsearch
     if (elasticSearchResponse.statusCode !== 201) {
-      const deletedProduct = await Product.findByIdAndRemove(newProduct.id).exec();
+      const deletedProduct = await Product.findByIdAndRemove(
+        newProduct.id
+      ).exec();
 
       res.send({
         data: {},
@@ -101,7 +105,6 @@ router.post("/", adminRequired, async (req, res, next) => {
   }
 });
 
-
 // Update Route
 // this route is where the admin can update an existing product
 router.put("/:productId/", adminRequired, async (req, res, next) => {
@@ -121,7 +124,9 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
     // validates the new images name is unique, then updates the image in aws
     const existingImageName = foundProduct.getImageName();
     if (existingImageName !== productImage.name) {
-      productImage.name = await fileUploadManager.validateFileNameIsUnique(productImage.name);
+      productImage.name = await fileUploadManager.validateFileNameIsUnique(
+        productImage.name
+      );
     }
     fileUploadManager.updateFileInAWS(existingImageName, productImage, res);
 
@@ -129,7 +134,7 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
     const awsPathToImage = fileUploadManager.getURLToUploadedFile(
       productImage.name
     );
-      
+
     foundProduct.image = awsPathToImage;
     await foundProduct.save();
 

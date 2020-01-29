@@ -6,7 +6,7 @@ import proudctsReducer from "./products";
 
 const rootReducer = combineReducers({
   user: usersReducer,
-  products: proudctsReducer
+  data: proudctsReducer
 });
 
 export default rootReducer;
