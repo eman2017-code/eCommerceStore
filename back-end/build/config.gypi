@@ -69,7 +69,7 @@
     "v8_use_snapshot": "true",
     "want_separate_host_toolset": 0,
     "xcode_version": "7.0",
-    "nodedir": "/Users/mitchellpottratz/.node-gyp/10.16.3",
+    "nodedir": "/Users/mitchellpottratz/Library/Caches/node-gyp/10.16.3",
     "standalone_static_library": 1,
     "dry_run": "",
     "legacy_bundling": "",
@@ -172,9 +172,10 @@
     "searchexclude": "",
     "color": "true",
     "package_lock": "true",
+    "fund": "true",
     "package_lock_only": "",
     "save_optional": "",
-    "user_agent": "npm/6.9.0 node/v10.16.3 darwin x64",
+    "user_agent": "npm/6.13.6 node/v10.16.3 darwin x64",
     "ignore_scripts": "",
     "cache_lock_wait": "10000",
     "production": "",
@@ -189,6 +190,7 @@
     "onload_script": "",
     "tmp": "/var/folders/h1/h9rnlj1n7yzfc6_vd_vtf1980000gn/T",
     "unsafe_perm": "true",
+    "format_package_lock": "true",
     "link": "",
     "prefix": "/Users/mitchellpottratz/.nvm/versions/node/v10.16.3"
   }

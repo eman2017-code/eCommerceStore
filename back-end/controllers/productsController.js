@@ -67,6 +67,7 @@ router.post('/test/', async (req, res, next) => {
 router.post("/", adminRequired, async (req, res, next) => {
   const productData = req.body;
   const productImage = req.files.file;
+  console.log('productImage:', productImage);
 
   const fileUploadManager = new FileUploadManager();
   productImage.name = await fileUploadManager.validateFileNameIsUnique(productImage.name);
@@ -176,7 +177,7 @@ router.delete("/:productId/", adminRequired, async (req, res, next) => {
 
     // gets the images name so it can be removed from aws
     const imageName = foundProduct.getImageName();
-
+    
     // deletes product from mongo
     foundProduct.remove();
 
