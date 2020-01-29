@@ -46,22 +46,6 @@ router.get('/admin/', adminRequired, async (req, res, next) => {
   }
 });
 
-router.post('/test/', async (req, res, next) => {
-  const productData = req.body;
-  const productImage = req.files;
-
-  console.log('productData:', productData);
-  console.log('productImage:', productImage);
-  
-  res.json({
-    data: {},
-    status: {
-      code: 200,
-      message: 'success'
-    }
-  })
-})
-
 // Create Route
 // this route is where the admin can create a new product
 router.post("/", adminRequired, async (req, res, next) => {
@@ -177,7 +161,7 @@ router.delete("/:productId/", adminRequired, async (req, res, next) => {
 
     // gets the images name so it can be removed from aws
     const imageName = foundProduct.getImageName();
-    
+
     // deletes product from mongo
     foundProduct.remove();
 
