@@ -3,8 +3,6 @@ import Breadcrumb from "../../common/breadcrumb";
 import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
 import { getVisibleproducts } from "../../../services";
-import store from "../../../store";
-import { getAllProducts } from "../../../actions";
 
 export class Product_list extends Component {
   constructor(props) {
@@ -32,9 +30,7 @@ export class Product_list extends Component {
   }
 
   render() {
-    store.dispatch(getAllProducts());
     const { products, symbol } = this.props;
-    console.log("this.props in product_list:", this.props);
 
     return (
       <Fragment>
@@ -117,8 +113,8 @@ export class Product_list extends Component {
 
 // export default Product_list;
 const mapStateToProps = state => ({
-  products: getVisibleproducts(state.products),
-  symbol: state.products.symbol
+  products: getVisibleproducts(state.data),
+  symbol: state.data.symbol
 });
 
 export default connect(mapStateToProps, {})(Product_list);

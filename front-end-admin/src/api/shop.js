@@ -8,6 +8,8 @@ if (debug) {
   apiURL = "http://35.222.68.3:8000/api/v1/";
 }
 
+console.log("the api url is:", apiURL);
+
 export default {
   // makes call to the api to register a new user
   registerUser: async registrationInfo => {
@@ -59,11 +61,11 @@ export default {
 
   getAllProducts: async callBack => {
     const response = await fetch(apiURL + "products/admin/");
+
     const parsedResponse = await response.json();
     console.log("parsedResponse:", parsedResponse);
 
     const products = parsedResponse.data;
-    console.log("products:", products);
 
     return products;
   }
