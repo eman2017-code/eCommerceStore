@@ -95,4 +95,9 @@ export const createProduct = productData => async dispatch => {
       position: toast.POSITION.TOP_CENTER
     });
   }
-};
+}
+
+export const deleteProduct = productId => async dispatch => {
+  const deleteProductResponse = await shop.deleteProduct(productId);
+}
+

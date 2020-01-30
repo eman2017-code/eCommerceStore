@@ -80,5 +80,18 @@ export default {
     });
     const parsedResponse = await response.json();
     return parsedResponse;
-  }
-};
+  },
+
+  // makes api call to delete an admins product
+  deleteProduct: async productId => {
+    const response = await fetch(apiURL + "products/" + productId + "/", {
+      credentials: "include",
+      method: "DELETE"
+    });
+    const parsedResponse = await response.json();
+    return parsedResponse;
+  }  
+
+}
+
+

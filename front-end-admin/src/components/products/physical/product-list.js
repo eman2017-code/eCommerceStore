@@ -25,17 +25,6 @@ export class Product_list extends Component {
     
   }
 
-  // // to delete product
-  // deleteProduct = async productId => {
-  //   const response = await fetch(apiURL + "products/:productId/", {
-  //     credentials: "include",
-  //     method: "DELETE"
-  //   });
-
-  //   const parsedResponse = await response.json();
-  //   console.log("parsedResponse:", parsedResponse);
-  // };
-
   render() {
 
     return (
@@ -80,7 +69,7 @@ export class Product_list extends Component {
                                   <button
                                     className="btn"
                                     type="button"
-                                    // onClick={this.deleteProduct}
+                                    onClick={this.deleteProduct(product.upc)}
                                   >
                                     <Trash2 className="deleteBtn" />
                                   </button>
