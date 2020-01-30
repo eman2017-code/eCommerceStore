@@ -40,7 +40,6 @@ class CollectionLeftSidebar extends Component {
                       <Filter />
                     </div>
                   </StickyBox>
-                  {/*side-bar banner end here*/}
                 </div>
                 <div className="collection-content col">
                   <div className="page-main-content ">
@@ -84,8 +83,6 @@ class CollectionLeftSidebar extends Component {
                                 </div>
                               </div>
                             </div>
-
-                            {/*Products Listing Component*/}
                             <ProductListing
                               colSize={this.state.layoutColumns}
                             />
