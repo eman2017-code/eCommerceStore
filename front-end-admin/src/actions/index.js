@@ -98,6 +98,13 @@ export const createProduct = productData => async dispatch => {
 }
 
 
+export const updateProduct = productData => async dispatch => {
+  const updatedProductResponse = await shop.updateProduct(productData);
+  const updatedProduct = updatedProductResponse.data;
+
+}
+
+
 export const deleteProduct = productId => async dispatch => {
   const deleteProductResponse = await shop.deleteProduct(productId);
 

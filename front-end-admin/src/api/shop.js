@@ -82,6 +82,18 @@ export default {
     return parsedResponse;
   },
 
+  // makes an api call to update a product
+  updateProduct: async productData => {
+    const response = await fetch(apiURL + 'products' + productData + '/', {
+      method: 'PUT',
+      body: productData,
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+  },
+
   // makes api call to delete an admins product
   deleteProduct: async productId => {
     const response = await fetch(apiURL + "products/" + productId + "/", {
