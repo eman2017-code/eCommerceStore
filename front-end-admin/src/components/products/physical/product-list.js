@@ -1,14 +1,20 @@
 import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
+import UpdateProductModal from "./update-product-modal.js";
 import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
 import { deleteProduct } from "../../../actions";
 import store from "../../../store";
 
 
+
 export class Product_list extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      open: false
+    }
   }
 
   // checking to see data is an empty object
@@ -19,9 +25,18 @@ export class Product_list extends Component {
     return true;
   }
 
-  componentDidMount() {
-    
-  }
+  openModal = () => {
+		this.setState({
+			open: true
+		})
+	}
+
+	closeModal = () => {
+    console.log('closeModal');
+		this.setState({
+			open: false
+		})
+	}
 
   render() {
 
@@ -59,7 +74,11 @@ export class Product_list extends Component {
                             <div className="product-hover">
                               <ul>
                                 <li>
-                                  <button className="btn" type="button">
+                                  <button 
+                                    className="btn"
+                                    type="button"
+                                    onClick={this.openModal} 
+                                    >
                                     <Edit className="editBtn" />
                                   </button>
                                 </li>
@@ -96,6 +115,11 @@ export class Product_list extends Component {
             })}
           </div>
         </div>
+        <UpdateProductModal 
+          open={this.state.open}
+          closeModal={this.closeModal}
+          openModal={this.openModal}
+          />
       </Fragment>
     );
   }
