@@ -8,10 +8,6 @@ import store from "../../../store";
 export class Product_list extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      products: []
-    };
   }
 
   // checking to see data is an empty object
@@ -70,7 +66,7 @@ export class Product_list extends Component {
                                   <button
                                     className="btn"
                                     type="button"
-                                    onClick={this.deleteProduct(product.upc)}
+                                    onClick={() => this.props.deleteProduct(product.upc)}
                                   >
                                     <Trash2 className="deleteBtn" />
                                   </button>
@@ -104,6 +100,8 @@ export class Product_list extends Component {
   }
 }
 
+
+
 // export default Product_list;
 const mapStateToProps = state => ({
   products: state.data.products,
@@ -111,3 +109,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { deleteProduct })(Product_list);
+
+

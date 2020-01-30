@@ -97,13 +97,14 @@ export const createProduct = productData => async dispatch => {
   }
 }
 
+
 export const deleteProduct = productId => async dispatch => {
   const deleteProductResponse = await shop.deleteProduct(productId);
 
   if (deleteProductResponse.status.code === 204) {
     dispatch({
       type: types.DELETE_PRODUCT,
-      productsId: productId
+      productId: productId
     });
     toast.success(deleteProductResponse.status.message, {
       position: toast.POSITION.TOP_CENTER

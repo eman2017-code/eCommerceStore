@@ -29,11 +29,15 @@ const productsReducer = (state = initialState, action) => {
 
     // removes one of the admins products from the state
     case DELETE_PRODUCT:
+      console.log('in DELETE_PRODUCT');
+      console.log('before:', state.products);
       const updatedProducts = state.products.filter(product => product.upc != action.productId);
+      console.log('after:', updatedProducts);
+      
 
       return {
         ...state,
-        product: updatedProducts
+        products: updatedProducts
       }
 
     default:
