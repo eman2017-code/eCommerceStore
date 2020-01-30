@@ -13,6 +13,12 @@ class UpdateProductModal extends Component {
 			}
 	}
 
+	handleChange = (e) => {
+		this.setState({
+			product: { [e.target.name]: e.target.value }
+		});
+	}
+
 	render() {
 		const product = this.state.product;
 
@@ -36,7 +42,8 @@ class UpdateProductModal extends Component {
 							</label>
 							<input type="text"
 										 className="form-control" 
-										 value={product.name}/>
+										 value={product.name}
+										 onChange={this.handleChange}/>
 						</div>
 						<div className="form-group">
 							<label
@@ -46,7 +53,8 @@ class UpdateProductModal extends Component {
 							</label>
 							<input type="text"
 										 className="form-control" 
-										 value={product.model}/>
+										 value={product.model}
+										 onChange={this.handleChange}/>
 						</div>
 						<div className="form-group">
 							<label
@@ -56,7 +64,8 @@ class UpdateProductModal extends Component {
 							</label>
 							<input type="number"
 										 className="form-control" 
-										 value={product.price}/>
+										 value={product.price}
+										 onChange={this.handleChange}/>
 						</div>
 						<div className="form-group">
 							<label
@@ -66,7 +75,8 @@ class UpdateProductModal extends Component {
 							</label>
 							<input type="text"
 										 className="form-control" 
-										 value={product.manufacturer}/>
+										 value={product.manufacturer}
+										 onChange={this.handleChange}/>
 						</div>
 						<div className="form-group row">
 							<label className="col-xl-3 col-sm-4">
@@ -76,7 +86,8 @@ class UpdateProductModal extends Component {
 								<textarea
 									value={product.description}
 									name="description"
-								></textarea>
+									onChange={this.handleChange}>
+								</textarea>
 							</div>
 						</div>
 						<div className="form-group">
