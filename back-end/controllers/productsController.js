@@ -51,7 +51,6 @@ router.get("/admin/", async (req, res, next) => {
 router.post("/", adminRequired, async (req, res, next) => {
   const productData = req.body;
   const productImage = req.files.file;
-  console.log('productImage:', productImage);
 
   const fileUploadManager = new FileUploadManager();
   productImage.name = await fileUploadManager.validateFileNameIsUnique(productImage.name);
