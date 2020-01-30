@@ -64,13 +64,13 @@ export const createProduct = productData => async dispatch => {
       product: newProduct
     });
     toast.success(createdProductResponse.status.message, {
-      postion: toast.POSITION.TOP_CENTER
+      position: toast.POSITION.TOP_CENTER
     });
 
     // if an error occured
   } else {
     toast.error(createdProductResponse.status.message, {
-      postion: toast.POSITION.TOP_CENTER
+      position: toast.POSITION.TOP_CENTER
     });
   }
 };
