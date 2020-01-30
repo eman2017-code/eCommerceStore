@@ -22,7 +22,7 @@ export class Product_list extends Component {
   }
 
   componentDidMount() {
-    this.getAllProducts();
+    
   }
 
   // // to delete product
@@ -37,12 +37,13 @@ export class Product_list extends Component {
   // };
 
   render() {
+
     return (
       <Fragment>
         <Breadcrumb title="Current Inventory" parent="Physical" />
         <div className="container-fluid">
           <div className="row products-admin ratio_asos">
-            {this.state.products.map((product, i) => {
+            {this.props.products.map((product, i) => {
               return (
                 <div className="col-xl-3 col-sm-6" key={i}>
                   <div className="card">
@@ -115,7 +116,7 @@ export class Product_list extends Component {
 
 // export default Product_list;
 const mapStateToProps = state => ({
-  // products: getVisibleproducts(state.data),
+  products: state.data.products,
   symbol: state.data.symbol
 });
 
