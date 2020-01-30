@@ -21,15 +21,30 @@ export class Product_list extends Component {
     };
   }
 
+  // checking to see data is an empty object
+  isEmpty(obj) {
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) return false;
+    }
+    return true;
+  }
+
   getAllProducts = async () => {
     fetch(apiURL + "products/admin/")
       .then(response => {
         return response.json();
       })
       .then(myJson => {
-        this.setState({
-          products: [...myJson.data]
-        });
+        console.log("myJson", myJson);
+        if (this.isEmpty(myJson.data)) {
+          // data is empty
+          return false;
+        } else {
+          // data is not empty
+          this.setState({
+            products: [...myJson.data]
+          });
+        }
       });
   };
 
