@@ -7,9 +7,14 @@ class UpdateProductModal extends Component {
 		
 	constructor(props) {
 			super(props);
+
+			this.state = {
+				product: this.props.product
+			}
 	}
 
 	render() {
+		const product = this.state.product;
 
 		return (
 			<Modal open={this.props.open} onClose={this.props.closeModal}>
@@ -18,19 +23,61 @@ class UpdateProductModal extends Component {
 						className="modal-title f-w-600"
 						id="exampleModalLabel2"
 					>
-						Add Physical Product
+						Update Product
 					</h5>
 				</div>
 				<div className="modal-body">
 					<form>
 						<div className="form-group">
 							<label
-								htmlFor="recipient-name"
-								className="col-form-label"
-							>
-								Category Name :
+								htmlFor="product-name"
+								className="col-form-label">
+								Name:
 							</label>
-							<input type="text" className="form-control" />
+							<input type="text"
+										 className="form-control" 
+										 value={product.name}/>
+						</div>
+						<div className="form-group">
+							<label
+								htmlFor="product-model"
+								className="col-form-label">
+								Model:
+							</label>
+							<input type="text"
+										 className="form-control" 
+										 value={product.model}/>
+						</div>
+						<div className="form-group">
+							<label
+								htmlFor="product-price"
+								className="col-form-label">
+								Price:
+							</label>
+							<input type="number"
+										 className="form-control" 
+										 value={product.price}/>
+						</div>
+						<div className="form-group">
+							<label
+								htmlFor="product-manufacturer"
+								className="col-form-label">
+								Manufacturer:
+							</label>
+							<input type="text"
+										 className="form-control" 
+										 value={product.manufacturer}/>
+						</div>
+						<div className="form-group row">
+							<label className="col-xl-3 col-sm-4">
+								Description:
+							</label>
+							<div className="col-xl-8 col-sm-7 description-sm">
+								<textarea
+									value={product.description}
+									name="description"
+								></textarea>
+							</div>
 						</div>
 						<div className="form-group">
 							<label

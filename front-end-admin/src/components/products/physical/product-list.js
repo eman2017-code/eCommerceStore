@@ -13,7 +13,8 @@ export class Product_list extends Component {
     super(props);
 
     this.state = {
-      open: false
+      open: false,
+      productToUpdate: {}
     }
   }
 
@@ -25,16 +26,21 @@ export class Product_list extends Component {
     return true;
   }
 
-  openModal = () => {
+  openModal = (productData) => {
+    console.log('productData:', productData);
+
 		this.setState({
-			open: true
-		})
+      productToUpdate: productData,
+      open: true
+    });
+
+    console.log('productToUPdate after change:', this.state.productToUpdate);
 	}
 
 	closeModal = () => {
     console.log('closeModal');
 		this.setState({
-			open: false
+      open: false,
 		})
 	}
 
@@ -77,7 +83,7 @@ export class Product_list extends Component {
                                   <button 
                                     className="btn"
                                     type="button"
-                                    onClick={this.openModal} 
+                                    onClick={() => this.openModal(product)} 
                                     >
                                     <Edit className="editBtn" />
                                   </button>
@@ -115,11 +121,16 @@ export class Product_list extends Component {
             })}
           </div>
         </div>
-        <UpdateProductModal 
-          open={this.state.open}
-          closeModal={this.closeModal}
-          openModal={this.openModal}
-          />
+        {this.state.open ?
+          <UpdateProductModal 
+            open={this.state.open}
+            closeModal={this.closeModal}
+            product={this.state.productToUpdate}
+            />
+        :
+          null
+        }
+        
       </Fragment>
     );
   }
