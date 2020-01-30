@@ -8,7 +8,7 @@ export class Add_product extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: null,
+      image: undefined,
       name: "",
       model: "",
       price: "",
@@ -56,6 +56,7 @@ export class Add_product extends Component {
   // listens for the create product form to be submitted
   handleCreateProduct = async (e) => {
     e.preventDefault();
+    console.log(this.state.image);
 
     // create the FormData object for sending the form data to express
     const productData = new FormData();
@@ -68,7 +69,7 @@ export class Add_product extends Component {
     productData.append('upc', this.state.upc);
     productData.append('sku', this.state.sku);
 
-    // creates a product
+    // // creates a product
     await this.props.createProduct(productData);
   }
 
