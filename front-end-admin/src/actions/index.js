@@ -34,6 +34,27 @@ export const loginUser = loginInfo => async dispatch => {
       userInfo: userInfo
     });
     toast.success(loginResponse.status.message);
+
+    // makes fetch call to get all the admins products
+    const getProductsResponse = await shop.getAllProducts();
+    const adminsProducts = getProductsResponse.data;
+
+    // if the request was successful, the admins products are put in the store
+    if (getProductsResponse.status.code === 200) {
+      dispatch({
+        type: types.GET_PRODUCTS,
+        products: adminsProducts
+      });
+      toast.success(getProductsResponse.status.message, {
+        position: toast.POSITION.TOP_CENTER
+      });
+  
+    } else {
+      toast.error(getProductsResponse.status.message, {
+        position: toast.POSITION.TOP_CENTER
+      });
+    }
+
   } else {
     toast.error(loginResponse.status.message);
   }

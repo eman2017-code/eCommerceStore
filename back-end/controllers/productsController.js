@@ -37,7 +37,7 @@ router.get("/admin/", async (req, res, next) => {
       data: allProducts,
       status: {
         code: 200,
-        message: "Successfully got all the products."
+        message: "Successfully got all the products"
       }
     });
   } catch (error) {
