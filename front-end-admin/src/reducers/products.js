@@ -17,7 +17,7 @@ const productsReducer = (state = initialState, action) => {
 
     // adds a product the admin created to their products
     case CREATE_PRODUCT:
-      state.products.push(action.product);
+      state.products.unshift(action.product);
       return {
         ...state,
         products: state.products
