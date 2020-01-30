@@ -20,6 +20,7 @@ export const registerUser = registrationInfo => async dispatch => {
   }
 };
 
+
 // attempts to log in a user
 export const loginUser = loginInfo => async dispatch => {
   // makes the api call to login
@@ -38,6 +39,7 @@ export const loginUser = loginInfo => async dispatch => {
   }
 };
 
+
 // logs out a user
 export const logoutUser = () => async dispatch => {
   // makes the api call to logout
@@ -52,8 +54,25 @@ export const logoutUser = () => async dispatch => {
 };
 
 
-export const getAllProducts = productData => async dispatch => {
+// makes an api call to get all of the admins products then puts them in the store
+export const getAllProducts = () => async dispatch => {
   const getProductsResponse = await shop.getAllProducts();
+  const adminsProducts = getProductsResponse.data;
+
+  if (getProductsResponse.status.code === 200) {
+    dispatch({
+      type: types.GET_PRODUCTS,
+      products: adminsProducts
+    });
+    toast.success(getProductsResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    });
+
+  } else {
+    toast.error(getProductsResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    });
+  }
 } 
 
 

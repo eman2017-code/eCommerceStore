@@ -61,14 +61,15 @@ export default {
     } catch (error) {}
   },
 
+  // makes api call to get all of the admins products
   getAllProducts: async () => {
-    const response = await fetch(apiURL + "products/", {
+    const response = await fetch(apiURL + "products/admin/", {
       method: "GET",
       credentials: "include"
     });
     const parsedResponse = await response.json();
     return parsedResponse;
-  }
+  },
 
   // makes api call to create a new product
   createProduct: async productData => {
