@@ -4,7 +4,7 @@ import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
 import store from "../../../store";
 
-const debug = false;
+const debug = true;
 let apiURL;
 if (debug) {
   apiURL = "http://localhost:8000/api/v1/";

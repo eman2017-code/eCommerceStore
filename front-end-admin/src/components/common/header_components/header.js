@@ -1,12 +1,7 @@
 import React, { Component, Fragment } from "react";
-import SearchHeader from "./searchHeader";
 import Notification from "./notification";
 import UserMenu from "./user-menu";
-import {
-  AlignLeft,
-  Bell,
-  MoreHorizontal
-} from "react-feather";
+import { AlignLeft, Bell, MoreHorizontal } from "react-feather";
 
 //images
 import logo from "../../../assets/images/dashboard/multikart-logo.png";
@@ -95,10 +90,6 @@ export class Header extends Component {
               <ul
                 className={"nav-menus " + (this.state.navMenus ? "open" : "")}
               >
-                <li>
-                  <SearchHeader />
-                </li>
-
                 <li className="onhover-dropdown">
                   <Bell />
                   <span className="dot"></span>
