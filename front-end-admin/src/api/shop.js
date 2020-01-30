@@ -61,6 +61,15 @@ export default {
     } catch (error) {}
   },
 
+  getAllProducts: async () => {
+    const response = await fetch(apiURL + "products/", {
+      method: "GET",
+      credentials: "include"
+    });
+    const parsedResponse = await response.json();
+    return parsedResponse;
+  }
+
   // makes api call to create a new product
   createProduct: async productData => {
     const response = await fetch(apiURL + "products/", {

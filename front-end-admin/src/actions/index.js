@@ -51,6 +51,12 @@ export const logoutUser = () => async dispatch => {
   toast.success(logoutResponse.status.message);
 };
 
+
+export const getAllProducts = productData => async dispatch => {
+  const getProductsResponse = await shop.getAllProducts();
+} 
+
+
 // creates a new product
 export const createProduct = productData => async dispatch => {
   const createdProductResponse = await shop.createProduct(productData);
