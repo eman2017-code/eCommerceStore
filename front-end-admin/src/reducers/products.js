@@ -1,4 +1,8 @@
-import { GET_PRODUCTS, CREATE_PRODUCT } from "../constants/ActionTypes";
+import { 
+  GET_PRODUCTS,
+  CREATE_PRODUCT,
+  DELETE_PRODUCT }
+from "../constants/ActionTypes";
 
 const initialState = {
   products: [],
@@ -21,7 +25,16 @@ const productsReducer = (state = initialState, action) => {
       return {
         ...state,
         products: state.products
-      };
+      }
+
+    // removes one of the admins products from the state
+    case DELETE_PRODUCT:
+      const updatedProducts = state.products.filter(product => product.upc != action.productId);
+
+      return {
+        ...state,
+        product: updatedProducts
+      }
 
     default:
       return state;
