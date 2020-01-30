@@ -2,11 +2,11 @@ import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
 import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
-import { getVisibleproducts } from "../../../services";
+// import { getVisibleproducts } from "../../../services";
 import store from "../../../store";
-import { getAllProducts } from "../../../actions";
+// import { getAllProducts } from "../../../actions";
 
-const debug = false;
+const debug = true;
 let apiURL;
 if (debug) {
   apiURL = "http://localhost:8000/api/v1/";
@@ -31,56 +31,56 @@ export class Product_list extends Component {
   //   } catch (err) {}
   // };
 
-  // getAllProducts = async () => {
-  //   fetch(apiURL + "products/admin/")
-  //     .then(response => {
-  //       return response.json();
-  //     })
-  //     .then(myJson => {
-  //       console.log("myJson:", myJson);
-  //     });
-  // };
+  getAllProducts = async () => {
+    fetch(apiURL + "products/admin/")
+      .then(response => {
+        return response.json();
+      })
+      .then(myJson => {
+        console.log("myJson:", myJson);
+      });
+  };
 
   // get the total number of products that the admin currently has for sale
-  getTotalProducts = () => {
-    let count = 0;
-    let notAProduct = [];
-    const products = this.props.products;
-    for (let i = 0; i < products.length; i++) {
-      if (products[i].name === undefined) {
-        notAProduct.push(products[i]);
-      } else {
-        count += 1;
-      }
-    }
-    console.log("count:", count);
-    return count;
-  };
+  // getTotalProducts = () => {
+  //   let count = 0;
+  //   let notAProduct = [];
+  //   const products = this.props.products;
+  //   for (let i = 0; i < products.length; i++) {
+  //     if (products[i].name === undefined) {
+  //       notAProduct.push(products[i]);
+  //     } else {
+  //       count += 1;
+  //     }
+  //   }
+  //   console.log("count:", count);
+  //   return count;
+  // };
 
   componentDidMount() {
-    this.getTotalProducts();
+    // this.getTotalProducts();
     // store.dispatch(getAllProducts());
-    // this.getAllProducts();
+    this.getAllProducts();
   }
 
-  // to delete product
-  deleteProduct = async productId => {
-    const response = await fetch(apiURL + "products/:productId/", {
-      credentials: "include",
-      method: "DELETE"
-    });
+  // // to delete product
+  // deleteProduct = async productId => {
+  //   const response = await fetch(apiURL + "products/:productId/", {
+  //     credentials: "include",
+  //     method: "DELETE"
+  //   });
 
-    const parsedResponse = await response.json();
-    console.log("parsedResponse:", parsedResponse);
-  };
+  //   const parsedResponse = await response.json();
+  //   console.log("parsedResponse:", parsedResponse);
+  // };
 
   render() {
-    const { products, symbol } = this.props;
+    // const { products, symbol } = this.props;
 
     return (
       <Fragment>
         <Breadcrumb title="Current Inventory" parent="Physical" />
-        <div className="container-fluid">
+        {/* <div className="container-fluid">
           <div className="row products-admin ratio_asos">
             {products.map((product, i) => {
               return (
@@ -119,7 +119,7 @@ export class Product_list extends Component {
                                   <button
                                     className="btn"
                                     type="button"
-                                    onClick={this.deleteProduct}
+                                    // onClick={this.deleteProduct}
                                   >
                                     <Trash2 className="deleteBtn" />
                                   </button>
@@ -154,7 +154,8 @@ export class Product_list extends Component {
               );
             })}
           </div>
-        </div>
+        </div> */}
+        <h2>product list</h2>
       </Fragment>
     );
   }
@@ -162,7 +163,7 @@ export class Product_list extends Component {
 
 // export default Product_list;
 const mapStateToProps = state => ({
-  products: getVisibleproducts(state.data),
+  // products: getVisibleproducts(state.data),
   symbol: state.data.symbol
 });
 

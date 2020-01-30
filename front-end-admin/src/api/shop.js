@@ -61,16 +61,16 @@ export default {
     } catch (error) {}
   },
 
-  getAllProducts: async callBack => {
-    const response = await fetch(apiURL + "products/admin/");
+  // getAllProducts: async callBack => {
+  //   const response = await fetch(apiURL + "products/admin/");
 
-    const parsedResponse = await response.json();
-    console.log("parsedResponse:", parsedResponse);
+  //   const parsedResponse = await response.json();
+  //   console.log("parsedResponse:", parsedResponse);
 
-    const products = parsedResponse.data;
+  //   const products = parsedResponse.data;
 
-    return products;
-  },
+  //   return products;
+  // },
 
   // mjakes api call to create a new product
   createProduct: async productData => {

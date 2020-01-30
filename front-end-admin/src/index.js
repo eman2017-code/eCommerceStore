@@ -9,7 +9,7 @@ import { ScrollContext } from "react-router-scroll-4";
 
 // handling store
 import store from "./store";
-import { getAllProducts } from "./actions";
+// import { getAllProducts } from "./actions";
 
 // Components
 import Dashboard from "./components/dashboard";
