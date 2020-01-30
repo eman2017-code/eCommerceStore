@@ -89,7 +89,7 @@ export const createProduct = productData => async dispatch => {
       position: toast.POSITION.TOP_CENTER
     });
 
-    // if an error occured
+  // if an error occured
   } else {
     toast.error(createdProductResponse.status.message, {
       position: toast.POSITION.TOP_CENTER
@@ -101,9 +101,18 @@ export const deleteProduct = productId => async dispatch => {
   const deleteProductResponse = await shop.deleteProduct(productId);
 
   if (deleteProductResponse.status.code === 204) {
-    
-  } else {
+    dispatch({
+      type: types.DELETE_PRODUCT,
+      productsId: productId
+    });
+    toast.success(deleteProductResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    }); 
 
+  } else {
+    toast.error(deleteProductResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    }); 
   }
 }
 
