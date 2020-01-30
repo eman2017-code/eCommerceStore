@@ -29,25 +29,6 @@ export class Product_list extends Component {
     return true;
   }
 
-  getAllProducts = async () => {
-    fetch(apiURL + "products/admin/")
-      .then(response => {
-        return response.json();
-      })
-      .then(myJson => {
-        console.log("myJson", myJson);
-        if (this.isEmpty(myJson.data)) {
-          // data is empty
-          return false;
-        } else {
-          // data is not empty
-          this.setState({
-            products: [...myJson.data]
-          });
-        }
-      });
-  };
-
   componentDidMount() {
     this.getAllProducts();
   }
