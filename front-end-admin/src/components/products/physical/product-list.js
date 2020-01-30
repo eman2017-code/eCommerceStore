@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
 import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
+import { deleteProduct } from "../../../actions";
 import store from "../../../store";
 
 export class Product_list extends Component {
@@ -109,4 +110,4 @@ const mapStateToProps = state => ({
   symbol: state.data.symbol
 });
 
-export default connect(mapStateToProps, {})(Product_list);
+export default connect(mapStateToProps, { deleteProduct })(Product_list);
