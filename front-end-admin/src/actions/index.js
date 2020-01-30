@@ -52,22 +52,6 @@ export const logoutUser = () => async dispatch => {
   toast.success(logoutResponse.status.message);
 };
 
-// export const fetchProductsBegin = () => ({
-//   type: types.FETCH_PRODUCTS_BEGIN
-// });
-
-// export const receiveProducts = products => ({
-//   type: types.RECEIVE_PRODUCTS,
-//   products: products
-// });
-
-// export const getAllProducts = () => async dispatch => {
-//   dispatch(fetchProductsBegin());
-//   const products = await shop.getAllProducts();
-//   dispatch(receiveProducts(products));
-//   return products;
-// };
-
 // creates a new product
 export const createProduct = productData => async dispatch => {
   const createdProductResponse = await shop.createProduct(productData);

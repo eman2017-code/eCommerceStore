@@ -5,11 +5,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./index.scss";
 import App from "./components/app";
 import { ScrollContext } from "react-router-scroll-4";
-// import { createStore } from "redux";
 
 // handling store
 import store from "./store";
-// import { getAllProducts } from "./actions";
 
 // Components
 import Dashboard from "./components/dashboard";
@@ -33,7 +31,6 @@ import Login from "./components/auth/login";
 
 class Root extends Component {
   render() {
-    // store.dispatch(getAllProducts());
     return (
       <Provider store={store}>
         <BrowserRouter basename={"/"}>

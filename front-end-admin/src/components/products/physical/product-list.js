@@ -17,9 +17,7 @@ export class Product_list extends Component {
     super(props);
 
     this.state = {
-      products: [],
-      // to get the total number of products an admin has for sale
-      totalCount: 0
+      products: []
     };
   }
 
@@ -32,29 +30,10 @@ export class Product_list extends Component {
         this.setState({
           products: [...myJson.data]
         });
-        console.log("this.state:", this.state);
       });
   };
 
-  // get the total number of products that the admin currently has for sale
-  // getTotalProducts = () => {
-  //   let count = 0;
-  //   let notAProduct = [];
-  //   const products = this.props.products;
-  //   for (let i = 0; i < products.length; i++) {
-  //     if (products[i].name === undefined) {
-  //       notAProduct.push(products[i]);
-  //     } else {
-  //       count += 1;
-  //     }
-  //   }
-  //   console.log("count:", count);
-  //   return count;
-  // };
-
   componentDidMount() {
-    // this.getTotalProducts();
-    // store.dispatch(getAllProducts());
     this.getAllProducts();
   }
 
@@ -73,9 +52,9 @@ export class Product_list extends Component {
     return (
       <Fragment>
         <Breadcrumb title="Current Inventory" parent="Physical" />
-        {/* <div className="container-fluid">
+        <div className="container-fluid">
           <div className="row products-admin ratio_asos">
-            {products.map((product, i) => {
+            {this.state.products.map((product, i) => {
               return (
                 <div className="col-xl-3 col-sm-6" key={i}>
                   <div className="card">
@@ -122,19 +101,12 @@ export class Product_list extends Component {
                           </div>
                         </div>
                         <div className="product-detail">
-                          <div className="rating">
-                            <i className="fa fa-star"></i>
-                            <i className="fa fa-star"></i>
-                            <i className="fa fa-star"></i>
-                            <i className="fa fa-star"></i>
-                            <i className="fa fa-star"></i>
-                          </div>
                           <a>
                             {" "}
                             <h6>{product.name}</h6>
                           </a>
                           <h4>
-                            {symbol}
+                            {/* {symbol} */}
                             {product.price}
                           </h4>
                           <br />
@@ -147,8 +119,7 @@ export class Product_list extends Component {
               );
             })}
           </div>
-        </div> */}
-        <h2>product list</h2>
+        </div>
       </Fragment>
     );
   }
