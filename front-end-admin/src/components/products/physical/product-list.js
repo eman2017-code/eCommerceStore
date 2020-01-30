@@ -2,9 +2,7 @@ import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
 import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
-// import { getVisibleproducts } from "../../../services";
 import store from "../../../store";
-// import { getAllProducts } from "../../../actions";
 
 const debug = true;
 let apiURL;
@@ -18,18 +16,12 @@ export class Product_list extends Component {
   constructor(props) {
     super(props);
 
-    // this.state = {};
+    this.state = {
+      products: [],
+      // to get the total number of products an admin has for sale
+      totalCount: 0
+    };
   }
-
-  // getAllProducts = async () => {
-  //   try {
-  //     const response = await fetch(apiURL + "products/admin/", {
-  //       credentials: "include"
-  //     });
-  //     const parsedResponse = response.json();
-  //     console.log("parsedResponse:", parsedResponse);
-  //   } catch (err) {}
-  // };
 
   getAllProducts = async () => {
     fetch(apiURL + "products/admin/")
@@ -37,7 +29,10 @@ export class Product_list extends Component {
         return response.json();
       })
       .then(myJson => {
-        console.log("myJson:", myJson);
+        this.setState({
+          products: [...myJson.data]
+        });
+        console.log("this.state:", this.state);
       });
   };
 
@@ -75,8 +70,6 @@ export class Product_list extends Component {
   // };
 
   render() {
-    // const { products, symbol } = this.props;
-
     return (
       <Fragment>
         <Breadcrumb title="Current Inventory" parent="Physical" />
