@@ -12,6 +12,8 @@ const initialState = {
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
 
+    
+
     // gets all of the admins products
     case GET_PRODUCTS:
       return {

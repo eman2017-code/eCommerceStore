@@ -19,6 +19,10 @@ class UpdateProductModal extends Component {
 		});
 	}
 
+	handleSubmit = e => {
+		e.preventDefault()
+	}
+
 	render() {
 		const product = this.state.product;
 
