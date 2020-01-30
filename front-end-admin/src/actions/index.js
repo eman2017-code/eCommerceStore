@@ -99,5 +99,11 @@ export const createProduct = productData => async dispatch => {
 
 export const deleteProduct = productId => async dispatch => {
   const deleteProductResponse = await shop.deleteProduct(productId);
+
+  if (deleteProductResponse.status.code === 204) {
+    
+  } else {
+
+  }
 }
 
