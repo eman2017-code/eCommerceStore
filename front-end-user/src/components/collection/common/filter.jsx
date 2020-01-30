@@ -49,7 +49,7 @@ class Filter extends Component {
         </div>
 
         {/* price filter */}
-        {/* <SlideToggle>
+        <SlideToggle>
           {({ onToggle, setCollapsibleElement }) => (
             <div className="collection-collapse-block open">
               <h3 className="collapse-block-title" onClick={onToggle}>
@@ -68,51 +68,6 @@ class Filter extends Component {
                       onChange={value => this.props.filterPrice({ value })}
                     />
                   </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </SlideToggle> */}
-
-        {/* manufacturer filter here  */}
-        <SlideToggle>
-          {({ onToggle, setCollapsibleElement }) => (
-            <div className="collection-collapse-block">
-              <h3 className="collapse-block-title" onClick={onToggle}>
-                Category
-              </h3>
-              <div
-                className="collection-collapse-block-content"
-                ref={setCollapsibleElement}
-              >
-                <div className="collection-brand-filter">
-                  {this.props.manufacturer.map((manufacturer, index) => {
-                    return (
-                      <div
-                        className="custom-control custom-checkbox collection-filter-checkbox"
-                        key={index}
-                      >
-                        <input
-                          type="checkbox"
-                          onClick={e =>
-                            this.clickBrandHendle(e, filteredBrands)
-                          }
-                          value={manufacturer}
-                          defaultChecked={
-                            filteredBrands.includes(manufacturer) ? true : false
-                          }
-                          className="custom-control-input"
-                          id={manufacturer}
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor={manufacturer}
-                        >
-                          {manufacturer}
-                        </label>
-                      </div>
-                    );
-                  })}
                 </div>
               </div>
             </div>

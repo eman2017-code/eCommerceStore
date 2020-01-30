@@ -115,7 +115,6 @@ class FilterBar extends Component {
             <option value="">Sorting items</option>
             <option value="HighToLow">Price: High to Low</option>
             <option value="LowToHigh">Price: Low to High</option>
-            <option value="Newest">Newest Items</option>
             <option value="AscOrder">Sort By Name: A To Z</option>
             <option value="DescOrder">Sort By Name: Z To A</option>
           </select>
