@@ -1,4 +1,4 @@
-import { CREATE_PRODUCT } from "../constants/ActionTypes";
+import { GET_PRODUCTS, CREATE_PRODUCT } from "../constants/ActionTypes";
 
 const initialState = {
   products: [],
@@ -7,6 +7,15 @@ const initialState = {
 
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
+
+    // gets all of the admins products
+    case GET_PRODUCTS:
+      return {
+        ...state,
+        products: action.products
+      }
+
+    // adds a product the admin created to their products
     case CREATE_PRODUCT:
       state.products.push(action.product);
       return {
