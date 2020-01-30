@@ -28,15 +28,16 @@ router.get("/", async (req, res, next) => {
 // returns all of the products where the currently logged in admin is the owner
 router.get("/admin/", async (req, res, next) => {
   const userId = req.session.userId;
+  console.log('userId:', userId);
 
   try {
-    const allProducts = await Product.find({ owner: userId });
+    const allProducts = await Product.find({ owner: userId }).sort("-timestamp");
 
     res.json({
       data: allProducts,
       status: {
         code: 200,
-        message: "Successfully got all the products."
+        message: "Successfully got all the products"
       }
     });
   } catch (error) {
@@ -44,42 +45,35 @@ router.get("/admin/", async (req, res, next) => {
   }
 });
 
+
+
 // Create Route
 // this route is where the admin can create a new product
-router.post("/", loginRequired, async (req, res, next) => {
+router.post("/", adminRequired, async (req, res, next) => {
   const productData = req.body;
-  const productImage = req.files.image;
+  const productImage = req.files.file;
 
-  // establishes the connection to the aws s3 bucket
   const fileUploadManager = new FileUploadManager();
+  productImage.name = await fileUploadManager.validateFileNameIsUnique(productImage.name);
 
   // gets the url to the image that was just uploaded to the aws s3 bucket
-  const awsPathToImage = fileUploadManager.getURLToUploadedFile(
-    productImage.name
-  );
+  const awsPathToImage = fileUploadManager.getURLToUploadedFile(productImage.name);
   productData.image = awsPathToImage;
 
   try {
+    // create the new product in mongoose
     const newProduct = await Product.create(productData);
-
-    // if any categories were specified for the products
-    await newProduct.addCategories(productData);
     newProduct.owner = req.session.userId;
     await newProduct.addCategories(productData);
     await newProduct.save();
 
     // adds the new product to elasticsearch
     const elasticSearchManager = new ElasticSearchManager();
-    const elasticSearchResponse = await elasticSearchManager.addNewProduct(
-      newProduct
-    );
+    const elasticSearchResponse = await elasticSearchManager.addNewProduct(newProduct);
 
     // if theres was an error adding the product to elasticsearch
     if (elasticSearchResponse.statusCode !== 201) {
-      // product in mongo gets deleted since it couldnt be uploaded to elasticsearch
-      const deletedProduct = await Product.findByIdAndRemove(
-        newProduct.id
-      ).exec();
+      const deletedProduct = await Product.findByIdAndRemove(newProduct.id).exec();
 
       res.send({
         data: {},
@@ -91,7 +85,6 @@ router.post("/", loginRequired, async (req, res, next) => {
 
       // otherwise if the product was successfully uploaded to elasticsearch
     } else {
-      // uploads the image to the aws s3 bucket
       fileUploadManager.uploadFileToAWS(productImage, res);
 
       res.send({
@@ -106,6 +99,7 @@ router.post("/", loginRequired, async (req, res, next) => {
     next(error);
   }
 });
+
 
 // Update Route
 // this route is where the admin can update an existing product

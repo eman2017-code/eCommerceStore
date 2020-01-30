@@ -3,6 +3,9 @@ import Sidebar from "./common/sidebar_components/sidebar";
 import Footer from "./common/footer";
 import Header from "./common/header_components/header";
 
+// for pop up notifications
+import { ToastContainer } from "react-toastify";
+
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +27,7 @@ export class App extends Component {
     return (
       <div>
         <div className="page-wrapper">
+          <ToastContainer autoClose={3000} />
           <Header />
           <div className="page-body-wrapper">
             <Sidebar />

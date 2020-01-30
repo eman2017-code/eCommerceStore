@@ -2,23 +2,13 @@ import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
 import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
+import { deleteProduct } from "../../../actions";
 import store from "../../../store";
 
-const debug = false;
-let apiURL;
-if (debug) {
-  apiURL = "http://localhost:8000/api/v1/";
-} else {
-  apiURL = "http://35.222.68.3:8000/api/v1/";
-}
 
 export class Product_list extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      products: []
-    };
   }
 
   // checking to see data is an empty object
@@ -29,47 +19,18 @@ export class Product_list extends Component {
     return true;
   }
 
-  getAllProducts = async () => {
-    fetch(apiURL + "products/admin/")
-      .then(response => {
-        return response.json();
-      })
-      .then(myJson => {
-        console.log("myJson", myJson);
-        if (this.isEmpty(myJson.data)) {
-          // data is empty
-          return false;
-        } else {
-          // data is not empty
-          this.setState({
-            products: [...myJson.data]
-          });
-        }
-      });
-  };
-
   componentDidMount() {
-    this.getAllProducts();
+    
   }
 
-  // // to delete product
-  // deleteProduct = async productId => {
-  //   const response = await fetch(apiURL + "products/:productId/", {
-  //     credentials: "include",
-  //     method: "DELETE"
-  //   });
-
-  //   const parsedResponse = await response.json();
-  //   console.log("parsedResponse:", parsedResponse);
-  // };
-
   render() {
+
     return (
       <Fragment>
         <Breadcrumb title="Current Inventory" parent="Physical" />
         <div className="container-fluid">
           <div className="row products-admin ratio_asos">
-            {this.state.products.map((product, i) => {
+            {this.props.products.map((product, i) => {
               return (
                 <div className="col-xl-3 col-sm-6" key={i}>
                   <div className="card">
@@ -106,7 +67,7 @@ export class Product_list extends Component {
                                   <button
                                     className="btn"
                                     type="button"
-                                    // onClick={this.deleteProduct}
+                                    onClick={() => this.props.deleteProduct(product.upc)}
                                   >
                                     <Trash2 className="deleteBtn" />
                                   </button>
@@ -140,10 +101,14 @@ export class Product_list extends Component {
   }
 }
 
+
+
 // export default Product_list;
 const mapStateToProps = state => ({
-  // products: getVisibleproducts(state.data),
+  products: state.data.products,
   symbol: state.data.symbol
 });
 
-export default connect(mapStateToProps, {})(Product_list);
+export default connect(mapStateToProps, { deleteProduct })(Product_list);
+
+

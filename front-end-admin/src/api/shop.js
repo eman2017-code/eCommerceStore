@@ -61,6 +61,16 @@ export default {
     } catch (error) {}
   },
 
+  // makes api call to get all of the admins products
+  getAllProducts: async () => {
+    const response = await fetch(apiURL + "products/admin/", {
+      method: "GET",
+      credentials: "include"
+    });
+    const parsedResponse = await response.json();
+    return parsedResponse;
+  },
+
   // makes api call to create a new product
   createProduct: async productData => {
     const response = await fetch(apiURL + "products/", {
@@ -70,5 +80,18 @@ export default {
     });
     const parsedResponse = await response.json();
     return parsedResponse;
-  }
-};
+  },
+
+  // makes api call to delete an admins product
+  deleteProduct: async productId => {
+    const response = await fetch(apiURL + "products/" + productId + "/", {
+      credentials: "include",
+      method: "DELETE"
+    });
+    const parsedResponse = await response.json();
+    return parsedResponse;
+  }  
+
+}
+
+

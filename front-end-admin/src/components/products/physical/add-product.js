@@ -44,7 +44,7 @@ export class Add_product extends Component {
   // method to clear all fields
   discardFields = () => {
     this.setState({
-      image: "",
+      image: null,
       name: "",
       model: "",
       price: "",
@@ -70,6 +70,9 @@ export class Add_product extends Component {
 
     // creates a product
     await this.props.createProduct(productData);
+
+    // clears the form
+    this.discardFields();
   }
 
   render() {
