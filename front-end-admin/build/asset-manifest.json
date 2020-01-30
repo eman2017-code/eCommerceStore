@@ -1,27 +1,21 @@
 {
   "files": {
-<<<<<<< HEAD
     "main.css": "/static/css/main.800baa8c.chunk.css",
-    "main.js": "/static/js/main.4ddadac9.chunk.js",
-    "main.js.map": "/static/js/main.4ddadac9.chunk.js.map",
-=======
-    "main.css": "/static/css/main.9f23e0a9.chunk.css",
-    "main.js": "/static/js/main.783bfc4d.chunk.js",
-    "main.js.map": "/static/js/main.783bfc4d.chunk.js.map",
->>>>>>> 43fa4f0f0c2f069f7e94cc574e49957a2bc812bc
+    "main.js": "/static/js/main.4edb88fe.chunk.js",
+    "main.js.map": "/static/js/main.4edb88fe.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/css/2.0cecfa12.chunk.css": "/static/css/2.0cecfa12.chunk.css",
-    "static/js/2.ed509d50.chunk.js": "/static/js/2.ed509d50.chunk.js",
-    "static/js/2.ed509d50.chunk.js.map": "/static/js/2.ed509d50.chunk.js.map",
+    "static/css/2.ff179ec0.chunk.css": "/static/css/2.ff179ec0.chunk.css",
+    "static/js/2.31a99a22.chunk.js": "/static/js/2.31a99a22.chunk.js",
+    "static/js/2.31a99a22.chunk.js.map": "/static/js/2.31a99a22.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.cea096a7a1c88b516135a02df13e8fc1.js": "/precache-manifest.cea096a7a1c88b516135a02df13e8fc1.js",
+    "precache-manifest.e90e5d18d90dec97d762086e1fdf8a42.js": "/precache-manifest.e90e5d18d90dec97d762086e1fdf8a42.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.0cecfa12.chunk.css.map": "/static/css/2.0cecfa12.chunk.css.map",
+    "static/css/2.ff179ec0.chunk.css.map": "/static/css/2.ff179ec0.chunk.css.map",
     "static/css/main.800baa8c.chunk.css.map": "/static/css/main.800baa8c.chunk.css.map",
-    "static/media/1.jpg": "/static/media/1.269f2427.jpg",
     "static/media/index.scss": "/static/media/zw.98a0162e.svg",
     "static/media/slick-theme.css": "/static/media/slick.f97e3bbf.svg",
-    "static/media/stats.png": "/static/media/stats.74470331.png"
+    "static/media/stats.png": "/static/media/stats.74470331.png",
+    "static/media/user3.jpg": "/static/media/user3.bd780a29.jpg"
   }
 }
