@@ -33,7 +33,9 @@ export const loginUser = loginInfo => async dispatch => {
       type: types.LOGIN,
       userInfo: userInfo
     });
-    toast.success(loginResponse.status.message);
+    toast.success(loginResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    });
 
     // makes fetch call to get all the admins products
     const getProductsResponse = await shop.getAllProducts();
@@ -45,10 +47,6 @@ export const loginUser = loginInfo => async dispatch => {
         type: types.GET_PRODUCTS,
         products: adminsProducts
       });
-      toast.success(getProductsResponse.status.message, {
-        position: toast.POSITION.TOP_CENTER
-      });
-  
     } else {
       toast.error(getProductsResponse.status.message, {
         position: toast.POSITION.TOP_CENTER
@@ -73,28 +71,6 @@ export const logoutUser = () => async dispatch => {
 
   toast.success(logoutResponse.status.message);
 };
-
-
-// makes an api call to get all of the admins products then puts them in the store
-export const getAllProducts = () => async dispatch => {
-  const getProductsResponse = await shop.getAllProducts();
-  const adminsProducts = getProductsResponse.data;
-
-  if (getProductsResponse.status.code === 200) {
-    dispatch({
-      type: types.GET_PRODUCTS,
-      products: adminsProducts
-    });
-    toast.success(getProductsResponse.status.message, {
-      position: toast.POSITION.TOP_CENTER
-    });
-
-  } else {
-    toast.error(getProductsResponse.status.message, {
-      position: toast.POSITION.TOP_CENTER
-    });
-  }
-} 
 
 
 // creates a new product
