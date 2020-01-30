@@ -12,8 +12,6 @@ const initialState = {
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
 
-    
-
     // gets all of the admins products
     case GET_PRODUCTS:
       return {
@@ -31,15 +29,18 @@ const productsReducer = (state = initialState, action) => {
 
     // removes one of the admins products from the state
     case DELETE_PRODUCT:
-      console.log('in DELETE_PRODUCT');
-      console.log('before:', state.products);
       const updatedProducts = state.products.filter(product => product.upc != action.productId);
-      console.log('after:', updatedProducts);
       
-
       return {
         ...state,
         products: updatedProducts
+      }
+
+    // remove all of the products from the store
+    case CLEAR_PRODUCTS:
+      return {
+        ...state,
+        products: []
       }
 
     default:
