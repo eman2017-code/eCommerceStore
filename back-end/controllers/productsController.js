@@ -28,9 +28,10 @@ router.get("/", async (req, res, next) => {
 // returns all of the products where the currently logged in admin is the owner
 router.get("/admin/", async (req, res, next) => {
   const userId = req.session.userId;
+  console.log('userId:', userId);
 
   try {
-    const allProducts = await Product.find({ owner: userId });
+    const allProducts = await Product.find({ owner: userId }).sort("-timestamp");
 
     res.json({
       data: allProducts,
