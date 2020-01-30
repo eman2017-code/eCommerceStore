@@ -4,14 +4,6 @@ import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
 import store from "../../../store";
 
-const debug = true;
-let apiURL;
-if (debug) {
-  apiURL = "http://localhost:8000/api/v1/";
-} else {
-  apiURL = "http://35.222.68.3:8000/api/v1/";
-}
-
 export class Product_list extends Component {
   constructor(props) {
     super(props);
