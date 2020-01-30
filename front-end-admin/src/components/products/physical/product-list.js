@@ -6,10 +6,40 @@ import { getVisibleproducts } from "../../../services";
 import store from "../../../store";
 import { getAllProducts } from "../../../actions";
 
+const debug = false;
+let apiURL;
+if (debug) {
+  apiURL = "http://localhost:8000/api/v1/";
+} else {
+  apiURL = "http://35.222.68.3:8000/api/v1/";
+}
+
 export class Product_list extends Component {
   constructor(props) {
     super(props);
+
+    // this.state = {};
   }
+
+  // getAllProducts = async () => {
+  //   try {
+  //     const response = await fetch(apiURL + "products/admin/", {
+  //       credentials: "include"
+  //     });
+  //     const parsedResponse = response.json();
+  //     console.log("parsedResponse:", parsedResponse);
+  //   } catch (err) {}
+  // };
+
+  // getAllProducts = async () => {
+  //   fetch(apiURL + "products/admin/")
+  //     .then(response => {
+  //       return response.json();
+  //     })
+  //     .then(myJson => {
+  //       console.log("myJson:", myJson);
+  //     });
+  // };
 
   // get the total number of products that the admin currently has for sale
   getTotalProducts = () => {
@@ -29,8 +59,20 @@ export class Product_list extends Component {
 
   componentDidMount() {
     this.getTotalProducts();
-    store.dispatch(getAllProducts());
+    // store.dispatch(getAllProducts());
+    // this.getAllProducts();
   }
+
+  // to delete product
+  deleteProduct = async productId => {
+    const response = await fetch(apiURL + "products/:productId/", {
+      credentials: "include",
+      method: "DELETE"
+    });
+
+    const parsedResponse = await response.json();
+    console.log("parsedResponse:", parsedResponse);
+  };
 
   render() {
     const { products, symbol } = this.props;
@@ -74,7 +116,11 @@ export class Product_list extends Component {
                                   </button>
                                 </li>
                                 <li>
-                                  <button className="btn" type="button">
+                                  <button
+                                    className="btn"
+                                    type="button"
+                                    onClick={this.deleteProduct}
+                                  >
                                     <Trash2 className="deleteBtn" />
                                   </button>
                                 </li>
