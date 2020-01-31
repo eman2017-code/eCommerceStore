@@ -106,8 +106,6 @@ export const createProduct = productData => async dispatch => {
 // updates an admins product
 export const updateProduct = (productData, productId) => async dispatch => {
   const updatedProductResponse = await shop.updateProduct(productData, productId);
-  console.log('update product response:', updatedProductResponse);
-
   const updatedProduct = updatedProductResponse.data;
 
   if (updatedProductResponse.status.code === 200) {
@@ -115,9 +113,14 @@ export const updateProduct = (productData, productId) => async dispatch => {
       type: types.UPDATE_PRODUCT,
       updatedProduct: updatedProduct
     })
-    
+    toast.success(updatedProductResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    }); 
+
   } else {
-    console.log('failed to updated the product');
+    toast.error(updatedProductResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    }); 
   }
 
 }

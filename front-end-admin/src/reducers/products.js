@@ -32,7 +32,7 @@ const productsReducer = (state = initialState, action) => {
     // updates one of the admins products in the store
     case UPDATE_PRODUCT:
       const updatedProduct = action.updatedProduct;
-      const indexOfProductToUpdate = state.products.findIndex(product => product.upc = updatedProduct.upc);
+      const indexOfProductToUpdate = state.products.findIndex(product => product.upc === updatedProduct.upc);
 
       state.products[indexOfProductToUpdate] = updatedProduct;
 
