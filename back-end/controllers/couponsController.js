@@ -17,4 +17,14 @@ router.get("/", async (req, res, next) => {
   } catch (err) {}
 });
 
+// create coupons
+router.post("/", loginRequired, async (req, res, next) => {
+  // get the data from the form user is filling out
+  const couponData = req.body;
+  // get the user that is creating the coupon
+  const foundUser = req.session;
+  try {
+  } catch (err) {}
+});
+
 module.exports = router;
