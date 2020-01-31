@@ -1,8 +1,20 @@
 const mongoose = require("mongoose");
 
 const couponSchema = {
-  title: {
+  name: {
     type: String,
+    required: true
+  },
+  startDate: {
+    type: Number,
+    required: true
+  },
+  endDate: {
+    type: Number,
+    required: true
+  },
+  freeShipping: {
+    type: Boolean,
     required: true
   },
   discount: {
