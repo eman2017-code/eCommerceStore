@@ -6,11 +6,7 @@ import { connect } from "react-redux";
 import { deleteProduct, updateProduct } from "../../../actions";
 import store from "../../../store";
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> update-product-modal
 export class Product_list extends Component {
   constructor(props) {
     console.log("props:", props.products);
