@@ -1,6 +1,7 @@
 import { 
   GET_PRODUCTS,
   CREATE_PRODUCT,
+  UPDATE_PRODUCT,
   DELETE_PRODUCT,
   CLEAR_PRODUCTS }
 from "../constants/ActionTypes";
@@ -23,6 +24,18 @@ const productsReducer = (state = initialState, action) => {
     // adds a product the admin created to their products
     case CREATE_PRODUCT:
       state.products.unshift(action.product);
+      return {
+        ...state,
+        products: state.products
+      }
+
+    // updates one of the admins products in the store
+    case UPDATE_PRODUCT:
+      const updatedProduct = action.updatedProduct;
+      const indexOfProductToUpdate = state.products.findIndex(product => product.upc = updatedProduct.upc);
+
+      state.products[indexOfProductToUpdate] = updatedProduct;
+
       return {
         ...state,
         products: state.products

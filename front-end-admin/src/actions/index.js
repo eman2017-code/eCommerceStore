@@ -111,7 +111,11 @@ export const updateProduct = (productData, productId) => async dispatch => {
   const updatedProduct = updatedProductResponse.data;
 
   if (updatedProductResponse.status.code === 200) {
-    console.log('successfully updated the product');
+    dispatch({
+      type: types.UPDATE_PRODUCT,
+      updatedProduct: updatedProduct
+    })
+    
   } else {
     console.log('failed to updated the product');
   }
