@@ -7,7 +7,7 @@ import { addToCart } from "../../../actions";
 import { getVisibleproducts } from "../../../services";
 import ProductListItem from "./product-list-item";
 
-const debug = false;
+const debug = true;
 let apiURL;
 if (debug) {
   apiURL = "http://localhost:8000/api/v1/";

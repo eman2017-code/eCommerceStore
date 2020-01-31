@@ -79,51 +79,37 @@ export const getMinMaxPrice = products => {
   return { min: min, max: max };
 };
 
-export const getVisibleproducts = (data, filters) => {
-  return data.products;
+export const getVisibleproducts = (data, { manufacturer, value, sortBy }) => {
+  return data.products
+    .filter(product => {
+      let brandMatch;
+      if (product.tags)
+        brandMatch = product.tags.some(tag => manufacturer.includes(tag));
+      else brandMatch = true;
+
+      const startPriceMatch =
+        typeof value.min !== "number" || value.min <= product.price;
+      const endPriceMatch =
+        typeof value.max !== "number" || product.price <= value.max;
+
+      return brandMatch && startPriceMatch && endPriceMatch;
+    })
+    .sort((product1, product2) => {
+      if (sortBy === "HighToLow") {
+        return product2.price < product1.price ? -1 : 1;
+      } else if (sortBy === "LowToHigh") {
+        return product2.price > product1.price ? -1 : 1;
+      } else if (sortBy === "Newest") {
+        return product2.id < product1.id ? -1 : 1;
+      } else if (sortBy === "AscOrder") {
+        return product1.name.localeCompare(product2.name);
+      } else if (sortBy === "DescOrder") {
+        return product2.name.localeCompare(product1.name);
+      } else {
+        return product2.id > product1.id ? -1 : 1;
+      }
+    });
 };
-
-// export const getVisibleproducts = (
-//   data,
-//   { manufacturer, color, value, sortBy }
-// ) => {
-//   return data.products
-//     .filter(product => {
-//       let brandMatch;
-//       if (product.tags)
-//         brandMatch = product.tags.some(tag => manufacturer.includes(tag));
-//       else brandMatch = true;
-
-//       let colorMatch;
-//       if (color && product.colors) {
-//         colorMatch = product.colors.includes(color);
-//       } else {
-//         colorMatch = true;
-//       }
-
-//       const startPriceMatch =
-//         typeof value.min !== "number" || value.min <= product.price;
-//       const endPriceMatch =
-//         typeof value.max !== "number" || product.price <= value.max;
-
-//       return brandMatch && colorMatch && startPriceMatch && endPriceMatch;
-//     })
-//     .sort((product1, product2) => {
-//       if (sortBy === "HighToLow") {
-//         return product2.price < product1.price ? -1 : 1;
-//       } else if (sortBy === "LowToHigh") {
-//         return product2.price > product1.price ? -1 : 1;
-//       } else if (sortBy === "Newest") {
-//         return product2.id < product1.id ? -1 : 1;
-//       } else if (sortBy === "AscOrder") {
-//         return product1.name.localeCompare(product2.name);
-//       } else if (sortBy === "DescOrder") {
-//         return product2.name.localeCompare(product1.name);
-//       } else {
-//         return product2.id > product1.id ? -1 : 1;
-//       }
-//     });
-// };
 
 export const getCartTotal = cartItems => {
   var total = 0;
