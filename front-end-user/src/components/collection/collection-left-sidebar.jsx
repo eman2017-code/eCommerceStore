@@ -38,16 +38,8 @@ class CollectionLeftSidebar extends Component {
                   <StickyBox offsetTop={20} offsetBottom={20}>
                     <div>
                       <Filter />
-                      <div className="collection-sidebar-banner">
-                        <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/side-banner.png`}
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
                     </div>
                   </StickyBox>
-                  {/*side-bar banner end here*/}
                 </div>
                 <div className="collection-content col">
                   <div className="page-main-content ">
@@ -91,8 +83,6 @@ class CollectionLeftSidebar extends Component {
                                 </div>
                               </div>
                             </div>
-
-                            {/*Products Listing Component*/}
                             <ProductListing
                               colSize={this.state.layoutColumns}
                             />

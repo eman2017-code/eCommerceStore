@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <ToastContainer autoClose={5000} />
+        <ToastContainer autoClose={3000} />
         <HeaderOne logoName={"layout4/logo.png"} />
         {this.props.children}
         <FooterOne logoName={"layout4/logo.png"} />

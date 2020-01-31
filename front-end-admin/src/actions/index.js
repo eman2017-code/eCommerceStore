@@ -20,11 +20,11 @@ export const registerUser = registrationInfo => async dispatch => {
   }
 };
 
+
 // attempts to log in a user
 export const loginUser = loginInfo => async dispatch => {
   // makes the api call to login
   const loginResponse = await shop.loginUser(loginInfo);
-  console.log("loginResponse:", loginResponse);
   const userInfo = loginResponse.data;
 
   // if the user successfully logged in
@@ -33,11 +33,31 @@ export const loginUser = loginInfo => async dispatch => {
       type: types.LOGIN,
       userInfo: userInfo
     });
-    toast.success(loginResponse.status.message);
+    toast.success(loginResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    });
+
+    // makes fetch call to get all the admins products
+    const getProductsResponse = await shop.getAllProducts();
+    const adminsProducts = getProductsResponse.data;
+
+    // if the request was successful, the admins products are put in the store
+    if (getProductsResponse.status.code === 200) {
+      dispatch({
+        type: types.GET_PRODUCTS,
+        products: adminsProducts
+      });
+    } else {
+      toast.error(getProductsResponse.status.message, {
+        position: toast.POSITION.TOP_CENTER
+      });
+    }
+
   } else {
     toast.error(loginResponse.status.message);
   }
 };
+
 
 // logs out a user
 export const logoutUser = () => async dispatch => {
@@ -52,6 +72,7 @@ export const logoutUser = () => async dispatch => {
   toast.success(logoutResponse.status.message);
 };
 
+
 // creates a new product
 export const createProduct = productData => async dispatch => {
   const createdProductResponse = await shop.createProduct(productData);
@@ -65,13 +86,34 @@ export const createProduct = productData => async dispatch => {
       product: newProduct
     });
     toast.success(createdProductResponse.status.message, {
-      postion: toast.POSITION.TOP_CENTER
+      position: toast.POSITION.TOP_CENTER
     });
 
-    // if an error occured
+  // if an error occured
   } else {
     toast.error(createdProductResponse.status.message, {
-      postion: toast.POSITION.TOP_CENTER
+      position: toast.POSITION.TOP_CENTER
     });
   }
-};
+}
+
+
+export const deleteProduct = productId => async dispatch => {
+  const deleteProductResponse = await shop.deleteProduct(productId);
+
+  if (deleteProductResponse.status.code === 204) {
+    dispatch({
+      type: types.DELETE_PRODUCT,
+      productId: productId
+    });
+    toast.success(deleteProductResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    }); 
+
+  } else {
+    toast.error(deleteProductResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    }); 
+  }
+}
+
