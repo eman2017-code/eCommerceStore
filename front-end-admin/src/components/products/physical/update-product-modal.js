@@ -29,8 +29,6 @@ class UpdateProductModal extends Component {
 
 		const { product, name, model, price, manufacturer, description } = this.state;
 
-		console.log('product:', product);
-
 		// creates the FormData object for sending the form data to express
     const productData = new FormData();
     // productData.append('file', this.state.image, this.state.image.name);

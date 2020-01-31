@@ -8,6 +8,7 @@ const FileUploadManager = require("../managers/FileUploadManager.js");
 const ElasticSearchManager = require("../managers/ElasticSearchManager.js");
 const router = express.Router();
 
+
 // Index Route
 // returns all of the products the database
 router.get("/", async (req, res, next) => {
@@ -24,6 +25,7 @@ router.get("/", async (req, res, next) => {
     next(error);
   }
 });
+
 
 // returns all of the products where the currently logged in admin is the owner
 router.get("/admin/", async (req, res, next) => {
@@ -44,7 +46,6 @@ router.get("/admin/", async (req, res, next) => {
     next(error);
   }
 });
-
 
 
 // Create Route

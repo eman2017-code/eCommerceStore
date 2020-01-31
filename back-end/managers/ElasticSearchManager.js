@@ -38,7 +38,6 @@ class ElasticSearchManager {
 
   // adds a new product to elasticsearch
   async addNewProduct(productInfo) {
-    console.log('addNewProduct productInfo:', productInfo); 
     const response = await this.client.index({
       index: this.INDEX,
       body: {
@@ -55,7 +54,6 @@ class ElasticSearchManager {
         timestamp: productInfo.timestamp
       }
     });
-    console.log('elasticsearch create product response:', response);
     return response;
   }
 
@@ -122,7 +120,6 @@ class ElasticSearchManager {
       }
     });
     const products = this.parseResponse(results);
-    console.log("products:", products);
     return products;
   }
 
@@ -163,7 +160,6 @@ class ElasticSearchManager {
 
   // queries for a product by its upc value and returns the elasticsearch id of the product
   async getProductIdByUPC(productUPC) {
-    console.log('upc:', productUPC);
     const response = await this.client.search({
       index: this.INDEX,
       body: {
@@ -178,7 +174,6 @@ class ElasticSearchManager {
         }
       }
     });
-    console.log('getProductIdByUPC response:', response);
     return this.parseResponse(response)[0]._id;
   }
 }
