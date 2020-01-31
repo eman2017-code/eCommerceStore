@@ -27,9 +27,8 @@ class UpdateProductModal extends Component {
 	handleSubmit = async (e) => {
 		e.preventDefault()
 
-		const { name, model, price, manufacturer, description } = this.state;
+		const { product, name, model, price, manufacturer, description } = this.state;
 
-		const product = this.state.product;
 		console.log('product:', product);
 
 		// creates the FormData object for sending the form data to express
@@ -48,7 +47,7 @@ class UpdateProductModal extends Component {
 	}
 
 	render() {
-		const product = this.state.product;
+		const { product, name, model, price, manufacturer, description } = this.state;
 
 		return (
 			<Modal open={this.props.open} onClose={this.props.closeModal}>
@@ -71,7 +70,7 @@ class UpdateProductModal extends Component {
 							<input type="text"
 										 name="name"
 										 className="form-control" 
-										 value={product.name}
+										 value={name}
 										 onChange={this.handleChange}/>
 						</div>
 						<div className="form-group">
@@ -83,7 +82,7 @@ class UpdateProductModal extends Component {
 							<input type="text"
 										 name="model"
 										 className="form-control" 
-										 value={product.model}
+										 value={model}
 										 onChange={this.handleChange}/>
 						</div>
 						<div className="form-group">
@@ -95,7 +94,7 @@ class UpdateProductModal extends Component {
 							<input type="number"
 										 name="price"
 										 className="form-control" 
-										 value={product.price}
+										 value={price}
 										 onChange={this.handleChange}/>
 						</div>
 						<div className="form-group">
@@ -107,7 +106,7 @@ class UpdateProductModal extends Component {
 							<input type="text"
 										 name="manufacturer"
 										 className="form-control" 
-										 value={product.manufacturer}
+										 value={manufacturer}
 										 onChange={this.handleChange}/>
 						</div>
 						<div className="form-group row">
@@ -116,7 +115,7 @@ class UpdateProductModal extends Component {
 							</label>
 							<div className="col-xl-8 col-sm-7 description-sm">
 								<textarea
-									value={product.description}
+									value={description}
 									name="description"
 									onChange={this.handleChange}>
 								</textarea>
