@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
 import Modal from "react-responsive-modal";
-import { updateProduct } from "../../../actions";
 
 
 class UpdateProductModal extends Component {
@@ -20,7 +19,7 @@ class UpdateProductModal extends Component {
 		});
 	}
 
-	handleSubmit = e => {
+	handleSubmit = async (e) => {
 		e.preventDefault()
 		console.log('update product form submitted');
 
@@ -37,7 +36,7 @@ class UpdateProductModal extends Component {
     productData.append('upc', product.upc);
 		productData.append('sku', product.sku);
 		
-		await this.updateProduct(productData);
+		await this.props.updateProduct(productData);
 
 		this.props.closeModal();
 	}

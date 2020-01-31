@@ -3,7 +3,7 @@ import Breadcrumb from "../../common/breadcrumb";
 import UpdateProductModal from "./update-product-modal.js";
 import { Edit, Trash2 } from "react-feather";
 import { connect } from "react-redux";
-import { deleteProduct } from "../../../actions";
+import { deleteProduct, updateProduct } from "../../../actions";
 import store from "../../../store";
 
 
@@ -126,6 +126,7 @@ export class Product_list extends Component {
             open={this.state.open}
             closeModal={this.closeModal}
             product={this.state.productToUpdate}
+            updateProduct={this.props.updateProduct}
             />
         :
           null
@@ -144,6 +145,6 @@ const mapStateToProps = state => ({
   symbol: state.data.symbol
 });
 
-export default connect(mapStateToProps, { deleteProduct })(Product_list);
+export default connect(mapStateToProps, { deleteProduct, updateProduct })(Product_list);
 
 

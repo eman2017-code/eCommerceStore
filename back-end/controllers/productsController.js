@@ -107,8 +107,12 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
   const productId = req.params.productId;
   const productData = req.body;
   productData.owner = req.session.userId;
-  const productImage = req.files.image;
 
+  let productImage = null;
+  if (req.files.file) {
+    productImage = req.files.file;
+  }
+  
   try {
     // updates the product in mongo
     const foundProduct = await Product.findOne({ upc: productId });

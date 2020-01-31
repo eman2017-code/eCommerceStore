@@ -92,6 +92,8 @@ export default {
         "Content-Type": "application/json"
       }
     })
+    const parsedResponse = await response.json();
+    return parsedResponse;
   },
 
   // makes api call to delete an admins product

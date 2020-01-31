@@ -103,13 +103,23 @@ export const createProduct = productData => async dispatch => {
 }
 
 
+// updates an admins product
 export const updateProduct = productData => async dispatch => {
   const updatedProductResponse = await shop.updateProduct(productData);
+  console.log('update product response:', updatedProductResponse);
+
   const updatedProduct = updatedProductResponse.data;
+
+  if (updatedProductResponse.status.code === 200) {
+    console.log('successfully updated the product');
+  } else {
+    console.log('failed to updated the product');
+  }
 
 }
 
 
+// removes an admins product
 export const deleteProduct = productId => async dispatch => {
   const deleteProductResponse = await shop.deleteProduct(productId);
 
