@@ -37,7 +37,6 @@ class UpdateProductModal extends Component {
 		productData.append('sku', product.sku);
 		
 		await this.props.updateProduct(productData);
-
 		this.props.closeModal();
 	}
 

@@ -84,7 +84,7 @@ export default {
 
   // makes an api call to update a product
   updateProduct: async productData => {
-    const response = await fetch(apiURL + 'products' + productData + '/', {
+    const response = await fetch(apiURL + 'products' + productData.upc + '/', {
       method: 'PUT',
       body: productData,
       credentials: "include",
