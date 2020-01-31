@@ -64,6 +64,11 @@ export const logoutUser = () => async dispatch => {
   // makes the api call to logout
   const logoutResponse = await shop.logoutUser();
 
+  // removes all of the admins products in the store
+  dispatch({
+    type: types.CLEAR_PRODUCTS
+  })
+
   // removes logged in user from the state
   dispatch({
     type: types.LOGOUT

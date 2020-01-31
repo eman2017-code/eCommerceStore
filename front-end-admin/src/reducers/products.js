@@ -1,7 +1,8 @@
 import { 
   GET_PRODUCTS,
   CREATE_PRODUCT,
-  DELETE_PRODUCT }
+  DELETE_PRODUCT,
+  CLEAR_PRODUCTS }
 from "../constants/ActionTypes";
 
 const initialState = {
