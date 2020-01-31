@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Breadcrumb from "../../common/breadcrumb";
 import Modal from "react-responsive-modal";
+import { updateProduct } from "../../../actions";
 
 
 class UpdateProductModal extends Component {
@@ -21,6 +22,7 @@ class UpdateProductModal extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault()
+		console.log('update product form submitted');
 
 		const product = this.state.product;
 
@@ -35,7 +37,9 @@ class UpdateProductModal extends Component {
     productData.append('upc', product.upc);
 		productData.append('sku', product.sku);
 		
-		
+		await this.updateProduct(productData);
+
+		this.props.closeModal();
 	}
 
 	render() {
@@ -52,7 +56,7 @@ class UpdateProductModal extends Component {
 					</h5>
 				</div>
 				<div className="modal-body">
-					<form>
+					<form onSubmit={this.handleSubmit}>
 						<div className="form-group">
 							<label
 								htmlFor="product-name"
@@ -122,15 +126,14 @@ class UpdateProductModal extends Component {
 								type="file"
 							/>
 						</div>
+						<button
+							type="submit"
+							className="btn btn-primary">
+							Save
+						</button>
 					</form>
 				</div>
 				<div className="modal-footer">
-					<button
-						type="button"
-						className="btn btn-primary"
-					>
-						Save
-					</button>
 					<button
 						type="button"
 						className="btn btn-secondary"
