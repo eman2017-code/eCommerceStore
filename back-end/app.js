@@ -15,7 +15,8 @@ const cartsController = require("./controllers/cartsController.js");
 const cartItemsController = require("./controllers/cartItemsController.js");
 const categoriesController = require("./controllers/categoriesController.js");
 const elasticsearchController = require("./controllers/elasticsearchController.js");
-const checkedOutCartController = require('./controllers/checkedOutCartController.js');
+const checkedOutCartController = require("./controllers/checkedOutCartController.js");
+const couponsController = require("./controllers/couponsController.js");
 
 // imports the database connection module
 require("./db/db.js");
@@ -69,6 +70,7 @@ app.use(API_PATH + "cart-items", cartItemsController);
 app.use(API_PATH + "categories", categoriesController);
 app.use(API_PATH + "search", elasticsearchController);
 app.use(API_PATH + "checkout", checkedOutCartController);
+app.use(API_PATH + "coupons", couponsController);
 
 // runs the server
 app.listen(PORT, () => {
