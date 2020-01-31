@@ -17,6 +17,7 @@ if (debug) {
 
 class ProductListing extends Component {
   constructor(props) {
+    console.log("props:", props);
     super(props);
 
     this.state = {
@@ -51,7 +52,6 @@ class ProductListing extends Component {
           "Content-Type": "application/json"
         }
       });
-
       // convert response to json
       const parsedResponse = await response.json();
       const parsedResponseData = parsedResponse.data;
@@ -90,6 +90,11 @@ class ProductListing extends Component {
       });
     }, 3000);
   };
+
+  // // component to re-render after filtering
+  // componentWillReceiveProps(nextProps) {
+  //   console.log("nextProps:", nextProps);
+  // }
 
   render() {
     const { products, addToCart, symbol } = this.props;
