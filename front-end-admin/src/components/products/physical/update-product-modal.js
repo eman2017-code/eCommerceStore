@@ -24,6 +24,7 @@ class UpdateProductModal extends Component {
 		console.log('update product form submitted');
 
 		const product = this.state.product;
+		console.log('product:', product);
 
 		// creates the FormData object for sending the form data to express
     const productData = new FormData();
@@ -36,7 +37,7 @@ class UpdateProductModal extends Component {
     productData.append('upc', product.upc);
 		productData.append('sku', product.sku);
 		
-		await this.props.updateProduct(productData);
+		await this.props.updateProduct(productData, product.upc);
 		this.props.closeModal();
 	}
 

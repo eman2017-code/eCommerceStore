@@ -104,8 +104,8 @@ export const createProduct = productData => async dispatch => {
 
 
 // updates an admins product
-export const updateProduct = productData => async dispatch => {
-  const updatedProductResponse = await shop.updateProduct(productData);
+export const updateProduct = (productData, productId) => async dispatch => {
+  const updatedProductResponse = await shop.updateProduct(productData, productId);
   console.log('update product response:', updatedProductResponse);
 
   const updatedProduct = updatedProductResponse.data;
