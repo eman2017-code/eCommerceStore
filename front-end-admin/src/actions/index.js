@@ -64,6 +64,11 @@ export const logoutUser = () => async dispatch => {
   // makes the api call to logout
   const logoutResponse = await shop.logoutUser();
 
+  // removes all of the admins products in the store
+  dispatch({
+    type: types.CLEAR_PRODUCTS
+  })
+
   // removes logged in user from the state
   dispatch({
     type: types.LOGOUT
@@ -98,6 +103,30 @@ export const createProduct = productData => async dispatch => {
 }
 
 
+// updates an admins product
+export const updateProduct = (productData, productId) => async dispatch => {
+  const updatedProductResponse = await shop.updateProduct(productData, productId);
+  const updatedProduct = updatedProductResponse.data;
+
+  if (updatedProductResponse.status.code === 200) {
+    dispatch({
+      type: types.UPDATE_PRODUCT,
+      updatedProduct: updatedProduct
+    })
+    toast.success(updatedProductResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    }); 
+
+  } else {
+    toast.error(updatedProductResponse.status.message, {
+      position: toast.POSITION.TOP_CENTER
+    }); 
+  }
+
+}
+
+
+// removes an admins product
 export const deleteProduct = productId => async dispatch => {
   const deleteProductResponse = await shop.deleteProduct(productId);
 

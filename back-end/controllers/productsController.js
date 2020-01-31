@@ -8,6 +8,7 @@ const FileUploadManager = require("../managers/FileUploadManager.js");
 const ElasticSearchManager = require("../managers/ElasticSearchManager.js");
 const router = express.Router();
 
+
 // Index Route
 // returns all of the products the database
 router.get("/", async (req, res, next) => {
@@ -24,6 +25,7 @@ router.get("/", async (req, res, next) => {
     next(error);
   }
 });
+
 
 // returns all of the products where the currently logged in admin is the owner
 router.get("/admin/", async (req, res, next) => {
@@ -44,7 +46,6 @@ router.get("/admin/", async (req, res, next) => {
     next(error);
   }
 });
-
 
 
 // Create Route
@@ -107,39 +108,43 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
   const productId = req.params.productId;
   const productData = req.body;
   productData.owner = req.session.userId;
-  const productImage = req.files.image;
-
+  let productImage;
+  
   try {
     // updates the product in mongo
     const foundProduct = await Product.findOne({ upc: productId });
     await foundProduct.updateFields(productData);
     await foundProduct.addCategories(productData);
 
-    const fileUploadManager = new FileUploadManager();
+    // if there was a new file uploaded
+    if (req.files) {
+      let productImage = req.files.file;
+      const fileUploadManager = new FileUploadManager();
 
-    // validates the new images name is unique, then updates the image in aws
-    const existingImageName = foundProduct.getImageName();
-    if (existingImageName !== productImage.name) {
-      productImage.name = await fileUploadManager.validateFileNameIsUnique(
-        productImage.name
-      );
+      // validates the new images name is unique, then updates the image in aws
+      const existingImageName = foundProduct.getImageName();
+      if (existingImageName !== productImage.name) {
+        productImage.name = await fileUploadManager.validateFileNameIsUnique(
+          productImage.name
+        );
+      }
+      fileUploadManager.updateFileInAWS(existingImageName, productImage, res);
+
+      // gets the path the updated product image in aws
+      const awsPathToImage = fileUploadManager.getURLToUploadedFile(productImage.name);
+
+      foundProduct.image = awsPathToImage;
+      await foundProduct.save()
+
+      // save the aws path to the products data object so it can be updated in elasticsearch
+      productData.image = awsPathToImage;
     }
-    fileUploadManager.updateFileInAWS(existingImageName, productImage, res);
-
-    // gets the path the updated product image in aws and store it in the product image field
-    const awsPathToImage = fileUploadManager.getURLToUploadedFile(
-      productImage.name
-    );
-
-    foundProduct.image = awsPathToImage;
-    await foundProduct.save();
 
     // updates the product in elasticsearch
     const elasticSearchManager = new ElasticSearchManager();
-    productData.image = awsPathToImage;
     const elasticSearchResponse = await elasticSearchManager.updateExistingProduct(
       productData
-    );
+    )
 
     res.json({
       data: foundProduct,

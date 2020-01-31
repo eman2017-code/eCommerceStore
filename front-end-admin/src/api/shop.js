@@ -2,7 +2,7 @@ import { createProduct } from "../actions";
 
 // this code allows us to easily change between production api url and
 // the development api url, by changing debug to true or false
-const debug = false;
+const debug = true;
 let apiURL;
 if (debug) {
   apiURL = "http://localhost:8000/api/v1/";
@@ -78,6 +78,17 @@ export default {
       body: productData,
       credentials: "include"
     });
+    const parsedResponse = await response.json();
+    return parsedResponse;
+  },
+
+  // makes an api call to update a product
+  updateProduct: async (productData, productId) => {
+    const response = await fetch(apiURL + 'products/' + productId + '/', {
+      method: 'PUT',
+      body: productData,
+      credentials: "include",
+    })
     const parsedResponse = await response.json();
     return parsedResponse;
   },

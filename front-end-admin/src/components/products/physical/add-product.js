@@ -57,7 +57,7 @@ export class Add_product extends Component {
   handleCreateProduct = async (e) => {
     e.preventDefault();
 
-    // create the FormData object for sending the form data to express
+    // creates the FormData object for sending the form data to express
     const productData = new FormData();
     productData.append('file', this.state.image, this.state.image.name);
     productData.append('name', this.state.name);

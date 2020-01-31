@@ -1,7 +1,9 @@
 import { 
   GET_PRODUCTS,
   CREATE_PRODUCT,
-  DELETE_PRODUCT }
+  UPDATE_PRODUCT,
+  DELETE_PRODUCT,
+  CLEAR_PRODUCTS }
 from "../constants/ActionTypes";
 
 const initialState = {
@@ -27,17 +29,32 @@ const productsReducer = (state = initialState, action) => {
         products: state.products
       }
 
-    // removes one of the admins products from the state
-    case DELETE_PRODUCT:
-      console.log('in DELETE_PRODUCT');
-      console.log('before:', state.products);
-      const updatedProducts = state.products.filter(product => product.upc != action.productId);
-      console.log('after:', updatedProducts);
-      
+    // updates one of the admins products in the store
+    case UPDATE_PRODUCT:
+      const updatedProduct = action.updatedProduct;
+      const indexOfProductToUpdate = state.products.findIndex(product => product.upc === updatedProduct.upc);
+
+      state.products[indexOfProductToUpdate] = updatedProduct;
 
       return {
         ...state,
+        products: state.products
+      }
+
+    // removes one of the admins products from the state
+    case DELETE_PRODUCT:
+      const updatedProducts = state.products.filter(product => product.upc != action.productId);
+      
+      return {
+        ...state,
         products: updatedProducts
+      }
+
+    // remove all of the products from the store
+    case CLEAR_PRODUCTS:
+      return {
+        ...state,
+        products: []
       }
 
     default:

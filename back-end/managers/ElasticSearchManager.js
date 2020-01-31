@@ -120,7 +120,6 @@ class ElasticSearchManager {
       }
     });
     const products = this.parseResponse(results);
-    console.log("products:", products);
     return products;
   }
 
@@ -168,7 +167,7 @@ class ElasticSearchManager {
           bool: {
             filter: {
               term: {
-                "message.upc": productUPC
+                "upc": productUPC
               }
             }
           }
