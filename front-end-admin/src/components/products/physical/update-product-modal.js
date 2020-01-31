@@ -21,6 +21,21 @@ class UpdateProductModal extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault()
+
+		const product = this.state.product;
+
+		// creates the FormData object for sending the form data to express
+    const productData = new FormData();
+    // productData.append('file', this.state.image, this.state.image.name);
+    productData.append('name', product.name);
+    productData.append('model', product.model);
+    productData.append('price', product.price);
+    productData.append('manufacturer', product.manufacturer);
+    productData.append('description', product.description);
+    productData.append('upc', product.upc);
+		productData.append('sku', product.sku);
+		
+		
 	}
 
 	render() {
