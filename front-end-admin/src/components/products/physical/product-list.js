@@ -27,25 +27,19 @@ export class Product_list extends Component {
   }
 
   openModal = (productData) => {
-    console.log('productData:', productData);
-
 		this.setState({
       productToUpdate: productData,
       open: true
     });
-
-    console.log('productToUPdate after change:', this.state.productToUpdate);
 	}
 
 	closeModal = () => {
-    console.log('closeModal');
 		this.setState({
       open: false,
 		})
 	}
 
   render() {
-
     return (
       <Fragment>
         <Breadcrumb title="Current Inventory" parent="Physical" />

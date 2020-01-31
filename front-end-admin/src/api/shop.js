@@ -79,14 +79,11 @@ export default {
       credentials: "include"
     });
     const parsedResponse = await response.json();
-    console.log('created product in response:', parsedResponse.data);
-
     return parsedResponse;
   },
 
   // makes an api call to update a product
   updateProduct: async (productData, productId) => {
-    console.log('product upc in fetch call:', productId);
     const response = await fetch(apiURL + 'products/' + productId + '/', {
       method: 'PUT',
       body: productData,
