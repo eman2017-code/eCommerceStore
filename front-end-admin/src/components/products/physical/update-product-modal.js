@@ -9,19 +9,25 @@ class UpdateProductModal extends Component {
 			super(props);
 
 			this.state = {
-				product: this.props.product
+				product: this.props.product,
+				name: this.props.product.name,
+				model: this.props.product.model,
+				price: this.props.product.price,
+				manufacturer: this.props.product.manufacturer,
+				description: this.props.product.description
 			}
 	}
 
 	handleChange = (e) => {
 		this.setState({
-			product: { [e.target.name]: e.target.value }
+			[e.target.name]: e.target.value
 		});
 	}
 
 	handleSubmit = async (e) => {
 		e.preventDefault()
-		console.log('update product form submitted');
+
+		const { name, model, price, manufacturer, description } = this.state;
 
 		const product = this.state.product;
 		console.log('product:', product);
@@ -29,11 +35,11 @@ class UpdateProductModal extends Component {
 		// creates the FormData object for sending the form data to express
     const productData = new FormData();
     // productData.append('file', this.state.image, this.state.image.name);
-    productData.append('name', product.name);
-    productData.append('model', product.model);
-    productData.append('price', product.price);
-    productData.append('manufacturer', product.manufacturer);
-    productData.append('description', product.description);
+    productData.append('name', name);
+    productData.append('model', model);
+    productData.append('price', price);
+    productData.append('manufacturer', manufacturer);
+    productData.append('description', description);
     productData.append('upc', product.upc);
 		productData.append('sku', product.sku);
 		
@@ -63,6 +69,7 @@ class UpdateProductModal extends Component {
 								Name:
 							</label>
 							<input type="text"
+										 name="name"
 										 className="form-control" 
 										 value={product.name}
 										 onChange={this.handleChange}/>
@@ -74,6 +81,7 @@ class UpdateProductModal extends Component {
 								Model:
 							</label>
 							<input type="text"
+										 name="model"
 										 className="form-control" 
 										 value={product.model}
 										 onChange={this.handleChange}/>
@@ -85,6 +93,7 @@ class UpdateProductModal extends Component {
 								Price:
 							</label>
 							<input type="number"
+										 name="price"
 										 className="form-control" 
 										 value={product.price}
 										 onChange={this.handleChange}/>
@@ -96,6 +105,7 @@ class UpdateProductModal extends Component {
 								Manufacturer:
 							</label>
 							<input type="text"
+										 name="manufacturer"
 										 className="form-control" 
 										 value={product.manufacturer}
 										 onChange={this.handleChange}/>

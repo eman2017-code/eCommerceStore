@@ -107,11 +107,7 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
   const productId = req.params.productId;
   const productData = req.body;
   productData.owner = req.session.userId;
-
-  let productImage = null;
-  if (req.files.file) {
-    productImage = req.files.file;
-  }
+  let productImage;
   
   try {
     // updates the product in mongo
@@ -119,31 +115,35 @@ router.put("/:productId/", adminRequired, async (req, res, next) => {
     await foundProduct.updateFields(productData);
     await foundProduct.addCategories(productData);
 
-    const fileUploadManager = new FileUploadManager();
+    // if there was a new file uploaded
+    if (req.files) {
+      let productImage = req.files.file;
+      const fileUploadManager = new FileUploadManager();
 
-    // validates the new images name is unique, then updates the image in aws
-    const existingImageName = foundProduct.getImageName();
-    if (existingImageName !== productImage.name) {
-      productImage.name = await fileUploadManager.validateFileNameIsUnique(
-        productImage.name
-      );
+      // validates the new images name is unique, then updates the image in aws
+      const existingImageName = foundProduct.getImageName();
+      if (existingImageName !== productImage.name) {
+        productImage.name = await fileUploadManager.validateFileNameIsUnique(
+          productImage.name
+        );
+      }
+      fileUploadManager.updateFileInAWS(existingImageName, productImage, res);
+
+      // gets the path the updated product image in aws
+      const awsPathToImage = fileUploadManager.getURLToUploadedFile(productImage.name);
+
+      foundProduct.image = awsPathToImage;
+      await foundProduct.save()
+
+      // save the aws path to the products data object so it can be updated in elasticsearch
+      productData.image = awsPathToImage;
     }
-    fileUploadManager.updateFileInAWS(existingImageName, productImage, res);
-
-    // gets the path the updated product image in aws and store it in the product image field
-    const awsPathToImage = fileUploadManager.getURLToUploadedFile(
-      productImage.name
-    );
-
-    foundProduct.image = awsPathToImage;
-    await foundProduct.save();
 
     // updates the product in elasticsearch
     const elasticSearchManager = new ElasticSearchManager();
-    productData.image = awsPathToImage;
     const elasticSearchResponse = await elasticSearchManager.updateExistingProduct(
       productData
-    );
+    )
 
     res.json({
       data: foundProduct,

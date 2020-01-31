@@ -84,6 +84,13 @@ productSchema.methods.getImageName = function() {
   return imageName;
 };
 
+// // generate a random upc number for a product
+// productSchema.methods.generateUPC = function() {
+//   const upc = Math.floor(Math.random() * (9999999999999999 - 1000000000000000)) + 1000000000000000;
+
+
+// }
+
 // uploads a product image
 productSchema.statics.uploadProductImage = function(imageFile) {
   imageFile.mv(

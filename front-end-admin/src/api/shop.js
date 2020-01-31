@@ -79,6 +79,8 @@ export default {
       credentials: "include"
     });
     const parsedResponse = await response.json();
+    console.log('created product in response:', parsedResponse.data);
+
     return parsedResponse;
   },
 
