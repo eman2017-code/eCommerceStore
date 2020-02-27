@@ -15,7 +15,7 @@ const cartsController = require("./controllers/cartsController.js");
 const cartItemsController = require("./controllers/cartItemsController.js");
 const categoriesController = require("./controllers/categoriesController.js");
 const elasticsearchController = require("./controllers/elasticsearchController.js");
-const checkedOutCartController = require('./controllers/checkedOutCartController.js');
+const checkedOutCartController = require("./controllers/checkedOutCartController.js");
 
 // imports the database connection module
 require("./db/db.js");
