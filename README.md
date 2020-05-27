@@ -11,3 +11,9 @@ React Redux, SASS
 
 Back-End:
 Nodejs, MongoDB, Mongoose, Express, Elasticsearch, Kibana, Logstash
+
+## Run Project Instructions:
+
+1. Clone or download (Clone with SSH)
+2. npm install
+3. npm start
